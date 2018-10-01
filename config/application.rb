@@ -29,5 +29,9 @@ module ExcidePresto
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.generators do |generate|
+      generate.orm :active_record, primary_key_type: :uuid
+    end
   end
 end
