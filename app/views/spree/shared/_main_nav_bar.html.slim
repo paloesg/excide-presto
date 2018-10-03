@@ -1,0 +1,11 @@
+nav.col-md-12
+  #main-nav-bar.navbar
+    ul.nav.navbar-nav data-hook=""
+      li#home-link data-hook="" = link_to Spree.t(:home), spree.root_path
+    ul.nav.navbar-nav.navbar-right data-hook=""
+      li#link-to-cart data-hook=""
+        noscript
+          = link_to_cart
+        |  
+      javascript:
+        | Spree.fetch_cart()

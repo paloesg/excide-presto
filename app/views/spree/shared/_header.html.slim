@@ -1,0 +1,10 @@
+body
+  #spree-header
+    header#header data-hook=""
+      .container
+        .row
+          figure#logo.col-md-4.col-sm-3 data-hook=""
+            = logo
+          = render partial: 'spree/shared/nav_bar'
+    .container
+      = render partial: 'spree/shared/main_nav_bar'
