@@ -1,0 +1,22 @@
+doctype html
+/![if lt IE 7 ] <html class="ie ie6" lang="<haml_loud> I18n.locale </haml_loud>"
+/![if IE 7 ] <html class="ie ie7" lang="<haml_loud> I18n.locale </haml_loud>"
+/![if IE 8 ] <html class="ie ie8" lang="<haml_loud> I18n.locale </haml_loud>"
+/![if IE 9 ] <html class="ie ie9" lang="<haml_loud> I18n.locale </haml_loud>"
+/! [if gt IE 9]><!
+html lang="#{I18n.locale}"
+  /! <![endif]
+  head data-hook="inside_head"
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    = render partial: 'spree/shared/head'
+  body class=body_class data-hook="body" id=("#{@body_id || 'default'}")
+    = render partial: 'spree/shared/header'
+    .container
+      .row data-hook=""
+        = spree_breadcrumbs(@taxon)
+        = render partial: 'spree/shared/sidebar' if content_for? :sidebar
+        #content class=("#{!content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9"}") data-hook=""
+          = flash_messages
+          = yield
+        = yield :templates
+
