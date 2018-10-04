@@ -1,0 +1,19 @@
+/* Header Session */
+
+#presto-header {
+  margin-bottom: 40px;
+}
+
+#presto-header .navbar-inverse .navbar-brand {
+  color: #ffffff;
+}
+
+#presto-header .navbar-inverse {
+  color: #ffffff;
+  padding: 10px;
+  background-color: #5f509b;
+}
+
+#presto-header .navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
+}
