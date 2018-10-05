@@ -30,3 +30,9 @@ body {
 .presto-input-group > :last-child > * {
   border-radius: 0 30px 30px 0;
 }
+
+/* Product Show Page */
+
+.presto-thumbnails {
+  text-align: center;
+}
