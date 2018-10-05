@@ -1,5 +1,5 @@
 - if (@product.images + @product.variant_images).uniq.size > 1
-  ul#product-thumbnails.thumbnails.list-inline.presto-centered data-hook=""
+  ul#product-thumbnails.thumbnails.list-inline.text-center data-hook=""
     - @product.images.each do |i|
       li class=("tmb-all tmb-#{i.viewable.id}")
         = link_to(image_tag(main_app.url_for(i.url(:mini)), class: "thumbnail"), main_app.url_for(i.url(:product)))

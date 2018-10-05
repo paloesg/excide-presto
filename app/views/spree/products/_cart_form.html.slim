@@ -4,7 +4,7 @@
       .col-md-12 data-hook="product_price"
         #product-price
           / h6.product-section-title= Spree.t(:price)
-          div.presto-centered
+          div.text-center
             span.lead.price.selling content="#{@product.price_in(current_currency).amount.to_d}" itemprop="price"
               = display_price(@product)
             span content=current_currency itemprop="priceCurrency"
