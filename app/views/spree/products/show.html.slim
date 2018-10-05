@@ -1,7 +1,7 @@
 - @body_id = 'product-details'
 - cache cache_key_for_product do
   .row data-hook="product_show" itemscope="" itemtype="https://schema.org/Product"
-    .col-md-4.col-sm-5 data-hook="product_left_part"
+    .col-md-12.col-sm-5 data-hook="product_left_part"
       div data-hook="product_left_part_wrap"
         #product-images data-hook="product_images"
           #main-image.panel.panel-default data-hook=""
@@ -13,7 +13,7 @@
           = render partial: 'properties'
         div data-hook="promotions"
           = render partial: 'promotions'
-    .col-md-8.col-sm-7 data-hook="product_right_part"
+    .col-md-12.col-sm-7 data-hook="product_right_part"
       div data-hook="product_right_part_wrap"
         #product-description data-hook="product_description"
           h1.product-title itemprop="name" = @product.name
