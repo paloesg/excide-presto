@@ -9,18 +9,17 @@
               = product_image(@product, itemprop: "image")
           #thumbnails data-hook=""
             = render partial: 'thumbnails'
-        div data-hook="product_properties"
-          = render partial: 'properties'
-        div data-hook="promotions"
-          = render partial: 'promotions'
     .col-md-12.col-sm-7 data-hook="product_right_part"
       div data-hook="product_right_part_wrap"
         #product-description data-hook="product_description"
           h1.product-title itemprop="name" = @product.name
-          .well data-hook="description" itemprop="description"
-            = product_description(@product)
           #cart-form data-hook="cart_form"
             = render partial: 'cart_form'
+          .well data-hook="description" itemprop="description"
+            = product_description(@product)
         #taxon-crumbs.five data-hook="product_taxons"
           = render partial: 'taxons'
-
+        div data-hook="product_properties"
+          = render partial: 'properties'
+        div data-hook="promotions"
+          = render partial: 'promotions'
