@@ -25,6 +25,14 @@ body {
   background-color: #f2f2f1;
 }
 
+h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right{
+  font-family: 'AmsiPro-Ultra', sans-serif;
+}
+
+.presto-product-description {
+  font-family: 'AmsiPro-Regular', sans-serif;
+}
+
 /* Header Session */
 
 #presto-header {

@@ -16,7 +16,7 @@
     .col-md-12.col-sm-7 data-hook="product_right_part"
       div data-hook="product_right_part_wrap"
         h3.product-section-title Description
-        div data-hook="description" itemprop="description"
+        .presto-product-description data-hook="description" itemprop="description"
           = product_description(@product)
         #taxon-crumbs.five data-hook="product_taxons"
           = render partial: 'taxons'
