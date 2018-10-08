@@ -1,3 +1,25 @@
+@font-face {
+  /* AmsiPro Ultra */
+  font-family: 'AmsiPro-Ultra';
+  src: url(/assets/AmsiPro-Ultra.eot) format("embedded-opentype"), url(/assets/AmsiPro-Ultra.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  /* AmsiPro Regular */
+  font-family: 'AmsiPro-Regular';
+  src: url(/assets/AmsiPro-Regular.eot) format("embedded-opentype"), url(/assets/AmsiPro-Regular.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  /* AmsiPro Italic */
+  font-family: 'AmsiPro-Italic';
+  src: url(/assets/AmsiPro-Italic.eot) format("embedded-opentype"), url(/assets/AmsiPro-Italic.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* General */
 body {
   background-color: #f2f2f1;
