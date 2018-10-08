@@ -15,7 +15,8 @@
           h1.product-title.text-center itemprop="name" = @product.name
           #cart-form data-hook="cart_form"
             = render partial: 'cart_form'
-          .well data-hook="description" itemprop="description"
+          h3.product-section-title Description
+          div data-hook="description" itemprop="description"
             = product_description(@product)
         #taxon-crumbs.five data-hook="product_taxons"
           = render partial: 'taxons'
