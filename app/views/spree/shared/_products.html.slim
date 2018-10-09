@@ -12,4 +12,5 @@ div data-hook="products_search_results_heading"
   #products.row data-hook=""
     = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon }
 - if products.respond_to?(:total_pages)
-  = paginate products, theme: 'twitter-bootstrap-3'
+  .text-center
+    = paginate products, theme: 'twitter-bootstrap-3'

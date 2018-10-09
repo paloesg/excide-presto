@@ -105,3 +105,14 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
 span.price.selling.lead {
   color: #5f509b;
 }
+
+/* Pagination */
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+  background-color: #5f509b;
+  border-color: #5f509b;
+}
+
+.pagination > li > a, .pagination > li > span {
+  color: #5f509b;
+}
