@@ -89,12 +89,9 @@ span.info {
 }
 
 .presto-btn-purple {
-  width: 90%;
-  margin: 5px 0px 0px 0px;
   background-color: #5f509b;
   border-color: #5f509b;
   font-family: "AmsiPro-Ultra", sans-serif;
-  font-size: 20px;
   border-radius: 15px;
   color: #ffffff;
 }
