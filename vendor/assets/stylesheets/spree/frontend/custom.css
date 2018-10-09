@@ -83,7 +83,7 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   padding: 10px 15px;
 }
 
-span.info {
+.presto-products-title {
   color: #333333;
   font-size: 12px;
 }
@@ -100,4 +100,8 @@ span.info {
   background-color: #ffcc4e;
   border-color: #ffcc4e;
   color: #ffffff;
+}
+
+span.price.selling.lead {
+  color: #5f509b;
 }

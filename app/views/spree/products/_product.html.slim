@@ -6,12 +6,11 @@
         = link_to url, itemprop: "url" do
           = small_image(product, itemprop: "image")
           br
-          = content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: "name", title: product.name)
+          = content_tag(:span, truncate(product.name, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
         br
       .presto-panel-footer.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        .text-center
-          = link_to 'SUBMIT', url, class: 'btn presto-btn-purple btn-block'
+        = link_to 'OPEN', url, class: 'btn presto-btn-purple btn-block'
