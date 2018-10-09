@@ -21,11 +21,12 @@
 }
 
 /* General */
+
 body {
   background-color: #f2f2f1;
 }
 
-h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right{
+h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info{
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
 
@@ -68,4 +69,20 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   padding: 35px;
   border-radius: 10px;
   box-shadow: 8px 8px 15px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Products */
+
+.presto-panel-default {
+  border-color: #ddd;
+  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+}
+
+.presto-panel-footer {
+  padding: 10px 15px;
+}
+
+span.info {
+  color: #333333;
 }
