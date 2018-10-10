@@ -10,8 +10,3 @@ table#cart-detail.table.presto-table data-hook=""
         h5= order_form.object.display_item_total
       td
     = render "spree/orders/adjustments"
-  tr.warning.cart-total
-    td align="right" colspan="4"
-      h5= Spree.t(:total)
-    td.lead colspan="" = order_form.object.display_total
-    td
