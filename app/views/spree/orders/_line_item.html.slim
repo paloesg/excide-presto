@@ -12,12 +12,8 @@
       - if line_item.insufficient_stock?
         span.out-of-stock
           = Spree.t(:out_of_stock)
-          |   
-          br/
-      span.line-item-description data-hook="line_item_description"
-        = line_item_description_text(line_item.description)
-    td.lead.text-primary.cart-item-price data-hook="cart_item_price"
-      = line_item.single_money.to_html
+      .lead.text-primary.cart-item-price data-hook="cart_item_price"
+        = line_item.single_money.to_html
     td.cart-item-quantity data-hook="cart_item_quantity" valign="center"
       = item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5
     td.lead.text-primary.cart-item-total data-hook="cart_item_total"
