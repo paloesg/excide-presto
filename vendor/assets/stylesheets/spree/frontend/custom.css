@@ -116,3 +116,9 @@ span.price.selling.lead {
 .pagination > li > a, .pagination > li > span {
   color: #5f509b;
 }
+
+/* Cart Page */
+
+.presto-table > tbody > tr > td {
+  border-top: 0 !important;
+}
