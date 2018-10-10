@@ -16,6 +16,7 @@ div data-hook="cart_container"
               label
                 = order_form.label :coupon_code
                 = order_form.text_field :coupon_code, size: '30', class: 'form-control'
+                '
                 = button_tag Spree.t(:coupon_code_apply), class: 'btn btn-default'
         .col-md-3
           .panel.presto-panel-default.text-center
@@ -24,14 +25,14 @@ div data-hook="cart_container"
               h5= Spree.t(:total)
               .lead = order_form.object.display_total
             .presto-panel-footer
-              = button_tag class: 'btn btn-primary btn-block', id: 'update-button' do
+              = button_tag class: 'presto-btn btn-purple btn-block', id: 'update-button' do
                 = Spree.t(:update)
-              = button_tag class: 'btn btn-success btn-block', id: 'checkout-link', name: 'checkout' do
+              = button_tag class: 'presto-btn btn-success btn-block', id: 'checkout-link', name: 'checkout' do
                 = Spree.t(:checkout)
     #empty-cart.col-md-3.pull-left data-hook=""
       = form_tag empty_cart_path, method: :put do
         p#clear_cart_link.text-center data-hook=""
-          = submit_tag Spree.t(:empty_cart), class: 'btn btn-default'
+          = submit_tag Spree.t(:empty_cart), class: 'presto-btn btn-default'
           '
           = Spree.t(:or)
           '

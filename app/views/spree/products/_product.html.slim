@@ -13,4 +13,4 @@
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        = link_to 'OPEN', url, class: 'btn presto-btn-purple btn-block'
+        = link_to 'OPEN', url, class: 'presto-btn btn-purple btn-block'

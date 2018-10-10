@@ -34,6 +34,40 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   font-family: 'AmsiPro-Regular', sans-serif;
 }
 
+.presto-btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn-purple {
+  background-color: #5f509b;
+  border-color: #5f509b;
+  font-family: "AmsiPro-Ultra", sans-serif;
+  color: #ffffff;
+}
+
+.btn-purple:hover {
+  background-color: #ffcc4e;
+  border-color: #ffcc4e;
+  color: #ffffff;
+}
+
 /* Header Session */
 
 #presto-header {
@@ -86,20 +120,6 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
 .presto-products-title {
   color: #333333;
   font-size: 12px;
-}
-
-.presto-btn-purple {
-  background-color: #5f509b;
-  border-color: #5f509b;
-  font-family: "AmsiPro-Ultra", sans-serif;
-  border-radius: 15px;
-  color: #ffffff;
-}
-
-.presto-btn-purple:hover {
-  background-color: #ffcc4e;
-  border-color: #ffcc4e;
-  color: #ffffff;
 }
 
 span.price.selling.lead {
