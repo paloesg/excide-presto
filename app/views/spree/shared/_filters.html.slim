@@ -12,13 +12,8 @@
           - labels.each do |nm,val|
             - label = "#{filter[:name]}_#{nm}".gsub(/\s+/,'_')
             li.list-group-item
-              input id="" type="checkbox" /
-              = label
-              | "
-              | name="search[#{filter[:scope].to_s}][]"
-              | value="#{val}"
-              | \#{params[:search].present?  params[:search][filter[:scope]]  params[:search][filter[:scope]].include?(val.to_s) ? checked :} /&gt;
-              label.nowrap for=""
-              = label
-              | "&gt; #{nm}
-  = submit_tag Spree.t(:search), name: nil, class: 'btn btn-primary'
+              = check_box_tag "search[#{filter[:scope].to_s}][]", "#{val}", params[:search].present? && params[:search][filter[:scope]] && params[:search][filter[:scope]].include?(val.to_s) ? true : false, id: label
+              '
+              label.nowrap for=label
+                = nm
+    = submit_tag Spree.t(:search), name: nil, class: 'btn btn-primary'
