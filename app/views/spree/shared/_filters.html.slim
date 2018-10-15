@@ -6,9 +6,10 @@
       - labels = filter[:labels] || filter[:conds].map {|m,c| [m,m]}
       - next if labels.empty?
       .navigation data-hook="navigation"
-        h4.filter-title
-          = filter[:name]
-        ul.list-group
+        .list-group
+          h4.filter-title.list-group-item
+            = filter[:name]
+            i.glyphicon.glyphicon-triangle-bottom.pull-right
           - labels.each do |nm,val|
             - label = "#{filter[:name]}_#{nm}".gsub(/\s+/,'_')
             li.list-group-item
@@ -16,4 +17,4 @@
               '
               label.nowrap for=label
                 = nm
-    = submit_tag Spree.t(:search), name: nil, class: 'btn btn-primary'
+    = submit_tag Spree.t(:search), name: nil, class: 'presto-btn btn-purple'
