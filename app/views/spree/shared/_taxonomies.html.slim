@@ -4,7 +4,7 @@ nav#taxonomies.sidebar-item data-hook=""
     - cache [I18n.locale, taxonomy, max_level, @taxon] do
       - if taxonomy.root.children.any?
         .list-group
-          h4.list-group-item.taxonomy-root
+          h4.presto-sidebar-title.list-group-item.taxonomy-root
             = Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name)
             i.glyphicon.glyphicon-triangle-bottom.pull-right
           = taxons_tree(taxonomy.root, @taxon, max_level)
