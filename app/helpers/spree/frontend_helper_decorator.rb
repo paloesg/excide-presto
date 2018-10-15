@@ -1,4 +1,4 @@
-Spree::TaxonsHelper.class_eval do
+Spree::FrontendHelper.class_eval do
   def taxons_tree(root_taxon, current_taxon, max_level = 1)
     return '' if max_level < 1 || root_taxon.leaf?
     taxons = root_taxon.children.map do |taxon|
