@@ -5,6 +5,6 @@ nav#taxonomies.sidebar-item data-hook=""
       - if taxonomy.root.children.any?
         .list-group
           h4.presto-sidebar-title.list-group-item.taxonomy-root
-            = Spree.t(:shop_by_taxonomy, taxonomy: taxonomy.name)
+            = taxonomy.name
             i.glyphicon.glyphicon-triangle-bottom.pull-right
           = taxons_tree(taxonomy.root, @taxon, max_level)
