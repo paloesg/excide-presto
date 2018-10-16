@@ -9,4 +9,4 @@
 - elsif @order.could_use_store_credit?
   .alert.alert-info.text-center data-hook="checkout_payment_store_credit_available"
     h2= Spree.t('store_credit.available_amount', amount: @order.display_total_available_store_credit)
-    = button_tag Spree.t('store_credit.apply'), name: 'apply_store_credit', class: 'continue btn btn-lg btn-primary'
+    = button_tag Spree.t('store_credit.apply'), name: 'apply_store_credit', class: 'continue presto-btn btn-lg btn-primary'
