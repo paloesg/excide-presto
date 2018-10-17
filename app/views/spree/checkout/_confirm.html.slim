@@ -1,0 +1,13 @@
+#order_details.panel.panel-default data-hook=""
+  .panel-heading
+    h3.panel-title= Spree.t(:confirm)
+  .panel-body
+    = render partial: 'spree/shared/order_details', locals: { order: @order }
+.well.text-right.form-buttons data-hook="buttons"
+  - if @order.using_store_credit?
+    = button_tag Spree.t('store_credit.remove'), name: 'remove_store_credit', class: 'continue presto-btn'
+  '
+  = submit_tag Spree.t(:place_order), class: 'presto-btn btn-lg btn-success'
+  javascript:
+    Spree.disableSaveOnClick();
+

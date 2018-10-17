@@ -1,0 +1,12 @@
+li#home-link data-hook="" = link_to Spree.t(:home), spree.root_path
+li#link-to-cart data-hook=""
+  noscript
+    = link_to_cart
+  |  
+- if spree_current_user
+  li= link_to Spree.t(:my_account), spree.account_path
+  li= link_to Spree.t(:logout), spree.logout_path
+- else
+  li#link-to-login= link_to Spree.t(:login), spree.login_path
+javascript:
+  Spree.fetch_cart()
