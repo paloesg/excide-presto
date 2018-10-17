@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   # the default of "spree".
   mount Spree::Core::Engine, at: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :dashboard do
+    root 'home#show'
+  end
 end
