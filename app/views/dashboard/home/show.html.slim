@@ -1,4 +1,5 @@
 .col-md-12
+  h1 Order Awaiting Approval
   .panel.panel-default
     .panel-heading Order Listing
     .panel-body
@@ -7,15 +8,15 @@
           thead
             tr
               th Number
-              th Total
               th Email
-              th Completed
+              th Total
+              th Date Requested
               th Approved
           tbody
             - @orders.each do |o|
               tr
                 td #{o.number}
-                td #{o.total}
                 td #{o.email}
+                td #{o.total}
                 td #{o.completed_at}
                 td #{o.approved_at}
