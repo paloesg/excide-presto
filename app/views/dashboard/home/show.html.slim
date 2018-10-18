@@ -1,0 +1,21 @@
+.col-md-12
+  .panel.panel-default
+    .panel-heading Order Listing
+    .panel-body
+      .table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th Number
+              th Total
+              th Email
+              th Completed
+              th Approved
+          tbody
+            - @orders.each do |o|
+              tr
+                td #{o.number}
+                td #{o.total}
+                td #{o.email}
+                td #{o.completed_at}
+                td #{o.approved_at}
