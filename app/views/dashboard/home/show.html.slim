@@ -20,3 +20,4 @@
                 td #{o.total}
                 td #{o.completed_at}
                 td #{o.approved_at}
+                td = link_to 'View', edit_dashboard_order_path(o.number)
