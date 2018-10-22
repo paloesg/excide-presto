@@ -16,5 +16,4 @@
                     = line_item.single_money.to_html
                   td =
                   td = line_item.display_amount.to_html
-                  td = link_to 'Reject', delete_item_dashboard_order_path(id: line_item.id), confirm: 'Are you sure?', method: :post
       = link_to 'Approve All', approve_dashboard_order_path(order_id: @order.number), method: :post, class: 'pull-right'

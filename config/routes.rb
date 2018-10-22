@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     resources :orders, param: :order_id do
       member do
         post :approve, to: 'orders#approve'
-        post '/line_item/:id', to: 'line_items#destroy', as: :delete_item
       end
     end
 
