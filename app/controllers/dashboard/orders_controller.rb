@@ -8,6 +8,12 @@ layout 'dashboard/application'
   def approve
     @order = Spree::Order.includes(:adjustments).find_by!(number: params[:order_id])
     @order.approved_by(spree_current_user)
-    render dashboard_orders_path
+    redirect_to dashboard_root_path
+  end
+
+  def cancel
+    @order = Spree::Order.includes(:adjustments).find_by!(number: params[:order_id])
+    @order.canceled_by(spree_current_user)
+    redirect_to dashboard_root_path
   end
 end

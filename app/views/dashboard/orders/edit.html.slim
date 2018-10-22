@@ -16,4 +16,7 @@
                     = line_item.single_money.to_html
                   td =
                   td = line_item.display_amount.to_html
-      = link_to 'Approve All', approve_dashboard_order_path(order_id: @order.number), method: :post, class: 'pull-right'
+      .pull-right
+        = link_to 'Approve All', approve_dashboard_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'
+        '
+        = link_to 'Reject All', cancel_dashboard_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'

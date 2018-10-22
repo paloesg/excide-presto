@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :orders, param: :order_id do
       member do
         post :approve, to: 'orders#approve'
+        post :cancel, to: 'orders#cancel'
       end
     end
 
