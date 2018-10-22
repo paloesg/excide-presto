@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, at: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :dashboard do
-    resources :orders
+    resources :orders, param: :order_id do
+      member do
+        post '/line_item/:id', to: 'line_items#destroy'
+      end
+    end
+
     root 'home#show'
   end
 end
