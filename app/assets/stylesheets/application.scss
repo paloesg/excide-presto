@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require spree/frontend
+ *= require spree/frontend/custom.css
  */
 
 @import "bootstrap-sprockets";

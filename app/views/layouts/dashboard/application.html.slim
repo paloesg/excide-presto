@@ -8,18 +8,18 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    nav.navbar.navbar-inverse.navbar-static-top
-      .container-fluid
+    #presto-header
+      .navbar-inverse
         .navbar-header
           button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
             span.sr-only Toggle navigation
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'Excide', dashboard_root_path, class: 'navbar-brand'
-        #navbar.collapse.navbar-collapse
+          a.navbar-brand href="/dashboard" GobblerCo
+        #navbar.navbar-collapse.collapse
+          = render partial: 'spree/shared/nav_search'
           ul.nav.navbar-nav.navbar-right
-            li.active
-              = link_to 'Home', dashboard_root_path
+            = render partial: 'layouts/dashboard/header'
     .container-fluid
       = yield
