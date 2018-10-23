@@ -12,6 +12,7 @@
               th Total
               th Date Requested
               th Approved
+              th Rejected
           tbody
             - @orders.each do |o|
               tr
@@ -20,4 +21,5 @@
                 td #{o.total}
                 td #{o.completed_at}
                 td #{o.approved_at}
+                td #{o.canceled_at}
                 td = link_to 'View', edit_dashboard_order_path(o.number)
