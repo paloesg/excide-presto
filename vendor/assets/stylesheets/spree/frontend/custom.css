@@ -174,3 +174,9 @@ span.price.selling.lead {
 .presto-table > tbody > tr > td {
   border-top: 0 !important;
 }
+
+@media (min-width: 768px) {
+  .navbar-form .input-group {
+    width: 40em;
+  }
+}
