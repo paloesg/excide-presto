@@ -3,23 +3,28 @@
   .panel.panel-default
     .panel-heading Order Listing
     .panel-body
-      .table-responsive
-        table.table.table-striped
-          thead
-            tr
-              th Number
-              th Email
-              th Total
-              th Date Requested
-              th Approved
-              th Rejected
-          tbody
-            - @orders.each do |o|
+      - if @orders.any?
+        .table-responsive
+          table.table.table-striped
+            thead
               tr
-                td #{o.number}
-                td #{o.email}
-                td #{o.total}
-                td #{o.completed_at}
-                td #{o.approved_at}
-                td #{o.canceled_at}
-                td = link_to 'View', edit_dashboard_order_path(o.number)
+                th Number
+                th Email
+                th Total
+                th Date Requested
+                th Approved
+                th Rejected
+            tbody
+              - @orders.each do |o|
+                tr
+                  td #{o.number}
+                  td #{o.email}
+                  td #{o.total}
+                  td #{o.completed_at}
+                  td #{o.approved_at}
+                  td #{o.canceled_at}
+                  td = link_to 'View', edit_dashboard_order_path(o.number)
+      - else
+        .alert.alert-info
+          ' No Orders found,
+          = link_to 'Add One!', spree_path
