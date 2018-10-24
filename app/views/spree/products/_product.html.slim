@@ -1,6 +1,6 @@
 - url = spree.product_path(product, taxon_id: taxon.try(:id))
 .col-md-3.col-sm-6.col-xs-6.product-list-item data-hook="products_list_item" id="product_#{product.id}" itemscope="" itemtype="https://schema.org/Product"
-  .panel.presto-panel-default
+  .panel.presto-panel-default data-product="#{product.to_json}" data-product-image="#{product.images.map{ |i| main_app.url_for(i.url(:large))}}"
     - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do
       .panel-body.text-center.product-body
         = link_to url, itemprop: "url" do
