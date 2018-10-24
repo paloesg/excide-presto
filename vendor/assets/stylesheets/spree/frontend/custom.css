@@ -145,6 +145,10 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   border-radius: 20px;
 }
 
+.presto-panel-default:hover {
+  background: #eaeae9;
+}
+
 .presto-panel-footer {
   padding: 10px 15px;
 }
