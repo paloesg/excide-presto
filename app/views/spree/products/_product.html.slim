@@ -14,15 +14,3 @@
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
         = link_to 'OPEN', '#', class: 'presto-btn btn-purple btn-block', 'data-toggle': 'modal', 'data-target': '#productContent', onclick: "showProduct('products-load/#{product.slug}');"
-#productContent.modal.fade role="dialog"
-  .modal-dialog.modal-lg
-    /! Modal content
-    .modal-content
-      .modal-header
-        button.close data-dismiss="modal" type="button"  ×
-      #modalContent.modal-body
-        .loader
-javascript:
-  function showProduct(url) {
-    $("#modalContent").load(url);
-  }
