@@ -238,3 +238,14 @@ span.price.selling.lead {
 .flex-footer {
   margin-top: auto;
 }
+
+/* Presto Modal */
+
+.presto-modal-header {
+  padding: 15px;
+}
+
+.close {
+  color: #5f509b;
+  opacity: 1;
+}
