@@ -1,8 +1,8 @@
-.row data-hook="product_show" itemscope="" itemtype="https://schema.org/Product"
-  .col-md-6.col-sm-5
-    #product-description data-hook="product_description"
+.row.flex-row data-hook="product_show" itemscope="" itemtype="https://schema.org/Product"
+  .col-md-6.col-sm-5.flex-col
+    #product-description.flex-panel data-hook="product_description"
       h3.product-section-title itemprop="name" = @product.name
-      #cart-form data-hook="cart_form"
+      #cart-form.flex-footer data-hook="cart_form"
         = form_for :order, url: populate_orders_path do |f|
           #inside-product-cart-form.row data-hook="inside_product_cart_form" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
             - if @product.price_in(current_currency) && !@product.price.nil?
@@ -21,7 +21,7 @@
                 - if @product.can_supply?
                   .add-to-cart
                     br
-                    = number_field_tag :quantity, 1, class: 'title form-control', min: 1
+                    = number_field_tag :quantity, 1, class: 'title form-control hidden', min: 1
                     span.input-group-btn
                       = button_tag class: 'presto-btn btn-purple btn-block', id: 'add-to-cart-button', type: :submit do
                         = Spree.t(:add_to_cart)
@@ -47,7 +47,7 @@
                           span.out-of-stock= Spree.t(:out_of_stock)
             - else
               = hidden_field_tag "variant_id", @product.master.id
-  .col-md-6.col-sm-5 data-hook="product_left_part"
+  .col-md-6.col-sm-5.flex-col data-hook="product_left_part"
     .product-panel data-hook="product_left_part_wrap"
       #product-images data-hook="product_images"
         #main-image.panel-default data-hook=""
@@ -55,6 +55,7 @@
             = product_image(@product, itemprop: "image")
         #thumbnails data-hook=""
           = render partial: 'thumbnails'
+.row
   .col-md-12.col-sm-7 data-hook="product_right_part"
     div data-hook="product_right_part_wrap"
       h3.product-section-title Description

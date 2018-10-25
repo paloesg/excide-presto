@@ -218,3 +218,23 @@ span.price.selling.lead {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Custom Row Flex */
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-panel, .flex-panel {
+  flex:1;
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-footer {
+  margin-top: auto;
+}
