@@ -13,8 +13,7 @@
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        = link_to 'OPEN', '#', class: 'presto-btn btn-purple btn-block', 'data-toggle': 'modal', 'data-target': '#productContent', onclick: "showProduct('#{url}');"
-
+        = link_to 'OPEN', '#', class: 'presto-btn btn-purple btn-block', 'data-toggle': 'modal', 'data-target': '#productContent', onclick: "showProduct('products-load/#{product.slug}');"
 #productContent.modal.fade role="dialog"
   .modal-dialog.modal-lg
     /! Modal content
@@ -23,9 +22,6 @@
         button.close data-dismiss="modal" type="button"  ×
       #modalContent.modal-body
         .loader
-      .modal-footer
-        button.btn.btn-default data-dismiss="modal" type="button"  Close
-
 javascript:
   function showProduct(url) {
     $("#modalContent").load(url);
