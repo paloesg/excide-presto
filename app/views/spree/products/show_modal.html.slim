@@ -1,7 +1,7 @@
 .row.flex-row data-hook="product_show" itemscope="" itemtype="https://schema.org/Product"
   .col-md-6.col-sm-5.flex-col
     #product-description.flex-panel data-hook="product_description"
-      h3.product-section-title itemprop="name" = @brand.name if @brand
+      h3.product-section-title itemprop="name" = @product.brand if @product.brand
       = @product.name
       #cart-form.flex-footer data-hook="cart_form"
         = form_for :order, url: populate_orders_path do |f|
