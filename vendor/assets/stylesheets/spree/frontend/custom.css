@@ -237,7 +237,7 @@ span.price.selling.lead {
   flex-direction: column;
 }
 
-.product-panel, .flex-panel {
+.flex-panel {
   flex:1;
   display: flex;
   flex-direction: column;
