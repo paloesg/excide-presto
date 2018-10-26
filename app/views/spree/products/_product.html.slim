@@ -1,18 +1,18 @@
 - url = spree.product_path(product, taxon_id: taxon.try(:id))
 .col-md-3.col-sm-6.col-xs-6.product-list-item data-hook="products_list_item" id="product_#{product.id}" itemscope="" itemtype="https://schema.org/Product"
   .panel.presto-panel-default
-    - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do
-      .panel-body.text-center.product-body
-        = link_to url, itemprop: "url" do
+    = link_to '#', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'none-style-link', onclick: "showProduct('products-load/#{product.slug}');" do
+      - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do
+        .panel-body.text-center.product-body
           = small_image(product, itemprop: "image")
           br
           = content_tag(:span, truncate(product.brand, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
-        br
-        = product.name
-        br
-      .presto-panel-footer.text-center
-        span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
-          span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
-            = display_price(product)
-          span content=current_currency itemprop="priceCurrency"
-        = link_to 'OPEN', '#', class: 'presto-btn btn-purple btn-block', 'data-toggle': 'modal', 'data-target': '#productContent', onclick: "showProduct('products-load/#{product.slug}');"
+          br
+          = product.name
+          br
+        .presto-panel-footer.text-center
+          span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
+            span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
+              = display_price(product)
+            span content=current_currency itemprop="priceCurrency"
+          = link_to 'ADD TO CART', '#', class: 'presto-btn btn-purple btn-block'

@@ -107,6 +107,14 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   list-style: none;
 }
 
+a.none-style-links:hover {
+  text-decoration: none;
+}
+
+a.none-style-links {
+  color: #000000;
+}
+
 /* Header Session */
 
 #presto-header {
