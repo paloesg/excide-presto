@@ -53,6 +53,9 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+.presto-btn-lg {
+  font-size: 25px !important;
+}
 .presto-btn {
   display: inline-block;
   margin-bottom: 0;
