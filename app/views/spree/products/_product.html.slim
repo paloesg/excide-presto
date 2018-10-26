@@ -1,7 +1,7 @@
 - url = spree.product_path(product, taxon_id: taxon.try(:id))
 .col-md-3.col-sm-6.col-xs-6.product-list-item data-hook="products_list_item" id="product_#{product.id}" itemscope="" itemtype="https://schema.org/Product"
   .panel.presto-panel-default
-    = link_to '#', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'none-style-link', onclick: "showProduct('products-load/#{product.slug}');" do
+    = link_to '#', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'none-style-links', onclick: "showProduct('products-load/#{product.slug}');" do
       - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do
         .panel-body.text-center.product-body
           = small_image(product, itemprop: "image")
