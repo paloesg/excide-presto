@@ -140,6 +140,11 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   box-shadow: 8px 8px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
+.thumbnail {
+  border: 1px solid #5f509b;
+  border-radius: 30px;
+}
+
 /* Products */
 
 .presto-panel-default {
