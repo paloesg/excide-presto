@@ -103,6 +103,10 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   border-color: #676767;
 }
 
+.list-default {
+  list-style: none;
+}
+
 /* Header Session */
 
 #presto-header {
