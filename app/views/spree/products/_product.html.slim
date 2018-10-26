@@ -6,7 +6,9 @@
         = link_to url, itemprop: "url" do
           = small_image(product, itemprop: "image")
           br
-          = content_tag(:span, truncate(product.name, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
+          = content_tag(:span, truncate(product.brand, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
+        br
+        = product.name
         br
       .presto-panel-footer.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
