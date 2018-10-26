@@ -15,4 +15,4 @@
             span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
               = display_price(product)
             span content=current_currency itemprop="priceCurrency"
-          = link_to 'ADD TO CART', '#', class: 'presto-btn btn-purple btn-block'
+          = button_to 'ADD TO CART', populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', class: 'presto-btn btn-purple btn-block'
