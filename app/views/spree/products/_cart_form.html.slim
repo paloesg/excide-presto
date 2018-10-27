@@ -16,10 +16,11 @@
         - if @product.can_supply?
           .add-to-cart
             br
-            = number_field_tag :quantity, 1, class: 'title form-control hidden', min: 1
-            span.input-group-btn
-              = button_tag class: 'presto-btn presto-btn-lg btn-purple btn-block', id: 'add-to-cart-button', type: :submit do
-                = Spree.t(:add_to_cart)
+            .input-group
+              = number_field_tag :quantity, 1, class: 'title form-control', min: 1
+              span.input-group-btn
+                = button_tag class: 'btn btn-purple', id: 'add-to-cart-button', type: :submit do
+                  = Spree.t(:add_to_cart)
     - else
       #product-price
         br
