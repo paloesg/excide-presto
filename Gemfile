@@ -46,6 +46,8 @@ gem 'devise'
 gem 'spree', '~> 3.6.4'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
+gem 'spree_analytics_trackers', github: 'spree-contrib/spree_analytics_trackers'
+gem 'spree_multi_domain', github: 'spree-contrib/spree-multi-domain', branch: 'fix/store_paperclip_attachment'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

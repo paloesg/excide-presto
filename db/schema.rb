@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_033637) do
+ActiveRecord::Schema.define(version: 2018_10_28_113963) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -442,6 +442,13 @@ ActiveRecord::Schema.define(version: 2018_10_02_033637) do
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
   end
 
+  create_table "spree_products_stores", id: false, force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "store_id"
+    t.index ["product_id"], name: "index_spree_products_stores_on_product_id"
+    t.index ["store_id"], name: "index_spree_products_stores_on_store_id"
+  end
+
   create_table "spree_products_taxons", id: :serial, force: :cascade do |t|
     t.integer "product_id"
     t.integer "taxon_id"
@@ -502,6 +509,11 @@ ActiveRecord::Schema.define(version: 2018_10_02_033637) do
     t.index ["product_group_id"], name: "index_promotion_rules_on_product_group_id"
     t.index ["promotion_id"], name: "index_spree_promotion_rules_on_promotion_id"
     t.index ["user_id"], name: "index_promotion_rules_on_user_id"
+  end
+
+  create_table "spree_promotion_rules_stores", id: false, force: :cascade do |t|
+    t.integer "promotion_rule_id"
+    t.integer "store_id"
   end
 
   create_table "spree_promotions", id: :serial, force: :cascade do |t|
@@ -884,6 +896,22 @@ ActiveRecord::Schema.define(version: 2018_10_02_033637) do
     t.index ["user_id"], name: "index_spree_store_credits_on_user_id"
   end
 
+  create_table "spree_store_payment_methods", id: :serial, force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "payment_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spree_store_shipping_methods", id: :serial, force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "shipping_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_method_id"], name: "index_spree_store_shipping_methods_on_shipping_method_id"
+    t.index ["store_id"], name: "index_spree_store_shipping_methods_on_store_id"
+  end
+
   create_table "spree_stores", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "url"
@@ -896,6 +924,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_033637) do
     t.boolean "default", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo_file_name"
     t.index "lower((code)::text)", name: "index_spree_stores_on_lower_code", unique: true
     t.index ["default"], name: "index_spree_stores_on_default"
     t.index ["url"], name: "index_spree_stores_on_url"
@@ -959,7 +988,9 @@ ActiveRecord::Schema.define(version: 2018_10_02_033637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position", default: 0
+    t.integer "store_id"
     t.index ["position"], name: "index_spree_taxonomies_on_position"
+    t.index ["store_id"], name: "index_spree_taxonomies_on_store_id"
   end
 
   create_table "spree_taxons", id: :serial, force: :cascade do |t|
@@ -992,6 +1023,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_033637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "engine", default: 0, null: false
+    t.integer "store_id"
     t.index ["active"], name: "index_spree_trackers_on_active"
   end
 
