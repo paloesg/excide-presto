@@ -1,3 +1,3 @@
 Spree::OrdersController.class_eval do
-  respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();' } } }
+  respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
 end
