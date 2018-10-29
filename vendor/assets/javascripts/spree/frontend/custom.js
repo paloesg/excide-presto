@@ -23,6 +23,3 @@ function showProduct(url) {
     $('#productContent').find('.modal-body').html('<div class="loader"><div>');
   })
 }
-$('.button_to').on('ajax:success', function(event, xhr, status, error) {
-  Spree.fetch_cart();
-})
