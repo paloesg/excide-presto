@@ -1,7 +1,5 @@
 - @body_id = 'home-page'
-- content_for :sidebar do
-  div data-hook="homepage_sidebar_navigation"
-    = render partial: 'spree/shared/taxonomies'
-div data-hook="homepage_products"
-  - cache(cache_key_for_products) do
-    = render partial: 'spree/shared/products', locals: { products: @products }
+.row
+  - @categories.each do |category|
+    .col-md-3.icon-list
+      = image_tag category.url_icon_image, class: 'img-responsive img-rounded'

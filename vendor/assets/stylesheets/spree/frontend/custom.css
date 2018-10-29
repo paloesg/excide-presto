@@ -174,3 +174,8 @@ span.price.selling.lead {
 .presto-table > tbody > tr > td {
   border-top: 0 !important;
 }
+
+/* Icon Category List */
+.icon-list {
+  padding: 10px;
+}
