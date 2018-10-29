@@ -20,6 +20,6 @@ function showProduct(url) {
     });
   });
   $('#productContent').on('hidden.bs.modal', function (e) {
-    $('#productContent').find('.modal-body').html('<div class="col-xs-7 col-xs-offset-5"><div class="loader"></div></div>');
+    $('#productContent').find('.modal-body').html('<div class="col-xs-offset-5"><div class="loader"></div></div>');
   })
 }
