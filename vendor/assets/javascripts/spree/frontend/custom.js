@@ -1,6 +1,6 @@
 function showProduct(url) {
   // Load Product Content
-  $("#modalContent").load(url, function() {
+  $("#modalContent").load(window.location.origin +'/'+ url, function() {
     // Load Js for switching the product main image by hovering the thumbnails
     var thumbnails = $("#product-images").next();
     ($("#main-image")).data("selectedThumb", ($("#main-image img")).attr("src"));
