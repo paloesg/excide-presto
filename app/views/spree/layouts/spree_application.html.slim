@@ -11,7 +11,7 @@ html lang="#{I18n.locale}"
     = render partial: 'spree/shared/head'
   body class=body_class data-hook="body" id=("#{@body_id || 'default'}")
     = render partial: 'spree/shared/header'
-    .container
+    .container-fluid
       .row data-hook=""
         = spree_breadcrumbs(@taxon)
         = render partial: 'spree/shared/sidebar' if content_for? :sidebar
