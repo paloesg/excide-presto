@@ -4,6 +4,7 @@
     = image_tag 'https://dummyimage.com/670x540/5f509b/ffffff&text=Welcome!', class: 'img-responsive img-rounded'
   - @categories.each do |category|
     .col-md-3.col-xs-6.icon-list
+      / Category icon image size 600x480
       = link_to(image_tag(category.url_icon_image, class: 'img-responsive img-rounded'), seo_url(category))
   .col-md-6.icon-list
     = image_tag 'https://dummyimage.com/670x260/5f509b/ffffff&text=Contact+Us', class: 'img-responsive img-rounded'
