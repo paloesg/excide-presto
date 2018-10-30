@@ -26,7 +26,7 @@ body {
   background-color: #f2f2f1;
 }
 
-h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info{
+h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .hero-title{
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
 
@@ -108,7 +108,15 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
 .hero-breadcrumbs > li + li:before {
   content: "❯ ";
   padding: 0 5px;
-  color: #000;
+  color: #ffffff;
+}
+
+.hero-breadcrumbs > li > span > a {
+  color: #ffffff;
+}
+
+h1.hero-title {
+  color: #ffffff;
 }
 
 /* Header Session */
