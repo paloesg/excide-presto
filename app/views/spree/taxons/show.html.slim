@@ -1,4 +1,8 @@
-h1.taxon-title= @taxon.name
+- content_for :hero_image do
+  .jumbotron.jumbotron-fluid style="background-image: url('#{@taxon.url_hero_image}!'); background-size: 100% 100%;"
+    .container
+      = spree_breadcrumbs(@taxon)
+      h1= @taxon.name
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
