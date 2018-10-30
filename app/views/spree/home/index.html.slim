@@ -1,5 +1,9 @@
 - @body_id = 'home-page'
 .row
+  .col-md-6.icon-list
+    = image_tag 'https://dummyimage.com/670x450/5f509b/ffff00&text=Welcome+Image', class: 'img-responsive img-rounded'
   - @categories.each do |category|
-    .col-md-3.icon-list
+    .col-md-3.col-xs-6.icon-list
       = image_tag category.url_icon_image, class: 'img-responsive img-rounded'
+  .col-md-6.icon-list
+    = image_tag 'https://dummyimage.com/670x215/5f509b/ffff00&text=Contact+Image', class: 'img-responsive img-rounded'
