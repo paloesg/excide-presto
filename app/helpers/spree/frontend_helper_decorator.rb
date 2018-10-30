@@ -10,7 +10,7 @@ Spree::FrontendHelper.class_eval do
     else
       crumbs << content_tag(:li, content_tag(:span, Spree.t(:products), itemprop: 'item'), class: 'active', itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
     end
-    crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb', itemscope: 'itemscope', itemtype: 'https://schema.org/BreadcrumbList')
+    crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb hero-breadcrumbs', itemscope: 'itemscope', itemtype: 'https://schema.org/BreadcrumbList')
     content_tag(:nav, crumb_list, id: 'breadcrumbs', class: '')
   end
 
