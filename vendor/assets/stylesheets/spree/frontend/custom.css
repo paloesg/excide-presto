@@ -102,7 +102,7 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
 
 /* Header Session */
 
-#presto-header {
+#presto-header.margin-header {
   margin-bottom: 40px;
 }
 
