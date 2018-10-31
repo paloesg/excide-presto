@@ -1,8 +1,6 @@
 #presto-header
   .navbar-inverse
-    - if content_for? :navbar_header
-      = yield :navbar_header
-    - else
+    - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
       .navbar-header
         button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
           span.sr-only Toggle navigation
@@ -14,3 +12,5 @@
         = render partial: 'spree/shared/nav_search'
         ul.nav.navbar-nav.navbar-right
           = render partial: 'spree/shared/main_nav_bar'
+    - else
+      = render partial: 'spree/user_sessions/header'
