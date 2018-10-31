@@ -1,14 +1,13 @@
-body
-  #presto-header
-    .navbar-inverse
-      .navbar-header
-        button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand href="/" GobblerCo
-      #navbar.navbar-collapse.collapse
-        = render partial: 'spree/shared/nav_search'
-        ul.nav.navbar-nav.navbar-right
-          = render partial: 'spree/shared/main_nav_bar'
+#presto-header
+  .navbar-inverse
+    .navbar-header
+      button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="/" GobblerCo
+    #navbar.navbar-collapse.collapse
+      = render partial: 'spree/shared/nav_search'
+      ul.nav.navbar-nav.navbar-right
+        = render partial: 'spree/shared/main_nav_bar'
