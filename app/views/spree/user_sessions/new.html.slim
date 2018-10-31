@@ -1,0 +1,18 @@
+- content_for :navbar_header do
+  .navbar-header.navbar-center
+    a.navbar-brand href="/" GobblerCo
+  #navbar.navbar-collapse.collapse
+- @body_id = 'login'
+div class=("col-md-6 #{request.path == spree.login_path ? "col-md-offset-3" : ""}")
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title= Spree.t(:login_as_existing)
+    #existing-customer.panel-body data-hook="login"
+      = render :partial => 'spree/shared/login'
+      .text-center
+        = link_to Spree.t(:create_a_new_account), spree.signup_path
+        '
+        = Spree.t(:or)
+        '
+        | #{link_to Spree.t(:forgot_password), spree.recover_password_path}
+      div data-hook="login_extras"

@@ -120,6 +120,17 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   color: #ffffff;
 }
 
+.navbar-center {
+  float: left;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.navbar-center > .navbar-brand {
+  float: none;
+}
+
 .presto-input-group > :first-child {
   border-radius: 30px;
 }
