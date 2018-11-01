@@ -18,7 +18,5 @@ div class=("col-md-3 #{request.path == spree.login_path ? "col-md-offset-3" : ""
     #existing-customer.panel-body data-hook="login"
       = render :partial => 'spree/shared/login'
       .text-center
-        = Spree.t(:or)
-        '
         | #{link_to Spree.t(:forgot_password), spree.recover_password_path}
       div data-hook="login_extras"
