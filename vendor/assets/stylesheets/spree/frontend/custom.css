@@ -200,10 +200,6 @@ a.none-style-links {
   border-radius: 20px;
 }
 
-.presto-panel-default:hover {
-  background: #eaeae9;
-}
-
 .presto-panel-footer {
   padding: 10px 15px;
 }
@@ -234,6 +230,10 @@ span.price.selling.lead {
 .product-list-item:hover, .product-list-item:focus, .product-list-item:active {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
+}
+
+.product-list-item > .presto-panel-default:hover {
+  background: #eaeae9;
 }
 
 /* Pagination */
