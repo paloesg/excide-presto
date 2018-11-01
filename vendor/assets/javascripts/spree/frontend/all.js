@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require accounting.min
 //= require spree/frontend
+//= require turbolinks
 
 //= require_tree .
 //= require spree/frontend/spree_auth

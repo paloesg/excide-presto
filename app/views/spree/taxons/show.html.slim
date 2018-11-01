@@ -9,3 +9,4 @@ div data-hook="taxon_products"
   div data-hook="taxon_children"
     - cache [I18n.locale, @taxon] do
       = render partial: 'taxon', collection: @taxon.children
+= render partial: 'spree/products/modal_content'
