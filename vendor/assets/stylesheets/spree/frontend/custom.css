@@ -30,6 +30,11 @@ body#login {
   background:#5f509b;
 }
 
+.navbar-login {
+  padding: 10px;
+  background-color: #ffcc4e;
+}
+
 h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2{
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
