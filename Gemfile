@@ -49,6 +49,10 @@ gem 'spree_gateway', '~> 3.3'
 gem 'spree_analytics_trackers', github: 'spree-contrib/spree_analytics_trackers'
 gem 'spree_multi_domain', github: 'spree-contrib/spree-multi-domain', branch: 'fix/store_paperclip_attachment'
 
+# Error monitoring
+gem 'rollbar'
+gem 'oj'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
