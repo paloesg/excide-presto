@@ -26,8 +26,17 @@ body {
   background-color: #f2f2f1;
 }
 
-h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .hero-title, .category-name{
+h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2{
   font-family: 'AmsiPro-Ultra', sans-serif;
+}
+
+body#login {
+  background:#5f509b;
+}
+
+.navbar-login {
+  padding: 10px;
+  background-color: #ffcc4e;
 }
 
 .presto-product-description {
@@ -179,6 +188,16 @@ a.none-style-links {
   color: #ffffff;
 }
 
+.navbar-center {
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.navbar-center > .navbar-brand {
+  float: none;
+}
+
 .presto-input-group > :first-child {
   border-radius: 30px;
 }
@@ -207,10 +226,6 @@ a.none-style-links {
   border-color: #ddd;
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
   border-radius: 20px;
-}
-
-.presto-panel-default:hover {
-  background: #eaeae9;
 }
 
 .presto-panel-footer {
@@ -243,6 +258,10 @@ span.price.selling.lead {
 .product-list-item:hover, .product-list-item:focus, .product-list-item:active {
   -webkit-transform: translateY(-8px);
   transform: translateY(-8px);
+}
+
+.product-list-item > .presto-panel-default:hover {
+  background: #eaeae9;
 }
 
 /* Pagination */
@@ -353,4 +372,72 @@ span.price.selling.lead {
 .close {
   color: #5f509b;
   opacity: 1;
+}
+
+/* Login Page */
+.login-panel-title {
+ font-size: 20px;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .presto-h1 {
+    font-size: 5em;
+    text-align-last: justify;
+    text-align: justify;
+    margin: 0px 30px 60px;
+    line-height: 111px;
+    color: #ffcc4e;
+  }
+
+  .presto-h2 {
+    font-size: 2em;
+    text-align-last: justify;
+    text-align: justify;
+    margin: 30px 30px 0px;
+    line-height: 1em;
+    color: #ffcc4e;
+  }
+}
+
+/* small devices, tablets */
+@media only screen and (min-width : 768px) {
+  .presto-h1 {
+    font-size: 6em;
+    text-align-last: justify;
+    text-align: justify;
+    margin: 0px 30px 60px;
+    line-height: 111px;
+    color: #ffcc4e;
+  }
+
+  .presto-h2 {
+    font-size: 6em;
+    text-align-last: justify;
+    text-align: justify;
+    margin: 30px 30px 0px;
+    line-height: 1em;
+    color: #ffcc4e;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .presto-h1 {
+    font-size: 10.3em;
+    text-align-last: justify;
+    text-align: justify;
+    margin: 0px 30px 60px;
+    line-height: 111px;
+    color: #ffcc4e;
+  }
+
+  .presto-h2 {
+    font-size: 5em;
+    text-align-last: justify;
+    text-align: justify;
+    margin: 30px 30px 0px;
+    line-height: 1em;
+    color: #ffcc4e;
+  }
 }
