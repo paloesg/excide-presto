@@ -269,6 +269,7 @@ span.price.selling.lead {
 }
 
 .category-name > h4 {
+  color: #5f509b;
   position: absolute;
   top: 170px;
   right: 0;
