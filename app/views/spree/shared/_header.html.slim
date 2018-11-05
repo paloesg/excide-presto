@@ -1,6 +1,6 @@
-body
-  #presto-header class='#{"margin-header" if !content_for?(:hero_image)}'
-    .navbar-inverse
+#presto-header
+  div class="#{params[:controller] == 'spree/user_sessions' ? "navbar-login" : "navbar-inverse"}"
+    - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
       .navbar-header
         button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
           span.sr-only Toggle navigation
@@ -12,3 +12,5 @@ body
         = render partial: 'spree/shared/nav_search'
         ul.nav.navbar-nav.navbar-right
           = render partial: 'spree/shared/main_nav_bar'
+    - else
+      = render partial: 'spree/user_sessions/header'
