@@ -13,7 +13,7 @@ div data-hook="admin_inside_taxon_form"
         p#permalink_part_display.help-block
           = @taxon.permalink.split('/')[0...-1].join('/') + '/'
       = f.field_container :color, class: ['form-group'] do
-        = f.label :color, Spree.t(:taxonomy_color_background)
+        = f.label :color, Spree.t(:background_color)
         = color_field :taxon, :color, class: 'form-control'
       = f.field_container :icon, class: ['form-group'] do
         = f.label :icon, Spree.t(:icon)
