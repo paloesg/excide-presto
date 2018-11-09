@@ -12,6 +12,9 @@ div data-hook="admin_inside_taxon_form"
         = text_field_tag :permalink_part, @permalink_part, class: 'form-control', required: true
         p#permalink_part_display.help-block
           = @taxon.permalink.split('/')[0...-1].join('/') + '/'
+      = f.field_container :color, class: ['form-group'] do
+        = f.label :color, Spree.t(:taxonomy_color_background)
+        = color_field :taxon, :color, class: 'form-control'
       = f.field_container :icon, class: ['form-group'] do
         = f.label :icon, Spree.t(:icon)
         = image_tag main_app.url_for(@taxon.icon.try(:attachment)) if @taxon.icon
