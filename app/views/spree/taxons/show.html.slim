@@ -1,3 +1,4 @@
+- @body_id = 'taxon_page'
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
     .container.category-container
