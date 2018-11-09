@@ -1,13 +1,18 @@
 - @body_id = 'home-page'
 .row
-  .col-md-6.icon-list
-    = image_tag 'https://dummyimage.com/670x540/5f509b/ffffff&text=Welcome!', class: 'img-responsive img-rounded'
+  .col-md-6.col-xs-12
+    .icon-list
+      = image_tag 'https://dummyimage.com/670x545/5f509b/ffffff&text=Welcome!', class: 'img-responsive img-rounded'
   - @categories.each do |category|
-    .col-md-3.col-xs-6.icon-list
-      / Category icon image size 600x480
-      - if category.url_icon_image
-        = link_to(image_tag(category.url_icon_image, class: 'img-responsive img-rounded'), seo_url(category))
-      - else
-        = link_to(image_tag('https://dummyimage.com/600x480/F1C24C/ffffff&text='+category.name, class: 'img-responsive img-rounded'), seo_url(category))
-  .col-md-6.icon-list
-    = image_tag 'https://dummyimage.com/670x260/5f509b/ffffff&text=Contact+Us', class: 'img-responsive img-rounded'
+    .col-md-3.col-xs-6
+      .icon-list.text-center style="background-color: #{category.color}"
+        .category-name
+          h4= category.name
+        / Category icon image size 600x480
+        - if category.url_icon_image
+          = link_to(image_tag(category.url_icon_image, class: 'img-responsive'), seo_url(category))
+        - else
+          = link_to(image_tag('https://dummyimage.com/600x480/F1C24C/ffffff&text=+', class: 'img-responsive'), seo_url(category))
+  .col-md-6.col-xs-12
+    .icon-list
+      = image_tag 'https://dummyimage.com/670x260/5f509b/ffffff&text=Contact+Us', class: 'img-responsive img-rounded'

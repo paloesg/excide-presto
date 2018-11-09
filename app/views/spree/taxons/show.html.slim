@@ -1,6 +1,6 @@
 - content_for :hero_image do
-  .jumbotron.jumbotron-fluid style="background-image: url('#{@taxon.url_hero_image}!'); background-size: 100% 100%;"
-    .container
+  .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{@taxon.url_hero_image}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
+    .container.category-container
       = spree_breadcrumbs(@taxon)
       h1.hero-title= @taxon.name.html_safe
 - content_for :sidebar do

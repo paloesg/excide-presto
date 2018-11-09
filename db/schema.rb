@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_104617) do
+ActiveRecord::Schema.define(version: 2018_11_04_144133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -1010,6 +1010,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_104617) do
     t.integer "depth"
     t.string "url_icon_image"
     t.string "url_hero_image"
+    t.string "color"
     t.index ["lft"], name: "index_spree_taxons_on_lft"
     t.index ["name"], name: "index_spree_taxons_on_name"
     t.index ["parent_id"], name: "index_taxons_on_parent_id"

@@ -26,6 +26,10 @@ body {
   background-color: #f2f2f1;
 }
 
+h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2{
+  font-family: 'AmsiPro-Ultra', sans-serif;
+}
+
 body#login {
   background:#5f509b;
 }
@@ -33,10 +37,6 @@ body#login {
 .navbar-login {
   padding: 10px;
   background-color: #ffcc4e;
-}
-
-h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2{
-  font-family: 'AmsiPro-Ultra', sans-serif;
 }
 
 .presto-product-description {
@@ -282,16 +282,44 @@ span.price.selling.lead {
 }
 
 /* Icon Category List */
+
+.category-name {
+  position: relative;
+}
+
+.category-name > h4 {
+  color: #5f509b;
+  position: absolute;
+  top: 170px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .icon-list {
-  padding: 10px;
-}
-
-.icon-list > a > img, .icon-list > img {
+  margin: 0px 0px 16px 0px;
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
 }
 
-.jumbotron {
-  background-color: #ffcc4e;
+.col-md-3 > .icon-list {
+  height: 218px;
+}
+
+.icon-list > a > img {
+  margin: 0 auto;
+  padding: 10px;
+  max-height: -webkit-fill-available;
+}
+
+.hero-image {
+  background-position: center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.category-container {
+  padding: 0px 0px 60px 0px;
 }
 
 @media (min-width: 768px) {
