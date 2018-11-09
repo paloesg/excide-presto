@@ -12,7 +12,7 @@
         - if category.icon
           = link_to(image_tag(main_app.url_for(category.icon.try(:attachment)), class: 'img-responsive'), seo_url(category))
         - else
-          = link_to(image_tag('https://dummyimage.com/600x480/F1C24C/ffffff&text=+', class: 'img-responsive'), seo_url(category))
+          = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(category))
   .col-md-6.col-xs-12
     .icon-list
       = image_tag 'https://dummyimage.com/670x260/5f509b/ffffff&text=Contact+Us', class: 'img-responsive img-rounded'
