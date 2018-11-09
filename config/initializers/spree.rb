@@ -13,6 +13,8 @@ Spree.config do |config|
   # Example:
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
+  config.admin_interface_logo = "store/logo.png"
+  config.logo = "store/logo.png"
 end
 
 Spree.user_class = "Spree::User"
