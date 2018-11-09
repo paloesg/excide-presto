@@ -27,7 +27,7 @@ Spree::Admin::TaxonsController.class_eval do
       @update_children = true if params[:taxon][:name] != @taxon.name || params[:taxon][:permalink] != @taxon.permalink
 
       @taxon.create_icon(attachment: taxon_params[:icon]) if taxon_params[:icon]
-      @taxon.create_hero(attachment: params[:taxon][:hero]) if params[:taxon][:hero]
+      @taxon.create_hero(attachment: taxon_params[:hero]) if taxon_params[:hero]
 
       @taxon.update_attributes(taxon_params.except(:icon, :hero))
     end
@@ -47,5 +47,9 @@ Spree::Admin::TaxonsController.class_eval do
         format.json { render json: @taxon.errors.full_messages.to_sentence, status: 422 }
       end
     end
+  end
+
+  def taxon_params
+    params.require(:taxon).permit(:name, :permalink, :description, :color, :icon, :hero, :meta_title, :meta_description, :meta_keywords)
   end
 end
