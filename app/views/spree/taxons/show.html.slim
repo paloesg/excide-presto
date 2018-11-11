@@ -1,5 +1,6 @@
+- @body_id = 'taxon_page'
 - content_for :hero_image do
-  .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{@taxon.url_hero_image}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
+  .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
     .container.category-container
       = spree_breadcrumbs(@taxon)
       h1.hero-title= @taxon.name.html_safe
