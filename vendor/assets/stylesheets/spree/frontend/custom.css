@@ -147,10 +147,19 @@ a.none-style-links {
   color: #000000;
 }
 
-/* Margin */
+/* Margin Left */
 
 .m-l-65 {
   margin-left: 65px;
+}
+
+/* margin Bottom */
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.m-b-40 {
+  margin-bottom: 40px;
 }
 
 
