@@ -1,9 +1,4 @@
 class PagesController < ApplicationController
   include HighVoltage::StaticPage
-
-  private
-
-  # Override method current_store
-  def current_store
-  end
+  include Spree::Core::ControllerHelpers::Store
 end
