@@ -26,7 +26,7 @@ body {
   background-color: #f2f2f1;
 }
 
-body:not(#taxon_page) > #presto-header {
+body:not(#taxon_page, #cart) > #presto-header {
   padding: 0px 0px 30px 0px;
 }
 
@@ -146,6 +146,13 @@ a.none-style-links:hover {
 a.none-style-links {
   color: #000000;
 }
+
+/* Margin */
+
+.m-l-65 {
+  margin-left: 65px;
+}
+
 
 /* link block */
 
@@ -290,8 +297,131 @@ span.price.selling.lead {
 
 /* Cart Page */
 
+.banner-shopping-cart {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+}
+
+.breadcumb-cart{
+  font-weight: bold;
+  color: #ffffff !important;
+}
+
+.shopping-cart-title {
+  font-weight: bold;
+  color: #fbcb4d !important;
+}
+
 .presto-table > tbody > tr > td {
   border-top: 0 !important;
+}
+
+.cart-item-description > h4 > a{
+  color: #000;
+  font-size: 20px
+}
+
+.cart-item-price {
+  font-weight: bold;
+  font-size: 24px;
+  color: #5f509b;
+}
+
+.cart-item-total{
+  color: #000;
+  font-weight: 900;
+}
+
+.cart-item-delete > a {
+  color: #d43734;
+  font-size: 18px;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+}
+
+.number-input button {
+  outline:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.number-input button:before,
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: '';
+  width: 1rem;
+  height: 2px;
+  background-color: #212121;
+  transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input .plus {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.number-input .min {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.number-input input[type=number] {
+  font-family: sans-serif;
+  min-width: 25px;
+  max-width: 80px;
+  padding: .5rem;
+  border: solid #fbcb4d;
+  font-size: 17px;
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0px;
+}
+
+.number-input input[type=button] {
+  font-size: 20px;
+  background-color: #ffcc4e;
+  color: #fff;
+  border-color: transparent;
+} 
+
+.total-price {
+  border: 2px solid;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 40px;
+  font-weight: 900;
+  line-height: 35px;
 }
 
 /* Icon Category List */

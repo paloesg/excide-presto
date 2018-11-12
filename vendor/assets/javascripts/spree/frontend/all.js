@@ -9,6 +9,7 @@
 //= require accounting.min
 //= require spree/frontend
 //= require turbolinks
+//= require cart/custom-input
 
 //= require_tree .
 //= require spree/frontend/spree_auth
