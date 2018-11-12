@@ -1,7 +1,22 @@
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
-.cognito
-  script src="https://services.cognitoforms.com/s/vHqoi7BH2UOSm3cG6cS06A"
-  javascript:
-    Cognito.load("forms", { id: "1" });
+
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
+
+.pages-content
+  h3 Description
+  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+#formContent.modal.fade role="dialog"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        .cognito
+          script src="https://services.cognitoforms.com/s/vHqoi7BH2UOSm3cG6cS06A"
+          javascript:
+            Cognito.load("forms", { id: "1" });
