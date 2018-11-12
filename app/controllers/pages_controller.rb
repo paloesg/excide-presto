@@ -1,4 +1,5 @@
-class PagesController < ApplicationController
+class PagesController < Spree::BaseController
   include HighVoltage::StaticPage
-  include Spree::Core::ControllerHelpers::Store
+  include Spree::Core::ControllerHelpers::Order
+  layout 'spree/layouts/spree_application'
 end
