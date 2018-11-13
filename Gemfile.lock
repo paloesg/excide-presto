@@ -148,6 +148,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    high_voltage (3.1.0)
     highline (1.6.21)
     htmlentities (4.3.4)
     i18n (1.1.1)
@@ -414,6 +415,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  high_voltage (~> 3.1)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   oj
