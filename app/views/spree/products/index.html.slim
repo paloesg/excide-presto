@@ -1,4 +1,8 @@
 - @body_id = 'product_index'
+.input-group
+  span.input-group-addon
+    | Sort By
+  = sort_by
 - if "spree/products" == params[:controller] && @taxon || @taxonomies.present?
   - content_for :sidebar do
     div data-hook="homepage_sidebar_navigation"
