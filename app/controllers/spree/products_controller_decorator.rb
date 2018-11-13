@@ -15,13 +15,13 @@ Spree::ProductsController.class_eval do
   private
 
   def sort_products(products)
-    if params[:sort] == 'price' and params[:direction] == 'asc'
+    if params[:sort] == 'price_asc'
       products.reorder('').send(:ascend_by_master_price)
-    elsif params[:sort] == 'price' and params[:direction] == 'desc'
+    elsif params[:sort] == 'price_desc'
       products.reorder('').send(:descend_by_master_price)
-    elsif params[:sort] == 'name' and params[:direction] == 'asc'
+    elsif params[:sort] == 'name_asc'
       products.reorder('').send(:ascend_by_name)
-    elsif params[:sort] == 'name' and params[:direction] == 'desc'
+    elsif params[:sort] == 'name_desc'
       products.reorder('').send(:descend_by_name)
     else
       products
