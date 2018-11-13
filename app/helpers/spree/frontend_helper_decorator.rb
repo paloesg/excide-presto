@@ -25,6 +25,6 @@ Spree::FrontendHelper.class_eval do
 
   def sort_by
     @sort_value = [ {name: 'Brand A - Z', sort: 'brand', direction: 'asc'}, {name: 'Brand Z - A', sort: 'brand', direction: 'desc'}, {name: 'Prices Low to high', sort: 'price', direction: 'asc'}, {name: 'Prices high to low', sort: 'price', direction: 'desc'}, {name: 'A - Z', sort: 'name', direction: 'asc'}, {name: 'Z - A', sort: 'name', direction: 'desc'} ]
-    select_tag 'sort_by', options_for_select(@sort_value.collect{ |s| [s[:name], "?sort=#{s[:sort]}&direction=#{s[:direction]}" ] }), class: 'form-control sort_by'
+    select_tag 'sort_by', options_for_select(@sort_value.collect{ |s| [s[:name], "?sort=#{s[:sort]}&direction=#{s[:direction]}" ] }), class: 'form-control sort_by', include_blank: 'Choose one...'
   end
 end
