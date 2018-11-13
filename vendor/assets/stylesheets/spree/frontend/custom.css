@@ -147,6 +147,10 @@ a.none-style-links {
   color: #000000;
 }
 
+.sort-by-panel {
+  padding: 10px 0px 15px;
+}
+
 /* link block */
 
 .block {
