@@ -1,6 +1,6 @@
 - @body_id = 'cart'
 - content_for :hero_image do
-  .jumbotron.jumbotron-fluid.hero-image style="background-image: url(/assets/banner/shopping-cart); background-color: '#ffcc4e'"
+  .jumbotron.jumbotron-fluid.hero-image style="background-image: url(/assets/banner/shopping-cart.png); background-color: '#ffcc4e'"
     .container.category-container.m-l-65
       .breadcumb-cart Home ❯ Cart
       h1.shopping-cart-title= Spree.t(:shopping_cart)
@@ -10,7 +10,7 @@ div data-hook="cart_container"
       .alert.alert-info= Spree.t(:your_cart_is_empty)
       p= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default'
   - else
-    div data-hook="outside_cart_form"      
+    div data-hook="outside_cart_form"
       = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
         .col-md-9 data-hook="inside_cart_form"
           .table-responsive data-hook="cart_items"
@@ -23,7 +23,7 @@ div data-hook="cart_container"
                     .col-md-9
                       = order_form.text_field :coupon_code, size: '30', class: 'form-control m-b-10', placeholder: 'Enter Coupon Code'
                     .col-md-3
-                      = button_tag Spree.t(:coupon_code_apply), class: 'btn btn-default form-control'      
+                      = button_tag Spree.t(:coupon_code_apply), class: 'btn btn-default form-control'
             = button_tag class: 'presto-btn btn-purple pull-right', id: 'update-button' do
               = Spree.t(:update)
         .col-md-3
