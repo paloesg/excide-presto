@@ -13,17 +13,11 @@
           = link_to(image_tag(main_app.url_for(category.icon.try(:attachment)), class: 'img-responsive'), seo_url(category))
         - else
           = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(category))
-  - HighVoltage.page_ids.each do |page|
-    .col-md-3.col-xs-6
-      .icon-list.text-center style="background-color: #dddddd"
-        - if page == 'carpet-cleaning'
-          .category-name
-            h4 Cleaning
-          = link_to(image_tag('carpet-cleaning.png', class: 'img-responsive'), "/pages/#{page}")
-        - else
-          .category-name
-            h4= page.gsub('-', ' ').titleize
-          = link_to(image_tag('no_icon.png', class: 'img-responsive'), "/pages/#{page}")
+  .col-md-3.col-xs-6
+    .icon-list.text-center style="background-color: #dddddd"
+        .category-name
+          h4 Cleaning
+        = link_to(image_tag('carpet-cleaning.png', class: 'img-responsive'), "/pages/carpet-cleaning")
   .col-md-6.col-xs-12
     .icon-list
       = image_tag 'contact-image.png', class: 'img-responsive img-rounded'
