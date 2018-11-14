@@ -7,11 +7,7 @@ div class=("col-md-3 #{request.path == spree.login_path ? "col-md-offset-3" : ""
     .panel-heading
       h3.login-panel-title New User
     #new-customer.panel-body data-hook="login"
-      = form_for resource, :as => :spree_user, :url => spree.registration_path do |f|
-        div data-hook="signup_inside_form"
-          = render :partial => 'spree/shared/user_form', :locals => { :f => f }
-          p= f.submit Spree.t(:create), :class => 'presto-btn btn-lg btn-purple btn-block'
-      .text-center
+      = render :partial => 'spree/shared/user_registration'
       div data-hook="login_extras"
 .col-md-3
   .panel.presto-panel-default

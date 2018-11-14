@@ -1,0 +1,20 @@
+= form_tag("/register/user", method: "post") do
+  .form-group    
+    = text_field_tag 'first_name', nil, class: 'form-control', placeholder: 'First Name', required: true
+  .form-group    
+    = text_field_tag 'last_name', nil, class: 'form-control', placeholder: 'Last Name', required: true
+  .form-group    
+    = text_field_tag 'company_name', nil, class: 'form-control', placeholder: 'Company Name', required: true
+  .form-group    
+    = email_field_tag 'company_email', nil, class: 'form-control', placeholder: 'Company Email', required: true
+  .form-group    
+    = text_field_tag 'company_phone', nil, class: 'form-control', placeholder: 'Company Phone', required: true
+  .form-group
+    = submit_tag "Submit", class: 'presto-btn btn-lg btn-purple btn-block'  
+  .form-group
+    - if flash[:message]=="success"
+      .text-center.success-message 
+        | Thank You!
+        br/
+        | We have received your registration
+div data-hook="signup_below_password_fields" 

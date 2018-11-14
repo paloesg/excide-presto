@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'authentications/registration'
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to
   # Spree::ProductsController.
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/products-load/:id', to: 'spree/products#show_modal'
   get '/pages/*id' => 'pages#show', as: :page, format: false
+  post '/register/user', to: 'authentications#registration'
 end
