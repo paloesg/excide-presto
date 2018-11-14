@@ -1,26 +1,28 @@
+/* General */
+
 @font-face {
   /* AmsiPro Ultra */
   font-family: 'AmsiPro-Ultra';
-  src: url(/assets/AmsiPro-Ultra.eot) format("embedded-opentype"), url(/assets/AmsiPro-Ultra.ttf) format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  /* AmsiPro Regular */
-  font-family: 'AmsiPro-Regular';
-  src: url(/assets/AmsiPro-Regular.eot) format("embedded-opentype"), url(/assets/AmsiPro-Regular.ttf) format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  /* AmsiPro Italic */
-  font-family: 'AmsiPro-Italic';
-  src: url(/assets/AmsiPro-Italic.eot) format("embedded-opentype"), url(/assets/AmsiPro-Italic.ttf) format("truetype");
+  src: font-url('AmsiPro-Ultra.eot') format("embedded-opentype"), font-url('AmsiPro-Ultra.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-/* General */
+@font-face {
+  /* AmsiPro Regular */
+  font-family: 'AmsiPro-Regular';
+  src: font-url('AmsiPro-Regular.eot') format("embedded-opentype"), font-url('AmsiPro-Regular.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  /* AmsiPro Italic */
+  font-family: 'AmsiPro-Italic';
+  src: font-url('AmsiPro-Italic.eot') format("embedded-opentype"), font-url('AmsiPro-Italic.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   background-color: #f2f2f1;
