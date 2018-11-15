@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_062831) do
+ActiveRecord::Schema.define(version: 2018_11_15_043121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 2018_11_14_062831) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "service_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "spree_user_id"
+    t.json "fields", default: "[]"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spree_user_id"], name: "index_service_requests_on_spree_user_id"
   end
 
   create_table "spree_addresses", id: :serial, force: :cascade do |t|
@@ -1114,4 +1122,5 @@ ActiveRecord::Schema.define(version: 2018_11_14_062831) do
     t.index ["kind"], name: "index_spree_zones_on_kind"
   end
 
+  add_foreign_key "service_requests", "spree_users"
 end
