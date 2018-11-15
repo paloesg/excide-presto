@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_084313) do
+ActiveRecord::Schema.define(version: 2018_11_15_144246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -690,6 +690,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_084313) do
     t.json "fields", default: "[]"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "service_name"
     t.index ["spree_user_id"], name: "index_spree_service_requests_on_spree_user_id"
   end
 
