@@ -1,6 +1,12 @@
 - if can? :admin, Spree::Order
   ul.nav.nav-sidebar
     = tab *Spree::BackendConfiguration::ORDER_TABS, icon: 'shopping-cart'
+- if can? :admin, Spree::ServiceRequest
+  ul.nav.nav-sidebar
+    li.sidebar-menu-item
+      = link_to admin_service_requests_path do
+        span.icon.icon-star
+        span.text Services
 - if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn)
   ul.nav.nav-sidebar
     = main_menu_tree Spree.t(:returns), icon: "transfer", sub_menu: "returns", url: "#sidebar-returns"
