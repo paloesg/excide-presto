@@ -7,7 +7,7 @@ class PagesController < Spree::BaseController
 
   def create_request
     @service_request = Spree::ServiceRequest.new
-    @service_request.service_name = params[:id]
+    @service_request.service_name = params[:id].gsub('-', ' ').titleize
     @service_request.spree_user_id = spree_current_user.id
     @service_request.fields = params[:fields]
     @service_request.save
