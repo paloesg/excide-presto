@@ -13,7 +13,10 @@ h1 Service Requests Listing
           td
             = Spree::User.find(request.spree_user_id).email
           td
-            = request.service_name || '-'
+            - if request.service_name
+              = link_to(request.service_name, admin_service_request_path(request.id))
+            - else
+              | -
           td
             = request.created_at.strftime("%d-%m-%Y")
 - else
