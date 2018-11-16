@@ -11,6 +11,7 @@ class PagesController < Spree::BaseController
     @service_request.spree_user_id = spree_current_user.id
     @service_request.fields = params[:fields]
     @service_request.save
+    redirect_to page_path(params[:id]), notice: 'Thank you for filling out the form. Your response has been recorded.'
   end
 
   private
