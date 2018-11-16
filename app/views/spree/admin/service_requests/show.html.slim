@@ -9,7 +9,7 @@ h1 Service request
       tr
         th Created by
         td = Spree::User.find(@service_request.spree_user_id).email
-      - @service_request.fields.each do |field|
+      - @service_request.fields.each do |label, field|
         tr
-          th = field['label']
-          td = field['value']
+          th = label
+          td = field
