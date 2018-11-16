@@ -37,4 +37,7 @@
           .form-group
             = label_tag :floor, 'Upload office floor plan'
             = file_field_tag 'fields[Upload office floor plan]', class: 'form-control'
+          .form-group
+            = label_tag :date, 'Preferred service date'
+            = date_field_tag 'fields[Preferred service date]', Date.today, class: 'form-control'
           = submit_tag 'Submit', class: 'btn btn-purple'
