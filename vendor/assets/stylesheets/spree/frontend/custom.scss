@@ -28,8 +28,12 @@ body {
   background-color: #f2f2f1;
 }
 
-body:not(#taxon_page, #cart) > #presto-header {
-  padding: 0px 0px 30px 0px;
+body {
+  &:not(#taxon_page):not(#cart):not(#login) {
+    #presto-header {
+      padding: 0px 0px 30px 0px;
+    }
+  }
 }
 
 h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
