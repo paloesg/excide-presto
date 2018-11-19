@@ -24,6 +24,10 @@
   font-style: normal;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #f2f2f1;
 }
@@ -34,6 +38,11 @@ body {
       padding: 0px 0px 30px 0px;
     }
   }
+}
+
+.content {
+  min-height: 95%;
+  // margin: 0 auto -80px;
 }
 
 h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
@@ -239,6 +248,21 @@ a.none-style-links {
 
 .presto-input-group > :last-child > * {
   border-radius: 0 30px 30px 0;
+}
+
+/* Footer Session */
+#presto-footer {
+  background-color: #fbcb4d;
+  color: #5f509b;
+  height: 50px;
+  padding: 5px 15px;
+  margin: 20px 0px 0px 0px;
+  width: 100%;
+  position: absolute;
+}
+
+#presto-footer > .footer {
+  padding: 10px;
 }
 
 /* Product Page */
