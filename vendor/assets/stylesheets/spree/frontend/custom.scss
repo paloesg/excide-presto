@@ -250,6 +250,23 @@ a.none-style-links {
   border-radius: 0 30px 30px 0;
 }
 
+input#keywords {
+  border-right: 0;
+  border-color: #d0d0d0;
+  box-shadow: #fff;
+  outline: 0 none;
+}
+
+button.btn.btn-default.btn-search {
+  border-left: 0;
+  color: #d0d0d0;
+  z-index: 9999;
+}
+
+button.btn.btn-default.btn-search:hover {
+  background-color: #fff !important;
+}
+
 /* Footer Session */
 #presto-footer {
   background-color: #fbcb4d;
