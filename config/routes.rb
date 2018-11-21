@@ -10,5 +10,13 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, at: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/products-load/:id', to: 'spree/products#show_modal'
-  get '/pages/*id' => 'pages#show', as: :page, format: false
+  get '/services/*id' => 'pages#show', as: :page, format: false
+  post '/services/*id' => 'pages#create_request', as: :create_request, format: false
+
+  Spree::Core::Engine.add_routes do
+    namespace :admin, path: Spree.admin_path do
+      resources :service_requests
+    end
+  end
+
 end

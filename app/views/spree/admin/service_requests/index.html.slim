@@ -1,0 +1,23 @@
+h1 Service Requests Listing
+
+- if @service_requests.any?
+  table.table
+    thead
+      tr
+        th User
+        th Service
+        th Created at
+    tbody
+      - @service_requests.each do |request|
+        tr
+          td
+            = Spree::User.find(request.spree_user_id).email
+          td
+            - if request.service_name
+              = link_to(request.service_name, admin_service_request_path(request.id))
+            - else
+              | -
+          td
+            = request.created_at.strftime("%d-%m-%Y %H:%M")
+- else
+  | No service requests found
