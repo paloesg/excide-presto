@@ -18,4 +18,4 @@ h1 Service request
         - @service_request.fields['file'].each do |file|
           tr
             th = file['text']
-            td = main_app.url_for(@service_request.files.find(file['id']).try(:attachment))
+            td = link_to file['text'], main_app.url_for(@service_request.files.find(file['id']).try(:attachment)), target: '_blank'
