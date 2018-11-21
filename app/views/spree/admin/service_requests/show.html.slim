@@ -9,11 +9,13 @@ h1 Service request
       tr
         th Created by
         td = Spree::User.find(@service_request.spree_user_id).email
-      - @service_request.fields['text'].each do |label, field|
-        tr
-          th = label
-          td = field
-      - @service_request.fields['image'].each do |image|
-        tr
-          th = image['text']
-          td = image_tag main_app.url_for(@service_request.images.find(image['id']).try(:attachment)), class: 'img-responsive'
+      - if @service_request.fields['text']
+        - @service_request.fields['text'].each do |label, field|
+          tr
+            th = label
+            td = field
+      - if @service_request.fields['image']
+        - @service_request.fields['image'].each do |image|
+          tr
+            th = image['text']
+            td = image_tag main_app.url_for(@service_request.images.find(image['id']).try(:attachment)), class: 'img-responsive'
