@@ -1,14 +1,4 @@
 Spree::Admin::TaxonsController.class_eval do
-  # before_action :update_hero_image, only: :update
-
-  # def update_hero_image
-  #   @taxon.create_hero(attachment: taxon_params[:hero]) if taxon_params[:hero]
-  #   @taxon.update_attributes(taxon_params.except(:hero))
-  # end
-
-  # def update
-  #   render json: params.to_json
-  # end
 
   def update
     successful = @taxon.transaction do
