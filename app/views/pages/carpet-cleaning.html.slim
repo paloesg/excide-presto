@@ -19,26 +19,26 @@
         #service_form
           h2 Carpet Cleaning
           h3 Tell us about your office
-          = form_tag create_request_path, method: 'post' do
+          = form_tag create_request_path, method: 'post', multipart: true do
             .form-group
               = label_tag :describe, 'Describe the space you would like cleaned'
-              = text_field_tag 'fields[Describe the space you would like cleaned]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Describe the space you would like cleaned]', nil, class: 'form-control'
             .form-group
               = label_tag :no_of_employees, 'No. of employees'
-              = number_field_tag 'fields[No. of employees]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No. of employees]', 0, class: 'form-control'
             .form-group
               = label_tag :size, 'Size in square feet'
-              = number_field_tag 'fields[Size in square feet]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][Size in square feet]', 0, class: 'form-control'
             .form-group
               = label_tag :no_of_rooms, 'No. of rooms'
-              = number_field_tag 'fields[No. of rooms]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No. of rooms]', 0, class: 'form-control'
             .form-group
               = label_tag :floor_type, 'Office space flooring type'
-              = text_field_tag 'fields[Office space flooring type]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Office space flooring type]', nil, class: 'form-control'
             .form-group
               = label_tag :floor, 'Upload office floor plan'
-              = file_field_tag 'fields[Upload office floor plan]', class: 'form-control'
+              = file_field_tag 'fields[image][Upload office floor plan]', class: 'form-control'
             .form-group
               = label_tag :date, 'Preferred service date'
-              = date_field_tag 'fields[Preferred service date]', Date.today, class: 'form-control'
+              = date_field_tag 'fields[text][Preferred service date]', Date.today, class: 'form-control'
             = submit_tag 'Submit', class: 'btn btn-default'

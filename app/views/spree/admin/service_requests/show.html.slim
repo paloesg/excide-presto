@@ -4,12 +4,16 @@ h1 Service request
   table.table.table-bordered
     tbody
       tr
-        th Service Name
-        td =@service_request.service_name
+        th.col-md-4 Service Name
+        td.col-md-8 =@service_request.service_name
       tr
         th Created by
         td = Spree::User.find(@service_request.spree_user_id).email
-      - @service_request.fields.each do |label, field|
+      - @service_request.fields['text'].each do |label, field|
         tr
           th = label
           td = field
+      - @service_request.fields['image'].each do |field|
+        tr
+          th = field['text']
+          td = image_tag main_app.url_for(@service_request.images.find(field['image_id']).try(:attachment)), class: 'img-responsive'
