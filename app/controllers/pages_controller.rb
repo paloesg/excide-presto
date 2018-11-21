@@ -11,19 +11,19 @@ class PagesController < Spree::BaseController
     @service_request.spree_user_id = spree_current_user.id
     @service_request.fields = params[:fields] if params[:fields][:text]
     @service_request.save
-    create_service_request_image(params[:fields][:image]) if params[:fields][:image]
+    create_service_request_file(params[:fields][:file]) if params[:fields][:file]
     redirect_to page_path(params[:id]), notice: 'Thank you for filling out the form. Your response has been recorded.'
   end
 
   private
 
-  def create_service_request_image(images)
-    images = []
-    params[:fields][:image].each do |key, image|
-      image = @service_request.images.create(attachment: image)
-      images << {text: key, id: image.id}
+  def create_service_request_file(files)
+    new_files = []
+    files.each do |key, file|
+      new_file = @service_request.files.create(attachment: file)
+      new_files << {text: key, id: new_file.id}
     end
-    @service_request.fields['image'] = images
+    @service_request.fields['file'] = new_files
     @service_request.save
   end
 

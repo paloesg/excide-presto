@@ -1,3 +1,3 @@
 class Spree::ServiceRequest < Spree::Base
-  has_many :images, as: :viewable, dependent: :destroy, class_name: 'Spree::ServiceRequestImage'
+  has_many :files, as: :viewable, dependent: :destroy, class_name: 'Spree::ServiceRequestFile'
 end
