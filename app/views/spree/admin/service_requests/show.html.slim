@@ -13,7 +13,7 @@ h1 Service request
         tr
           th = label
           td = field
-      - @service_request.fields['image'].each do |field|
+      - @service_request.fields['image'].each do |image|
         tr
-          th = field['text']
-          td = image_tag main_app.url_for(@service_request.images.find(field['image_id']).try(:attachment)), class: 'img-responsive'
+          th = image['text']
+          td = image_tag main_app.url_for(@service_request.images.find(image['id']).try(:attachment)), class: 'img-responsive'

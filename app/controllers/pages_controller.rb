@@ -19,14 +19,12 @@ class PagesController < Spree::BaseController
 
   def create_service_request_image(images)
     images = []
-    if params[:fields][:image]
-      params[:fields][:image].each do |key, image|
-        image = @service_request.images.create(attachment: image)
-        images << {text: key, image_id: image.id}
-      end
-      @service_request.fields['image'] = images
-      @service_request.save
+    params[:fields][:image].each do |key, image|
+      image = @service_request.images.create(attachment: image)
+      images << {text: key, id: image.id}
     end
+    @service_request.fields['image'] = images
+    @service_request.save
   end
 
   def set_taxonomies
