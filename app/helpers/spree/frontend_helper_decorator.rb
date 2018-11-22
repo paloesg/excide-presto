@@ -25,4 +25,19 @@ Spree::FrontendHelper.class_eval do
     end
     safe_join(taxons + static_pages, "\n")
   end
+
+  def link_to_cart(text = nil)
+    text = text ? h(text) : Spree.t('cart')
+    css_class = nil
+
+    if simple_current_order.nil? || simple_current_order.item_count.zero?
+      text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text}"
+      css_class = 'empty'
+    else
+      text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text} <span class='badge badge-presto'>#{simple_current_order.item_count}</span>"
+      css_class = 'full'
+    end
+
+    link_to text.html_safe, spree.cart_path, class: "cart-info #{css_class}"
+  end
 end

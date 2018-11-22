@@ -45,7 +45,7 @@ body {
   // margin: 0 auto -80px;
 }
 
-h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, ul.nav.navbar-nav.navbar-right, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
+h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
 
@@ -162,6 +162,16 @@ a.none-style-links {
   color: #000000;
 }
 
+span.badge.badge-presto {
+  background-color: #fbcb4d;
+  color: #0000ff !important;
+  position: absolute;
+  padding: 2px 4px;
+  font-size: 8px;
+  right: 5px;
+  top: 9px;
+}
+
 /* Margin Left */
 
 .m-l-65 {
@@ -215,7 +225,7 @@ a.none-style-links {
 
 #presto-header .navbar-inverse {
   color: #ffffff;
-  padding: 10px;
+  padding: 2px 10px 2px 0px;
   background-color: #5f509b;
 }
 
@@ -248,6 +258,23 @@ a.none-style-links {
 
 .presto-input-group > :last-child > * {
   border-radius: 0 30px 30px 0;
+}
+
+input#keywords {
+  border-right: 0;
+  border-color: #d0d0d0;
+  box-shadow: #fff;
+  outline: 0 none;
+}
+
+button.btn.btn-default.btn-search {
+  border-left: 0;
+  color: #d0d0d0;
+  z-index: 9999;
+}
+
+button.btn.btn-default.btn-search:hover {
+  background-color: #fff !important;
 }
 
 /* Footer Session */
@@ -506,7 +533,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (min-width: 768px) {
   .navbar-form .input-group {
-    width: 40em;
+    width: 35em;
   }
 }
 
