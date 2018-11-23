@@ -20,7 +20,25 @@ Spree::FrontendHelper.class_eval do
       css_class = current_taxon && current_taxon.self_and_ancestors.include?(taxon) ? 'list-group-item active' : 'list-group-item'
       link_to(taxon.name, seo_url(taxon), class: css_class) + taxons_tree(taxon, current_taxon, max_level - 1)
     end
-    safe_join(taxons, "\n")
+    static_pages = HighVoltage.page_ids.map do |page|
+      link_to(page.gsub('-', ' ').titleize , "/services/#{page}", class: 'list-group-item')
+    end
+    safe_join(taxons + static_pages, "\n")
+  end
+
+  def link_to_cart(text = nil)
+    text = text ? h(text) : Spree.t('cart')
+    css_class = nil
+
+    if simple_current_order.nil? || simple_current_order.item_count.zero?
+      text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text}"
+      css_class = 'empty'
+    else
+      text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text} <span class='badge badge-presto'>#{simple_current_order.item_count}</span>"
+      css_class = 'full'
+    end
+
+    link_to text.html_safe, spree.cart_path, class: "cart-info #{css_class}"
   end
 
   def sort_by

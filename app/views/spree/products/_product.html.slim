@@ -10,9 +10,12 @@
         br
         = product.name
         br
+        - if (product.total_on_hand == 0)
+          = render partial: 'spree/products/labels/sold_out'
+        br
       .presto-panel-footer.inner.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        = button_to 'ADD TO CART', populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: 'presto-btn btn-purple btn-block'
+        = button_to 'ADD TO CART', populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: 'presto-btn btn-purple btn-block', disabled: (product.total_on_hand == 0 ? true : false)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_104617) do
+ActiveRecord::Schema.define(version: 2018_11_15_144246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -685,6 +685,15 @@ ActiveRecord::Schema.define(version: 2018_10_29_104617) do
     t.index "lower((name)::text)", name: "index_spree_roles_on_lower_name", unique: true
   end
 
+  create_table "spree_service_requests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "spree_user_id"
+    t.json "fields", default: "[]"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "service_name"
+    t.index ["spree_user_id"], name: "index_spree_service_requests_on_spree_user_id"
+  end
+
   create_table "spree_shipments", id: :serial, force: :cascade do |t|
     t.string "tracking"
     t.string "number"
@@ -1008,8 +1017,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_104617) do
     t.string "meta_description"
     t.string "meta_keywords"
     t.integer "depth"
-    t.string "url_icon_image"
-    t.string "url_hero_image"
+    t.string "color"
     t.index ["lft"], name: "index_spree_taxons_on_lft"
     t.index ["name"], name: "index_spree_taxons_on_name"
     t.index ["parent_id"], name: "index_taxons_on_parent_id"
@@ -1115,4 +1123,5 @@ ActiveRecord::Schema.define(version: 2018_10_29_104617) do
     t.index ["kind"], name: "index_spree_zones_on_kind"
   end
 
+  add_foreign_key "spree_service_requests", "spree_users"
 end
