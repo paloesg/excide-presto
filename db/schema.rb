@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2018_11_15_144246) do
+=======
+ActiveRecord::Schema.define(version: 2018_11_21_073721) do
+>>>>>>> Stashed changes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -416,6 +420,17 @@ ActiveRecord::Schema.define(version: 2018_11_15_144246) do
     t.index ["position"], name: "index_spree_product_properties_on_position"
     t.index ["product_id"], name: "index_product_properties_on_product_id"
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
+  end
+
+  create_table "spree_product_sales", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.decimal "sale_price", precision: 8, scale: 2
+    t.string "description"
+    t.integer "variant_id"
+    t.integer "store_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spree_products", id: :serial, force: :cascade do |t|
@@ -1091,6 +1106,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_144246) do
     t.datetime "updated_at", null: false
     t.datetime "discontinue_on"
     t.datetime "created_at", null: false
+    t.decimal "sale_price"
     t.index ["deleted_at"], name: "index_spree_variants_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_variants_on_discontinue_on"
     t.index ["is_master"], name: "index_spree_variants_on_is_master"

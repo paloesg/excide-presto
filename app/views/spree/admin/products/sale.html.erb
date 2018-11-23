@@ -1,0 +1,54 @@
+<%= render partial: 'spree/admin/shared/product_tabs', locals: {current: :product_sales} %>
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @product } %>
+
+<% if can? :create, Spree::ProductSale %>
+  <div id="add_sale_form" class="panel panel-default">
+    <%= render 'add_sale_form' %>
+  </div>
+<% end %>
+
+
+<% if @product_sales.present? %>
+  <div class="panel panel-default">
+    <table class="table table-bordered" id="listing_product_stock">
+      <thead>
+        <tr data-hook="admin_product_stock_management_index_headers">
+          <th><%= Spree.t(:sale_price) %></th>
+          <th><%= Spree.t(:description) %></th>
+          <th><%= Spree.t(:sale_start_date) %></th>
+          <th><%= Spree.t(:sale_end_date) %></th>
+          <th><%= Spree.t(:variant) %></th>
+          <th><%= Spree.t(:store) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product_sales.each do |sale| %>
+          <tr>            
+            <td>
+              <%= sale.sale_price %>        
+            </td>   
+            <td>
+              <%= sale.description %>       
+            </td>  
+            <td>
+              <%= sale.start_date %>       
+            </td>     
+            <td>
+              <%= sale.end_date %>       
+            </td>        
+            <td>
+              <%= sale.variant_id %>       
+            </td>  
+            <td>
+              <%= sale.store_id %>       
+            </td>  
+            <td class="actions actions-1 text-center">
+              <%= link_to_with_icon('delete', Spree.t(:remove), admin_sale_url(sale.id), method: :delete, class: 'icon_link btn btn-danger btn-sm', data: { action: :remove, confirm: Spree.t(:are_you_sure) }, no_text: true) if can? :destroy, sale %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %> 

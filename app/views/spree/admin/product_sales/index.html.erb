@@ -1,0 +1,8 @@
+<%= render partial: 'spree/admin/shared/product_tabs', locals: {current: :product_sales} %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to(Spree.t(:new_product_sale), spree.new_admin_product_product_sale_url(@product), { class: "btn-success", icon: 'add', id: 'new_product_sale_link' }) if can? :create, Spree::ProductSale %>
+<% end %>
+
+<%# Place for new Product sale form %>
+<div id="new_product_sale" data-hook></div>
