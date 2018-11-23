@@ -16,18 +16,12 @@ Rails.application.routes.draw do
   Spree::Core::Engine.add_routes do
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
-  get '/pages/*id' => 'pages#show', as: :page, format: false
+      get '/pages/*id' => 'pages#show', as: :page, format: false
 
-  Spree::Core::Engine.add_routes do
-    namespace :admin, path: Spree.admin_path do
       resources :products do        
         get '/sale', to: 'products#sale', as: 'sale'
       end
-    end
-  end
 
-  Spree::Core::Engine.add_routes do
-    namespace :admin, path: Spree.admin_path do
       resources :product_sales, as: 'sale'
     end
   end

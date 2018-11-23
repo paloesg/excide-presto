@@ -13,7 +13,6 @@ Spree::OrdersController.class_eval do
       begin
         order.contents.add(variant, quantity, options)
         order.update_line_item_prices!
-        order.update_line_item_sale_price(params[:sale_price])
         order.create_tax_charge!
         order.update_with_updater!
       rescue ActiveRecord::RecordInvalid => e
