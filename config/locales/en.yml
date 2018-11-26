@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+  spree:
+    admin:
+      tab:
+        product_sales: "Product Sales"
+    product_sales: "Product Sales"
+    new_product_sale: "New Product Sales"
+    sale_price: "Sale Price"
+    add_product_sale: "Add Product Sale"
+    sale_start_date: "Start Date"
+    sale_end_date: "End Date"
+    add_to_cart: "ADD TO CART"
