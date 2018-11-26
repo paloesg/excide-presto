@@ -15,7 +15,7 @@
       .lead.text-primary.cart-item-price data-hook="cart_item_price"
         = line_item.single_money.to_html
         - if (variant.product_sales.present?)
-          span.original-price= Spree::Money.new(variant.product.price).to_s 
+          span.original-price= number_to_currency(variant.product.price)
     td.cart-item-quantity data-hook="cart_item_quantity" valign="center"
       .number-input
         input.min type="button" value="-" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"

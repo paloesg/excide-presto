@@ -26,7 +26,7 @@
         <% @product_sales.each do |sale| %>
           <tr>            
             <td>
-              <%= sale.sale_price %>        
+              <%= number_to_currency(sale.sale_price) %>        
             </td>   
             <td>
               <%= sale.description %>       
