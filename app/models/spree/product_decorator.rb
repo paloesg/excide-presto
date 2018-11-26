@@ -4,9 +4,11 @@ Spree::Product.class_eval do
     self.taxons.select { |taxon| taxon.taxonomy.name == 'Brands' }.first&.name
   end
 
-  def sale(current_store_id)
-    sale = self.master.product_sales.find_by(store_id: current_store_id)
-    @sale_price = sale.sale_price if sale
+  def sale
+    store = Spree::Store.current
+    current_store_id = store.id
+    product_sale = self.master.product_sales.find_by(store_id: current_store_id)
+    product_sale.sale_price if product_sale
   end
 
 end
