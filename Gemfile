@@ -45,6 +45,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # User authentication
 gem 'devise'
 
+#font-awesome
+gem 'font-awesome-rails'
+
 # Install spree for e-commerce
 gem 'spree', '~> 3.6.4'
 gem 'spree_auth_devise', '~> 3.3'
