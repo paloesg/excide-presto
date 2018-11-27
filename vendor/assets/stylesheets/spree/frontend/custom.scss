@@ -235,7 +235,6 @@ span.badge.badge-presto {
 }
 
 .navbar-center {
-  padding: 15px;
   text-align: center;
   width: 100%;
 }
@@ -249,6 +248,11 @@ span.badge.badge-presto {
 }
 
 .navbar-brand img {
+  width: auto;
+  height: 30px;
+}
+
+.navbar-brand-front img {
   width: auto;
   height: 30px;
 }
