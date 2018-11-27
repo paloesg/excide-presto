@@ -27,8 +27,8 @@
             td
               = sale.end_date
             td
-              = sale.variant_id
+              = sale.variant.sku
             td
-              = sale.store_id
+              = sale.store.name
             td.actions.actions-1.text-center
               = link_to_with_icon('delete', Spree.t(:remove), admin_sale_url(sale.id), method: :delete, class: 'icon_link btn btn-danger btn-sm', data: { action: :remove, confirm: Spree.t(:are_you_sure) }, no_text: true) if can? :destroy, sale

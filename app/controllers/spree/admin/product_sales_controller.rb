@@ -13,7 +13,7 @@ module Spree
             flash[:error] = Spree.t(:could_not_create_product_sale)
           end
         else
-          @product_sale.update (sale_params)
+          flash[:error] = "Sale is already, please remove existing sale if you want to add the new sale"
         end       
         redirect_back fallback_location: spree.admin_product_sale_url(variant.product)
       end
