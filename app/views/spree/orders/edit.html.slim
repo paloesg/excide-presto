@@ -1,6 +1,6 @@
 - @body_id = 'cart'
 - content_for :hero_image do
-  .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{image_url('/assets/banner/shopping-cart.png')}); background-color: '#ffcc4e'"
+  .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/shopping-cart.png')}); background-color: '#ffcc4e'"
     .container.category-container.m-l-65
       .breadcumb-cart Home ❯ Cart
       h1.shopping-cart-title= Spree.t(:shopping_cart)
