@@ -3,19 +3,19 @@ Spree::TaxonsController.class_eval do
     @taxon = Spree::Taxon.friendly.find(params[:id])
     return unless @taxon
     @searcher = build_searcher(params.merge(taxon: @taxon.id, include_images: true))
-    @products = sort_products(@searcher.retrieve_products)
+    @products = sort_products(@searcher.retrieve_products, @taxon)
     @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
   private
 
-  def sort_products(products)
+  def sort_products(products, taxon)
     if params[:sort] == 'brand_asc'
-      products.sort_by{|p| p.taxons.find{|t| t.taxonomy.name == 'Brands'}.name}
+      Spree::Product.in_taxons(taxon.id).includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id}).order("spree_taxons.name ASC")
     elsif params[:sort] == 'brand_desc'
-      products.sort_by{|p| p.taxons.find{|t| t.taxonomy.name == 'Brands'}.name}.reverse!
+      Spree::Product.in_taxons(taxon.id).includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id}).order("spree_taxons.name DESC")
     elsif params[:sort] == 'price_asc'
-      products.reorder('').send(:ascend_by_master_price)
+      render json: products.reorder('').send(:ascend_by_master_price).to_json
     elsif params[:sort] == 'price_desc'
       products.reorder('').send(:descend_by_master_price)
     elsif params[:sort] == 'name_asc'
