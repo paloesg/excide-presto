@@ -1,4 +1,5 @@
 /* General */
+@import "font-awesome";
 
 @font-face {
   /* AmsiPro Ultra */
@@ -33,7 +34,7 @@ body {
 }
 
 body {
-  &:not(#taxon_page):not(#cart):not(#login) {
+  &:not(#taxon_page):not(#cart):not(#login):not(#service) {
     #presto-header {
       padding: 0px 0px 30px 0px;
     }
@@ -247,7 +248,6 @@ span.badge.badge-presto {
 }
 
 .navbar-center {
-  padding: 15px;
   text-align: center;
   width: 100%;
 }
@@ -261,6 +261,11 @@ span.badge.badge-presto {
 }
 
 .navbar-brand img {
+  width: auto;
+  height: 30px;
+}
+
+.navbar-brand-front img {
   width: auto;
   height: 30px;
 }
@@ -283,7 +288,7 @@ input#keywords {
 button.btn.btn-default.btn-search {
   border-left: 0;
   color: #d0d0d0;
-  z-index: 9999;
+  z-index: 10;
 }
 
 button.btn.btn-default.btn-search:hover {
@@ -304,6 +309,88 @@ button.btn.btn-default.btn-search:hover {
 #presto-footer > .footer {
   padding: 10px;
 }
+
+.footer .copyright {
+  position: relative;
+  text-align: right;
+}
+
+@media (max-width : 991px) {
+  #presto-footer{
+    height: 105px;
+  }
+  .footer {
+    text-align: center;
+  }
+
+  .footer .copyright {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+}
+
+ul.social-media-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 25px; /* eliminate space between li */
+  position: relative;
+  bottom: 7px;
+  text-align: center;
+}
+
+ul.social-media-list li {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+ul.social-media-list i {
+  color: #6b3999;
+  padding: 5px 0;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #6b3999;
+  width: 36px;
+  height: 36px;
+}
+
+ul.social-media-list i:hover {
+  background-color: #6b3999;
+  color: #fed34f
+}
+
+@media only screen and (max-width : 1450px)  {
+  ul.social-media-list {
+    font-size: 20px; 
+    bottom: 5px;
+  }
+
+  ul.social-media-list li {
+    margin-right: 2px;
+  }
+  
+  ul.social-media-list i {
+    padding: 2px 0;
+    width: 26px;
+    height: 26px;
+  }  
+}
+
+@media only screen and (max-width : 1125px)  {
+  ul.social-media-list {
+    font-size: 14px; 
+    bottom: 0px;
+  }
+  
+  ul.social-media-list i {
+    padding: 2px 0;
+    width: 20px;
+    height: 20px;
+  }  
+}
+
 
 /* Product Page */
 
@@ -691,6 +778,20 @@ input[type=number]::-webkit-outer-spin-button {
   right: 15px;
 }
 
+.label-discount {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 11px;
+  color: #fff;
+  line-height: 12px;
+  text-align: center;
+  background: #7fc2ba;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
 .text-sold-out {
   position: relative;
   float: left;
@@ -699,6 +800,41 @@ input[type=number]::-webkit-outer-spin-button {
   transform: translate(-50%, -50%);
   font-weight: bold;
   font-family: "AmsiPro-Ultra", sans-serif;
+}
+
+.text-discount {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-family: "AmsiPro-Ultra", sans-serif;
+}
+
+.original-price {
+  text-decoration: line-through;
+  margin-left: 15px;
+  font-size: 16px;
+  color: #5f509b;
+}
+
+.modal-price {
+  font-size: 28px;
+}
+
+.save-price {
+  min-width: 170px !important;
+  height: 44px !important;
+  border-radius: 16px;
+  background: #ffcc4e;
+  color: #5f509b;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  position: absolute;
+  bottom: 57px;
+  right: 13px;
 }
 
 /* Static page form */

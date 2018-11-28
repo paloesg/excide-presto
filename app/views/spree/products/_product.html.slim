@@ -12,9 +12,12 @@
         br
         - if (product.sold_out? == true)
           = render partial: 'spree/products/labels/sold_out'
+        br
+        - if (product.sale)
+          = render partial: 'spree/products/labels/discount', locals: {product: product}
       .presto-panel-footer.inner.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
-          span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
+          span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"            
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
         = button_to Spree.t(:add_to_cart), populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: "presto-btn #{product.sold_out? == true ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? == true ? true : false
