@@ -86,7 +86,10 @@ body:not(#default) > #presto-header {
 }
 
 select#sort-by {
-  border-radius: 0 4px 4px 0 !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
 }
 
 .presto-btn-lg {
