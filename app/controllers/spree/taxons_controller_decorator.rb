@@ -3,8 +3,7 @@ Spree::TaxonsController.class_eval do
     @taxon = Spree::Taxon.friendly.find(params[:id])
     return unless @taxon
     @searcher = build_searcher(params.merge(taxon: @taxon.id, include_images: true))
-    @products = @searcher.retrieve_products
-    @products = sort_products(@products)
+    @products = sort_products(@searcher.retrieve_products)
     @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
