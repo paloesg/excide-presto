@@ -10,9 +10,6 @@
         br
         = product.name
         br
-        - if (product.sale)
-          = render partial: 'spree/products/labels/discount', locals: {product: product}
-        br
         - if (product.total_on_hand == 0 && product.master.is_backorderable? == false)
           = render partial: 'spree/products/labels/sold_out'
       .presto-panel-footer.inner.text-center
