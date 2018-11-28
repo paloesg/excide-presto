@@ -92,6 +92,10 @@ select#sort-by {
   border-top-left-radius: 0 !important;
 }
 
+.sort-by-panel > span.input-group-addon {
+  background-color: #fff;
+}
+
 .presto-btn-lg {
   font-size: 25px !important;
 }
