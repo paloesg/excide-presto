@@ -275,7 +275,7 @@ input#keywords {
 button.btn.btn-default.btn-search {
   border-left: 0;
   color: #d0d0d0;
-  z-index: 9999;
+  z-index: 10;
 }
 
 button.btn.btn-default.btn-search:hover {
@@ -765,6 +765,20 @@ input[type=number]::-webkit-outer-spin-button {
   right: 15px;
 }
 
+.label-discount {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 11px;
+  color: #fff;
+  line-height: 12px;
+  text-align: center;
+  background: #7fc2ba;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
 .text-sold-out {
   position: relative;
   float: left;
@@ -773,6 +787,41 @@ input[type=number]::-webkit-outer-spin-button {
   transform: translate(-50%, -50%);
   font-weight: bold;
   font-family: "AmsiPro-Ultra", sans-serif;
+}
+
+.text-discount {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-family: "AmsiPro-Ultra", sans-serif;
+}
+
+.original-price {
+  text-decoration: line-through;
+  margin-left: 15px;
+  font-size: 16px;
+  color: #5f509b;
+}
+
+.modal-price {
+  font-size: 28px;
+}
+
+.save-price {
+  min-width: 170px !important;
+  height: 44px !important;
+  border-radius: 16px;
+  background: #ffcc4e;
+  color: #5f509b;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  position: absolute;
+  bottom: 57px;
+  right: 13px;
 }
 
 /* Static page form */
