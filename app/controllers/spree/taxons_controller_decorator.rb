@@ -3,7 +3,8 @@ Spree::TaxonsController.class_eval do
     @taxon = Spree::Taxon.friendly.find(params[:id])
     return unless @taxon
     @searcher = build_searcher(params.merge(taxon: @taxon.id, include_images: true))
-    @products = sort_products(@searcher.retrieve_products)
+    @products = @searcher.retrieve_products
+    @products = sort_products(@products)
     @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
@@ -11,9 +12,9 @@ Spree::TaxonsController.class_eval do
 
   def sort_products(products)
     if params[:sort] == 'brand_asc'
-      products.includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id}).order("spree_taxons.id asc")
+      products.sort_by{|p| p.taxons.find{|t| t.taxonomy.name == 'Brands'}.name}
     elsif params[:sort] == 'brand_desc'
-      products.includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id}).order("spree_taxons.id desc")
+      products.sort_by{|p| p.taxons.find{|t| t.taxonomy.name == 'Brands'}.name}.reverse!
     elsif params[:sort] == 'price_asc'
       products.reorder('').send(:ascend_by_master_price)
     elsif params[:sort] == 'price_desc'
