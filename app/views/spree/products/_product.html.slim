@@ -10,11 +10,11 @@
         br
         = product.name
         br
-        - if (product.total_on_hand == 0 && product.master.is_backorderable? == false)
+        - if (product.sold_out? == true)
           = render partial: 'spree/products/labels/sold_out'
       .presto-panel-footer.inner.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        = button_to Spree.t(:add_to_cart), populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: "presto-btn #{(product.total_on_hand == 0) && product.master.is_backorderable? == false ? 'btn-grey' : 'btn-purple'} btn-block", disabled: (product.total_on_hand == 0 && product.master.is_backorderable? == false ? true : false)
+        = button_to Spree.t(:add_to_cart), populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: "presto-btn #{product.sold_out? == true ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? == true ? true : false
