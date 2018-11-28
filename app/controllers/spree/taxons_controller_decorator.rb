@@ -11,9 +11,9 @@ Spree::TaxonsController.class_eval do
 
   def sort_products(products, taxon)
     if params[:sort] == 'brand_asc'
-      Spree::Product.in_taxons(taxon.id).includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id}).order("spree_taxons.name ASC").page(params[:page]).per(12)
+      Spree::Product.in_taxons_by_brands(taxon).order("spree_taxons.name ASC").page(params[:page]).per(12)
     elsif params[:sort] == 'brand_desc'
-      Spree::Product.in_taxons(taxon.id).includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id}).order("spree_taxons.name DESC").page(params[:page]).per(12)
+      Spree::Product.in_taxons_by_brands(taxon).order("spree_taxons.name DESC").page(params[:page]).per(12)
     elsif params[:sort] == 'price_asc'
       render json: products.reorder('').send(:ascend_by_master_price).to_json
     elsif params[:sort] == 'price_desc'
