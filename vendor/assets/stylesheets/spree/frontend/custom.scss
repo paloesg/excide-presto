@@ -85,6 +85,10 @@ body:not(#default) > #presto-header {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+select#sort-by {
+  border-radius: 0 4px 4px 0 !important;
+}
+
 .presto-btn-lg {
   font-size: 25px !important;
 }
