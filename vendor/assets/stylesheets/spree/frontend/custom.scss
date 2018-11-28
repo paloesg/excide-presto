@@ -294,8 +294,24 @@ button.btn.btn-default.btn-search:hover {
 }
 
 .footer .copyright {
-  right: 0;
-  position: absolute;
+  position: relative;
+  text-align: right;
+}
+
+@media (max-width : 991px) {
+  #presto-footer{
+    height: 105px;
+  }
+  .footer {
+    text-align: center;
+  }
+
+  .footer .copyright {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
 }
 
 ul.social-media-list {
@@ -327,6 +343,37 @@ ul.social-media-list i:hover {
   background-color: #6b3999;
   color: #fed34f
 }
+
+@media only screen and (max-width : 1450px)  {
+  ul.social-media-list {
+    font-size: 20px; 
+    bottom: 5px;
+  }
+
+  ul.social-media-list li {
+    margin-right: 2px;
+  }
+  
+  ul.social-media-list i {
+    padding: 2px 0;
+    width: 26px;
+    height: 26px;
+  }  
+}
+
+@media only screen and (max-width : 1125px)  {
+  ul.social-media-list {
+    font-size: 14px; 
+    bottom: 0px;
+  }
+  
+  ul.social-media-list i {
+    padding: 2px 0;
+    width: 20px;
+    height: 20px;
+  }  
+}
+
 
 /* Product Page */
 
