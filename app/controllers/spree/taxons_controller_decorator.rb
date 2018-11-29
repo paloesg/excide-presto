@@ -15,7 +15,7 @@ Spree::TaxonsController.class_eval do
     elsif params[:sort] == 'brand_desc'
       Spree::Product.in_taxons_by_brands(taxon).order("spree_taxons.name DESC").page(params[:page]).per(12)
     elsif params[:sort] == 'price_asc'
-      render json: products.reorder('').send(:ascend_by_master_price).to_json
+      products.reorder('').send(:ascend_by_master_price)
     elsif params[:sort] == 'price_desc'
       products.reorder('').send(:descend_by_master_price)
     elsif params[:sort] == 'name_asc'
