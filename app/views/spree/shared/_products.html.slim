@@ -7,7 +7,7 @@ div data-hook="products_search_results_heading"
       = Spree.t(:no_products_found)
   - elsif params.key?(:keywords)
     div data-hook="products_search_results_heading_results_found"
-      h6.search-results-title= Spree.t(:search_results, keywords: h(params[:keywords]))
+      h6.search-results-title Search results for "#{params[:keywords]}"
 - if products.any?
   #products.row data-hook=""
     = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon }
