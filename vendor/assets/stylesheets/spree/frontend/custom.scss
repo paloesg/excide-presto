@@ -841,12 +841,3 @@ input[type=number]::-webkit-outer-spin-button {
   border: #ffcc4e;
   font-weight: bold;
 }
-
-/* Paragraph */
-.truncated-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
