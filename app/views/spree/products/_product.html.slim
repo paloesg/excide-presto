@@ -8,7 +8,7 @@
         br
         = content_tag(:span, truncate(product.brand, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
         br
-        = product.name
+        .truncated-text= product.name
         br
         - if product.sold_out?
           = render partial: 'spree/products/labels/sold_out'
