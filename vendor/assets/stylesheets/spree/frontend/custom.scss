@@ -841,3 +841,27 @@ input[type=number]::-webkit-outer-spin-button {
   border: #ffcc4e;
   font-weight: bold;
 }
+/*custom message*/
+.success-message {
+  color:#6b3898;
+  font-size: 12px;
+}
+
+$font-size: 14px;
+$line-height: 1.4;
+$lines-to-show: 2;
+
+.truncated-text {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+}
+
