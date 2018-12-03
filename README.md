@@ -20,7 +20,7 @@ Create and initialize the database using this command:
 
     rails db:setup
 
-After creating, it will prompt you to type in email and password.
+After creating, enter the email and password for the admin.
 
 Next, in your command prompt, install `imagemagick` using:
 
@@ -32,7 +32,7 @@ Start the application server.
 
     rails server
 
-Access the application at [http://localhost:3000/](http://localhost:3000/).
+Access the application at [http://localhost:3000/](http://localhost:3000/) and login using the email and password that was prompted earlier on.
 
 ## Testing
 
