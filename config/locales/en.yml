@@ -42,3 +42,8 @@ en:
     sale_start_date: "Start Date"
     sale_end_date: "End Date"
     add_to_cart: "ADD TO CART"
+    submit: "Submit"
+    first_name: "First name"
+    last_name: "Last name"
+    company_name: "Company name"
+    phone: "Phone"
