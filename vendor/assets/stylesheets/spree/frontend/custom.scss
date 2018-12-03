@@ -134,6 +134,19 @@ select#sort-by {
   color: #ffffff;
 }
 
+.btn-grey {
+  background-color: #565656;
+  border-color: #565656;
+  font-family: "AmsiPro-Ultra", sans-serif;
+  color: #ffffff;
+}
+
+.btn-grey:hover {
+  background-color: #808080;
+  border-color: #808080;
+  color: #ffffff;
+}
+
 .presto-sidebar-title {
   font-family: "AmsiPro-Ultra", sans-serif;
   background: #e8e8e6;
@@ -367,32 +380,32 @@ ul.social-media-list i:hover {
 
 @media only screen and (max-width : 1450px)  {
   ul.social-media-list {
-    font-size: 20px; 
+    font-size: 20px;
     bottom: 5px;
   }
 
   ul.social-media-list li {
     margin-right: 2px;
   }
-  
+
   ul.social-media-list i {
     padding: 2px 0;
     width: 26px;
     height: 26px;
-  }  
+  }
 }
 
 @media only screen and (max-width : 1125px)  {
   ul.social-media-list {
-    font-size: 14px; 
+    font-size: 14px;
     bottom: 0px;
   }
-  
+
   ul.social-media-list i {
     padding: 2px 0;
     width: 20px;
     height: 20px;
-  }  
+  }
 }
 
 
@@ -858,3 +871,27 @@ input[type=number]::-webkit-outer-spin-button {
   border: #ffcc4e;
   font-weight: bold;
 }
+/*custom message*/
+.success-message {
+  color:#6b3898;
+  font-size: 12px;
+}
+
+$font-size: 14px;
+$line-height: 1.4;
+$lines-to-show: 2;
+
+.truncated-text {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  margin: 0 auto;
+  font-size: $font-size;
+  line-height: $line-height;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+}
+

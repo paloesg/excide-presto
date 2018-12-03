@@ -34,7 +34,7 @@
       </div>
       <div class="form-group">
         <%= label_tag 'store_id', Spree.t(:store) %>
-        <%= select_tag 'store_id', options_from_collection_for_select(Spree::Store.all.collect, :id, :name ),
+        <%= select_tag 'store_id', options_from_collection_for_select(@product.stores, :id, :name ),
           class: 'select2' %>
       </div>
     </div>
