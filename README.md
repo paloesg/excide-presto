@@ -34,7 +34,7 @@ Start the application server.
 
 Access the application at [http://localhost:3000/](http://localhost:3000/) and login using the email and password that was prompted earlier on.
 
-## Testing
+<!-- ## Testing
 
 Run the test suite with [RSpec](https://github.com/rspec/rspec-rails).
 
@@ -42,7 +42,7 @@ Run the test suite with [RSpec](https://github.com/rspec/rspec-rails).
 
 Or have them run automatically with [Guard](https://github.com/guard/guard-rspec).
 
-    bundle exec guard
+    bundle exec guard -->
 
 ## Branching
 
