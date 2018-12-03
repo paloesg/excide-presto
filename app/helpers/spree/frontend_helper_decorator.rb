@@ -18,9 +18,9 @@ Spree::FrontendHelper.class_eval do
     return '' if max_level < 1 || root_taxon.leaf?
     taxons = root_taxon.children.map do |taxon|
       css_class = current_taxon && current_taxon.self_and_ancestors.include?(taxon) ? 'list-group-item active' : 'list-group-item'
-      sub_taxon_arrow = taxon.children.length != 0 ? 'glyphicon glyphicon-triangle-right pull-right' : ''
+      sub_taxon_arrow = '<i class="glyphicon glyphicon-triangle-right pull-right"></i>' if taxon.children.length != 0
       link_to seo_url(taxon), class: css_class do
-        "#{taxon.name} #{content_tag :i, nil, class: sub_taxon_arrow }".html_safe
+        "#{taxon.name} #{sub_taxon_arrow}".html_safe
       end
     end
     static_pages = HighVoltage.page_ids.map do |page|
