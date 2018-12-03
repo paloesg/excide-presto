@@ -10,6 +10,7 @@
 //= require spree/frontend
 //= require turbolinks
 //= require cart/custom-input
+//= require components/sub_categories_popover
 
 //= require_tree .
 //= require spree/frontend/spree_auth
