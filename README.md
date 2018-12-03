@@ -70,5 +70,3 @@ and open a [pull request](https://help.github.com/articles/creating-a-pull-reque
 Give your pull request a title and describe what you are trying to
 achieve with your code. The branch or release manager will review your
 code and take the next appropriate actions.
-
-
