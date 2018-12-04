@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function(){
     animation: false,
     template: '<div class="popover sub-categories"><div class="popover-content"></div></div>'
   }).on('shown.bs.popover', function() {
-    var this_popover = $($($(this).data("bs.popover").$tip)[0]);
+    var this_popover = $($($(this).data("bs.popover").$tip).first());
     var currentTop = parseInt(this_popover.css('top'));
     var currentLeft = parseInt(this_popover.css('left'));
     var currentHeight = this_popover.height();
