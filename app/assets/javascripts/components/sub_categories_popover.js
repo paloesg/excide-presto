@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function(){
-  $('[data-toggle="popover"]').popover({
+  $('[data-toggle="sub-categories"]').popover({
     trigger: "manual",
     html: true,
     container: 'body',
