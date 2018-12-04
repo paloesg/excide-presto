@@ -20,7 +20,7 @@ Spree::FrontendHelper.class_eval do
       css_class = current_taxon && current_taxon.self_and_ancestors.include?(taxon) ? 'list-group-item active' : 'list-group-item'
       sub_taxon_arrow = '<i class="glyphicon glyphicon-triangle-right pull-right"></i>' if taxon.children.length != 0
       sub_taxons = safe_join(taxon.children.map { |t| "<li>" + link_to(t.name, t.permalink) + "</li>" })
-      link_to seo_url(taxon), class: css_class, 'data-toggle': "#{'popover' if taxon.children.length != 0}", 'data-trigger': 'hover', 'data-content': sub_taxons, title: taxon.name do
+      link_to seo_url(taxon), class: css_class, 'data-toggle': "#{'popover' if taxon.children.length != 0}", 'data-content': sub_taxons, title: taxon.name do
         "#{taxon.name} #{sub_taxon_arrow}".html_safe
       end
     end
