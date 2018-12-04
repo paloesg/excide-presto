@@ -5,6 +5,15 @@ $(document).on('turbolinks:load', function(){
     container: 'body',
     animation: false,
     template: '<div class="popover sub-categories"><div class="popover-content"></div></div>'
+  }).on('shown.bs.popover', function() {
+    var this_popover = $($($(this).data("bs.popover").$tip)[0]);
+    var currentTop = parseInt(this_popover.css('top'));
+    var currentLeft = parseInt(this_popover.css('left'));
+    var currentHeight = this_popover.height();
+    $('.sub-categories').css({
+      top: (currentTop + (currentHeight / 2)) + 'px',
+      left: (currentLeft - 10) + 'px'
+    });
   }).on("mouseenter", function () {
     var _this = this;
     $(this).popover("show");
