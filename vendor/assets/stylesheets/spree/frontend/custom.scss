@@ -631,6 +631,11 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0px 0px 60px 0px;
 }
 
+.popover.sub-categories {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
 @media (min-width: 768px) {
   .navbar-form .input-group {
     width: 35em;
