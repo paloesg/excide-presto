@@ -11,11 +11,6 @@
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
-    / = render partial: 'spree/shared/filters' if @taxon.leaf?
 div data-hook="taxon_products"
   = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
-- unless params[:keywords].present?
-  div data-hook="taxon_children"
-    - cache [I18n.locale, @taxon] do
-      = render partial: 'taxon', collection: @taxon.children
 = render partial: 'spree/products/modal_content'
