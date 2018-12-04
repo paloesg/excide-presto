@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $('[data-toggle="popover"]').popover({ trigger: "manual", html: true, animation: false, container: 'body' })
+$(document).on('turbolinks:load', function(){
+  $('[data-toggle="popover"]').popover({ trigger: "manual", html: true, container: 'body' })
     .on("mouseenter", function () {
       var _this = this;
       $(this).popover("show");
