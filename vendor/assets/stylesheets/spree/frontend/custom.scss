@@ -54,6 +54,10 @@ body#login {
   background:#5f509b;
 }
 
+body:not(#default) > #presto-header {
+  padding: 0px 0px 30px 0px;
+}
+
 .navbar-login {
   padding: 10px;
   background-color: #ffcc4e;
@@ -80,6 +84,17 @@ body#login {
   -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+select#sort-by {
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+.sort-by-panel > span.input-group-addon {
+  background-color: #fff;
 }
 
 .presto-btn-lg {
@@ -201,7 +216,9 @@ span.badge.badge-presto {
   margin-bottom: 40px;
 }
 
-
+.sort-by-panel {
+  padding: 10px 0px 15px;
+}
 /* link block */
 
 .block {
