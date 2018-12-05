@@ -1,5 +1,23 @@
 Spree::Admin::UsersController.class_eval do
 
+  def update
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    if params[:user][:approved] == "1" && @user.password_salt.blank?
+      @user.send_reset_password_instructions
+    end
+
+    if @user.update_attributes(user_params)
+      flash[:success] = Spree.t(:account_updated)
+      redirect_to edit_admin_user_path(@user)
+    else
+      render :edit
+    end
+  end
+
   def user_params
     params.require(:user).permit(permitted_user_attributes |
                                  [:approved,
