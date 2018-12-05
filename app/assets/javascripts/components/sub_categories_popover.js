@@ -30,6 +30,6 @@ $(document).on('turbolinks:load', function(){
       if (!$(".popover:hover").length) {
         $(_this).popover("hide");
       }
-    }, 30)
+    }, 500)
   })
 })
