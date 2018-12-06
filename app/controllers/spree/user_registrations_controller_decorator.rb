@@ -4,6 +4,7 @@ Spree::UserRegistrationsController.class_eval do
   def create
     @user = build_resource(spree_user_params)
     resource_saved = resource.save
+    UserMailer.registration_email(@user).deliver_now
 
     yield resource if block_given?
     if resource_saved

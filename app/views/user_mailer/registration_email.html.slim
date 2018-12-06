@@ -1,0 +1,18 @@
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h3 Hi Admin,
+    p New User has registered.
+    p
+      | First Name : #{@user[:first_name]}.
+      br/
+      | Last Name : #{@user[:last_name]}.
+      br/
+      | Email : #{@user[:email]}.
+      br/
+      | Company Name : #{@user[:company_name]}.
+      br/
+      | Phone : #{@user[:phone]}.
+      br/
+    p Please do the approval at admin page
