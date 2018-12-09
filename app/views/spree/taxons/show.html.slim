@@ -1,4 +1,8 @@
 - @body_id = 'taxon_page'
+.input-group.col-md-4.col-md-offset-8.sort-by-panel
+  span.input-group-addon
+    | Sort By
+  = sort_by
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
     .container.category-container
@@ -7,11 +11,6 @@
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
-    / = render partial: 'spree/shared/filters' if @taxon.leaf?
 div data-hook="taxon_products"
   = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
-- unless params[:keywords].present?
-  div data-hook="taxon_children"
-    - cache [I18n.locale, @taxon] do
-      = render partial: 'taxon', collection: @taxon.children
 = render partial: 'spree/products/modal_content'
