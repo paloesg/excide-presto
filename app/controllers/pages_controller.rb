@@ -18,7 +18,7 @@ class PagesController < Spree::BaseController
     @users.each do |user|
       NotificationMailer.new_service_request(@service_request, user).deliver_later
     end
-    redirect_to page_path(params[:id]), notice: 'Thank you for filling out the form. Your response has been recorded.'
+    redirect_to page_path(params[:id]), notice: 'Thank you! Your request has been recorded. We will get back to you shortly.'
   end
 
   private
