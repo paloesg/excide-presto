@@ -2,10 +2,11 @@ class UserMailer < ApplicationMailer
 
   default from: 'admin@excide.co'
 
-  def registration_email(user)
+  def registration_email(admin, user)
     @user = user
-    @default_send_to_email = 'admin@excide.co'
-    mail(to: @default_send_to_email, subject: 'Register New Account')
+    sent_to = admin.email
+    @approved_link = spree.edit_admin_user_url(id: @user.id, host: Spree::Store.current.url)
+    mail(to: sent_to, subject: Spree::Store.current.name + ' ' + I18n.t(:subject, scope: [:devise, :mailer, :register_new_account]))
   end
 
   def new_password_instructions(from_address, user, token, *_args)

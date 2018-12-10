@@ -4,10 +4,13 @@ Spree::UserRegistrationsController.class_eval do
   def create
     @user = build_resource(spree_user_params)
     resource_saved = resource.save
-    UserMailer.registration_email(@user).deliver_now
 
     yield resource if block_given?
     if resource_saved
+      admin_users = Spree::Role.find_by_name('admin').users
+      admin_users.each do |admin|
+        UserMailer.registration_email(admin, @user).deliver_now
+      end
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up
         sign_up(resource_name, resource)

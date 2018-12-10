@@ -51,3 +51,5 @@ en:
     mailer:
       new_password_instructions:
         subject: "Set New Password First"
+      register_new_account:
+        subject: "Register New Account"
