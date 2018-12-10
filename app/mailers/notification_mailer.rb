@@ -2,7 +2,7 @@ class NotificationMailer < ApplicationMailer
   default from: 'Excide admin@excide.co'
   layout 'mailer'
 
-  def new_service_request(service_request)
+  def self.new_service_request(service_request)
     @users = Spree::Role.find_by_name('admin').users
     @service_request = service_request
     @users.each do |user|

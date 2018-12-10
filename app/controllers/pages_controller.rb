@@ -14,7 +14,7 @@ class PagesController < Spree::BaseController
     @service_request.fields = params[:fields] if params[:fields][:text]
     @service_request.save
     create_service_request_file(params[:fields][:file]) if params[:fields][:file]
-    NotificationMailer.new_service_request(@service_request).deliver_later
+    NotificationMailer.new_service_request(@service_request)
     redirect_to page_path(params[:id]), notice: 'Thank you for filling out the form. Your response has been recorded.'
   end
 
