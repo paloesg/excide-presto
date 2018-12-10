@@ -47,3 +47,7 @@ en:
     last_name: "Last name"
     company_name: "Company name"
     phone: "Phone"
+  devise:
+    mailer:
+      new_password_instructions:
+        subject: "Set New Password First"

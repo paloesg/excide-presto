@@ -7,7 +7,7 @@ Spree::Admin::UsersController.class_eval do
     end
 
     if params[:user][:approved] == "1" && @user.password_salt.blank?
-      @user.send_reset_password_instructions
+      @user.send_new_password_instructions(spree_current_user.email)
     end
 
     if @user.update_attributes(user_params)
