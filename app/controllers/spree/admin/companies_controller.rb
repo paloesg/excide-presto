@@ -1,6 +1,10 @@
 module Spree
   module Admin
     class CompaniesController < ResourceController
+      def index
+        @companies = Spree::Company.all
+      end
+
       def new
         @company = Spree::Company.new
       end

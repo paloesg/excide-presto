@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = plural_resource_name(Spree::Company)
+- content_for :page_actions do
+  = button_link_to Spree.t(:new_company), new_admin_company_url, class: 'btn-success', icon: 'add', id: 'admin_new_company'
+
+- if @companies.any?
+  table.table
+    thead
+      tr
+        th Name
+        th Address
+        th Description
+    tbody
+      - @companies.each do |company|
+        tr
+          td = company.name
+          td = company.address
+          td = company.description
+- else
+  | No company found
