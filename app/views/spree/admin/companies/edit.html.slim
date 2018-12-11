@@ -1,9 +1,9 @@
 - content_for :page_title do
   = link_to Spree.t(:companies), spree.admin_companies_url
   '  /
-  = Spree.t(:new_company)
+  = Spree.t(:edit_company)
 
 .row
   .col-xs-12.col-md-12
-    = form_for @company, url: spree.admin_companies_url, method: :post do |f|
+    = form_for @company, url: spree.admin_company_url, method: :put do |f|
       = render partial: 'form', locals: { f: f }

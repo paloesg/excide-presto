@@ -19,6 +19,20 @@ module Spree
         end
       end
 
+      def edit
+        @company = Spree::Company.find(params[:id])
+      end
+
+      def update
+        @company = Spree::Company.find(params[:id])
+        if @company.update_attributes(company_params)
+          flash[:success] = Spree.t(:company_updated)
+          redirect_to admin_companies_path
+        else
+          render :edit
+        end
+      end
+
       private
 
       def company_params

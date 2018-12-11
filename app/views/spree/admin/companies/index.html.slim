@@ -10,11 +10,13 @@
         th Name
         th Address
         th Description
+        th
     tbody
       - @companies.each do |company|
         tr
           td = company.name
           td = company.address
           td = company.description
+          td = link_to_edit company, no_text: true, class: 'edit' if can?(:edit, company)
 - else
   | No company found
