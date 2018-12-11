@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = link_to Spree.t(:companies), spree.admin_companies_url
+  '  /
+  = Spree.t(:new_company)
+
+.row
+  .col-xs-12.col-md-12
+    = form_for @company, url: spree.admin_companies_url, method: :post do |f|
+      .form-group.field
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+      .form-group.field
+        = f.label :address
+        = f.text_field :address, class: 'form-control'
+      .form-group.field
+        = f.label :description
+        = f.text_field :description, class: 'form-control'
+      .form-actions
+        = f.submit 'Create Company', class: 'btn btn-primary btn-success'
