@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
       resources :companies
+      resources :departments
       get '/pages/*id' => 'pages#show', as: :page, format: false
 
       resources :products do
