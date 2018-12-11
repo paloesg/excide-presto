@@ -1,6 +1,8 @@
 module Spree
   module Admin
     class CompaniesController < ResourceController
+      before_action :set_company, only: [:edit, :update]
+
       def index
         @companies = Spree::Company.all
       end
@@ -20,11 +22,9 @@ module Spree
       end
 
       def edit
-        @company = Spree::Company.find(params[:id])
       end
 
       def update
-        @company = Spree::Company.find(params[:id])
         if @company.update_attributes(company_params)
           flash[:success] = Spree.t(:company_updated)
           redirect_to admin_companies_path
@@ -34,6 +34,10 @@ module Spree
       end
 
       private
+
+      def set_company
+        @company = Spree::Company.find(params[:id])
+      end
 
       def company_params
         params.require(:company).permit(:name, :address, :description)
