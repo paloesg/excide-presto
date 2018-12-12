@@ -1,4 +1,4 @@
-class Spree::Department < ApplicationRecord
+class Spree::Department < Spree::Base
   belongs_to :company
   has_many :users
   validates :name, presence: true

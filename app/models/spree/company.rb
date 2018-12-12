@@ -1,4 +1,4 @@
-class Spree::Company < ApplicationRecord
+class Spree::Company < Spree::Base
   has_many  :departments
   has_many :users
   has_one :store
