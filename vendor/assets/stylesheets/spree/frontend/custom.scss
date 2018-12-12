@@ -63,6 +63,11 @@ body:not(#default) > #presto-header {
   background-color: #ffcc4e;
 }
 
+.navbar-purple {
+  padding: 10px;
+  background-color: #5f509b;
+}
+
 .presto-product-description {
   font-family: 'AmsiPro-Regular', sans-serif;
 }
@@ -131,7 +136,7 @@ select#sort-by {
 .btn-purple:hover {
   background-color: #ffcc4e;
   border-color: #ffcc4e;
-  color: #ffffff;
+  color: #5f509b;
 }
 
 .btn-grey {
