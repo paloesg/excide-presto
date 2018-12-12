@@ -1,5 +1,5 @@
 class AddCompanyToStores < ActiveRecord::Migration[5.2]
   def change
-    add_column :spree_stores, :company_id, :integer
+    add_reference :spree_stores, :company, type: :uuid
   end
 end

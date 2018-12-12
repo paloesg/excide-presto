@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_07_044223) do
+ActiveRecord::Schema.define(version: 2018_12_12_040156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -177,9 +177,10 @@ ActiveRecord::Schema.define(version: 2018_12_07_044223) do
   create_table "spree_departments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "company_id"
+    t.uuid "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_spree_departments_on_company_id"
   end
 
   create_table "spree_gateways", id: :serial, force: :cascade do |t|
@@ -961,8 +962,9 @@ ActiveRecord::Schema.define(version: 2018_12_07_044223) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "logo_file_name"
-    t.integer "company_id"
+    t.uuid "company_id"
     t.index "lower((code)::text)", name: "index_spree_stores_on_lower_code", unique: true
+    t.index ["company_id"], name: "index_spree_stores_on_company_id"
     t.index ["default"], name: "index_spree_stores_on_default"
     t.index ["url"], name: "index_spree_stores_on_url"
   end
@@ -1095,15 +1097,12 @@ ActiveRecord::Schema.define(version: 2018_12_07_044223) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean "approved", default: false, null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "company_name"
-    t.string "phone"
-    t.integer "company_id"
-    t.integer "department_id"
+    t.uuid "company_id"
+    t.uuid "department_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
+    t.index ["company_id"], name: "index_spree_users_on_company_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
+    t.index ["department_id"], name: "index_spree_users_on_department_id"
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["ship_address_id"], name: "index_spree_users_on_ship_address_id"
     t.index ["spree_api_key"], name: "index_spree_users_on_spree_api_key"
