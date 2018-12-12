@@ -1,12 +1,13 @@
 module Spree
   module Admin
     class DepartmentsController < ResourceController
+      before_action :set_companies, only: [:new, :edit]
+
       def index
       end
 
       def new
         @deparment = Spree::Department.new
-        @companies = Spree::Company.all
       end
 
       def create
@@ -15,13 +16,13 @@ module Spree
           flash[:success] = flash_message_for(@department, :successfully_created)
           redirect_to admin_departments_path
         else
+          set_companies
           render :new
         end
       end
 
       def edit
         @department = Spree::Department.find(params[:id])
-        @companies = Spree::Company.all
       end
 
       def update
@@ -34,8 +35,14 @@ module Spree
         end
       end
 
+      private
+
       def department_params
         params.require(:department).permit(:name, :company_id, :description)
+      end
+
+      def set_companies
+        @companies = Spree::Company.all
       end
     end
   end
