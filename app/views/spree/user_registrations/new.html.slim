@@ -1,0 +1,16 @@
+- @body_id = 'signup'
+= render :partial => 'spree/shared/error_messages', :locals => { :target => @user }
+.col-md-6.col-md-offset-3
+  .panel.presto-panel-default
+    .panel-heading
+      h3.login-panel-title New User
+      ' Hello! Please register below and we'll get back to you shortly.
+    #new-customer.panel-body data-hook="login"
+      = form_for resource, :as => :spree_user, :url => spree.registration_path do |f|
+        div data-hook="signup_inside_form"
+          = render :partial => 'spree/shared/user_form', :locals => { :f => f }
+          div= f.submit Spree.t(:create), :class => 'presto-btn btn btn-lg btn-purple btn-block'
+      .text-center
+        br/
+        = link_to Spree.t(:login_as_existing), spree.login_path
+      div data-hook="login_extras"
