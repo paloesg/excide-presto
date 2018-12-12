@@ -2,7 +2,7 @@ module Spree
   module Admin
     class DepartmentsController < ResourceController
       before_action :set_company, only: [:edit, :update]
-      before_action :set_companies, only: [:new, :edit]
+      before_action :set_companies, only: [:index, :new, :edit]
 
       def index
       end
