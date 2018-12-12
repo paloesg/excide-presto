@@ -11,7 +11,7 @@ Spree::CheckoutController.class_eval do
         @current_order = nil
         admin_users = Spree::Role.find_by_name('admin').users
         admin_users.each do |admin|
-          ProductMailer.order_request(@order, @user, admin).deliver_now
+          OrderMailer.order_request(@order, @user, admin).deliver_now
         end
         flash.notice = Spree.t(:order_processed_successfully)
         flash['order_completed'] = true
