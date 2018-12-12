@@ -30,6 +30,7 @@ module Spree
           flash[:success] = Spree.t(:department_updated)
           redirect_to admin_departments_path
         else
+          set_companies
           render :edit
         end
       end
