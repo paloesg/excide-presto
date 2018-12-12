@@ -648,6 +648,22 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0px 0px 60px 0px;
 }
 
+.popover.sub-categories {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  background-clip: unset;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popover.sub-categories > .popover-content {
+  list-style-type:none;
+}
+
+.popover.sub-categories > .popover-content > li > a {
+  color:#555 !important;
+}
+
 @media (min-width: 768px) {
   .navbar-form .input-group {
     width: 35em;
