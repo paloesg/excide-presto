@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = link_to Spree.t(:departments), spree.admin_departments_url
+  '  /
+  = Spree.t(:edit_department)
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @department }
+
+.row
+  .col-xs-12.col-md-12
+    = form_for @department, url: spree.admin_company_url, method: :put do |f|
+      = render partial: 'form', locals: { f: f }
