@@ -50,6 +50,6 @@ en:
   devise:
     mailer:
       new_password_instructions:
-        subject: "Set New Password First"
+        subject: "Membership approved! Please set your password"
       register_new_account:
-        subject: "Register New Account"
+        subject: "New membership requested"
