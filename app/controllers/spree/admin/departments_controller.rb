@@ -1,6 +1,7 @@
 module Spree
   module Admin
     class DepartmentsController < ResourceController
+      before_action :set_company, only: [:edit, :update]
       before_action :set_companies, only: [:new, :edit]
 
       def index
@@ -22,11 +23,9 @@ module Spree
       end
 
       def edit
-        @department = Spree::Department.find(params[:id])
       end
 
       def update
-        @department = Spree::Department.find(params[:id])
         if @department.update_attributes(department_params)
           flash[:success] = Spree.t(:department_updated)
           redirect_to admin_departments_path
@@ -39,6 +38,10 @@ module Spree
 
       def department_params
         params.require(:department).permit(:name, :company_id, :description)
+      end
+
+      def set_company
+        @department = Spree::Department.find(params[:id])
       end
 
       def set_companies
