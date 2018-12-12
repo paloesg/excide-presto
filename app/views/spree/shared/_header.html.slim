@@ -1,5 +1,5 @@
 #presto-header
-  div class="#{params[:controller] == 'spree/user_sessions' ? "navbar-login" : params[:controller] == 'spree/user_passwords' ? "navbar-purple" : "navbar-inverse"} "
+  div class="#{params[:controller] == 'spree/user_sessions' ? "navbar-login" : params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations' ? "navbar-purple" : "navbar-inverse"} "
     - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
       .navbar-header
         button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
