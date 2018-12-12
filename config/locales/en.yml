@@ -36,6 +36,7 @@ en:
       tab:
         product_sales: "Product Sales"
     company_updated: "Company Updated"
+    department_updated: "Department Updated"
     product_sales: "Product Sales"
     new_product_sale: "New Product Sales"
     sale_price: "Sale Price"
