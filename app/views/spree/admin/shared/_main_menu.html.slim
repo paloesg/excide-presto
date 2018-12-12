@@ -28,6 +28,12 @@
       = link_to admin_companies_path do
         span.icon.icon-home
         span.text Company
+- if can? :admin, Spree::Department
+  ul.nav.nav-sidebar
+    li.sidebar-menu-item
+      = link_to admin_departments_path do
+        span.icon.icon-th-large
+        span.text Department
 - if can? :admin, current_store
   ul.nav.nav-sidebar
     = main_menu_tree Spree.t(:configurations), icon: "wrench", sub_menu: "configuration", url: "#sidebar-configuration"
