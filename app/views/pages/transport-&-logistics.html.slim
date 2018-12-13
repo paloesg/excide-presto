@@ -137,3 +137,116 @@
                     br
                     | Hourly: $80 Per Hour (Min. 3 Hours)
             = submit_tag 'Request', class: 'btn btn-default'
+
+.modal.fade role="dialog" id="CarRental"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Car Rental Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Car Rental'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Particulars (Car leased out to)
+            .form-group
+              = label_tag :fullname, 'Full Name*'
+              i
+                |  (As in Passport/NRIC)
+              = text_field_tag 'fields[text][Full Name]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :company, 'NRIC*'
+                .col-md-3
+                  = text_field_tag 'fields[text][NRIC]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :email, 'Email*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :date_of_birth, 'Date Of Birth*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Date Of Birth]', Date.today, class: 'form-control'
+                .col-md-1
+                  = label_tag :age, 'Age*'
+                .col-md-2
+                  = number_field_tag 'fields[text][Age]', 0, class: 'form-control'
+                .col-md-1
+                  = label_tag :gender, 'Gender*'
+                .col-md-2
+                  = select_tag 'fields[text][Gender]', options_for_select(['Male', 'Female']), class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :telephone, 'Telephone'
+                .col-md-3
+                  = text_field_tag 'fields[text][Telephone]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :mobile, 'Mobile*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
+            h3
+              strong Rental Information
+            .form-group
+              = label_tag :preferred_car, 'Preferred Car/Brand/Model'
+              = text_field_tag 'fields[text][Preferred Car]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :period, 'Rental Periode*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Rental Periode Start]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :period, 'to'
+                .col-md-3
+                  = date_field_tag 'fields[text][Rental Periode End]', Date.today, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :return_date, 'Return Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Return Date]', Date.today, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
+                .col-md-3
+                  = label_tag :return_time, 'Return Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Return Time]', '00:00', class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_location, 'Pick Up Location*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Pick Up Location*]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :return_location, 'Return Location*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Return Location]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :total_days, 'Total No. Of Days*'
+                .col-md-3
+                  = number_field_tag 'fields[text][Total No. Of Days]', 0, class: 'form-control'
+                .col-md-3
+                  = label_tag :total_hours, 'Total No. Of Hours'
+                .col-md-3
+                  = number_field_tag 'fields[text][Total No. Of Hours]', 0, class: 'form-control'
+            = submit_tag 'Request', class: 'btn btn-default'
