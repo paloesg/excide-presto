@@ -38,46 +38,73 @@
             h3
               strong Contact Information
             .form-group
-              = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :name, 'Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :tel, 'Tel*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
             .form-group
-              = label_tag :company, 'Company'
-              = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :company, 'Company'
+                .col-md-3
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :mobile, 'Mobile*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
             .form-group
-              = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :address, 'Address'
+                .col-md-9
+                  = text_field_tag 'fields[text][Address]', nil, class: 'form-control'
             .form-group
-              = label_tag :mobile, 'Mobile*'
-              = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
-            .form-group
-              = label_tag :address, 'Address'
-              = text_field_tag 'fields[text][Address]', nil, class: 'form-control'
-            .form-group
-              = label_tag :email, 'Email'
-              = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
-            .form-group
-              = label_tag :postal_code, 'Postal Code*'
-              = text_field_tag 'fields[text][Postal Code]', nil, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :email, 'Email'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :postal_code, 'Postal Code*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Postal Code]', nil, class: 'form-control'
             h3
               strong Charter Information
             .form-group
-              = label_tag :no_of_passenger, 'No. of Passenger*'
-              = text_field_tag 'fields[text][No of Passenger]', nil, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :no_of_passenger, 'No. of Passenger*'
+                .col-md-3
+                  = text_field_tag 'fields[text][No of Passenger]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :to_and_from, 'To & From?'
+                .col-md-3
+                  = select_tag 'fields[text][To and From]', options_for_select(['Yes', 'No']), class: 'form-control'
             .form-group
-              = label_tag :pick_up_date, 'Pick Up Date*'
-              = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
             .form-group
-              = label_tag :pick_up_location, 'Pick Up Location*'
-              = text_field_tag 'fields[text][Pick Up Location]', nil, class: 'form-control'
-            .form-group
-              = label_tag :to_and_from, 'To & From?'
-              = select_tag 'fields[text][To and From]', options_for_select(['Yes', 'No']), class: 'form-control'
-            .form-group
-              = label_tag :pick_up_date, 'Pick Up Time*'
-              = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
-            .form-group
-              = label_tag :destination, 'Destination'
-              = text_area_tag 'fields[text][Destination]', nil, class: 'form-control'
+              .row
+                .col-md-3
+                  = label_tag :pick_up_location, 'Pick Up Location*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Pick Up Location]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :destination, 'Destination'
+                .col-md-3
+                  = text_field_tag 'fields[text][Destination]', nil, class: 'form-control'
             h3
               strong Charter Rate
               |  (Tick ✓ in the box)
