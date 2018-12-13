@@ -296,6 +296,13 @@
               i
                 |  (Please advise any other damages or malfunctions)
               = select_tag 'fields[text][Device Condition]', options_for_select(['Very Good Condition', 'Not Too Bad Condition']), class: 'form-control'
+              ul
+                li
+                  strong Very Good Condition
+                  |  means your device has only light scratches and is fully functional.
+                li
+                  strong Not too Bad Condition
+                  |  means your device has quite a few scratcher, small dents, or a cracked glass screen but is otherwise fully functional.
             .form-group
               = label_tag :additional, 'Additional'
               = text_area_tag 'fields[text][Additional]', nil, class: 'form-control'
