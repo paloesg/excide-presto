@@ -9,9 +9,9 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-- service_array = ['Event Spaces', 'Manpower Support', 'Outdoor Ads']
+- sub_categories_service = ['Event Spaces', 'Manpower Support', 'Outdoor Ads']
 .row
-  - service_array.each do |service|
+  - sub_categories_service.each do |service|
     .col-md-4
       = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
 
@@ -20,7 +20,7 @@
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-- service_array.each do |service|
+- sub_categories_service.each do |service|
   .modal.fade role="dialog" id="#{service.gsub(' ','')}"
     .modal-dialog.modal-lg
       /! Modal content
