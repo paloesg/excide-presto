@@ -31,7 +31,7 @@
           h2 Event Spaces Request
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
-            = hidden_field_tag 'fields[text][Sub Service Name]', 'Event Spaces Request'
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Event Spaces'
             /  Format of naming for text or number fields `fields[text][name of label]`,
             /  Format of naming for the file fields `fields[file][name of label]`
             /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
@@ -46,7 +46,7 @@
             .form-group
               = label_tag :size, 'Tel*'
               = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
-            .form-grousp
+            .form-group
               = label_tag :no_of_rooms, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
@@ -64,15 +64,73 @@
             .form-group
               = label_tag :date, 'Event Purpose'
               = date_field_tag 'fields[text][Event Purpose]', Date.today, class: 'form-control'
-            .form-grousp
+            .form-group
               = label_tag :no_of_rooms, 'Indoor/Outdoor?*'
               = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control'
             .form-group
               = label_tag :floor_type, 'Requires Manpower?'
               = select_tag 'fields[text][Requires Manpower?]', options_for_select(['No', 'Yes']), class: 'form-control'
-            .form-grousp
+            .form-group
               = label_tag :no_of_rooms, 'Requires Wagon / Booth / POSM?'
               = select_tag 'fields[text][Requires Wagon or Booth or POSM]', options_for_select(['-Set-Up-', 'None', 'Wagon', 'Booth', 'POSM']), class: 'form-control'
+            .form-group
+              = label_tag :floor_type, 'Additional Information'
+              = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
+            = submit_tag 'Request', class: 'btn btn-default'
+
+.modal.fade role="dialog" id="ManpowerSupport"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Manpower Support Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Manpower Support'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Contact Information
+            .form-group
+              = label_tag :describe, 'Name*'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+            .form-group
+              = label_tag :no_of_employees, 'Company'
+              = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+            .form-group
+              = label_tag :size, 'Tel*'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+            .form-group
+              = label_tag :no_of_rooms, 'Email'
+              = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            h3
+              strong Details of Event
+            .form-group.row
+              .col-md-12
+                = label_tag :floor_type, 'Campaign Period'
+              .col-md-6
+                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
+              .col-md-6
+                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+            .form-group
+              = label_tag :date, 'Brand/Type of Product*'
+              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control'
+            .form-group
+              = label_tag :date, 'No. of Locations Per Day*'
+              = number_field_tag 'fields[text][No of Locations Per Day]', 0, class: 'form-control'
+            .form-group
+              = label_tag :no_of_rooms, 'No. of Manpower Required Per Location*'
+              = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control'
+            .form-group
+              = label_tag :floor_type, 'Key Job Scope*'
+              = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control'
+            .form-group
+              = label_tag :no_of_rooms, 'Require Manpower With F&B Hygiene Certification*'
+              = select_tag 'fields[text][Require Manpower With F&B Hygiene Certification]', options_for_select(['-F&B Hygiene Certification-', 'Yes', 'No']), class: 'form-control'
             .form-group
               = label_tag :floor_type, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
