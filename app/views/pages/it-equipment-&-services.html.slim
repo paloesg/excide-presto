@@ -38,27 +38,27 @@
             h3
               strong Contact Information
             .form-group
-              = label_tag :describe, 'Name*'
+              = label_tag :name, 'Name*'
               = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_employees, 'Company'
+              = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
-              = label_tag :size, 'Tel*'
+              = label_tag :tel, 'Tel*'
               = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Email'
+              = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
               strong How Can We Help?
             .form-group
-              = label_tag :no_of_rooms, 'Device Type*'
+              = label_tag :device_type, 'Device Type*'
               = text_field_tag 'fields[text][Device Type]', nil, class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Issue(s) with Device*'
+              = label_tag :issue, 'Issue(s) with Device*'
               = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Remarks'
+              = label_tag :remarks, 'Remarks'
               = text_area_tag 'fields[text][Remarks]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
 

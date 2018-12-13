@@ -38,22 +38,22 @@
             h3
               strong Contact Information
             .form-group
-              = label_tag :describe, 'Name*'
+              = label_tag :name, 'Name*'
               = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_employees, 'Company'
+              = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
-              = label_tag :size, 'Tel*'
+              = label_tag :tel, 'Tel*'
               = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Email'
+              = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
               strong Details of Event
             .form-group.row
               .col-md-12
-                = label_tag :floor_type, 'Campaign Period'
+                = label_tag :period, 'Campaign Period'
               .col-md-6
                 = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
               .col-md-6
@@ -62,19 +62,19 @@
               = label_tag :date, 'Date of Event*'
               = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control'
             .form-group
-              = label_tag :date, 'Event Purpose'
+              = label_tag :event, 'Event Purpose'
               = date_field_tag 'fields[text][Event Purpose]', Date.today, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Indoor/Outdoor?*'
+              = label_tag :indoor, 'Indoor/Outdoor?*'
               = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Requires Manpower?'
+              = label_tag :manpower, 'Requires Manpower?'
               = select_tag 'fields[text][Requires Manpower?]', options_for_select(['No', 'Yes']), class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Requires Wagon / Booth / POSM?'
+              = label_tag :wagon, 'Requires Wagon / Booth / POSM?'
               = select_tag 'fields[text][Requires Wagon or Booth or POSM]', options_for_select(['-Set-Up-', 'None', 'Wagon', 'Booth', 'POSM']), class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Additional Information'
+              = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
 
@@ -96,22 +96,22 @@
             h3
               strong Contact Information
             .form-group
-              = label_tag :describe, 'Name*'
+              = label_tag :name, 'Name*'
               = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_employees, 'Company'
+              = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
-              = label_tag :size, 'Tel*'
+              = label_tag :tel, 'Tel*'
               = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Email'
+              = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
               strong Details of Event
             .form-group.row
               .col-md-12
-                = label_tag :floor_type, 'Campaign Period'
+                = label_tag :period, 'Campaign Period'
               .col-md-6
                 = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
               .col-md-6
@@ -123,16 +123,16 @@
               = label_tag :date, 'No. of Locations Per Day*'
               = number_field_tag 'fields[text][No of Locations Per Day]', 0, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'No. of Manpower Required Per Location*'
+              = label_tag :no_of_manpower, 'No. of Manpower Required Per Location*'
               = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Key Job Scope*'
+              = label_tag :job_scope, 'Key Job Scope*'
               = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Require Manpower With F&B Hygiene Certification*'
+              = label_tag :require_certification, 'Require Manpower With F&B Hygiene Certification*'
               = select_tag 'fields[text][Require Manpower With F&B Hygiene Certification]', options_for_select(['Yes', 'No']), class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Additional Information'
+              = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
 
@@ -155,42 +155,42 @@
             h3
               strong Contact Information
             .form-group
-              = label_tag :describe, 'Name*'
+              = label_tag :name, 'Name*'
               = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_employees, 'Company'
+              = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
-              = label_tag :size, 'Tel*'
+              = label_tag :tel, 'Tel*'
               = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Email'
+              = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
               strong Details of Event
             .form-group.row
               .col-md-12
-                = label_tag :floor_type, 'Campaign Period'
+                = label_tag :period, 'Campaign Period'
               .col-md-6
                 = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
               .col-md-6
                 = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
             .form-group
-              = label_tag :date, 'Brand/Type of Product*'
+              = label_tag :brand_type, 'Brand/Type of Product*'
               = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control'
             .form-group
-              = label_tag :date, 'Mode of Ad*'
+              = label_tag :mode_of_ad, 'Mode of Ad*'
               = select_tag 'fields[text][Mode of Ad]', options_for_select(['Banner', 'Yes', 'No']), class: 'form-control'
             .form-group
-              = label_tag :date, 'Ad Visual*'
+              = label_tag :ad_visual, 'Ad Visual*'
               = select_tag 'fields[text][Ad Visual]', options_for_select(['Yes', 'No']), class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Top Up Ad Package With Brand Activation'
+              = label_tag :top_up, 'Top Up Ad Package With Brand Activation'
               = select_tag 'fields[text][Top Up Ad Package With Brand Activation]', options_for_select(['Yes', 'No']), class: 'form-control'
             .form-group
-              = label_tag :no_of_rooms, 'Brand Activation Type'
+              = label_tag :activation_type, 'Brand Activation Type'
               = select_tag 'fields[text][Brand Activation Type]', options_for_select(['In-Office Brand Activation', 'In-Store Brand Activation']), class: 'form-control'
             .form-group
-              = label_tag :floor_type, 'Additional Information'
+              = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
