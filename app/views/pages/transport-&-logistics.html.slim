@@ -249,4 +249,108 @@
                   = label_tag :total_hours, 'Total No. Of Hours'
                 .col-md-3
                   = number_field_tag 'fields[text][Total No. Of Hours]', 0, class: 'form-control'
+
+.modal.fade role="dialog" id="Courier"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Courier Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Courier'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Contact Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :name, 'Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :tel, 'Tel*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :company, 'Company*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :email, 'Email*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            h3
+              strong Parcel Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :document_kg, 'Document (kg)'
+                .col-md-3
+                  = text_field_tag 'fields[text][Document]', nil, class: 'form-control'
+                .col-md-offset-3.col-md-3
+                  = number_field_tag 'fields[text][Kg]', 0, class: 'form-control'
+            .form-group
+              = label_tag :description, 'Description*'
+              = text_field_tag 'fields[text][Description]', nil, class: 'form-control'
+            .form-group
+              = label_tag :package_value, 'Package Value*'
+              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control'
+            h3
+              strong Pick Up Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :pick_up_time, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control'
+            .form-group
+              = label_tag :pick_up_add, 'Pick Up Add*'
+              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :sender_name, 'Sender Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :sender_tel_no, 'Sender Tel No*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control'
+            h3
+              strong Delivery Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :delivery_date, 'Delivery Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :delivery_time, 'Delivery Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control'
+            .form-group
+              = label_tag :delivery_add, 'Delivery Add*'
+              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :recipient_name, 'Recipient Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :recipient_tel_no, 'Recipient Tel No*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
