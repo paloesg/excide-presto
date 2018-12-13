@@ -3,7 +3,7 @@
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/carpet-cleaning.png')}); background-color: '#ffcc4e'"
     .container.category-container
       .breadcumb-cart Home ❯ Service
-      h1.shopping-cart-title Carpet Cleaning
+      h1.shopping-cart-title Office Repair & Maintenance
 
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
@@ -24,7 +24,7 @@
         button.close data-dismiss="modal" type="button" X
       #modalContent.modal-body
         #service_form
-          h2 Carpet Cleaning
+          h2 Office Repair & Maintenance
           h3 Tell us about your office
           = form_tag create_request_path, method: 'post', multipart: true do
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -51,4 +51,4 @@
             .form-group
               = label_tag :date, 'Preferred service date'
               = date_field_tag 'fields[text][Preferred service date]', Date.today, class: 'form-control'
-            = submit_tag 'Submit', class: 'btn btn-default'
+            = submit_tag 'Request', class: 'btn btn-default'
