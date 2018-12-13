@@ -53,6 +53,8 @@
               strong How Can We Help?
             .form-group
               = label_tag :device_type, 'Device Type*'
+              i
+                |  (Eg. Laptop, Desktop, HDD)
               = text_field_tag 'fields[text][Device Type]', nil, class: 'form-control'
             .form-group
               = label_tag :issue, 'Issue(s) with Device*'
@@ -150,10 +152,12 @@
               = label_tag :service_requirement, 'Service Requirement*'
               = select_tag 'fields[text][Storage Type]', options_for_select(['Electrician', 'Plumbing', 'Handyman', 'Locksmith', 'TV Mounting', 'General Works', 'Others']), class: 'form-control'
             .form-group
-              = label_tag :location, 'Your Location'
+              = label_tag :location, 'Your Location*'
+              i
+                |  (eg. Bukit Batok)
               = text_field_tag 'fields[text][Your Location]', nil, class: 'form-control'
             .form-group
-              = label_tag :remarks, 'Enquiry'
+              = label_tag :remarks, 'Enquiry*'
               = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
 
@@ -190,6 +194,8 @@
               strong How Can We Help?
             .form-group
               = label_tag :ipad_model, 'Ipad Model No*'
+              i
+                |  (Located at the lower back of the iPad, starting with A1xxx)
               = text_field_tag 'fields[text][Ipad Model No]', nil, class: 'form-control'
             .form-group
               = label_tag :issues, 'Issue(s) With Ipad*'
@@ -277,12 +283,18 @@
               strong How Can We Help?
             .form-group
               = label_tag :device_model, 'Device Model*'
+              i
+                |  (Eg. Iphone 7 Plus)
               = text_field_tag 'fields[text][Device Model]', nil, class: 'form-control'
             .form-group
               = label_tag :memory_capacity, 'Memory Capacity*'
+              i
+                |  (Eg. 128GB)
               = text_field_tag 'fields[text][Memory Capacity]', nil, class: 'form-control'
             .form-group
               = label_tag :condition, 'Device Condition*'
+              i
+                |  (Please advise any other damages or malfunctions)
               = select_tag 'fields[text][Device Condition]', options_for_select(['Very Good Condition', 'Not Too Bad Condition']), class: 'form-control'
             .form-group
               = label_tag :additional, 'Additional'

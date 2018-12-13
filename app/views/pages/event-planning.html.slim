@@ -63,6 +63,8 @@
               = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control'
             .form-group
               = label_tag :event, 'Event Purpose'
+              i
+                |  (Eg. New Launch, sales, sampling, games etc)
               = date_field_tag 'fields[text][Event Purpose]', Date.today, class: 'form-control'
             .form-group
               = label_tag :indoor, 'Indoor/Outdoor?*'
@@ -127,6 +129,8 @@
               = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control'
             .form-group
               = label_tag :job_scope, 'Key Job Scope*'
+              i
+                |  (Eg. Product Promotion, Give Out Flyers, Sampling, Survey, Mascot etc)
               = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control'
             .form-group
               = label_tag :require_certification, 'Require Manpower With F&B Hygiene Certification*'
