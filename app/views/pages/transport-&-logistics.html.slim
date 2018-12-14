@@ -1,0 +1,461 @@
+- @body_id = 'service'
+- content_for :hero_image do
+  .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/logistics.png')}); background-color: '#ffcc4e'"
+    .container.category-container
+      .breadcumb-cart Home ❯ Service
+      h1.shopping-cart-title Transport & Logistics
+
+- content_for :sidebar do
+  div data-hook="taxon_sidebar_navigation"
+    = render partial: 'spree/shared/taxonomies'
+
+- sub_categories_service = ['Bus Charter', 'Car Rental', 'Courier', 'Last Mile Delivery']
+.row
+  - sub_categories_service.each do |service|
+    .col-md-3
+      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
+
+.pages-content
+  h3 Description
+  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+.modal.fade role="dialog" id="BusCharter"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Bus Charter Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Bus Charter'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Contact Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :name, 'Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :tel, 'Tel*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :company, 'Company'
+                .col-md-3
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :mobile, 'Mobile*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :address, 'Address'
+                .col-md-9
+                  = text_field_tag 'fields[text][Address]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :email, 'Email'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :postal_code, 'Postal Code*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Postal Code]', nil, class: 'form-control'
+            h3
+              strong Charter Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :no_of_passenger, 'No. of Passenger*'
+                .col-md-3
+                  = text_field_tag 'fields[text][No of Passenger]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :to_and_from, 'To & From?'
+                .col-md-3
+                  = select_tag 'fields[text][To and From]', options_for_select(['Yes', 'No']), class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_location, 'Pick Up Location*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Pick Up Location]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :destination, 'Destination'
+                .col-md-3
+                  = text_field_tag 'fields[text][Destination]', nil, class: 'form-control'
+            h3
+              strong Charter Rate
+              |  (Tick ✓ in the box)
+            .row
+              .col-md-6
+                .checkbox
+                  label
+                    = check_box_tag 'fields[text][40-Seater Per Trip: $130 Hourly: $100 Per Hour (Min. 3 Hours)]', 'yes', class: 'form-control'
+                    | 40-Seater
+                    br
+                    | Per Trip: $130
+                    br
+                    | Hourly: $100 Per Hour (Min. 3 Hours)
+              .col-md-6
+                .checkbox
+                  label
+                    = check_box_tag 'fields[text][23-Seater Per Trip: $100 Hourly: $80 Per Hour (Min. 3 Hours)]', 'yes', class: 'form-control'
+                    | 23-Seater
+                    br
+                    | Per Trip: $100
+                    br
+                    | Hourly: $80 Per Hour (Min. 3 Hours)
+              .col-md-6
+                .checkbox
+                  label
+                    = check_box_tag 'fields[text][13-Seater Per Trip: $90 Hourly: $80 Per Hour (Min. 3 Hours)]', 'yes', class: 'form-control'
+                    | 13-Seater
+                    br
+                    | Per Trip: $90
+                    br
+                    | Hourly: $80 Per Hour (Min. 3 Hours)
+            = submit_tag 'Request', class: 'btn btn-default'
+
+.modal.fade role="dialog" id="CarRental"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Car Rental Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Car Rental'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Particulars (Car leased out to)
+            .form-group
+              = label_tag :fullname, 'Full Name*'
+              i
+                |  (As in Passport/NRIC)
+              = text_field_tag 'fields[text][Full Name]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :company, 'NRIC*'
+                .col-md-3
+                  = text_field_tag 'fields[text][NRIC]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :email, 'Email*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :date_of_birth, 'Date Of Birth*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Date Of Birth]', Date.today, class: 'form-control'
+                .col-md-1
+                  = label_tag :age, 'Age*'
+                .col-md-2
+                  = number_field_tag 'fields[text][Age]', 0, class: 'form-control'
+                .col-md-1
+                  = label_tag :gender, 'Gender*'
+                .col-md-2
+                  = select_tag 'fields[text][Gender]', options_for_select(['Male', 'Female']), class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :telephone, 'Telephone'
+                .col-md-3
+                  = text_field_tag 'fields[text][Telephone]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :mobile, 'Mobile*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
+            h3
+              strong Rental Information
+            .form-group
+              = label_tag :preferred_car, 'Preferred Car/Brand/Model'
+              = text_field_tag 'fields[text][Preferred Car]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :period, 'Rental Periode*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Rental Periode Start]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :period, 'to'
+                .col-md-3
+                  = date_field_tag 'fields[text][Rental Periode End]', Date.today, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :return_date, 'Return Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Return Date]', Date.today, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
+                .col-md-3
+                  = label_tag :return_time, 'Return Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Return Time]', '00:00', class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_location, 'Pick Up Location*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Pick Up Location*]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :return_location, 'Return Location*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Return Location]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :total_days, 'Total No. Of Days*'
+                .col-md-3
+                  = number_field_tag 'fields[text][Total No. Of Days]', 0, class: 'form-control'
+                .col-md-3
+                  = label_tag :total_hours, 'Total No. Of Hours'
+                .col-md-3
+                  = number_field_tag 'fields[text][Total No. Of Hours]', 0, class: 'form-control'
+
+.modal.fade role="dialog" id="Courier"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Courier Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Courier'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Contact Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :name, 'Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :tel, 'Tel*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :company, 'Company*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :email, 'Email*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            h3
+              strong Parcel Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :document_kg, 'Document (kg)'
+                .col-md-3
+                  = text_field_tag 'fields[text][Document]', nil, class: 'form-control'
+                .col-md-offset-3.col-md-3
+                  = number_field_tag 'fields[text][Kg]', 0, class: 'form-control'
+            .form-group
+              = label_tag :description, 'Description*'
+              = text_field_tag 'fields[text][Description]', nil, class: 'form-control'
+            .form-group
+              = label_tag :package_value, 'Package Value*'
+              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control'
+            h3
+              strong Pick Up Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :pick_up_time, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control'
+            .form-group
+              = label_tag :pick_up_add, 'Pick Up Add*'
+              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :sender_name, 'Sender Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :sender_tel_no, 'Sender Tel No*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control'
+            h3
+              strong Delivery Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :delivery_date, 'Delivery Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :delivery_time, 'Delivery Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control'
+            .form-group
+              = label_tag :delivery_add, 'Delivery Add*'
+              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :recipient_name, 'Recipient Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :recipient_tel_no, 'Recipient Tel No*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control'
+            = submit_tag 'Request', class: 'btn btn-default'
+
+.modal.fade role="dialog" id="LastMileDelivery"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Last Mile Delivery Request
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            = hidden_field_tag 'fields[text][Sub Service Name]', 'Last Mile Delivery'
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            h3
+              strong Contact Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :name, 'Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :tel, 'Tel*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :company, 'Company*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :email, 'Email*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            h3
+              strong Parcel Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :document_kg, 'Document (kg)'
+                .col-md-3
+                  = text_field_tag 'fields[text][Document]', nil, class: 'form-control'
+                .col-md-offset-3.col-md-3
+                  = number_field_tag 'fields[text][Kg]', 0, class: 'form-control'
+            .form-group
+              = label_tag :description, 'Description*'
+              = text_field_tag 'fields[text][Description]', nil, class: 'form-control'
+            .form-group
+              = label_tag :package_value, 'Package Value*'
+              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control'
+            h3
+              strong Pick Up Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :pick_up_date, 'Pick Up Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :pick_up_time, 'Pick Up Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control'
+            .form-group
+              = label_tag :pick_up_add, 'Pick Up Add*'
+              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :sender_name, 'Sender Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :sender_tel_no, 'Sender Tel No*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control'
+            h3
+              strong Delivery Information
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :delivery_date, 'Delivery Date*'
+                .col-md-3
+                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control'
+                .col-md-3
+                  = label_tag :delivery_time, 'Delivery Time*'
+                .col-md-3
+                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control'
+            .form-group
+              = label_tag :delivery_add, 'Delivery Add*'
+              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control'
+            .form-group
+              .row
+                .col-md-3
+                  = label_tag :recipient_name, 'Recipient Name*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control'
+                .col-md-3
+                  = label_tag :recipient_tel_no, 'Recipient Tel No*'
+                .col-md-3
+                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control'
+            = submit_tag 'Request', class: 'btn btn-default'
