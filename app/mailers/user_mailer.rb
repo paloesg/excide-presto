@@ -1,6 +1,5 @@
 class UserMailer < ApplicationMailer
-
-  default from: 'admin@excide.co'
+  default from: 'Excide Presto <admin@excide.co>'
 
   def registration_email(admin, user)
     sent_to = admin.email
