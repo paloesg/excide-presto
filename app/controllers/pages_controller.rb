@@ -16,7 +16,7 @@ class PagesController < Spree::BaseController
     create_service_request_file(params[:fields][:file]) if params[:fields][:file]
     @users = Spree::Role.find_by_name('admin').users
     @users.each do |user|
-      NotificationMailer.new_service_request(@service_request, user).deliver_later
+      NotificationMailer.new_service_request(@service_request, user).deliver_now
     end
     redirect_to page_path(params[:id]), notice: 'Thank you! Your request has been recorded. We will get back to you shortly.'
   end
