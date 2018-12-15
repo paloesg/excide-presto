@@ -30,6 +30,23 @@ div data-hook="cart_container"
           .panel.presto-panel-default
             .panel-body
               .col-md-12
+                | Preferred delivery date
+                .radio-inline
+                  label
+                    = radio_button_tag 'order[preferred_date]', Date.today + 1
+                    = (Date.today + 1).strftime('%d %B %Y')
+                .radio-inline
+                  label
+                    = radio_button_tag 'order[preferred_date]', Date.today + 2
+                    = (Date.today + 2).strftime('%d %B %Y')
+                .radio-inline
+                  label
+                    = radio_button_tag 'order[preferred_date]', Date.today + 3
+                    = (Date.today + 3).strftime('%d %B %Y')
+                | Preferred delivery date
+                .lead.total-price
+                  = time_field_tag 'order[preferred_time]', '09:00', min: '09:00', max: '17:00', step: '3600'
+              .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
                 .col-md-4
