@@ -33,7 +33,7 @@ div data-hook="cart_container"
                 | Preferred delivery date
                 .radio-inline
                   label
-                    = radio_button_tag 'order[preferred_date]', Date.today + 1
+                    = radio_button_tag 'order[preferred_date]', Date.today + 1, :checked
                     = (Date.today + 1).strftime('%d %B %Y')
                 .radio-inline
                   label
@@ -43,7 +43,7 @@ div data-hook="cart_container"
                   label
                     = radio_button_tag 'order[preferred_date]', Date.today + 3
                     = (Date.today + 3).strftime('%d %B %Y')
-                | Preferred delivery date
+                | Preferred delivery time
                 .lead.total-price
                   = time_field_tag 'order[preferred_time]', '09:00', min: '09:00', max: '17:00', step: '3600'
               .col-md-12
