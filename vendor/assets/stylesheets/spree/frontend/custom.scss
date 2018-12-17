@@ -207,7 +207,12 @@ span.badge.badge-presto {
 }
 
 /* Margin Left */
-
+input[type="time"]::-webkit-clear-button {
+  display: none;
+}
+input[type="time"]::-ms-clear {
+    display: none;
+}
 .m-l-65 {
   margin-left: 65px;
 }

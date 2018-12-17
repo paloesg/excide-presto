@@ -31,21 +31,15 @@ div data-hook="cart_container"
             .panel-body
               .col-md-12
                 | Preferred delivery date
-                .radio-inline
-                  label
-                    = radio_button_tag 'order[preferred_date]', Date.today + 1, :checked
-                    = (Date.today + 1).strftime('%d %B %Y')
-                .radio-inline
-                  label
-                    = radio_button_tag 'order[preferred_date]', Date.today + 2
-                    = (Date.today + 2).strftime('%d %B %Y')
-                .radio-inline
-                  label
-                    = radio_button_tag 'order[preferred_date]', Date.today + 3
-                    = (Date.today + 3).strftime('%d %B %Y')
+                = @order.special_instructions
+                - 1.upto(3) do |i|
+                  .radio-inline
+                    label
+                      = radio_button_tag 'order[preferred_date]', Date.today + i, Date.today + i == @preferred_delivery_date
+                      = (Date.today + i).strftime('%d-%B-%Y')
                 | Preferred delivery time
                 .lead.total-price
-                  = time_field_tag 'order[preferred_time]', '09:00', min: '09:00', max: '17:00', step: '3600'
+                  = time_field_tag 'order[preferred_time]', @preferred_delivery_time, min: '09:00', max: '17:00', step: '3600', required: true
               .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
