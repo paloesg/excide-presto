@@ -1,0 +1,50 @@
+- @body_id = 'service'
+- content_for :hero_image do
+  .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/health-and-wellness.png')}); background-color: '#ffcc4e'"
+    .container.category-container
+      .breadcumb-cart Home ❯ Service
+      h1.shopping-cart-title Health & Wellness
+
+- content_for :sidebar do
+  div data-hook="taxon_sidebar_navigation"
+    = render partial: 'spree/shared/taxonomies'
+
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
+
+.pages-content
+  h3 Description
+  p Every good employer recognises the benefits of investing in the wellness of their employees. Promoting wellness is one of the most beneficial choices an employer can make to encourage employees to reach their full potential. Supporting workplace health and wellness encourages employees to live an active lifestyle and make good health choices.
+
+#formContent.modal.fade role="dialog"
+  .modal-dialog.modal-lg
+    /! Modal content
+    .modal-content
+      .presto-modal-header
+        button.close data-dismiss="modal" type="button" X
+      #modalContent.modal-body
+        #service_form
+          h2 Health & Wellness
+          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
+          = form_tag create_request_path, method: 'post', multipart: true do
+            /  Format of naming for text or number fields `fields[text][name of label]`,
+            /  Format of naming for the file fields `fields[file][name of label]`
+            /  Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
+            .form-group
+              = label_tag :name, 'Name'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+            .form-group
+              = label_tag :company, 'Company'
+              = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+            .form-group
+              = label_tag :tel, 'Tel'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+            .form-group
+              = label_tag :email, 'Email'
+              = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+            .form-group
+              = label_tag :upload, 'Upload file'
+              = file_field_tag 'fields[file][Upload file]', class: 'form-control'
+            .form-group
+              = label_tag :enquiry, 'Enquiry'
+              = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
+            = submit_tag 'Request', class: 'btn btn-default'

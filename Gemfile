@@ -60,6 +60,8 @@ gem 'spree_multi_domain', github: 'spree-contrib/spree-multi-domain', branch: 'f
 
 # Static pages
 gem 'high_voltage', '~> 3.1'
+# Ruby asynchronous processing
+gem 'sucker_punch', '~> 2.0'
 
 # Error monitoring
 gem 'rollbar'

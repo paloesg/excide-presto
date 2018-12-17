@@ -50,3 +50,9 @@
           = role_form.label for: "user_spree_role_#{role_form.object.name}" do
             = role_form.check_box id: "user_spree_role_#{role_form.object.name}"
             = role_form.object.name
+    .form-group data-hook="admin_user_form_approval"
+      strong= "Login"
+      = f.field_container :approved, class: ['form-group'] do
+        = f.check_box :approved
+        = f.label :approved, 'approved'
+        = f.error_message_on :approved
