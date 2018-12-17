@@ -27,7 +27,7 @@ table#listing_stores.table.index
         td= store.code
         td= store.mail_from_address
         td= store.url
-        td= store.company.name
+        td= store.company.name if store.company
         td.actions data-hook="admin_stores_index_row_actions"
           = link_to_edit store, no_text: true
           '
