@@ -16,7 +16,10 @@ Rails.application.routes.draw do
   Spree::Core::Engine.add_routes do
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
-      resources :companies
+      resources :companies do
+        get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
+      end
+
       resources :departments
       get '/pages/*id' => 'pages#show', as: :page, format: false
 

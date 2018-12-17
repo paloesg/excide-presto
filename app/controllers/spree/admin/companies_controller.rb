@@ -33,6 +33,20 @@ module Spree
         end
       end
 
+      def get_departments
+        departments = Spree::Department.where(company_id: params[:company_id])
+        respond_to do |format|
+          format.js { render json: departments }
+        end
+      end
+
+      def get_roles
+        departments = Spree::Role.where(company_id: params[:company_id])
+        respond_to do |format|
+          format.js { render json: departments }
+        end
+      end
+
       private
 
       def set_company

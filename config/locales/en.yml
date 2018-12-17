@@ -35,7 +35,9 @@ en:
     admin:
       tab:
         product_sales: "Product Sales"
+    company: "Company"
     company_updated: "Company Updated"
+    department: "Department"
     department_updated: "Department Updated"
     product_sales: "Product Sales"
     new_product_sale: "New Product Sales"
