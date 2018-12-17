@@ -19,6 +19,6 @@ Spree::User.class_eval do
   end
 
   def send_new_password_instructions_notification(from_address, token)
-    UserMailer.new_password_instructions(from_address, self, token, {}).deliver_now
+    UserMailer.new_password_instructions(from_address, self, token, {}).deliver_later
   end
 end

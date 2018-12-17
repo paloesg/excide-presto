@@ -9,7 +9,7 @@ Spree::UserRegistrationsController.class_eval do
     if resource_saved
       admin_users = Spree::Role.find_by_name('admin').users
       admin_users.each do |admin|
-        UserMailer.registration_email(admin, @user).deliver_now
+        UserMailer.registration_email(admin, @user).deliver_later
       end
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up
