@@ -206,13 +206,13 @@ span.badge.badge-presto {
   top: 9px;
 }
 
+input#CartTimepicker {
+  width: 149px;
+  height: 36px;
+  text-align: center;
+}
+
 /* Margin Left */
-input[type="time"]::-webkit-clear-button {
-  display: none;
-}
-input[type="time"]::-ms-clear {
-    display: none;
-}
 .m-l-65 {
   margin-left: 65px;
 }

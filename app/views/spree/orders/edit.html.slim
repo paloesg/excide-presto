@@ -39,7 +39,7 @@ div data-hook="cart_container"
                       = (Date.today + i).strftime('%d-%B-%Y')
                 | Preferred delivery time
                 .lead.total-price
-                  = time_field_tag 'order[preferred_time]', @preferred_delivery_time, min: '09:00', max: '17:00', step: '3600', required: true
+                  = text_field_tag 'order[preferred_time]', @preferred_delivery_time, id: 'CartTimepicker'
               .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
