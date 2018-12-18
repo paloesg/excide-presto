@@ -227,6 +227,17 @@ span.badge.badge-presto {
   font-size: 12px;
 }
 
+.preferred-delivery-time {
+  position: relative;
+}
+
+.preferred-delivery-time i {
+  position: absolute;
+  padding: 7px;
+  pointer-events: none;
+  left: 0px;
+}
+
 input[name="order[preferred_date]"] {
   visibility:hidden;
 }

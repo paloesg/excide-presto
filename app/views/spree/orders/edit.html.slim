@@ -34,10 +34,12 @@ div data-hook="cart_container"
                 - 1.upto(3) do |i|
                   .radio-inline.preferred-delivery-date
                     label
+                      i.glyphicon.glyphicon-calendar
                       = radio_button_tag 'order[preferred_date]', Date.today + i, Date.today + i == @preferred_delivery_date
                       = (Date.today + i).strftime('%d-%B-%Y')
                 | Preferred delivery time
                 .lead.preferred-delivery-time
+                  i.glyphicon.glyphicon-time
                   = text_field_tag 'order[preferred_time]', @preferred_delivery_time, id: 'CartTimepicker'
               .col-md-12
                 .col-md-8
