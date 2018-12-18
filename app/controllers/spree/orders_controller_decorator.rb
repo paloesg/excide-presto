@@ -1,9 +1,9 @@
 Spree::OrdersController.class_eval do
   respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
-  before_action :set_preferred_delivery_datetime, only: :update
+  before_action :update_preferred_delivery_datetime, only: :update
   before_action :get_preferred_delivery_datetime, only: :edit
 
-  def set_preferred_delivery_datetime
+  def update_preferred_delivery_datetime
     order    = current_order(create_order_if_necessary: true)
     order.update_attribute(:special_instructions, params[:order][:preferred_date] +' '+ params[:order][:preferred_time])
   end
