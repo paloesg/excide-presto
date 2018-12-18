@@ -10,7 +10,7 @@ Spree::OrdersController.class_eval do
 
   def get_preferred_delivery_datetime
     order    = current_order(create_order_if_necessary: true)
-    @preferred_delivery_date = order.special_instructions ? Date.strptime(order.special_instructions, '%Y-%m-%d') : Date.today
+    @preferred_delivery_date = order.special_instructions ? Date.strptime(order.special_instructions, '%Y-%m-%d') : Date.today+1
     @preferred_delivery_time = order.special_instructions ? DateTime.strptime(order.special_instructions, '%Y-%m-%d %H:%M').to_time.strftime('%H:%M') : '09:00'
   end
 

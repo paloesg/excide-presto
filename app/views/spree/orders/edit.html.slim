@@ -35,8 +35,8 @@ div data-hook="cart_container"
                   .radio-inline.preferred-delivery-date
                     label
                       i.glyphicon.glyphicon-calendar
-                      = radio_button_tag 'order[preferred_date]', Date.today + i, Date.today + i == @preferred_delivery_date
-                      = (Date.today + i).strftime('%d-%B-%Y')
+                      = radio_button_tag 'order[preferred_date]', Date.today+i, Date.today+i == @preferred_delivery_date
+                      = (Date.today+i).strftime('%d-%B-%Y')
                 | Preferred delivery time
                 .lead.preferred-delivery-time
                   i.glyphicon.glyphicon-time
