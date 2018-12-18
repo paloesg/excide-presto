@@ -12,7 +12,7 @@ function getDepartments(company){
         include_blank: false
       });
       $.each(departments, function(index,department){
-          $("#user_department_id").append($("<option></option>", {"value":department.id, "text":department.name}));
+        $("#user_department_id").append($("<option></option>", {"value":department.id, "text":department.name}));
       })
     },
     error:function( result ){ console.log(["error", result]); }
@@ -21,10 +21,21 @@ function getDepartments(company){
 
 $(document).ready(function(){
   departments = $('#user_department_id').html()
+  company_id = $("#company_id").val()
+  if(company_id){
+    $(".checkbox_input[company="+company_id+"]").show()
+  }
+  else {
+    $("#role").hide();
+  }
   $("#user_company_id").on('change', function () {
     var val = this.value;
+    var user_id = $("#user_id").val();
     if (val){
       getDepartments(val);
+      $("#role").show();
+      $(".checkbox_input[company="+val+"]").show()
+      $(".checkbox_input:not([company="+val+"])").hide()
     }
     else {
       $('#user_department_id').empty();
