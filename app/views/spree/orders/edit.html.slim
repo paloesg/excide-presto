@@ -29,16 +29,15 @@ div data-hook="cart_container"
         .col-md-3
           .panel.presto-panel-default
             .panel-body
-              .col-md-12
+              .col-md-12.text-center
                 | Preferred delivery date
-                = @order.special_instructions
                 - 1.upto(3) do |i|
-                  .radio-inline
+                  .radio-inline.preferred-delivery-date
                     label
                       = radio_button_tag 'order[preferred_date]', Date.today + i, Date.today + i == @preferred_delivery_date
                       = (Date.today + i).strftime('%d-%B-%Y')
                 | Preferred delivery time
-                .lead.total-price
+                .lead.preferred-delivery-time
                   = text_field_tag 'order[preferred_time]', @preferred_delivery_time, id: 'CartTimepicker'
               .col-md-12
                 .col-md-8

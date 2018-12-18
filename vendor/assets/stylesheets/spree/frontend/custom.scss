@@ -206,6 +206,31 @@ span.badge.badge-presto {
   top: 9px;
 }
 
+/* Preferred Delivery Date & Time */
+.preferred-delivery-date, .preferred-delivery-time {
+  border: 2px solid;
+  margin-left: 0 !important;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  height: 40px;
+  font-weight: 600;
+  line-height: 35px;
+  width: 100%;
+}
+
+.preferred-delivery-date.active {
+  border: 3px solid;
+}
+
+.preferred-delivery-date {
+  padding-right: 20px;
+  font-size: 12px;
+}
+
+input[name="order[preferred_date]"] {
+  visibility:hidden;
+}
+
 input#CartTimepicker {
   width: 100%;
   height: 100%;
@@ -613,9 +638,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .total-price {
+  width: 100%;
   border: 2px solid;
-  margin-left: 20px;
-  margin-right: 20px;
   height: 40px;
   font-weight: 900;
   line-height: 35px;
