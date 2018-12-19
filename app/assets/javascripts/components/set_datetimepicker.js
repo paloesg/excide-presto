@@ -1,4 +1,4 @@
-$(function () {
+$(document).on('turbolinks:load', function () {
   var date = new Date();
   date.setDate(date.getDate()+1);
   $('.cart-datetime-picker').datetimepicker( {

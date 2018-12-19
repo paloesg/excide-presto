@@ -13,7 +13,6 @@
 //= require cart/custom-input
 //= require components/sub_categories_popover
 //= require components/set_datetimepicker
-//= require components/select_preferred_delivery_date
 //= require moment
 //= require bootstrap-datetimepicker
 
