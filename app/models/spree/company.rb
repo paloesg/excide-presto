@@ -3,7 +3,10 @@ class Spree::Company < Spree::Base
   has_many :users
   has_one :store
   has_one :role
+  belongs_to :comp_address, foreign_key: :address_id, class_name: 'Spree::Address',
+                                optional: true
   validates :name, presence: true
-  validates :address, presence: true
   validates :description, presence: true
+
+  accepts_nested_attributes_for :comp_address
 end

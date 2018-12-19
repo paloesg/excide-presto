@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       resources :service_requests
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
+        member do
+          # get '/addresses', to: 'companies#addresses', as: 'addresses'
+          match '/addresses' => 'companies#addresses', via: [:get, :put]
+        end
       end
 
       resources :departments
