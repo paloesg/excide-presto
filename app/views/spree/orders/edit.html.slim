@@ -32,15 +32,11 @@ div data-hook="cart_container"
               .col-md-12.text-center
                 | Preferred delivery date
                 - 1.upto(3) do |i|
-                  .radio-inline.preferred-delivery-date
+                  .preferred-delivery-date
                     label
                       i.glyphicon.glyphicon-calendar
-                      = radio_button_tag 'order[preferred_date]', Date.today+i, Date.today+i == @preferred_delivery_date
-                      = (Date.today+i).strftime('%d-%B-%Y')
-                | Preferred delivery time
-                .lead.preferred-delivery-time
-                  i.glyphicon.glyphicon-time
-                  = text_field_tag 'order[preferred_time]', @preferred_delivery_time, id: 'CartTimepicker'
+                      / = radio_button_tag 'order[preferred_date]', Date.today+i, Date.today+i == @preferred_delivery_date
+                      = text_field_tag "order[preferred_time#{i}]", Date.today+i, class: 'cart-datetime-picker'
               .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))

@@ -207,7 +207,7 @@ span.badge.badge-presto {
 }
 
 /* Preferred Delivery Date & Time */
-.preferred-delivery-date, .preferred-delivery-time {
+.preferred-delivery-date {
   border: 1px solid;
   margin-left: 0 !important;
   margin-right: 20px;
@@ -218,36 +218,21 @@ span.badge.badge-presto {
   width: 100%;
   position: relative;
   font-size: 12px;
+  padding-left: 25px;
 }
 
-.preferred-delivery-date.active {
-  border: 2px solid;
-}
-
-.preferred-delivery-date {
-  padding-right: 20px;
-}
-
-.preferred-delivery-time input {
+.preferred-delivery-date input {
   border: 0 !important;
+  text-align: center;
+  outline: none !important;
 }
 
-.preferred-delivery-date i, .preferred-delivery-time i{
+.preferred-delivery-date i {
   font-size: 20px;
   position: absolute;
   padding: 7px;
   pointer-events: none;
   left: 0px;
-}
-
-input[name="order[preferred_date]"] {
-  visibility:hidden;
-}
-
-input#CartTimepicker {
-  width: 100%;
-  height: 100%;
-  text-align: center;
 }
 
 /* Margin Left */
