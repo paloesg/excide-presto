@@ -8,7 +8,7 @@
     thead
       tr
         th Name
-        th company
+        th Company
         th Description
         th
     tbody
@@ -19,4 +19,4 @@
           td = department.description
           td = link_to_edit department, no_text: true, class: 'edit' if can?(:edit, department)
 - else
-  | No deparment found
+  | No deparments created yet.
