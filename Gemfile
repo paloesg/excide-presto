@@ -39,9 +39,6 @@ gem "aws-sdk-s3", require: false
 # Slim is a template language
 gem "slim-rails"
 
-# Rolify
-gem "rolify"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
