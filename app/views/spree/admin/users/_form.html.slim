@@ -54,7 +54,7 @@
             = role_form.object.name
     .form-group data-hook="admin_user_form_roles" id="role"
       strong= Spree.t(:roles)
-      = f.collection_check_boxes :spree_role_ids, Spree::Role.all(), :id, :name do |role_form|
+      = f.collection_check_boxes :spree_role_ids, Spree::Role.where.not(company_id: nil), :id, :name do |role_form|
         .checkbox
           = role_form.label for: "user_spree_role_#{role_form.object.name}", company: role_form.object.company_id , :style => 'display: none', :class => 'checkbox_input' do
             = role_form.check_box id: "user_spree_role_#{role_form.object.name}_#{role_form.object.id}"
