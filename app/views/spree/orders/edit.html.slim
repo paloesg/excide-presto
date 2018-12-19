@@ -37,6 +37,9 @@ div data-hook="cart_container"
                       i.glyphicon.glyphicon-calendar
                       / = radio_button_tag 'order[preferred_date]', Date.today+i, Date.today+i == @preferred_delivery_date
                       = text_field_tag "order[preferred_delivery_time][#{i}]", nil, class: 'cart-datetime-picker'
+        .col-md-3
+          .panel.presto-panel-default
+            .panel-body
               .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
