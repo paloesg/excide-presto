@@ -1,18 +1,7 @@
 Spree::OrdersController.class_eval do
   respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
   before_action :update_preferred_delivery_datetime, only: :update
-  before_action :get_preferred_delivery_datetime, only: :edit
   before_action :set_order, only: [:update_preferred_delivery_datetime, :populate]
-
-  def update_preferred_delivery_datetime
-    @order.update_attribute(:special_instructions, params[:order][:preferred_date] +' '+ params[:order][:preferred_time])
-  end
-
-  def get_preferred_delivery_datetime
-    set_order
-    @preferred_delivery_date = @order.special_instructions ? Date.strptime(@order.special_instructions, '%Y-%m-%d') : Date.today+1
-    @preferred_delivery_time = @order.special_instructions ? DateTime.strptime(@order.special_instructions, '%Y-%m-%d %H:%M').to_time.strftime('%H:%M') : '09:00'
-  end
 
   def populate
     variant  = Spree::Variant.find(params[:variant_id])
@@ -45,6 +34,14 @@ Spree::OrdersController.class_eval do
   end
 
   private
+
+  def update_preferred_delivery_datetime
+    preferred_delivery = []
+    params[:order][:preferred_delivery_time].each do |index, time|
+      preferred_delivery << "Preferred delivery time #{index}: #{time}"
+    end
+    @order.update_attribute(:special_instructions, preferred_delivery.join(', '))
+  end
 
   def set_order
     @order    = current_order(create_order_if_necessary: true)
