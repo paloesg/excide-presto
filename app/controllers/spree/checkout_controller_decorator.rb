@@ -15,7 +15,7 @@ Spree::CheckoutController.class_eval do
         admin_users.each do |admin|
           OrderMailer.order_request(@order, @user, admin).deliver_now
         end
-        managers = Spree::Role.find_by(name: 'manager', company_id: current_store.company_id).users.where('department_id': @user.department_id)
+        managers = Spree::Role.get_manager_by_department(current_store, @user)
         managers.each do |manager|
           OrderMailer.order_request_to_manager(@order, @user, manager).deliver_now
         end
