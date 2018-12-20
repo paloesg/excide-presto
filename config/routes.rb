@@ -16,9 +16,18 @@ Rails.application.routes.draw do
   Spree::Core::Engine.add_routes do
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
+      resources :companies do
+        get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
+        member do
+          # get '/addresses', to: 'companies#addresses', as: 'addresses'
+          match '/addresses' => 'companies#addresses', via: [:get, :put]
+        end
+      end
+
+      resources :departments
       get '/pages/*id' => 'pages#show', as: :page, format: false
 
-      resources :products do        
+      resources :products do
         get '/sale', to: 'products#sale', as: 'sale'
       end
 

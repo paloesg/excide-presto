@@ -1,0 +1,34 @@
+- content_for :page_title do
+  = Spree.t(:stores)
+- content_for :page_actions do
+  = button_link_to Spree.t(:new_store), new_object_url, class: 'btn-success', icon: 'add', id: 'admin_new_store_link'
+table#listing_stores.table.index
+  colgroup
+    col style=("width: 20px") /
+    col style=("width: 120px") /
+    col style=("width: 80px") /
+    col style=("width: 80px") /
+    col style=("width: 220px") /
+    col style=("width: 15%") /
+    col style=("width: 15%") /
+  thead
+    th= Spree.t(:default)
+    th= Spree.t(:store_name)
+    th= Spree.t(:store_code)
+    th= Spree.t(:send_mails_as)
+    th= Spree.t(:domains)
+    th= Spree.t(:company)
+    th.actions data-hook="admin_stores_index_header_actions"
+  tbody
+    - @stores.each do |store|
+      tr class="#{cycle('odd', 'even')}" data-hook="admin_stores_index_rows" id=("#{spree_dom_id store}")
+        td= store.default
+        td= store.name
+        td= store.code
+        td= store.mail_from_address
+        td= store.url
+        td= store.company.name if store.company
+        td.actions data-hook="admin_stores_index_row_actions"
+          = link_to_edit store, no_text: true
+          '
+          = link_to_delete store, no_text: true

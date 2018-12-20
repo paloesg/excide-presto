@@ -1,0 +1,36 @@
+.container
+  .breadcumb Home ❯ Edit My Account
+  h1.my-account-title Edit My Account
+.container
+  = render :partial => 'spree/shared/error_messages', :locals => { :target => @user }
+  = form_for Spree::User.new, :as => @user, :url => spree.user_path(@user), :method => :put do |f|
+    fieldset#password-credentials
+      .row.col-md-12.form-group
+        .col-md-4
+          = label_tag :first_name, Spree.t(:first_name)
+        .col-md-8
+          = f.text_field :first_name, :class => 'form-control', :placeholder => Spree.t(:first_name)
+      .row.col-md-12.form-group
+        .col-md-4
+          = label_tag :last_name, Spree.t(:last_name)
+        .col-md-8
+          = f.text_field :last_name, :class => 'form-control', :placeholder => Spree.t(:last_name)
+      .row.col-md-12.form-group
+        .col-md-4
+          = label_tag :email, Spree.t(:email)
+        .col-md-8
+          = f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email)
+      .row.col-md-12.form-group
+        .col-md-4
+          = label_tag :company_name, Spree.t(:company_name)
+        .col-md-8
+          = f.text_field :company_name, :class => 'form-control', :placeholder => Spree.t(:company_name)
+      .row.col-md-12.form-group
+        .col-md-4
+          = label_tag :phone, Spree.t(:phone)
+        .col-md-8
+          = f.text_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)
+      .row.col-md-12.form-group.text-right
+        .col-md-12
+          = f.submit Spree.t(:update), :class => 'presto-btn btn btn-purple'
+    div data-hook="signup_below_password_fields"

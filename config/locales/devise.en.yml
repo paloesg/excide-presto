@@ -16,6 +16,8 @@ en:
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
+      spree_user:
+        not_approved: "Your membership is still pending approval. We will get back to you shortly."
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
@@ -52,6 +54,9 @@ en:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+    user_registrations:
+      spree_user:
+        signed_up_but_not_approved: "Thank you for your interest! As membership requires approval, we will get back to you shortly."
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
