@@ -1,5 +1,7 @@
 Spree::CheckoutController.class_eval do
   def update
+    @order = current_order(lock: true)
+    @user = @order.user
     if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
       @order.temporary_address = !params[:save_user_address]
       unless @order.next
