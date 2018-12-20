@@ -29,7 +29,6 @@ module Spree
           if @company.update_attributes(company_params)
             flash.now[:success] = Spree.t(:company_updated)
           end
-
           render :addresses
         end
       end
@@ -37,7 +36,7 @@ module Spree
       def update
         if @company.update_attributes(company_params)
           flash[:success] = Spree.t(:company_updated)
-          redirect_to admin_companies_path
+          redirect_to edit_admin_company_path(@company)
         else
           render :edit
         end
