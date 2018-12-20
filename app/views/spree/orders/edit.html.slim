@@ -15,17 +15,18 @@ div data-hook="cart_container"
         .col-md-9 data-hook="inside_cart_form"
           .table-responsive data-hook="cart_items"
             = render partial: 'form', locals: { order_form: order_form }
-          .col-md-9.pull-right
-            .panel.presto-panel-default
-              .panel-body
-                - if Spree::Frontend::Config[:coupon_codes_enabled]
-                  .col-md-12 data-hook="coupon_code"
-                    .col-md-9
-                      = order_form.text_field :coupon_code, size: '30', class: 'form-control m-b-10', placeholder: 'Enter Coupon Code'
-                    .col-md-3
-                      = button_tag Spree.t(:coupon_code_apply), class: 'btn btn-default form-control'
+          .col-md-12.pull-right
             = button_tag class: 'presto-btn btn-purple pull-right', id: 'update-button' do
               = Spree.t(:update)
+          .col-md-12
+            #empty-cart.pull-left data-hook=""
+              = form_tag empty_cart_path, method: :put do
+                p#clear_cart_link.text-center data-hook=""
+                  = submit_tag Spree.t(:empty_cart), class: 'presto-btn btn-default'
+                  '
+                  = Spree.t(:or)
+                  '
+                  = link_to Spree.t(:continue_shopping), products_path, class: 'continue'
         .col-md-3
           .panel.presto-panel-default
             .panel-body
@@ -37,7 +38,6 @@ div data-hook="cart_container"
                       i.glyphicon.glyphicon-calendar
                       / = radio_button_tag 'order[preferred_date]', Date.today+i, Date.today+i == @preferred_delivery_date
                       = text_field_tag "order[preferred_delivery_time][#{i}]", nil, class: 'cart-datetime-picker'
-        .col-md-3
           .panel.presto-panel-default
             .panel-body
               .col-md-12
@@ -61,6 +61,11 @@ div data-hook="cart_container"
                     strong= shipment.display_discounted_cost
               - @order.adjustments.eligible.group_by(&:label).each do |label, adjustments|
                 = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
+              - if Spree::Frontend::Config[:coupon_codes_enabled]
+                .col-md-12 data-hook="coupon_code"
+                  .coupon-form
+                    = order_form.text_field :coupon_code, class: '', placeholder: 'Enter Coupon Code'
+                    = button_tag Spree.t(:coupon_code_apply), class: 'btn btn-primary form-control'
               .col-md-12
                 h5.text-center
                   strong= Spree.t(:total)
@@ -68,15 +73,6 @@ div data-hook="cart_container"
             .presto-panel-footer
               = button_tag class: 'presto-btn btn-success btn-block', id: 'checkout-link', name: 'checkout' do
                 = Spree.t(:checkout)
-      .col-md-9
-        #empty-cart.pull-left data-hook=""
-          = form_tag empty_cart_path, method: :put do
-            p#clear_cart_link.text-center data-hook=""
-              = submit_tag Spree.t(:empty_cart), class: 'presto-btn btn-default'
-              '
-              = Spree.t(:or)
-              '
-              = link_to Spree.t(:continue_shopping), products_path, class: 'continue'
 javascript:
   Spree.current_order_id = "#{@order.number}"
   Spree.current_order_token = "#{@order.guest_token}"

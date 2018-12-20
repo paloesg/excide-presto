@@ -956,3 +956,25 @@ $lines-to-show: 2;
   top: 10px;
   right: 10px;
 }
+
+.coupon-form {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  line-height: 35px;
+  font-size: 12px;
+}
+
+.coupon-form input {
+  border: 1px solid;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  outline: none !important;
+}
+
+.coupon-form button {
+  margin-top: 10px;
+}
+
+
