@@ -41,6 +41,7 @@ en:
         addresses: "Addresses"
     company: "Company"
     company_updated: "Company Updated"
+    company_address: "Company Address"
     department: "Department"
     department_updated: "Department Updated"
     product_sales: "Product Sales"

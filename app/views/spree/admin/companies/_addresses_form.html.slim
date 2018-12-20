@@ -1,10 +1,10 @@
 .row
-  .col-xs-12.col-md-6 data-hook="comp_address_wrapper"
+  .col-xs-12.col-md-6 data-hook="company_address_wrapper"
     .panel.panel-default
       .panel-heading
         h1.panel-title
-          = Spree.t(:company)
+          = Spree.t(:company_address)
       .panel-body
-        = f.fields_for :comp_address, (@company.comp_address || Spree::Address.default(@company, "comp")) do |ca_form|
+        = f.fields_for :company_address, (@company.company_address || Spree::Address.default(@company, "company")) do |ca_form|
           - ca_form.object ||= Spree::Address.new(country: Spree::Country.new)
           = render partial: 'spree/admin/shared/address_form', locals: { f: ca_form, type: "company" }

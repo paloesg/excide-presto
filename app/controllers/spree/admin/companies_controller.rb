@@ -26,9 +26,8 @@ module Spree
 
       def addresses
         if request.put?
-          # render json: params.to_json
           if @company.update_attributes(company_params)
-            flash.now[:success] = Spree.t(:account_updated)
+            flash.now[:success] = Spree.t(:company_updated)
           end
 
           render :addresses
@@ -58,7 +57,7 @@ module Spree
       end
 
       def company_params
-        params.require(:company).permit(:name, :address_id, :description, comp_address_attributes: permitted_address_attributes)
+        params.require(:company).permit(:name, :address_id, :description, company_address_attributes: permitted_address_attributes)
       end
     end
   end
