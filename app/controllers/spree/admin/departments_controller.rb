@@ -1,36 +1,35 @@
 module Spree
   module Admin
     class DepartmentsController < ResourceController
-      before_action :set_company, only: [:edit, :update]
-      before_action :set_companies, only: [:index, :new, :edit]
+      before_action :set_department, only: [:edit, :update]
+      before_action :set_company, only: [:index, :new, :edit]
+      before_action :set_departments, only: [:index]
 
       def index
       end
 
       def new
-        @deparment = Spree::Department.new
+        @department = Spree::Department.new
+      end
+
+      def edit
       end
 
       def create
         @department = Spree::Department.new(department_params)
         if @department.save
           flash[:success] = flash_message_for(@department, :successfully_created)
-          redirect_to admin_departments_path
+          redirect_to spree.admin_company_departments_path(@department.company)
         else
-          set_companies
           render :new
         end
-      end
-
-      def edit
       end
 
       def update
         if @department.update_attributes(department_params)
           flash[:success] = Spree.t(:department_updated)
-          redirect_to admin_departments_path
+          redirect_to spree.admin_company_departments_path(@department.company)
         else
-          set_companies
           render :edit
         end
       end
@@ -42,11 +41,15 @@ module Spree
       end
 
       def set_company
-        @department = Spree::Department.find(params[:id])
+        @company = Spree::Company.find(params[:company_id])
       end
 
-      def set_companies
-        @companies = Spree::Company.all
+      def set_departments
+        @departments = Spree::Department.where(company_id: params[:company_id])
+      end
+
+      def set_department
+        @department = Spree::Department.find(params[:id])
       end
     end
   end

@@ -3,6 +3,7 @@
 - content_for :page_title do
   = link_to @company.name, spree.edit_admin_company_url(@company)
   | /
+  '
   = Spree.t(:addresses)
 
 #admin_company_edit_addresses data-hook="admin_company_addresses"
