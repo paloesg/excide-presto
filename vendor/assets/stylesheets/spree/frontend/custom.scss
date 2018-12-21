@@ -929,3 +929,48 @@ $lines-to-show: 2;
   top: 10px;
   right: 10px;
 }
+
+.quantity-input {
+  position: relative;
+  left: 14px;
+  bottom: 8px;
+  display: inline-flex;
+}
+
+.quantity-input .plus {
+  border-radius: 0px 16px 16px 0px;
+}
+
+.quantity-input .min {
+  border-radius: 16px 0px 0px 16px;
+}
+
+.quantity-input input[type=number] {
+  font-family: sans-serif;
+  min-width: 25px;
+  max-width: 110px;
+  padding: .5rem;
+  border: solid #5f509b;
+  background-color: #5f509b;
+  color: #ffffff;
+  font-size: 17px;
+  height: 34px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0px;
+}
+
+.quantity-input input[type=button] {
+  font-size: 20px;
+  background-color: #5f509b;
+  color: #fff;
+  border-color: transparent;
+}
+
+.quantity-input input:focus, .quantity-input button:focus {
+  outline: none;
+}
+
+.quantity-input button:hover {
+  color: #ffcc4e;
+}

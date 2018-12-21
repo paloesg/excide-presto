@@ -10,6 +10,7 @@
         br
         .truncated-text= product.name
         br
+
         - if product.sold_out?
           = render partial: 'spree/products/labels/sold_out'
         - elsif product.sale
@@ -19,4 +20,12 @@
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        = button_to Spree.t(:add_to_cart), populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: "presto-btn #{product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? ? true : false
+        div style="display:none;"
+          = button_to Spree.t(:add_to_cart), populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: "presto-btn #{product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? ? true : false
+        br/
+      .quantity-input id="#{product.master.id}"
+        input.min type="button" value="-" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" id="button_min#{product.master.id}"
+        = number_field_tag :quantity, current_order.line_items.find_by(variant_id: product.master.id).quantity, min: 0, class: "quantity", id: "quantity#{product.master.id}"
+        = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}"
+        input.plus type="button" value="+" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" id="button_plus#{product.master.id}"
+        / = current_order.line_items.find_by(variant_id: product.master.id).quantity.to_json
