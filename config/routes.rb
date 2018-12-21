@@ -37,4 +37,10 @@ Rails.application.routes.draw do
     end
   end
 
+
+  namespace :manage do
+    get '/', to: 'orders#index'
+    resources :orders
+  end
+
 end
