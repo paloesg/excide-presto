@@ -1,30 +1,31 @@
-.col-md-12
-  h1 Order Awaiting Approval
-  .panel.panel-default
-    .panel-heading Order Listing
-    .panel-body
-      - if @orders.any?
-        .table-responsive
-          table.table.table-striped
-            thead
-              tr
-                th Number
-                th Email
-                th Total
-                th Date Requested
-                th Approved
-                th Rejected
-            tbody
-              - @orders.each do |o|
+- if can? :manager, Spree::Order
+  .col-md-12
+    h1 Order Awaiting Approval
+    .panel.panel-default
+      .panel-heading Order Listing
+      .panel-body
+        - if @orders.any?
+          .table-responsive
+            table.table.table-striped
+              thead
                 tr
-                  td #{o.number}
-                  td #{o.email}
-                  td #{o.total}
-                  td #{o.completed_at}
-                  td #{o.approved_at}
-                  td #{o.canceled_at}
-                  td = link_to 'View', edit_manage_order_path(o.number)
-      - else
-        .alert.alert-info
-          ' No Orders found,
-          = link_to 'Add One!', spree_path
+                  th Number
+                  th Email
+                  th Total
+                  th Date Requested
+                  th Approved
+                  th Rejected
+              tbody
+                - @orders.each do |o|
+                  tr
+                    td #{o.number}
+                    td #{o.email}
+                    td #{o.total}
+                    td #{o.completed_at}
+                    td #{o.approved_at}
+                    td #{o.canceled_at}
+                    td = link_to 'View', edit_manage_order_path(o.number)
+        - else
+          .alert.alert-info
+            ' No Orders found,
+            = link_to 'Add One!', spree_path
