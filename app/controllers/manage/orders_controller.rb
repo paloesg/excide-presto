@@ -11,11 +11,13 @@ class Manage::OrdersController < Spree::BaseController
 
   def approve
     @order.approved_by(spree_current_user)
+    OrderMailer.order_approved(@order).deliver_later
     redirect_to manage_orders_path
   end
 
   def cancel
     @order.canceled_by(spree_current_user)
+    OrderMailer.order_rejected(@order).deliver_later
     redirect_to manage_orders_path
   end
 

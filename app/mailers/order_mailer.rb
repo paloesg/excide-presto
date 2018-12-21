@@ -15,20 +15,16 @@ class OrderMailer < ApplicationMailer
     mail to: sent_to, subject: Spree::Store.current.name + ' New Order Request - Waiting for Approval'
   end
 
-  def order_rejected(order, user, admin)
-    sent_to = user.email
-    from_address = admin.email
-    @user = user
+  def order_approved(order)
     @order = order
-    mail to: sent_to, from: from_address, subject: Spree::Store.current.name + ' Order Rejected'
+    @user = order.user
+    mail to: @user.email, subject: Spree::Store.current.name + ' Order Approved'
   end
 
-  def order_approved(order, user, admin)
-    sent_to = user.email
-    from_address = admin.email
-    @user = user
+  def order_rejected(order)
     @order = order
-    mail to: sent_to, from: from_address, subject: Spree::Store.current.name + ' Order Approved'
+    @user = order.user
+    mail to: @user.email, subject: Spree::Store.current.name + ' Order Rejected'
   end
 
 end
