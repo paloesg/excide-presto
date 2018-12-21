@@ -6,6 +6,7 @@ class Manage::OrdersController < Spree::BaseController
 
   def index
     @orders = Spree::Order.complete
+    authorize! :read, @orders
   end
 
   def approve
