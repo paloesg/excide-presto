@@ -37,10 +37,13 @@ Rails.application.routes.draw do
     end
   end
 
-
   namespace :manage do
     get '/', to: 'orders#index'
-    resources :orders
+    resources :orders, param: :order_id do
+      member do
+        post :approve, to: 'orders#approve'
+        post :cancel, to: 'orders#cancel'
+      end
+    end
   end
-
 end
