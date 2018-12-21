@@ -1,6 +1,6 @@
 class Manage::OrdersController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
-  before_action :set_order
+  before_action :set_order, only: [:edit, :approve, :cancel]
 
   layout 'layouts/manage'
 
@@ -10,12 +10,12 @@ class Manage::OrdersController < Spree::BaseController
 
   def approve
     @order.approved_by(spree_current_user)
-    redirect_to dashboard_root_path
+    redirect_to manage_orders_path
   end
 
   def cancel
     @order.canceled_by(spree_current_user)
-    redirect_to dashboard_root_path
+    redirect_to manage_orders_path
   end
 
   private
