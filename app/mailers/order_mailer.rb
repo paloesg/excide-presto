@@ -17,14 +17,12 @@ class OrderMailer < ApplicationMailer
 
   def order_approved(order)
     @order = order
-    @user = order.user
-    mail to: @user.email, subject: Spree::Store.current.name + ' Order Approved'
+    mail to: @order.email, subject: Spree::Store.current.name + ' Order Approved'
   end
 
   def order_rejected(order)
     @order = order
-    @user = order.user
-    mail to: @user.email, subject: Spree::Store.current.name + ' Order Rejected'
+    mail to: @order.email, subject: Spree::Store.current.name + ' Order Rejected'
   end
 
 end
