@@ -19,7 +19,7 @@
                 - @orders.each do |o|
                   tr
                     td #{o.number}
-                    td #{o.email}
+                    td #{o.user.email}
                     td #{o.total}
                     td #{o.completed_at}
                     td #{o.approved_at}
