@@ -1,6 +1,18 @@
 Spree::OrdersController.class_eval do
   respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
 
+  def reorder
+    order    = current_order(create_order_if_necessary: true)
+    rejected_order  = Spree::Order.find_by_number(params[:id])
+    rejected_order.line_items.each do |line_item|
+      order.contents.add(line_item.variant, line_item.quantity, {})
+    end
+    order.update_line_item_prices!
+    order.create_tax_charge!
+    order.update_with_updater!
+    redirect_to cart_path
+  end
+
   def populate
     order    = current_order(create_order_if_necessary: true)
     variant  = Spree::Variant.find(params[:variant_id])
@@ -30,5 +42,8 @@ Spree::OrdersController.class_eval do
         format.html { redirect_to(cart_path(variant_id: variant.id)) }
       end
     end
+  end
+
+  def check_authorization
   end
 end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/services/*id' => 'pages#create_request', as: :create_request, format: false
 
   Spree::Core::Engine.add_routes do
+    match '/orders/:id/reorder' => 'orders#reorder', :via => :post, :as => :reorder_order
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
       resources :companies do
