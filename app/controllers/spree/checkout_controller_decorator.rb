@@ -14,14 +14,14 @@ Spree::CheckoutController.class_eval do
         admin_users.each do |admin|
           OrderMailer.order_request(@order, admin).deliver_now
         end
-        managers = Spree::Role.get_manager_by_department(current_store, @user)
+        managers = Spree::Role.get_manager_by_department(current_store, @order.user)
         managers.each do |manager|
           OrderMailer.order_request_to_manager(@order, manager).deliver_now
         end
         flash.notice = Spree.t(:order_processed_successfully)
         flash['order_completed'] = true
         redirect_to completion_route
-        @order.approved_by(@user) if managers.empty? or @user.has_spree_role? :manager
+        @order.approved_by(@order.user) if managers.empty? or @order.user.has_spree_role? :manager
       else
         redirect_to checkout_state_path(@order.state)
       end
