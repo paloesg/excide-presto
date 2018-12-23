@@ -3,6 +3,7 @@ Spree::OrdersController.class_eval do
 
   def reorder
     order    = current_order(create_order_if_necessary: true)
+    order.empty!
     rejected_order  = Spree::Order.find_by_number(params[:id])
     rejected_order.line_items.each do |line_item|
       order.contents.add(line_item.variant, line_item.quantity, {})
