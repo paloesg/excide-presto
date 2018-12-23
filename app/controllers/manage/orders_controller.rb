@@ -5,7 +5,7 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    @orders = Spree::Order.complete
+    @orders = Spree::Order.department(spree_current_user)
     authorize! :read, @orders
   end
 
