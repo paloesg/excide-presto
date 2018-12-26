@@ -24,16 +24,25 @@ Spree::OrdersController.class_eval do
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
+    line_item = order.line_items.find_by(variant_id: variant.id)
+    line_item_quantity = line_item.present? ? line_item.quantity.to_i : 0
+    last_quantity =  line_item_quantity + quantity
 
-    existing_quantity = current_order.line_items.find_by(variant_id: variant.id).quantity
-    input_quantity = existing_quantity + quantity
-    if input_quantity >= 0
-      order.contents.add(variant, quantity, options)
-      order.update_line_item_prices!
-      order.create_tax_charge!
-      order.update_with_updater!
+    if quantity
+      begin
+        if last_quantity >= 1
+          order.contents.add(variant, quantity, options)
+        else
+          order.contents.remove_line_item(line_item, options)
+        end
+        order.update_line_item_prices!
+        order.create_tax_charge!
+        order.update_with_updater!
+      rescue ActiveRecord::RecordInvalid => e
+        error = e.record.errors.full_messages.join(', ')
+      end
     else
-      error = 'Quantity is not match with your order'
+      error = Spree.t(:please_enter_reasonable_quantity)
     end
 
     if error
