@@ -49,4 +49,9 @@ Spree::FrontendHelper.class_eval do
     @sort_value = [ {name: 'Brand A - Z', sort: 'brand_asc'}, {name: 'Brand Z - A', sort: 'brand_desc'}, {name: 'Prices Low to high', sort: 'price_asc'}, {name: 'Prices high to low', sort: 'price_desc'}, {name: 'A - Z', sort: 'name_asc'}, {name: 'Z - A', sort: 'name_desc'} ]
     select_tag 'sort-by', options_for_select(@sort_value.collect{ |s| [s[:name], "?sort=#{s[:sort]}" ] }, "?sort=#{params[:sort]}"), class: 'form-control sort-by', include_blank: 'Choose one...'
   end
+
+  def quantity_order(variant_id)
+    item_order = current_order.line_items.find_by(variant_id: variant_id)
+    return item_order ? item_order.quantity : 0
+  end
 end
