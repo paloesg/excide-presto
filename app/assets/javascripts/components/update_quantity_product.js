@@ -28,7 +28,8 @@ function update_quantity(variant_id, quantity) {
     error:function( result ){ console.log(["error", result]); }
   });
 }
-$(document).ready(function(){
+
+$(document).on('turbolinks:load', function (){
   $(".plus").click(function(){
     var variant = $(this).attr('id').replace('button_plus', 'variant');
     var variant_id = $('#'+variant).val();
