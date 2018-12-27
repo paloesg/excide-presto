@@ -1,21 +1,3 @@
-var reloadWithTurbolinks = (function () {
-  var scrollPosition
-
-  document.addEventListener('turbolinks:load', function () {
-    if (scrollPosition) {
-      window.scrollTo.apply(window, scrollPosition)
-      scrollPosition = null
-    }
-  }, false)
-
-  function reload () {
-    scrollPosition = [window.scrollX, window.scrollY]
-    Turbolinks.visit(window.location, { action: 'replace' })
-  }
-
-  return reload
-})()
-
 function update_quantity(variant_id, quantity) {
   $.ajax({
     url: "/orders/populate",
@@ -23,22 +5,37 @@ function update_quantity(variant_id, quantity) {
     type:"post",
     success:function( data ) {
       console.log("success");
-      reloadWithTurbolinks();
     },
     error:function( result ){ console.log(["error", result]); }
   });
 }
 
-$(document).on('turbolinks:load', function (){
-  $(".plus").click(function(){
-    var variant = $(this).attr('id').replace('button_plus', 'variant');
-    var variant_id = $('#'+variant).val();
-    update_quantity(variant_id, 1);
-  })
+$(document).ready(function (){
+  $(document).on('click', '.decrease,.increase', function() {
+    var $variant = $(this).closest('.quantity-input').find('.variant');
+    var $qty = $(this).closest('.quantity-input').find('.quantity'),
+      current_val = parseInt($qty.val()),
+      is_add = $(this).hasClass('increase');
+    if(is_add){
+      $qty.val(current_val + 1);
+      update_quantity($variant.val(), 1)
+    }
+    else {
+      $qty.val(current_val - 1);
+      update_quantity($variant.val(), -1)
+    }
+    if($qty.val() == 0){
+      $('.inscrease_decrease[variant='+$variant.val()+']').hide();
+      $('.add_to_cart[variant='+$variant.val()+']').show();
+    }
+  });
 
-  $(".min").click(function(){
-    var variant = $(this).attr('id').replace('button_min', 'variant');
-    var variant_id = $('#'+variant).val();
-    update_quantity(variant_id, -1);
-  })
+  $(document).on('click', '.addcart', function() {
+    var $variant = $(this).closest('.add-cart').find('.variant');
+    update_quantity($variant.val(), 1);
+    var $qty = $('.quantity-input[id='+$variant.val()+']').find('.quantity');
+    $qty.val(1);
+    $('.add_to_cart[variant='+$variant.val()+']').hide();
+    $('.inscrease_decrease[variant='+$variant.val()+']').show();
+  });
 })

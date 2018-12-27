@@ -930,20 +930,48 @@ $lines-to-show: 2;
   right: 10px;
 }
 
+
+.add-cart {
+  position: relative;
+  top: 50%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-cart button {
+  width: 85%;
+}
+
+.add-cart button:focus {
+  outline: none;
+}
+
 .quantity-input {
   position: relative;
-  left: 14px;
-  bottom: 8px;
+  left: 8%;
+  top: 50%;
   display: inline-flex;
   margin-bottom: 20px;
 }
 
-.quantity-input .plus {
+.quantity-input .increase {
+  font-size: 20px;
+  background-color: #5f509b;
+  color: #fff;
+  border-color: transparent;
   border-radius: 0px 16px 16px 0px;
 }
 
-.quantity-input .min {
+.quantity-input .decrease {
+  font-size: 20px;
+  background-color: #5f509b;
+  color: #fff;
+  border-color: transparent;
   border-radius: 16px 0px 0px 16px;
+}
+
+.quantity-input .increase:hover, .quantity-input .decrease:hover {
+  color: #ffcc4e;
 }
 
 .quantity-input input[type=number] {
@@ -960,17 +988,6 @@ $lines-to-show: 2;
   border-radius: 0px;
 }
 
-.quantity-input input[type=button] {
-  font-size: 20px;
-  background-color: #5f509b;
-  color: #fff;
-  border-color: transparent;
-}
-
 .quantity-input input:focus, .quantity-input button:focus {
   outline: none;
-}
-
-.quantity-input button:hover {
-  color: #ffcc4e;
 }
