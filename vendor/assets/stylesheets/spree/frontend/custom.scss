@@ -991,3 +991,19 @@ $lines-to-show: 2;
 .quantity-input input:focus, .quantity-input button:focus {
   outline: none;
 }
+
+.content-popover {
+  color: #000000;
+}
+
+.content-popover .quantity {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #ffcc4e;
+  line-height: 40px;
+  text-align: center;
+  background: #5f509b;
+  margin-bottom: 10px;
+}
