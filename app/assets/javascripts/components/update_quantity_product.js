@@ -4,7 +4,7 @@ function update_quantity(variant_id, quantity) {
     data: "quantity="+quantity+"&variant_id="+variant_id,
     type:"post",
     success:function( data ) {
-      console.log("success");
+
     },
     error:function( result ){ console.log(["error", result]); }
   });
@@ -31,7 +31,7 @@ $(document).ready(function (){
       var item_text = quantity <= 1 ? "item" : "items";
       var type_text = type=='increase' ? "added" : "removed";
       update_quantity(variant_id, type=='increase' ? quantity : -(quantity));
-      console.log(item_text, type_text)
+
       $('[data-toggle="item-cart"]').popover({
         html: true,
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
@@ -44,10 +44,10 @@ $(document).ready(function (){
   }
 
   $(document).on('click', '.decrease,.increase', function() {
+    stop_timer_function();
     var $btn = $(this);
     var count = ($btn.data("click_count") || 0) + 1;
     $btn.data("click_count", count);
-    stop_timer_function();
 
     var $variant = $(this).closest('.quantity-input').find('.variant');
     var $qty = $(this).closest('.quantity-input').find('.quantity'),
@@ -69,8 +69,15 @@ $(document).ready(function (){
   });
 
   $(document).on('click', '.addcart', function() {
+    stop_timer_function();
     var $variant = $(this).closest('.add-cart').find('.variant');
     update_quantity($variant.val(), 1);
+
+    var $btn = $(this);
+    var count = ($btn.data("click_count") || 0) + 1;
+    $btn.data("click_count", count);
+    start_timer_function('increase', $variant.val(), count);
+
     var $qty = $('.quantity-input[id='+$variant.val()+']').find('.quantity');
     $qty.val(1);
     $('.add_to_cart[variant='+$variant.val()+']').hide();
