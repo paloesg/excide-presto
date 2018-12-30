@@ -5,10 +5,10 @@
 <% content_for :sidebar do %>
   <ul class="nav nav-pills nav-stacked" data-hook="admin_company_tab_options">
     <li<%== ' class="active"' if current == :company %>>
-      <%= link_to_with_icon 'user', Spree.t(:"admin.company.detail"), spree.edit_admin_company_path(@company) %>
+      <%= link_to_with_icon 'info-sign', Spree.t(:"admin.company.details"), spree.edit_admin_company_path(@company) %>
     </li>
     <li<%== ' class="active"' if current == :address %>>
-      <%= link_to_with_icon 'map-marker', Spree.t(:"admin.company.addresses"), spree.addresses_admin_company_path(@company) %>
+      <%= link_to_with_icon 'map-marker', Spree.t(:"admin.company.address"), spree.addresses_admin_company_path(@company) %>
     </li>
     <li<%== ' class="active"' if current == :department %>>
       <%= link_to_with_icon 'briefcase', Spree.t(:"admin.company.departments"), spree.admin_company_departments_path(@company) %>

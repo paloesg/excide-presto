@@ -36,9 +36,9 @@ en:
       tab:
         product_sales: "Product Sales"
       company:
-        detail: "Detail"
+        details: "Details"
         departments: "Departments"
-        addresses: "Addresses"
+        address: "Address"
     company: "Company"
     company_updated: "Company Updated"
     company_address: "Company Address"
