@@ -25,7 +25,7 @@ Spree::OrdersController.class_eval do
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
-    line_item = order.line_items.find_by(variant_id: variant.id)
+    line_item = @order.line_items.find_by(variant_id: variant.id)
     line_item_quantity = line_item.present? ? line_item.quantity.to_i : 0
     last_quantity =  line_item_quantity + quantity
 

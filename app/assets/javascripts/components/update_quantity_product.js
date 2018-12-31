@@ -71,11 +71,9 @@ $(document).ready(function (){
   $(document).on('click', '.addcart', function() {
     stop_timer_function();
     var $variant = $(this).closest('.add-cart').find('.variant');
-    update_quantity($variant.val(), 1);
-
     var $btn = $(this);
-    var count = ($btn.data("click_count") || 0) + 1;
-    $btn.data("click_count", count);
+    var count = ($btn.data("click_add") || 0) + 1;
+    $btn.data("click_add", count);
     start_timer_function('increase', $variant.val(), count);
 
     var $qty = $('.quantity-input[id='+$variant.val()+']').find('.quantity');
