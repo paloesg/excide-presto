@@ -48,6 +48,10 @@ gem 'devise'
 #font-awesome
 gem 'font-awesome-rails'
 
+# Bootstrap 3 datetimepicker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+
 # Install spree for e-commerce
 gem 'spree', '~> 3.6.4'
 gem 'spree_auth_devise', '~> 3.3'

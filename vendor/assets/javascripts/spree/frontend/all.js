@@ -12,6 +12,9 @@
 //= require components/select_sort_by
 //= require components/sub_categories_popover
 //= require components/update_quantity_product
+//= require components/set_datetimepicker
+//= require moment
+//= require bootstrap-datetimepicker
 
 //= require_tree .
 //= require spree/frontend/spree_auth

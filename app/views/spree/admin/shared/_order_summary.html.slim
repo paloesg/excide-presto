@@ -1,0 +1,97 @@
+.panel.panel-default
+  .panel-heading
+    h3.panel-title= Spree.t(:summary)
+  table#order_tab_summary.table.table-condensed.table-bordered data-hook=""
+    tbody.additional-info
+      tr
+        td#order_status data-hook="" width="35%"
+          strong
+            = Spree.t(:status)
+            ' :
+        td
+          span class=("state label label-#{@order.state}")
+            = Spree.t(@order.state, scope: :order_state)
+      tr
+        td data-hook="admin_order_tab_subtotal_title"
+          strong
+            = Spree.t(:subtotal)
+            ' :
+        td#item_total
+          = @order.display_item_total.to_html
+      - if @order.checkout_steps.include?("delivery") && @order.ship_total > 0
+        tr
+          td data-hook="admin_order_tab_ship_total_title"
+            strong
+              = Spree.t(:ship_total)
+              ' :
+          td#ship_total
+            = @order.display_ship_total.to_html
+      - if @order.included_tax_total != 0
+        tr
+          td data-hook="admin_order_tab_included_tax_title"
+            strong
+              = Spree.t(:tax_included)
+              ' :
+          td#included_tax_total
+            = @order.display_included_tax_total.to_html
+      - if @order.additional_tax_total != 0
+        tr
+          td data-hook="admin_order_tab_additional_tax_title"
+            strong
+              = Spree.t(:tax)
+              ' :
+          td#additional_tax_total
+            = @order.display_additional_tax_total.to_html
+      tr
+        td data-hook="admin_order_tab_total_title"
+          strong
+            = Spree.t(:total)
+            ' :
+        td#order_total= @order.display_total.to_html
+      - if @order.completed?
+        tr
+          td
+            strong
+              = Spree.t(:shipment)
+              ' :
+          td#shipment_status
+            span class=("state label label-#{@order.shipment_state}")
+              = Spree.t(@order.shipment_state, scope: :shipment_states, default: [:missing, "none"])
+        tr
+          td
+            strong
+              = Spree.t(:payment)
+              ' :
+          td#payment_status
+            span class=("state label label-#{@order.payment_state}")
+              = Spree.t(@order.payment_state, scope: :payment_states, default: [:missing, "none"])
+        tr
+          td data-hook="admin_order_tab_date_completed_title"
+            strong
+              = Spree.t(:date_completed)
+              ' :
+          td#date_complete
+            = pretty_time(@order.completed_at)
+      - if @order.approved?
+        tr
+          td
+            strong= Spree.t(:approver)
+          td= @order.approver.try(:email)
+        tr
+          td
+            strong= Spree.t(:approved_at)
+          td= pretty_time(@order.approved_at)
+      - if @order.canceled? && @order.canceler && @order.canceled_at
+        tr
+          td
+            strong= Spree.t(:canceler)
+          td= @order.canceler.email
+        tr
+          td
+            strong= Spree.t(:canceled_at)
+          td= pretty_time(@order.canceled_at)
+      - if @order.special_instructions?
+        tr
+          td
+            strong= Spree.t(:special_instructions)
+          td= @order.special_instructions
