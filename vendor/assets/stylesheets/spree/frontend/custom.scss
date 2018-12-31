@@ -206,8 +206,36 @@ span.badge.badge-presto {
   top: 9px;
 }
 
-/* Margin Left */
+/* Preferred Delivery Date & Time */
+.preferred-delivery-date {
+  border: 1px solid;
+  margin-left: 0 !important;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  height: 40px;
+  font-weight: 600;
+  line-height: 35px;
+  width: 100%;
+  position: relative;
+  font-size: 12px;
+  padding-left: 25px;
+}
 
+.preferred-delivery-date input {
+  border: 0 !important;
+  text-align: center;
+  outline: none !important;
+}
+
+.preferred-delivery-date i {
+  font-size: 20px;
+  position: absolute;
+  padding: 7px;
+  pointer-events: none;
+  left: 0px;
+}
+
+/* Margin Left */
 .m-l-65 {
   margin-left: 65px;
 }
@@ -608,11 +636,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .total-price {
-  border: 2px solid;
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 100%;
+  border: 1px solid;
   height: 40px;
-  font-weight: 900;
+  font-weight: 600;
   line-height: 35px;
 }
 
@@ -929,3 +956,25 @@ $lines-to-show: 2;
   top: 10px;
   right: 10px;
 }
+
+.coupon-form {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  line-height: 35px;
+  font-size: 12px;
+}
+
+.coupon-form input {
+  border: 1px solid;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  outline: none !important;
+}
+
+.coupon-form button {
+  margin-top: 10px;
+}
+
+
