@@ -15,9 +15,9 @@ div data-hook="cart_container"
         .col-md-9 data-hook="inside_cart_form"
           .table-responsive data-hook="cart_items"
             = render partial: 'form', locals: { order_form: order_form }
-          .col-md-9.pull-right
-            = button_tag class: 'presto-btn btn-purple pull-right', id: 'update-button' do
-              = Spree.t(:update)
+            .col-md-12.pull-right
+              = button_tag class: 'presto-btn btn-purple pull-right', id: 'update-button' do
+                = Spree.t(:update)
         .col-md-3
           .panel.presto-panel-default
             .panel-body
@@ -29,7 +29,6 @@ div data-hook="cart_container"
                       i.glyphicon.glyphicon-calendar
                       / = radio_button_tag 'order[preferred_date]', Date.today+i, Date.today+i == @preferred_delivery_date
                       = text_field_tag "order[preferred_delivery_time][#{i}]", nil, class: 'cart-datetime-picker'
-        .col-md-3
           .panel.presto-panel-default
             .panel-body
               .col-md-12
@@ -55,17 +54,16 @@ div data-hook="cart_container"
                 = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
               .col-md-12
                 - if Spree::Frontend::Config[:coupon_codes_enabled]
-                  .col-md-12 data-hook="coupon_code"
-                    .coupon-form
-                      = order_form.text_field :coupon_code, class: '', placeholder: 'Enter Coupon Code'
-                      = button_tag Spree.t(:coupon_code_apply), class: 'btn btn-primary form-control'
+                  .col-md-12.coupon-form data-hook="coupon_code"
+                    = order_form.text_field :coupon_code, placeholder: 'Enter Coupon Code'
+                    = button_tag Spree.t(:coupon_code_apply), class: 'presto-btn btn-purple form-control'
                 h5.text-center
                   strong= Spree.t(:total)
                 .lead.total-price.text-center = order_form.object.display_total
             .presto-panel-footer
               = button_tag class: 'presto-btn btn-success btn-block', id: 'checkout-link', name: 'checkout' do
                 = Spree.t(:checkout)
-      .col-md-9
+      .col-md-12
         #empty-cart.pull-left data-hook=""
           = form_tag empty_cart_path, method: :put do
             p#clear_cart_link.text-center data-hook=""
