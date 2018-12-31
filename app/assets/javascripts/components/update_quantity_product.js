@@ -34,7 +34,7 @@ $(document).ready(function (){
 
       $('.decrease').data("click_count", 0)
       $('.increase').data("click_count", 0)
-      $('.add-cart').data("click_add", 0)
+      $('.addcart').data("click_add", 0)
 
       $('[data-toggle="item-cart"]').popover({
         html: true,
