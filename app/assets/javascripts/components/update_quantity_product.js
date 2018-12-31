@@ -32,6 +32,10 @@ $(document).ready(function (){
       var type_text = type=='increase' ? "added" : "removed";
       update_quantity(variant_id, type=='increase' ? quantity : -(quantity));
 
+      $('.decrease').data("click_count", 0)
+      $('.increase').data("click_count", 0)
+      $('.add-cart').data("click_add", 0)
+
       $('[data-toggle="item-cart"]').popover({
         html: true,
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
