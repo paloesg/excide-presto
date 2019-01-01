@@ -3,16 +3,39 @@ Spree::OrdersController.class_eval do
   before_action :update_preferred_delivery_datetime, only: :update
   before_action :set_order, only: [:update_preferred_delivery_datetime, :populate]
 
+  def update
+    @variant = Spree::Variant.find(params[:variant_id]) if params[:variant_id]
+    if @order.contents.update_cart(order_params)
+      respond_with(@order) do |format|
+        format.html do
+          if params.key?(:checkout)
+            @order.next if @order.cart?
+            redirect_to checkout_state_path(@order.checkout_steps.first)
+          else
+            redirect_to cart_path
+          end
+        end
+      end
+    else
+      respond_with(@order)
+    end
+  end
+
   def populate
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
-    # render json: variant.to_json
+    line_item = @order.line_items.find_by(variant_id: variant.id)
+    line_item_quantity = line_item.present? ? line_item.quantity.to_i : 0
+    last_quantity =  line_item_quantity + quantity
 
-    # 2,147,483,647 is crazy. See issue #2695.
-    if quantity.between?(1, 2_147_483_647)
+    if quantity
       begin
-        @order.contents.add(variant, quantity, options)
+        if last_quantity >= 1
+          @order.contents.add(variant, quantity, options)
+        else
+          @order.contents.remove_line_item(line_item, options)
+        end
         @order.update_line_item_prices!
         @order.create_tax_charge!
         @order.update_with_updater!

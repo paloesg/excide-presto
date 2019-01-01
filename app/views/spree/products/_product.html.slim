@@ -19,4 +19,13 @@
           span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
-        = button_to Spree.t(:add_to_cart), populate_orders_path(quantity: 1, variant_id: product.master.id), method: 'post', remote: true, class: "presto-btn #{product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? ? true : false
+      div id="add_to_cart" class="add_to_cart" style="display:#{quantity_order(product.master.id) == 0 ? 'block' : 'none'};" variant="#{product.master.id}"
+        .add-cart id="#{product.master.id}"
+          = button_tag Spree.t(:add_to_cart), type: "button", id: "add_to_cart#{product.master.id}", class: "addcart presto-btn #{product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? ? true : false
+          = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
+      div id="inscrease_decrease" class="inscrease_decrease" style="display:#{quantity_order(product.master.id) == 0 ? 'none' : 'block'};" variant="#{product.master.id}"
+        .quantity-input id="#{product.master.id}"
+          = button_tag "-", type: "button", id: "btn_decrease#{product.master.id}", class: "decrease"
+          = number_field_tag :quantity, quantity_order(product.master.id) , min: 0, class: "quantity", id: "quantity#{product.master.id}", readonly: true
+          = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
+          = button_tag "+", type: "button", id: "btn_increase#{product.master.id}", class: "increase"
