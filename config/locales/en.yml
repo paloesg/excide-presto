@@ -48,6 +48,9 @@ en:
     company_name: "Company name"
     phone: "Phone"
     update_cart: "Update Cart"
+    service_request: "Service Request"
+    new_service_request: "New Service Request"
+    service: "Service"
   devise:
     mailer:
       new_password_instructions:

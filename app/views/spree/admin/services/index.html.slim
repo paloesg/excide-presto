@@ -1,0 +1,23 @@
+- content_for :page_title do
+  = Spree.t(:service)
+- content_for :page_actions do
+  = button_link_to Spree.t(:new_service), new_object_url, class: 'btn-success', icon: 'add', id: 'admin_new_service_request_link'
+
+- if @services.any?
+  table.table
+    thead
+      tr
+        th Service Name
+        th Created at
+    tbody
+      - @services.each do |request|
+        tr
+          td
+            - if request.name
+              = link_to(request.name, edit_admin_service_path(request.id))
+            - else
+              | -
+          td
+            = request.created_at.strftime("%d-%m-%Y %H:%M")
+- else
+  | No service found

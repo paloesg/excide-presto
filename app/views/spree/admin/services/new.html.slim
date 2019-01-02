@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = link_to Spree.t(:service), spree.admin_services_url
+  | /
+  '
+  = Spree.t(:new_service)
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @service }
+
+.row
+  .col-xs-12.col-md-12
+    = form_tag('', id: "new_service")
+      = label_tag :name
+      = text_field_tag :name, nil, class: 'form-control'
+      br/
+      fieldset#service_form
+        legend Fields
+      input#add.add type="button" value=("Add a field") class="btn btn-primary"
+      '
+      .pull-right
+        input#save_service type="button" value=("Submit") class="btn btn-success"

@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require spree/backend
+//= require components/append_service_fields
 
 //= require_tree .
 //= require spree/backend/spree_multi_domain
