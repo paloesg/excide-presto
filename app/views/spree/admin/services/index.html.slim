@@ -9,15 +9,20 @@
       tr
         th Service Name
         th Created at
+        th Action
     tbody
-      - @services.each do |request|
+      - @services.each do |service|
         tr
           td
-            - if request.name
-              = link_to(request.name, edit_admin_service_path(request.id))
+            - if service.name
+              = link_to(service.name, edit_admin_service_path(service.id))
             - else
               | -
           td
-            = request.created_at.strftime("%d-%m-%Y %H:%M")
+            = service.created_at.strftime("%d-%m-%Y %H:%M")
+          td
+            = link_to_edit service, no_text: true, class: 'edit' if can?(:edit, service)
+            '
+            = link_to_delete service, no_text: true if can?(:delete, service)
 - else
   | No service found
