@@ -22,11 +22,13 @@ $(document).on('turbolinks:load', function(){
     $('.popover').popover('hide');
   }).on("mouseenter", function () {
     $(this).popover("show");
+    $('.popover').on('mouseleave', function() {
+      $(this).popover("hide");
+    })
   }).on("mouseleave", function () {
-    var _this = this;
     setTimeout(function () {
       if (!$(".popover:hover").length) {
-        $(_this).popover("hide");
+        $(this).popover("hide");
       }
     }, 500)
   })
