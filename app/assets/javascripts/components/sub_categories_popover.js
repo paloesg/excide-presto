@@ -19,13 +19,16 @@ $(document).on('turbolinks:load', function(){
       minHeight: '150px'
     });
   }).on('show.bs.popover', function () {
+    // Close all others popover before current popover show
     $('.popover').popover('hide');
   }).on("mouseenter", function () {
+    // Show current popover
     $(this).popover("show");
     $('.popover').on('mouseleave', function() {
       $(this).popover("hide");
     })
   }).on("mouseleave", function () {
+    // Close popover if not mouse hovering the trigger (Categories) or popover
     setTimeout(function () {
       if (!$(".popover:hover").length) {
         $(this).popover("hide");
