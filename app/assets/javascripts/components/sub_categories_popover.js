@@ -18,17 +18,24 @@ $(document).on('turbolinks:load', function(){
       maxWidth: '450px',
       minHeight: '150px'
     });
+  }).on('show.bs.popover', function () {
+    // Close all others popover before current popover show
+    $('.popover').popover('hide');
+    // Clear timeout to prevent delay on mouseleave from closing new popover
+    if (typeof closeOnLeave !== 'undefined') {
+      clearTimeout(closeOnLeave)
+    }
   }).on("mouseenter", function () {
-    var _this = this;
+    // Show current popover
     $(this).popover("show");
-    $(".popover").on("mouseleave", function () {
-      $(_this).popover('hide');
-    });
+    $('.popover').on('mouseleave', function() {
+      $(this).popover("hide");
+    })
   }).on("mouseleave", function () {
-    var _this = this;
-    setTimeout(function () {
+    // Close popover if not mouse hovering the trigger (Categories) or popover after delay
+    closeOnLeave = setTimeout(function () {
       if (!$(".popover:hover").length) {
-        $(_this).popover("hide");
+        $('.popover').popover("hide");
       }
     }, 500)
   })
