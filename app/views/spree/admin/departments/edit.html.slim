@@ -1,0 +1,16 @@
+= render partial: 'spree/admin/companies/sidebar', locals: { current: :department }
+
+- content_for :page_title do
+  = link_to @company.name, spree.edit_admin_company_url(@company)
+  | /
+  '
+  = Spree.t(:edit_department)
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @company }
+
+.row
+  .col-xs-12.col-md-12
+    = form_for @department, url: spree.admin_department_url, method: :put do |f|
+      = render partial: 'form', locals: { f: f }
+      .form-actions
+        = f.submit 'Submit', class: 'btn btn-primary btn-success'

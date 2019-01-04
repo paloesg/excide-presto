@@ -1,0 +1,27 @@
+= render partial: 'spree/admin/companies/sidebar', locals: { current: :department }
+
+- content_for :page_title do
+  = link_to @company.name, spree.edit_admin_company_url(@company)
+  | / #{Spree.t(:departments)}
+
+- content_for :page_actions do
+  = button_link_to Spree.t(:new_department), admin_company_new_department_path, class: 'btn-success', icon: 'add', id: 'admin_new_department'
+
+- if @departments.any?
+  table.table
+    thead
+      tr
+        th Name
+        th Description
+        th
+    tbody
+      - @departments.each do |department|
+        tr
+          td = department.name
+          td = department.description
+          td
+            = button_link_to '', admin_company_edit_department_path(id: department.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department'
+            '
+            = button_link_to '', admin_company_show_department_path(id: department.id), class: 'btn-sm btn-success', icon: 'user', id: 'admin_show_department'
+- else
+  | No departments created yet.

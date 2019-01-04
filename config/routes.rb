@@ -16,9 +16,25 @@ Rails.application.routes.draw do
   Spree::Core::Engine.add_routes do
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
+      resources :companies do
+        get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
+        get '/departments', to: 'departments#index', as: 'departments'
+        get '/departments/new', to: 'departments#new', as: 'new_department'
+        get '/departments/edit/:id', to: 'departments#edit', as: 'edit_department'
+        get '/departments/detail/:id', to: 'departments#show', as: 'show_department'
+        member do
+          match '/addresses' => 'companies#addresses', via: [:get, :put]
+        end
+      end
+
+      resources :users do
+        put '/update/role', to: 'users#update_role', as: 'update_roles'
+      end
+
+      resources :departments
       get '/pages/*id' => 'pages#show', as: :page, format: false
 
-      resources :products do        
+      resources :products do
         get '/sale', to: 'products#sale', as: 'sale'
       end
 
