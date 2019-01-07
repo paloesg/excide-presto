@@ -44,7 +44,4 @@ Spree::OrdersController.class_eval do
       end
     end
   end
-
-  def check_authorization
-  end
 end
