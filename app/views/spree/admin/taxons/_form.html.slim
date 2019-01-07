@@ -17,11 +17,11 @@ div data-hook="admin_inside_taxon_form"
         = color_field :taxon, :color, class: 'form-control'
       = f.field_container :icon, class: ['form-group'] do
         = f.label :icon, Spree.t(:icon)
-        = image_tag main_app.url_for(@taxon.icon.try(:attachment)), class: 'img-responsive' if @taxon.icon
+        = image_tag main_app.url_for(@taxon.icon.try(:attachment)), class: 'icon img-responsive' if @taxon.icon
         = f.file_field :icon
       = f.field_container :hero, class: ['form-group'] do
         = f.label :hero, Spree.t(:hero)
-        = image_tag main_app.url_for(@taxon.hero.try(:attachment)), class: 'img-responsive' if @taxon.hero
+        = image_tag main_app.url_for(@taxon.hero.try(:attachment)), class: 'hero img-responsive' if @taxon.hero
         = f.file_field :hero
     .col-xs-12.col-md-7
       = f.field_container :description, class: ['form-group'] do
