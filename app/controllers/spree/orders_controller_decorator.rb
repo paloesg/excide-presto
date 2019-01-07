@@ -21,6 +21,19 @@ Spree::OrdersController.class_eval do
     end
   end
 
+  def reorder
+    order    = current_order(create_order_if_necessary: true)
+    order.empty!
+    rejected_order  = Spree::Order.find_by_number(params[:id])
+    rejected_order.line_items.each do |line_item|
+      order.contents.add(line_item.variant, line_item.quantity, {})
+    end
+    order.update_line_item_prices!
+    order.create_tax_charge!
+    order.update_with_updater!
+    redirect_to cart_path
+  end
+
   def populate
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i

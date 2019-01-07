@@ -3,8 +3,7 @@ class Spree::Company < Spree::Base
   has_many :users
   has_one :store
   has_one :role
-  belongs_to :company_address, foreign_key: :address_id, class_name: 'Spree::Address',
-                                optional: true
+  belongs_to :company_address, foreign_key: :address_id, class_name: 'Spree::Address', optional: true
   validates :name, presence: true
   validates :description, presence: true
 

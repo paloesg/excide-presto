@@ -16,7 +16,7 @@ Spree::Ability.class_eval do
     if user.respond_to?(:has_spree_role?) && user.has_spree_role?('admin')
       can :manage, :all
     elsif user.has_spree_role?('manager')
-      can :manage, :all
+      can :manage, Spree::Order
     elsif user.has_spree_role?('superadmin')
       can :manage, :all
     else

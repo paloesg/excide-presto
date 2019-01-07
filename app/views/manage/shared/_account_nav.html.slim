@@ -1,0 +1,21 @@
+- if try_spree_current_user
+  ul.nav.navbar-nav
+    li.dropdown.user.user-menu
+      a.dropdown-toggle data-toggle="dropdown" href="#"
+        i.glyphicon.glyphicon-user
+        span
+          = try_spree_current_user.email
+          i.caret
+      ul.dropdown-menu
+        - if spree.respond_to? :root_path
+          li
+            = link_to spree.root_path, target: :blank do
+              i.glyphicon.glyphicon-new-window
+              '
+              = Spree.t(:back_to_store)
+        - if spree.respond_to? :logout_path
+          li
+            = link_to spree.logout_path do
+              i.glyphicon.glyphicon-log-out
+              '
+              = Spree.t(:logout)
