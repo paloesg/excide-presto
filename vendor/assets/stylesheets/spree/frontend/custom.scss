@@ -46,6 +46,17 @@ body {
   // margin: 0 auto -80px;
 }
 
+.bg-login {
+
+  /* Full height */
+  height: 180% !important;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
@@ -351,7 +362,7 @@ button.btn.btn-default.btn-search:hover {
   color: #5f509b;
   height: 50px;
   padding: 5px 15px;
-  margin: 20px 0px 0px 0px;
+  margin: 30px 0px 0px 0px;
   width: 100%;
   position: absolute;
 }
