@@ -12,4 +12,12 @@ Spree::Order.class_eval do
   def awaiting_approval?
     state.eql? 'awaiting_approval'
   end
+
+  def checkout_steps
+    steps = (self.class.checkout_steps.each_with_object([]) do |(step, options), checkout_steps|
+      next if options.include?(:if) && !options[:if].call(self)
+      checkout_steps << step
+    end).map(&:to_s)
+    steps
+  end
 end
