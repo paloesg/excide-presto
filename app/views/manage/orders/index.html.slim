@@ -9,7 +9,6 @@
             table.table.table-striped
               thead
                 tr
-                  th
                   th Number
                   th Email
                   th Status
@@ -18,8 +17,7 @@
               tbody
                 - @orders.each do |o|
                   tr
-                    td = link_to 'Show', edit_manage_order_path(o.number), class: "btn btn-default"
-                    td #{o.number}
+                    td = link_to o.number, edit_manage_order_path(o.number)
                     td #{o.user.email}
                     td #{((o.state.eql? 'canceled') ? 'rejected' : o.state).titleize}
                     td #{o.total}
