@@ -23,7 +23,7 @@ Spree::CheckoutController.class_eval do
         redirect_to completion_route
         @order.approved_by(@order.user) if managers.empty? or @order.user.has_spree_role? :manager
       elsif @order.awaiting_approval?
-        flash.notice = 'Your order has been processed successfully, awaiting for approval'
+        flash.notice = 'Your order has been submitted and is currently awaiting approval from your department manager.'
         @order.finalize!
         redirect_to completion_route
       else
