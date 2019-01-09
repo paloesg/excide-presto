@@ -10,6 +10,6 @@ class OrderMailer < ApplicationMailer
   def order_request_to_manager(order, manager)
     sent_to = manager.email
     @order = order
-    mail to: sent_to, subject: Spree::Store.current.name + ' New Order Request - Waiting for Approval'
+    mail to: sent_to, subject: Spree::Store.current.name + ' New Order Request - Awaiting Your Approval'
   end
 end
