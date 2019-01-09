@@ -33,7 +33,7 @@ en:
   hello: "Hello world"
   spree:
     order_state:
-      awaiting_approval: 'Awaiting for Approval'
+      awaiting_approval: 'Awaiting Approval'
     order_mailer:
       cancel_email:
         subject: "order Rejected"
