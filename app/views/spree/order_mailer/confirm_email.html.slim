@@ -44,9 +44,11 @@ table.row.header
                 - next if (adjustment.source_type == 'Spree::TaxRate') || (adjustment.amount == 0)
                 = render 'spree/order_mailer/adjustment', adjustment: adjustment
               = render 'spree/order_mailer/total', order: @order
+      p Manager List :
       - @managers.each do |manager|
-        p
-          ' #{manager.email}
-          - if manager.first_name.present?
-            |- #{manager.full_name}
+        ul
+          li
+            ' #{manager.email}
+            - if manager.first_name.present?
+              |- #{manager.full_name}
     td.expander
