@@ -31,7 +31,7 @@ Spree::CheckoutController.class_eval do
   def send_email_to_manager
     managers = Spree::Role.get_manager_by_department(current_store, @order.user)
     managers.each do |manager|
-      OrderMailer.order_request_to_manager(@order, manager).deliver_now
+      OrderMailer.request_approval_to_manager(@order, manager).deliver_now
     end
   end
 
