@@ -13,6 +13,8 @@ Spree::Order.class_eval do
     state.eql? 'awaiting_approval'
   end
 
+  # Override checkout_steps from spree file, remove "always append complete steps"
+  # 3.6.5 spree/core/app/models/spree/order/checkout.rb
   def checkout_steps
     steps = (self.class.checkout_steps.each_with_object([]) do |(step, options), checkout_steps|
       next if options.include?(:if) && !options[:if].call(self)
