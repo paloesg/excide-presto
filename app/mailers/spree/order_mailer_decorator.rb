@@ -13,4 +13,10 @@ Spree::OrderMailer.class_eval do
     subject += "#{Spree::Store.current.name} order Approved ##{@order.number}"
     mail(to: @order.email, from: from_address, subject: subject)
   end
+
+  def request_approval_to_manager(order, manager)
+    sent_to = manager.email
+    @order = order
+    mail to: sent_to, from: from_address, subject: Spree::Store.current.name + ' New Order Request - Awaiting Your Approval'
+  end
 end
