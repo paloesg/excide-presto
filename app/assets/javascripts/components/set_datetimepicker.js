@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function () {
   var date = new Date();
-  date.setDate(date.getDate()+1);
+  date.setDate(date.getDate()+7);
   $('.cart-datetime-picker').datetimepicker( {
     stepping: 60,
     enabledHours: [9, 10, 11, 12, 13, 14, 15, 16, 17],
