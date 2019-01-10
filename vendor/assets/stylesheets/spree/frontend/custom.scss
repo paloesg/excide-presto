@@ -473,6 +473,7 @@ ul.social-media-list i:hover {
   border-color: #ddd;
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
   border-radius: 20px;
+  height: 270px;
 }
 
 .presto-panel-footer {
@@ -969,14 +970,15 @@ $lines-to-show: 2;
 }
 
 .add-cart {
-  position: relative;
-  top: 50%;
+  position: absolute;
   margin-bottom: 20px;
   text-align: center;
+  width: 85%;
+  left: 8%;
 }
 
 .add-cart button {
-  width: 85%;
+  width: 100%;
 }
 
 .add-cart button:focus {
@@ -984,9 +986,9 @@ $lines-to-show: 2;
 }
 
 .quantity-input {
-  position: relative;
+  position: absolute;
   left: 8%;
-  top: 50%;
+  text-align: center;
   display: inline-flex;
   margin-bottom: 20px;
 }
@@ -997,6 +999,7 @@ $lines-to-show: 2;
   color: #fff;
   border-color: transparent;
   border-radius: 0px 16px 16px 0px;
+  height: 34px;
 }
 
 .quantity-input .decrease {
@@ -1005,6 +1008,7 @@ $lines-to-show: 2;
   color: #fff;
   border-color: transparent;
   border-radius: 16px 0px 0px 16px;
+  height: 34px;
 }
 
 .quantity-input .increase:hover, .quantity-input .decrease:hover {
@@ -1013,7 +1017,7 @@ $lines-to-show: 2;
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 59%;
+  width: 63%;
   padding: .5rem;
   border: solid #5f509b;
   background-color: #5f509b;
@@ -1027,6 +1031,12 @@ $lines-to-show: 2;
 
 .quantity-input input:focus, .quantity-input button:focus {
   outline: none;
+}
+
+@media (max-width : 991px) {
+  .quantity-input input[type=number] {
+    width: 70%;
+  }
 }
 
 .content-popover {
