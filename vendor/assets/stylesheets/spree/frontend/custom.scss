@@ -993,9 +993,7 @@ $lines-to-show: 2;
 
 .quantity-input {
   position: absolute;
-  left: 8%;
   text-align: center;
-  display: inline-flex;
   margin-bottom: 20px;
 }
 
@@ -1005,7 +1003,10 @@ $lines-to-show: 2;
   color: #fff;
   border-color: transparent;
   border-radius: 0px 16px 16px 0px;
-  height: 34px;
+  height: 33px;
+  position: absolute;
+  top: 1px;
+  right: 14px;
 }
 
 .quantity-input .decrease {
@@ -1014,7 +1015,9 @@ $lines-to-show: 2;
   color: #fff;
   border-color: transparent;
   border-radius: 16px 0px 0px 16px;
-  height: 34px;
+  height: 33px;
+  position: absolute;
+  top: 1px;
 }
 
 .quantity-input .increase:hover, .quantity-input .decrease:hover {
@@ -1023,7 +1026,7 @@ $lines-to-show: 2;
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 63%;
+  width: 85%;
   padding: .5rem;
   border: solid #5f509b;
   background-color: #5f509b;
@@ -1032,17 +1035,11 @@ $lines-to-show: 2;
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 0px;
+  border-radius: 16px 16px 16px 16px;
 }
 
 .quantity-input input:focus, .quantity-input button:focus {
   outline: none;
-}
-
-@media (max-width : 991px) {
-  .quantity-input input[type=number] {
-    width: 70%;
-  }
 }
 
 .content-popover {
