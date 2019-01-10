@@ -23,7 +23,7 @@ Spree::CheckoutController.class_eval do
         flash.notice = Spree.t(:order_processed_successfully)
         flash['order_completed'] = true
         redirect_to completion_route
-        @order.approved_by(@order.user) if managers.empty? or @order.user.has_spree_role? :manager
+        @order.approved_by(@order.user) if managers.blank? or @order.user.has_spree_role? :manager
       else
         redirect_to checkout_state_path(@order.state)
       end
