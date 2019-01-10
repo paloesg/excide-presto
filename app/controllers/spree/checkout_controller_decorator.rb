@@ -15,8 +15,10 @@ Spree::CheckoutController.class_eval do
           OrderMailer.order_request(@order, admin).deliver_now
         end
         managers = Spree::Role.get_manager_by_department(current_store, @order.user)
-        managers.each do |manager|
-          OrderMailer.order_request_to_manager(@order, manager).deliver_now
+        if managers.present?
+          managers.each do |manager|
+            OrderMailer.order_request_to_manager(@order, manager).deliver_now
+          end
         end
         flash.notice = Spree.t(:order_processed_successfully)
         flash['order_completed'] = true
