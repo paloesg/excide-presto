@@ -12,6 +12,7 @@
 //= require components/select_sort_by
 //= require components/sub_categories_popover
 //= require components/update_quantity_product
+//= require components/update_quantity_cart
 //= require components/set_datetimepicker
 //= require moment
 //= require bootstrap-datetimepicker

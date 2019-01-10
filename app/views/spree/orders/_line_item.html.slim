@@ -17,10 +17,10 @@
         - if (variant.product_sales.present?)
           span.original-price= number_to_currency(variant.product.price)
     td.cart-item-quantity data-hook="cart_item_quantity" valign="center"
-      .number-input
-        input.min type="button" value="-" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+      .number-quantity
+        input.decrease-quantity type="button" value="-"
         = item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5
-        input.plus type="button" value="+" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+        input.increase-quantity type="button" value="+"
     td.lead.text-primary.cart-item-total data-hook="cart_item_total"
       = line_item.display_amount.to_html unless line_item.quantity.nil?
     td.cart-item-delete data-hook="cart_item_delete"

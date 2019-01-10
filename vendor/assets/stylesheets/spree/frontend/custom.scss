@@ -588,16 +588,16 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.number-input {
+.number-quantity {
   display: inline-flex;
 }
 
-.number-input,
-.number-input * {
+.number-quantity,
+.number-quantity * {
   box-sizing: border-box;
 }
 
-.number-input button {
+.number-quantity button {
   outline:none;
   -webkit-appearance: none;
   background-color: transparent;
@@ -611,8 +611,8 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
 }
 
-.number-input button:before,
-.number-input button:after {
+.number-quantity button:before,
+.number-quantity button:after {
   display: inline-block;
   position: absolute;
   content: '';
@@ -621,19 +621,19 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #212121;
   transform: translate(-50%, -50%);
 }
-.number-input button.plus:after {
+.number-quantity button.increase-quantity:after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.number-input .plus {
+.number-quantity .increase-quantity {
   border-radius: 0px 10px 10px 0px;
 }
 
-.number-input .min {
+.number-quantity .decrease-quantity {
   border-radius: 10px 0px 0px 10px;
 }
 
-.number-input input[type=number] {
+.number-quantity input[type=number] {
   font-family: sans-serif;
   min-width: 25px;
   max-width: 80px;
@@ -646,11 +646,16 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 0px;
 }
 
-.number-input input[type=button] {
+.number-quantity input[type=button] {
   font-size: 20px;
   background-color: #ffcc4e;
   color: #fff;
   border-color: transparent;
+}
+
+
+.number-quantity input:focus, .number-quantity button:focus {
+  outline: none;
 }
 
 .total-price {
