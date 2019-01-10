@@ -475,6 +475,13 @@ ul.social-media-list i:hover {
   border-radius: 20px;
 }
 
+#product.presto-panel-default {
+  border-color: #ddd;
+  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+  height: 270px;
+}
+
 .presto-panel-footer {
   padding: 10px 15px;
 }
@@ -508,7 +515,7 @@ span.price.selling.lead {
 }
 
 .product-list-item > .presto-panel-default:hover {
-  background: #eaeae9;
+  background: #fff;
 }
 
 /* Pagination */
@@ -969,14 +976,15 @@ $lines-to-show: 2;
 }
 
 .add-cart {
-  position: relative;
-  top: 50%;
+  position: absolute;
   margin-bottom: 20px;
   text-align: center;
+  width: 85%;
+  left: 8%;
 }
 
 .add-cart button {
-  width: 85%;
+  width: 100%;
 }
 
 .add-cart button:focus {
@@ -984,10 +992,8 @@ $lines-to-show: 2;
 }
 
 .quantity-input {
-  position: relative;
-  left: 8%;
-  top: 50%;
-  display: inline-flex;
+  position: absolute;
+  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -997,6 +1003,10 @@ $lines-to-show: 2;
   color: #fff;
   border-color: transparent;
   border-radius: 0px 16px 16px 0px;
+  height: 33px;
+  position: absolute;
+  top: 1px;
+  right: 14px;
 }
 
 .quantity-input .decrease {
@@ -1005,6 +1015,9 @@ $lines-to-show: 2;
   color: #fff;
   border-color: transparent;
   border-radius: 16px 0px 0px 16px;
+  height: 33px;
+  position: absolute;
+  top: 1px;
 }
 
 .quantity-input .increase:hover, .quantity-input .decrease:hover {
@@ -1013,7 +1026,7 @@ $lines-to-show: 2;
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 59%;
+  width: 85%;
   padding: .5rem;
   border: solid #5f509b;
   background-color: #5f509b;
@@ -1022,7 +1035,7 @@ $lines-to-show: 2;
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 0px;
+  border-radius: 16px 16px 16px 16px;
 }
 
 .quantity-input input:focus, .quantity-input button:focus {
