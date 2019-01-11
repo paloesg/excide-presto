@@ -13,8 +13,9 @@ $(document).on('turbolinks:load', function () {
   $('.cart-datetime-picker').val('');
   $('.cart-datetime-picker').attr("placeholder","DD-MM-YYYY");
   $('.weekday-datetime-picker').datetimepicker( {
-    format: 'DD-MM-YYYY',
+    minDate: tomorrow,
+    format: 'DD-MM-YYYY HH:mm',
     daysOfWeekDisabled: [0, 6],
-    minDate: tomorrow
+    enabledHours: [9, 10, 11, 12, 13, 14, 15, 16, 17],
   })
 });
