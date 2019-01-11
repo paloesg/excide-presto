@@ -44,6 +44,10 @@ module ExcidePresto
 
     config.active_job.queue_adapter = :sucker_punch
 
+    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    config.time_zone = 'Singapore'
+
     config.generators do |generate|
       generate.orm :active_record, primary_key_type: :uuid
     end
