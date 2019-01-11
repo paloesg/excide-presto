@@ -1,4 +1,6 @@
 $(document).on('turbolinks:load', function () {
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate()+1);
   var date = new Date();
   date.setDate(date.getDate()+7);
   $('.cart-datetime-picker').datetimepicker( {
@@ -11,6 +13,7 @@ $(document).on('turbolinks:load', function () {
   $('.cart-datetime-picker').attr("placeholder","DD-MM-YYYY");
   $('.weekday-datetime-picker').datetimepicker( {
     format: 'DD-MM-YYYY',
-    daysOfWeekDisabled: [0, 6]
+    daysOfWeekDisabled: [0, 6],
+    minDate: tomorrow
   })
 });
