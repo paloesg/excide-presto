@@ -9,4 +9,8 @@ $(document).on('turbolinks:load', function () {
   });
   $('.cart-datetime-picker').val('');
   $('.cart-datetime-picker').attr("placeholder","DD-MM-YYYY");
+  $('.weekday-datetime-picker').datetimepicker( {
+    format: 'DD-MM-YYYY',
+    daysOfWeekDisabled: [0, 6]
+  })
 });
