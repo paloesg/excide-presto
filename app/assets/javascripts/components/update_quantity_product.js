@@ -53,19 +53,20 @@ $(document).ready(function (){
     $btn.data("click_count", count);
 
     var $variant = $(this).closest('.quantity-input').find('.variant');
-    var $qty = $(this).closest('.quantity-input').find('.quantity'),
-      current_val = parseInt($qty.val()),
+    var qty = $(this).closest('.quantity-input').find('.quantity'),
+      current_val = parseInt(qty.val()),
       is_add = $(this).hasClass('increase');
     if(is_add){
-      $qty.val(current_val + 1);
+      $('.'+qty.attr('id')).val(current_val + 1)
       start_timer_function('increase', $variant.val(), count);
     }
     else {
-      $qty.val(current_val - 1);
+      $('.'+qty.attr('id')).val(current_val - 1)
       start_timer_function('decrease', $variant.val(), count);
     }
 
-    if($qty.val() == 0){
+    if(qty.val() == 0){
+      $('.'+qty.attr('id')).val(current_val + 1)
       $('.inscrease_decrease[variant='+$variant.val()+']').hide();
       $('.add_to_cart[variant='+$variant.val()+']').show();
     }
@@ -79,8 +80,8 @@ $(document).ready(function (){
     $btn.data("click_add", count);
     start_timer_function('increase', $variant.val(), count);
 
-    var $qty = $('.quantity-input[id='+$variant.val()+']').find('.quantity');
-    $qty.val(1);
+    var qty = $('.quantity-input[id='+$variant.val()+']').find('.quantity');
+    qty.val(1);
     $('.add_to_cart[variant='+$variant.val()+']').hide();
     $('.inscrease_decrease[variant='+$variant.val()+']').show();
   });
