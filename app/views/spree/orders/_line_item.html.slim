@@ -19,7 +19,8 @@
     td.cart-item-quantity data-hook="cart_item_quantity" valign="center"
       .number-quantity
         input.decrease-quantity type="button" value="-"
-        = item_form.number_field :quantity, min: 0, class: "form-control line_item_quantity", size: 5
+        = item_form.number_field :quantity, min: 0, class: "line_item_quantity form-control", size: 5, readonly: true
+        = hidden_field_tag :variant_id, variant.product.id, id:"variant#{variant.product.id}", class: "variant"
         input.increase-quantity type="button" value="+"
     td.lead.text-primary.cart-item-total data-hook="cart_item_total"
       = line_item.display_amount.to_html unless line_item.quantity.nil?
