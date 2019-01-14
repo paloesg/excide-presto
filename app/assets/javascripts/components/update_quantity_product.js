@@ -24,7 +24,6 @@ $(document).on('click', function(e) {
 
 $(document).ready(function (){
   var update_data;
-
   function start_timer_function(type, variant_id, quantity) {
     $('[data-toggle="item-cart"]').popover('destroy');
     update_data = setTimeout(function(){

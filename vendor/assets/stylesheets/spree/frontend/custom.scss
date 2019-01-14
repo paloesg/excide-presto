@@ -997,14 +997,14 @@ $lines-to-show: 2;
 }
 
 .quantity-input {
-  position: absolute;
+  position: relative;
   text-align: center;
   margin-bottom: 20px;
 }
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: #5f509b;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
   border-radius: 0px 16px 16px 0px;
@@ -1016,7 +1016,7 @@ $lines-to-show: 2;
 
 .quantity-input .decrease {
   font-size: 20px;
-  background-color: #5f509b;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
   border-radius: 16px 0px 0px 16px;
