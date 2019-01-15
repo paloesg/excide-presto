@@ -44,7 +44,7 @@
             .form-group
               = label_tag :size, 'Address*'
               = text_field_tag 'fields[text][Address]', nil, class: 'form-control', required: true
-            .form-grousp
+            .form-group
               = label_tag :no_of_rooms, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
@@ -58,13 +58,13 @@
             .form-group
               = label_tag :date, 'Time of Event*'
               = time_field_tag 'fields[text][Time of Event]', Time.now, class: 'form-control', required: true
-            .form-grousp
+            .form-group
               = label_tag :no_of_rooms, 'No of Guests*'
               = number_field_tag 'fields[text][No of Guests]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :floor_type, 'Venue*'
               = text_field_tag 'fields[text][Venue]', nil, class: 'form-control', required: true
-            .form-grousp
+            .form-group
               = label_tag :no_of_rooms, 'Budget per Pax*', required: true
               = number_field_tag 'fields[text][Budget per Pax]', 0, class: 'form-control'
             .form-group
