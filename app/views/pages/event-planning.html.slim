@@ -196,7 +196,5 @@
             = submit_tag 'Request', class: 'btn btn-default'
 br
 - sub_categories_service = ['Event Spaces', 'Manpower Support', 'Outdoor Ads']
-.row
-  - sub_categories_service.each do |service|
-    .col-md-4
-      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
+- sub_categories_service.each do |service|
+  = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple m-l-10 m-b-5'
