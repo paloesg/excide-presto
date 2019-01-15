@@ -34,13 +34,13 @@
               strong Contact Information
             .form-group
               = label_tag :describe, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :no_of_employees, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :size, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-grousp
               = label_tag :no_of_rooms, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -48,21 +48,21 @@
               strong Details of Event
             .form-group
               = label_tag :floor_type, 'Type of Catering*'
-              = text_field_tag 'fields[text][Type of Catering]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Type of Catering]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'Date of Event*'
-              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control'
+              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'Time of Event*'
-              = date_field_tag 'fields[text][Time of Event]', Date.today, class: 'form-control'
+              = date_field_tag 'fields[text][Time of Event]', Date.today, class: 'form-control', required: true
             .form-grousp
               = label_tag :no_of_rooms, 'No of Guests*'
-              = number_field_tag 'fields[text][No of Guests]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No of Guests]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :floor_type, 'Venue*'
-              = text_field_tag 'fields[text][Venue]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Venue]', nil, class: 'form-control', required: true
             .form-grousp
-              = label_tag :no_of_rooms, 'Budget*'
+              = label_tag :no_of_rooms, 'Budget*', required: true
               = number_field_tag 'fields[text][Budget]', 0, class: 'form-control'
             .form-group
               = label_tag :floor_type, 'Additional Information'
