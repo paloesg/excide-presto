@@ -39,13 +39,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -60,7 +60,7 @@
                 = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
             .form-group
               = label_tag :date, 'Date of Event*'
-              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control'
+              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control', required: true
             .form-group
               = label_tag :event, 'Event Purpose'
               i
@@ -68,7 +68,7 @@
               = date_field_tag 'fields[text][Event Purpose]', Date.today, class: 'form-control'
             .form-group
               = label_tag :indoor, 'Indoor/Outdoor?*'
-              = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control'
+              = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control', required: true
             .form-group
               = label_tag :manpower, 'Requires Manpower?'
               = select_tag 'fields[text][Requires Manpower?]', options_for_select(['No', 'Yes']), class: 'form-control'
@@ -100,13 +100,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -121,21 +121,21 @@
                 = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
             .form-group
               = label_tag :date, 'Brand/Type of Product*'
-              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'No. of Locations Per Day*'
-              = number_field_tag 'fields[text][No of Locations Per Day]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No of Locations Per Day]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :no_of_manpower, 'No. of Manpower Required Per Location*'
-              = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :job_scope, 'Key Job Scope*'
               i
                 |  (Eg. Product Promotion, Give Out Flyers, Sampling, Survey, Mascot etc)
-              = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :require_certification, 'Require Manpower With F&B Hygiene Certification*'
-              = select_tag 'fields[text][Require Manpower With F&B Hygiene Certification]', options_for_select(['Yes', 'No']), class: 'form-control'
+              = select_tag 'fields[text][Require Manpower With F&B Hygiene Certification]', options_for_select(['Yes', 'No']), class: 'form-control', required: true
             .form-group
               = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
@@ -162,13 +162,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true, required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true, required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -183,13 +183,13 @@
                 = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
             .form-group
               = label_tag :brand_type, 'Brand/Type of Product*'
-              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :mode_of_ad, 'Mode of Ad*'
-              = select_tag 'fields[text][Mode of Ad]', options_for_select(['Banner', 'Yes', 'No']), class: 'form-control'
+              = select_tag 'fields[text][Mode of Ad]', options_for_select(['Banner', 'Yes', 'No']), class: 'form-control', required: true
             .form-group
               = label_tag :ad_visual, 'Ad Visual*'
-              = select_tag 'fields[text][Ad Visual]', options_for_select(['Yes', 'No']), class: 'form-control'
+              = select_tag 'fields[text][Ad Visual]', options_for_select(['Yes', 'No']), class: 'form-control', required: true
             .form-group
               = label_tag :top_up, 'Top Up Ad Package With Brand Activation'
               = select_tag 'fields[text][Top Up Ad Package With Brand Activation]', options_for_select(['Yes', 'No']), class: 'form-control'
