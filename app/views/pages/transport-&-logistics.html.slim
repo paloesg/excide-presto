@@ -202,13 +202,13 @@
             .form-group
               .row
                 .col-md-3
-                  = label_tag :period, 'Rental Periode*'
+                  = label_tag :period, 'Rental Period*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Periode Start]', Date.today, class: 'form-control'
+                  = date_field_tag 'fields[text][Rental Period Start]', Date.today, class: 'form-control'
                 .col-md-3
                   = label_tag :period, 'to'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Periode End]', Date.today, class: 'form-control'
+                  = date_field_tag 'fields[text][Rental Period End]', Date.today, class: 'form-control'
             .form-group
               .row
                 .col-md-3
@@ -249,7 +249,7 @@
                   = label_tag :total_hours, 'Total No. Of Hours'
                 .col-md-3
                   = number_field_tag 'fields[text][Total No. Of Hours]', 0, class: 'form-control'
-
+            = submit_tag 'Request', class: 'btn btn-default'
 .modal.fade role="dialog" id="Courier"
   .modal-dialog.modal-lg
     /! Modal content
