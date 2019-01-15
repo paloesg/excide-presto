@@ -293,8 +293,6 @@
               .row
                 .col-md-3
                   = label_tag :document_kg, 'Document (kg)'
-                .col-md-6
-                  = text_field_tag 'fields[text][Document]', nil, class: 'form-control'
                 .col-md-3
                   = select_tag 'fields[text][Kg]', options_for_select(['-Parcel-', 'Small (1 to 5kg)', 'Medium (5 to 10kg)', 'Large (10 to 20kg)']), class: 'form-control'
             .form-group
