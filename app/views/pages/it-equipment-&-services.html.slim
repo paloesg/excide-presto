@@ -28,6 +28,7 @@
       #modalContent.modal-body
         #service_form
           h2 Computer Repair Request
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Computer Repair'
@@ -72,6 +73,7 @@
       #modalContent.modal-body
         #service_form
           h2 Data Recovery Request
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Data Recovery'
@@ -125,6 +127,7 @@
       #modalContent.modal-body
         #service_form
           h2 Electrician & Handyman Services
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Electrician and Handyman Services'
@@ -169,6 +172,7 @@
       #modalContent.modal-body
         #service_form
           h2 IPad Repair Request
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'IPad Repair'
@@ -213,6 +217,7 @@
       #modalContent.modal-body
         #service_form
           h2 Phone Repair Request
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Phone Repair'
@@ -258,6 +263,7 @@
       #modalContent.modal-body
         #service_form
           h2 Sell Your Device
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Sell Your Device'

@@ -24,6 +24,7 @@
       #modalContent.modal-body
         #service_form
           h2 Office Experiences
+          br
           h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
           = form_tag create_request_path, method: 'post', multipart: true do
             /  Format of naming for text or number fields `fields[text][name of label]`,

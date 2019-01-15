@@ -24,7 +24,8 @@
       #modalContent.modal-body
         #service_form
           h2 Cleaning
-          h3 Tell us about your office
+          br
+          h4 Tell us about your office
           = form_tag create_request_path, method: 'post', multipart: true do
             /  Format of naming for text or number fields `fields[text][name of label]`,
             /  Format of naming for the file fields `fields[file][name of label]`
