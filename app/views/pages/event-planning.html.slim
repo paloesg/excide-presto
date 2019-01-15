@@ -65,7 +65,7 @@
               = label_tag :event, 'Event Purpose'
               i
                 |  (Eg. New Launch, sales, sampling, games etc)
-              = date_field_tag 'fields[text][Event Purpose]', Date.today, class: 'form-control'
+              = text_field_tag 'fields[text][Event Purpose]', nil, class: 'form-control'
             .form-group
               = label_tag :indoor, 'Indoor/Outdoor?*'
               = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control', required: true
