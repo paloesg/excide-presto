@@ -9,12 +9,6 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-- sub_categories_service = ['Bus Charter', 'Car Rental', 'Courier', 'Last Mile Delivery']
-.row
-  - sub_categories_service.each do |service|
-    .col-md-3
-      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
-
 .pages-content
   h3 Description
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -463,3 +457,9 @@
                 .col-md-3
                   = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
+br
+- sub_categories_service = ['Bus Charter', 'Car Rental', 'Courier', 'Last Mile Delivery']
+.row
+  - sub_categories_service.each do |service|
+    .col-md-3
+      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'

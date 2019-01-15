@@ -9,8 +9,6 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
 .pages-content
   h3 Description
   p The work environment has a major impact on the overall well-being of your employees and customers. Numerous studies have shown that bacteria and germs thrive in different locations within the offices. Providing a clean and organised work space not only boosts customer confidence in your business, but also employee morale, productivity, and health.
@@ -59,3 +57,5 @@
               = label_tag :date, 'Preferred service date'
               = text_field_tag 'fields[text][Preferred service date]', Date.today, class: 'weekday-datetime-picker form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+br
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'

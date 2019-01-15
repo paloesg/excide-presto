@@ -9,12 +9,6 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-- sub_categories_service = ['Computer Repair', 'Data Recovery', 'Electrician and Handyman Services', 'IPad Repair', 'Phone Repair', 'Sell Your Device']
-.row
-  - sub_categories_service.each do |service|
-    .col-md-4.m-b-10
-      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
-
 .pages-content
   h3 Description
   p All organisations need quick access to IT support services. It guarantees that the business’ techninal systems and equipments work flawlessly constantly and reduces any IT downtimes to prevent financial loss and customer disatisfaction.
@@ -312,3 +306,9 @@
               = label_tag :additional, 'Additional'
               = text_area_tag 'fields[text][Additional]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+br
+- sub_categories_service = ['Computer Repair', 'Data Recovery', 'Electrician and Handyman Services', 'IPad Repair', 'Phone Repair', 'Sell Your Device']
+.row
+  - sub_categories_service.each do |service|
+    .col-md-4.m-b-10
+      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'

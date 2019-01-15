@@ -9,8 +9,6 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
 .pages-content
   h3 Description
   p Team building activities can be a lot of fun and bring your team together. They are especially useful for improving team dynamics, building trust, facilitating communication and teamwork.
@@ -49,3 +47,5 @@
               = label_tag :enquiry, 'Enquiry'
               = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+br
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'

@@ -9,8 +9,6 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
 .pages-content
   h3 Description
   p Every good employer recognises the benefits of investing in the wellness of their employees. Promoting wellness is one of the most beneficial choices an employer can make to encourage employees to reach their full potential. Supporting workplace health and wellness encourages employees to live an active lifestyle and make good health choices.
@@ -49,3 +47,5 @@
               = label_tag :enquiry, 'Enquiry'
               = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+br
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'

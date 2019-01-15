@@ -9,8 +9,6 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
 .pages-content
   h3 Description
   p Whether it is formal corporate luncheon or small office party, planning the menu for your event is extremely important. We and our vendors are fully vested in treating every occasion, no matter the size, with the same enthusiasm, energy and attention to detail that results in great food and great service.
@@ -71,3 +69,5 @@
               = label_tag :floor_type, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+br
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
