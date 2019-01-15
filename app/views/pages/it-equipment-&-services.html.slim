@@ -39,13 +39,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -55,10 +55,10 @@
               = label_tag :device_type, 'Device Type*'
               i
                 |  (Eg. Laptop, Desktop, HDD)
-              = text_field_tag 'fields[text][Device Type]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Device Type]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :issue, 'Issue(s) with Device*'
-              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :remarks, 'Remarks'
               = text_area_tag 'fields[text][Remarks]', nil, class: 'form-control'
@@ -84,13 +84,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -98,7 +98,7 @@
               strong Details About Hard Drive
             .form-group
               = label_tag :storage_type, 'Storage Type*'
-              = select_tag 'fields[text][Storage Type]', options_for_select(['Portable USB Hard Disk', 'Laptop Hard Disk', 'NAS (Network Attached Storage)', 'USB Thumb Drive', 'SD Card', 'Others']), class: 'form-control'
+              = select_tag 'fields[text][Storage Type]', options_for_select(['Portable USB Hard Disk', 'Laptop Hard Disk', 'NAS (Network Attached Storage)', 'USB Thumb Drive', 'SD Card', 'Others']), class: 'form-control', required: true
             .form-group
               = label_tag :applicable, 'Please check those that are applicable*'
               .checkbox
@@ -138,13 +138,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -152,15 +152,15 @@
               strong How Can We Help?
             .form-group
               = label_tag :service_requirement, 'Service Requirement*'
-              = select_tag 'fields[text][Storage Type]', options_for_select(['Electrician', 'Plumbing', 'Handyman', 'Locksmith', 'TV Mounting', 'General Works', 'Others']), class: 'form-control'
+              = select_tag 'fields[text][Storage Type]', options_for_select(['Electrician', 'Plumbing', 'Handyman', 'Locksmith', 'TV Mounting', 'General Works', 'Others']), class: 'form-control', required: true
             .form-group
               = label_tag :location, 'Your Location*'
               i
                 |  (eg. Bukit Batok)
-              = text_field_tag 'fields[text][Your Location]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Your Location]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :remarks, 'Enquiry*'
-              = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
 
 .modal.fade role="dialog" id="IPadRepair"
@@ -183,13 +183,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -199,13 +199,13 @@
               = label_tag :ipad_model, 'Ipad Model No*'
               i
                 |  (Located at the lower back of the iPad, starting with A1xxx)
-              = text_field_tag 'fields[text][Ipad Model No]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Ipad Model No]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :issues, 'Issue(s) With Ipad*'
-              = select_tag 'fields[text][Issues with Ipad]', options_for_select(['Screen cracked or touch faulty', "Device can't be powered on", 'Faulty Battery', 'LCD Display Faulty', 'Other']), class: 'form-control'
+              = select_tag 'fields[text][Issues with Ipad]', options_for_select(['Screen cracked or touch faulty', "Device can't be powered on", 'Faulty Battery', 'LCD Display Faulty', 'Other']), class: 'form-control', required: true
             .form-group
               = label_tag :detail, 'Please state the problems with your iPad in detail*'
-              = text_area_tag 'fields[text][Please state the problems with your iPad in detail]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Please state the problems with your iPad in detail]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
 
 .modal.fade role="dialog" id="PhoneRepair"
@@ -228,13 +228,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -242,13 +242,13 @@
               strong How Can We Help?
             .form-group
               = label_tag :phone_brand, 'Phone Brand*'
-              = text_field_tag 'fields[text][Phone Brand]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Phone Brand]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :phone_model, 'Phone Model'
               = text_field_tag 'fields[text][Phone Model]', nil, class: 'form-control'
             .form-group
               = label_tag :issues, 'Issue(s) With Device*'
-              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :remarks, 'Remarks'
               = text_area_tag 'fields[text][Remarks]', nil, class: 'form-control'
@@ -274,13 +274,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -290,12 +290,12 @@
               = label_tag :device_model, 'Device Model*'
               i
                 |  (Eg. Iphone 7 Plus)
-              = text_field_tag 'fields[text][Device Model]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Device Model]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :memory_capacity, 'Memory Capacity*'
               i
                 |  (Eg. 128GB)
-              = text_field_tag 'fields[text][Memory Capacity]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Memory Capacity]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :condition, 'Device Condition*'
               i
