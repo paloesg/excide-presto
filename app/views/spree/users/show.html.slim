@@ -1,5 +1,12 @@
 .container
-  .breadcumb Home ❯ My Account
+  nav#breadcrumbs
+    ol.breadcrumb
+      li
+        span
+          = link_to Spree.t(:home), spree.root_path
+      li
+        span
+          = link_to 'My Account', spree.account_path
   h1.my-account-title= accurate_title
 .account-summary.well data-hook="account_summary"
   dl#user-info

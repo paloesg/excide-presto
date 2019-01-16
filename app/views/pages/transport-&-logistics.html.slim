@@ -2,7 +2,14 @@
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/logistics.png')}); background-color: '#ffcc4e'"
     .container.category-container
-      .breadcumb-cart Home ❯ Service
+      nav#breadcrumbs
+        ol.breadcrumb.hero-breadcrumbs
+          li
+            span
+              = link_to Spree.t(:home), spree.root_path
+          li
+            span
+              = link_to 'Transport & Logistics', page_path('transport-&-logistics')
       h1.shopping-cart-title Transport & Logistics
 
 - content_for :sidebar do
@@ -198,13 +205,13 @@
             .form-group
               .row
                 .col-md-3
-                  = label_tag :period, 'Rental Periode*'
+                  = label_tag :period, 'Rental Period*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Periode Start]', Date.today, class: 'form-control', required: true
+                  = date_field_tag 'fields[text][Rental Period Start]', Date.today, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :period, 'to'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Periode End]', Date.today, class: 'form-control'
+                  = date_field_tag 'fields[text][Rental Period End]', Date.today, class: 'form-control'
             .form-group
               .row
                 .col-md-3
@@ -245,7 +252,7 @@
                   = label_tag :total_hours, 'Total No. Of Hours'
                 .col-md-3
                   = number_field_tag 'fields[text][Total No. Of Hours]', 0, class: 'form-control'
-
+            = submit_tag 'Request', class: 'btn btn-default'
 .modal.fade role="dialog" id="Courier"
   .modal-dialog.modal-lg
     /! Modal content
@@ -291,9 +298,7 @@
                 .col-md-3
                   = label_tag :document_kg, 'Document (kg)'
                 .col-md-3
-                  = text_field_tag 'fields[text][Document]', nil, class: 'form-control'
-                .col-md-offset-3.col-md-3
-                  = number_field_tag 'fields[text][Kg]', 0, class: 'form-control'
+                  = select_tag 'fields[text][Kg]', options_for_select(['-Parcel-', 'Small (1 to 5kg)', 'Medium (5 to 10kg)', 'Large (10 to 20kg)']), class: 'form-control'
             .form-group
               = label_tag :description, 'Description*'
               = text_field_tag 'fields[text][Description]', nil, class: 'form-control', required: true
@@ -396,10 +401,10 @@
               .row
                 .col-md-3
                   = label_tag :document_kg, 'Document (kg)'
-                .col-md-3
+                .col-md-6
                   = text_field_tag 'fields[text][Document]', nil, class: 'form-control'
-                .col-md-offset-3.col-md-3
-                  = number_field_tag 'fields[text][Kg]', 0, class: 'form-control'
+                .col-md-3
+                  = select_tag 'fields[text][Kg]', options_for_select(['-Parcel-', 'Small (1 to 5kg)', 'Medium (5 to 10kg)', 'Large (10 to 20kg)']), class: 'form-control'
             .form-group
               = label_tag :description, 'Description*'
               = text_field_tag 'fields[text][Description]', nil, class: 'form-control', required: true
