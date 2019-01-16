@@ -32,7 +32,7 @@
       = Spree.t(:country)
       abbr.required title="required" *
     span id="#{address_id}country-selection"
-      = form.collection_select :country_id, available_countries, :id, :name, {}, { class: 'form-control', required: true }
+      = form.collection_select :country_id, available_countries, :id, :name, {:selected => Spree::Country.find_by_iso("SG").id}, { class: 'form-control', required: true }
   - if Spree::Config[:address_requires_state]
     p.form-group id="#{address_id}state"
       - have_states = !address.country.states.empty?
