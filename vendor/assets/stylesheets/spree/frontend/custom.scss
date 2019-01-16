@@ -302,6 +302,10 @@ span.badge.badge-presto {
   color: #ffffff;
   padding: 2px 10px 2px 0px;
   background-color: #5f509b;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
 }
 
 #presto-header .navbar-inverse .navbar-nav > li > a {
@@ -1080,4 +1084,14 @@ $lines-to-show: 2;
 
 .coupon-form button {
   margin-top: 10px;
+}
+
+.container{
+  margin-top: 55px;
+}
+
+@media screen and (min-width: 768px){
+  .jumbotron {
+    margin-top: 20px;
+  }
 }
