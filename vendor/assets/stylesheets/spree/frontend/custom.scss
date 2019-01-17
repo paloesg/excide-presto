@@ -988,7 +988,7 @@ $lines-to-show: 2;
 }
 
 .add-cart {
-  position: absolute;
+  position: relative;
   margin-bottom: 20px;
   text-align: center;
   width: 85%;
@@ -1004,14 +1004,15 @@ $lines-to-show: 2;
 }
 
 .quantity-input {
-  position: absolute;
+  position: relative;
   text-align: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: #5f509b;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
   border-radius: 0px 16px 16px 0px;
@@ -1023,7 +1024,7 @@ $lines-to-show: 2;
 
 .quantity-input .decrease {
   font-size: 20px;
-  background-color: #5f509b;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
   border-radius: 16px 0px 0px 16px;
@@ -1088,6 +1089,10 @@ $lines-to-show: 2;
 
 .coupon-form button {
   margin-top: 10px;
+}
+
+.modal-content{
+  top:100px;
 }
 
 .container{
