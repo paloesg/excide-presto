@@ -24,9 +24,6 @@ div data-hook="cart_container"
             = render partial: 'form', locals: { order_form: order_form }
             .col-md-6
               = link_to Spree.t(:continue_shopping), products_path, class: 'continue presto-btn btn-success'
-            .col-md-6.pull-right
-              = button_tag class: 'presto-btn btn-purple pull-right', id: 'update-button' do
-                = Spree.t(:update_cart)
         .col-md-3
           .panel.presto-panel-default
             .panel-body
