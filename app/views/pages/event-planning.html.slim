@@ -23,7 +23,7 @@
         #service_form
           h2 Event Spaces Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Event Spaces'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -84,7 +84,7 @@
         #service_form
           h2 Manpower Support Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Manpower Support'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -146,7 +146,7 @@
         #service_form
           h2 Outdoor Ads Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Outdoor Ads'
             /  Format of naming for text or number fields `fields[text][name of label]`,

@@ -24,7 +24,7 @@
         #service_form
           h2 Bus Charter Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Bus Charter'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -143,7 +143,7 @@
         #service_form
           h2 Car Rental Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Car Rental'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -256,7 +256,7 @@
         #service_form
           h2 Courier Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Courier'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -362,7 +362,7 @@
         #service_form
           h2 Last Mile Delivery Request
           br
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Last Mile Delivery'
             /  Format of naming for text or number fields `fields[text][name of label]`,
