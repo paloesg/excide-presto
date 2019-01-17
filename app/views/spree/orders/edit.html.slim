@@ -2,7 +2,14 @@
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/shopping-cart.png')}); background-color: '#ffcc4e'"
     .container.category-container
-      .breadcumb-cart Home ❯ Cart
+      nav#breadcrumbs
+        ol.breadcrumb.hero-breadcrumbs
+          li
+            span
+              = link_to Spree.t(:home), spree.root_path
+          li
+            span
+              = link_to 'Cart', spree.cart_path
       h1.shopping-cart-title= Spree.t(:shopping_cart)
 div data-hook="cart_container"
   - if @order.line_items.empty?

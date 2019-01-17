@@ -2,7 +2,14 @@
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/perks.png')}); background-color: '#ffcc4e'"
     .container.category-container
-      .breadcumb-cart Home ❯ Service
+      nav#breadcrumbs
+        ol.breadcrumb.hero-breadcrumbs
+          li
+            span
+              = link_to Spree.t(:home), spree.root_path
+          li
+            span
+              = link_to 'Staff Perks', page_path('staff-perks')
       h1.shopping-cart-title Staff Perks
 
 - content_for :sidebar do

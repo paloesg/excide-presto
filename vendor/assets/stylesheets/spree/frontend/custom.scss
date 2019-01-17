@@ -61,6 +61,11 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
 
+.product-body > img {
+  min-height: 100px;
+  margin: 0px -10px;
+}
+
 body#login {
   background:#5f509b;
 }
@@ -304,6 +309,10 @@ $sides: (top, bottom, left, right); // Leave this variable alone
   color: #ffffff;
   padding: 2px 10px 2px 0px;
   background-color: #5f509b;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
 }
 
 #presto-header .navbar-inverse .navbar-nav > li > a {
@@ -454,7 +463,6 @@ ul.social-media-list i:hover {
   }
 }
 
-
 /* Product Page */
 
 .presto-product-panel {
@@ -541,7 +549,6 @@ span.price.selling.lead {
 }
 
 .breadcumb-cart{
-  font-weight: bold;
   color: #ffffff !important;
 }
 
@@ -1084,4 +1091,14 @@ $lines-to-show: 2;
 
 .coupon-form button {
   margin-top: 10px;
+}
+
+.container{
+  margin-top: 55px;
+}
+
+@media screen and (min-width: 768px){
+  .jumbotron {
+    margin-top: 20px;
+  }
 }
