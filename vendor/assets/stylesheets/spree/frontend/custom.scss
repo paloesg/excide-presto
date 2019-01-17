@@ -981,7 +981,7 @@ $lines-to-show: 2;
 }
 
 .add-cart {
-  position: absolute;
+  position: relative;
   margin-bottom: 20px;
   text-align: center;
   width: 85%;
@@ -1000,6 +1000,7 @@ $lines-to-show: 2;
   position: relative;
   text-align: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .quantity-input .increase {
@@ -1081,4 +1082,8 @@ $lines-to-show: 2;
 
 .coupon-form button {
   margin-top: 10px;
+}
+
+.modal-content{
+  top:100px;
 }

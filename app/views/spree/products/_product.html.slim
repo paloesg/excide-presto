@@ -23,7 +23,7 @@
         .add-cart id="#{product.master.id}"
           = button_tag Spree.t(:add_to_cart), type: "button", id: "add_to_cart#{product.master.id}", class: "addcart presto-btn #{product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? ? true : false
           = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
-      div id="inscrease_decrease" class="inscrease_decrease" style="display:#{quantity_order(product.master.id) == 0 ? 'none' : 'block'};" variant="#{product.master.id}"
+      div id="increase_decrease" class="increase_decrease" style="display:#{quantity_order(product.master.id) == 0 ? 'none' : 'block'};" variant="#{product.master.id}"
         .quantity-input id="#{product.master.id}"
           = button_tag "-", type: "button", id: "btn_decrease#{product.master.id}", class: "decrease"
           = number_field_tag :quantity, quantity_order(product.master.id) , min: 0, class: "quantity quantity#{product.master.id}", id: "quantity#{product.master.id}", readonly: true

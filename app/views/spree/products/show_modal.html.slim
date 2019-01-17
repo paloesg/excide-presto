@@ -14,15 +14,15 @@
               = number_to_currency(@product.price - @product.sale)
         span content=current_currency itemprop="priceCurrency"
         div id="add_to_cart" class="add_to_cart" style="display:#{quantity_order(@product.master.id) == 0 ? 'block' : 'none'};" variant="#{@product.master.id}"
-        .add-cart id="#{@product.master.id}"
-          = button_tag Spree.t(:add_to_cart), type: "button", id: "add_to_cart#{@product.master.id}", class: "addcart presto-btn #{@product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: @product.sold_out? ? true : false
-          = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
-        div id="inscrease_decrease" class="inscrease_decrease" style="display:#{quantity_order(@product.master.id) == 0 ? 'none' : 'block'};" variant="#{@product.master.id}"
-          .quantity-input id="#{@product.master.id}" style="text-align:left;"
+          .add-cart style="left:0;"
+            = button_tag Spree.t(:add_to_cart), type: "button", id: "add_to_cart#{@product.master.id}", class: "addcart presto-btn #{@product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: @product.sold_out? ? true : false
+            = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
+        div id="increase_decrease" class="increase_decrease" style="display:#{quantity_order(@product.master.id) == 0 ? 'none' : 'block'};" variant="#{@product.master.id}"
+          .quantity-input style="text-align:left;"
             = button_tag "-", type: "button", id: "btn_decrease#{@product.master.id}", class: "decrease"
             = number_field_tag :quantity, quantity_order(@product.master.id) , min: 0, class: "quantity quantity#{@product.master.id}", id: "quantity#{@product.master.id}", readonly: true
             = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
-            = button_tag "+", type: "button", id: "btn_increase#{@product.master.id}", class: "increase"
+            = button_tag "+", type: "button", id: "btn_increase#{@product.master.id}", class: "increase", style:"right:65px"
   .col-md-6.col-sm-5.flex-col data-hook="product_left_part"
     div data-hook="product_left_part_wrap"
       #product-images.col-md-9 data-hook="product_images"
