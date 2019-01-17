@@ -16,9 +16,7 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p Whether it is formal corporate luncheon or small office party, planning the menu for your event is extremely important. We and our vendors are fully vested in treating every occasion, no matter the size, with the same enthusiasm, energy and attention to detail that results in great food and great service.
 
@@ -31,7 +29,7 @@
       #modalContent.modal-body
         #service_form
           h2 Catering Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             /  Format of naming for text or number fields `fields[text][name of label]`,
             /  Format of naming for the file fields `fields[file][name of label]`
@@ -40,37 +38,41 @@
               strong Contact Information
             .form-group
               = label_tag :describe, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :no_of_employees, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :size, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
-            .form-grousp
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
+            .form-group
+              = label_tag :size, 'Address*'
+              = text_field_tag 'fields[text][Address]', nil, class: 'form-control', required: true
+            .form-group
               = label_tag :no_of_rooms, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
             h3
               strong Details of Event
             .form-group
               = label_tag :floor_type, 'Type of Catering*'
-              = text_field_tag 'fields[text][Type of Catering]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Type of Catering]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'Date of Event*'
-              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control'
+              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'Time of Event*'
-              = date_field_tag 'fields[text][Time of Event]', Date.today, class: 'form-control'
-            .form-grousp
+              = time_field_tag 'fields[text][Time of Event]', Time.now, class: 'form-control', required: true
+            .form-group
               = label_tag :no_of_rooms, 'No of Guests*'
-              = number_field_tag 'fields[text][No of Guests]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No of Guests]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :floor_type, 'Venue*'
-              = text_field_tag 'fields[text][Venue]', nil, class: 'form-control'
-            .form-grousp
-              = label_tag :no_of_rooms, 'Budget*'
-              = number_field_tag 'fields[text][Budget]', 0, class: 'form-control'
+              = text_field_tag 'fields[text][Venue]', nil, class: 'form-control', required: true
+            .form-group
+              = label_tag :no_of_rooms, 'Budget per Pax*', required: true
+              = number_field_tag 'fields[text][Budget per Pax]', 0, class: 'form-control'
             .form-group
               = label_tag :floor_type, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple m-r-10 m-b-10'

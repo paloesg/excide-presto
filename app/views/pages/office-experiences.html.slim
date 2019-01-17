@@ -16,9 +16,7 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p Create valuable workplace experiences for your employees through staff engagement activities to keep them happy, motivated and loyal to your organisation.
 
@@ -31,7 +29,7 @@
       #modalContent.modal-body
         #service_form
           h2 Office Experiences
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
           = form_tag create_request_path, method: 'post', multipart: true do
             /  Format of naming for text or number fields `fields[text][name of label]`,
             /  Format of naming for the file fields `fields[file][name of label]`
@@ -55,3 +53,4 @@
               = label_tag :enquiry, 'Enquiry'
               = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple m-r-10 m-b-10'
