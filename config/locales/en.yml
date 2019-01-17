@@ -32,6 +32,8 @@
 en:
   hello: "Hello world"
   spree:
+    order_state:
+      preview: "Preview Order"
     order_mailer:
       cancel_email:
         subject: "order Rejected"
