@@ -9,7 +9,7 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p In event planning, no detail is too small. Hiring a professional event planner can guarantee that your event is not only memorable but full of flair. We will listen to your ideas, understand your vision, and then work with that vision to bring your ideas to life.
 
@@ -22,7 +22,6 @@
       #modalContent.modal-body
         #service_form
           h2 Event Spaces Request
-          br
           p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Event Spaces'
@@ -83,7 +82,6 @@
       #modalContent.modal-body
         #service_form
           h2 Manpower Support Request
-          br
           p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Manpower Support'
@@ -134,8 +132,6 @@
               = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
-
-
 .modal.fade role="dialog" id="OutdoorAds"
   .modal-dialog.modal-lg
     /! Modal content
@@ -145,7 +141,6 @@
       #modalContent.modal-body
         #service_form
           h2 Outdoor Ads Request
-          br
           p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Outdoor Ads'
@@ -194,7 +189,6 @@
               = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
-br
 - sub_categories_service = ['Event Spaces', 'Manpower Support', 'Outdoor Ads']
 - sub_categories_service.each do |service|
   = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple m-l-10 m-b-5'

@@ -9,7 +9,7 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p Every good employer recognises the benefits of investing in the wellness of their employees. Promoting wellness is one of the most beneficial choices an employer can make to encourage employees to reach their full potential. Supporting workplace health and wellness encourages employees to live an active lifestyle and make good health choices.
 
@@ -22,7 +22,6 @@
       #modalContent.modal-body
         #service_form
           h2 Health & Wellness
-          br
           p Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
           = form_tag create_request_path, method: 'post', multipart: true do
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -47,5 +46,4 @@
               = label_tag :enquiry, 'Enquiry'
               = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
-br
 = link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple m-l-10 m-b-5'
