@@ -91,7 +91,7 @@
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Time*'
                 .col-md-3
@@ -176,7 +176,7 @@
                 .col-md-3
                   = label_tag :date_of_birth, 'Date Of Birth*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Date Of Birth]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Date Of Birth]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-1
                   = label_tag :age, 'Age*'
                 .col-md-2
@@ -205,21 +205,21 @@
                 .col-md-3
                   = label_tag :period, 'Rental Period*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Period Start]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Rental Period Start]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :period, 'to'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Period End]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Rental Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               .row
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :return_date, 'Return Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Return Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Return Date]', Date.today, class: 'form-control datetime-picker', required: true
             .form-group
               .row
                 .col-md-3
@@ -309,7 +309,7 @@
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :pick_up_time, 'Pick Up Time*'
                 .col-md-3
@@ -334,7 +334,7 @@
                 .col-md-3
                   = label_tag :delivery_date, 'Delivery Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :delivery_time, 'Delivery Time*'
                 .col-md-3
@@ -414,7 +414,7 @@
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :pick_up_time, 'Pick Up Time*'
                 .col-md-3
@@ -439,7 +439,7 @@
                 .col-md-3
                   = label_tag :delivery_date, 'Delivery Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control', required: true
+                  = text_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :delivery_time, 'Delivery Time*'
                 .col-md-3

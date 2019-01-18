@@ -58,7 +58,7 @@
               = text_field_tag 'fields[text][Type of Catering]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'Date of Event*'
-              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control', required: true
+              = text_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control datetime-picker', required: true
             .form-group
               = label_tag :date, 'Time of Event*'
               = time_field_tag 'fields[text][Time of Event]', Time.now, class: 'form-control', required: true
