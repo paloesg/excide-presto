@@ -27,16 +27,6 @@ div data-hook="cart_container"
         .col-md-3
           .panel.presto-panel-default
             .panel-body
-              .col-md-12.text-center
-                h4 Preferred delivery date
-                - 1.upto(3) do |i|
-                  .preferred-delivery-date
-                    label
-                      i.glyphicon.glyphicon-calendar
-                      = text_field_tag "order[preferred_delivery_time][#{i}]", nil, class: 'cart-datetime-picker'
-                |  Delivery date to be confirmed.
-          .panel.presto-panel-default
-            .panel-body
               .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
