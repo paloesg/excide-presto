@@ -684,10 +684,17 @@ input[type=number]::-webkit-outer-spin-button {
 .category-name > h4 {
   color: #5f509b;
   position: absolute;
-  top: 170px;
+  top: 180px;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+@media (max-width: 768px) {
+  .category-name > h4 {
+    top: 172px;
+    font-size: 15px;
+  }
 }
 
 .icon-list {
@@ -703,7 +710,7 @@ input[type=number]::-webkit-outer-spin-button {
 .icon-list > a > img {
   margin: 0 auto;
   padding: 10px;
-  max-height: -webkit-fill-available;
+  max-height: 90%;
 }
 
 .hero-image {
