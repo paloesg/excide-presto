@@ -135,7 +135,7 @@ select#sort-by {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
-  border-radius: 15px;
+  border-radius: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -474,7 +474,7 @@ ul.social-media-list i:hover {
 
 .thumbnail {
   border: 1px solid #5f509b;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 /* Products */
@@ -482,13 +482,13 @@ ul.social-media-list i:hover {
 .presto-panel-default {
   border-color: #ddd;
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 #product.presto-panel-default {
   border-color: #ddd;
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
+  border-radius: 10px;
   height: 270px;
 }
 
@@ -1025,7 +1025,7 @@ $lines-to-show: 2;
   background-color: transparent;
   color: #fff;
   border-color: transparent;
-  border-radius: 0px 16px 16px 0px;
+  border-radius: 0px 10px 10px 0px;
   height: 33px;
   position: absolute;
   top: 1px;
@@ -1037,7 +1037,7 @@ $lines-to-show: 2;
   background-color: transparent;
   color: #fff;
   border-color: transparent;
-  border-radius: 16px 0px 0px 16px;
+  border-radius: 10px 0px 0px 10px;
   height: 33px;
   position: absolute;
   top: 1px;
@@ -1058,7 +1058,7 @@ $lines-to-show: 2;
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 16px 16px 16px 16px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .quantity-input input:focus, .quantity-input button:focus {
