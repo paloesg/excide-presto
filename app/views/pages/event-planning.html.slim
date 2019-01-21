@@ -54,13 +54,15 @@
             .form-group.row
               .col-md-12
                 = label_tag :period, 'Campaign Period'
-              .col-md-6
-                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
-              .col-md-6
-                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+              .col-xs-6
+                = text_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control datetime-picker'
+                .to
+                  | -
+              .col-xs-6
+                = text_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               = label_tag :date, 'Date of Event*'
-              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control', required: true
+              = text_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control datetime-picker', required: true
             .form-group
               = label_tag :event, 'Event Purpose'
               i
@@ -115,9 +117,11 @@
               .col-md-12
                 = label_tag :period, 'Campaign Period'
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control datetime-picker'
+                .to
+                  | -
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               = label_tag :date, 'Brand/Type of Product*'
               = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control', required: true
@@ -174,9 +178,11 @@
               .col-md-12
                 = label_tag :period, 'Campaign Period'
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control datetime-picker'
+                .to
+                  | -
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               = label_tag :brand_type, 'Brand/Type of Product*'
               = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control', required: true
