@@ -9,22 +9,21 @@
             table.table.table-striped
               thead
                 tr
+                  th
                   th Number
                   th Email
+                  th Status
                   th Total
-                  th Date Requested
-                  th Approved
-                  th Rejected
+                  th Created At
               tbody
                 - @orders.each do |o|
                   tr
+                    td = link_to 'Show', edit_manage_order_path(o.number), class: "btn btn-default"
                     td #{o.number}
                     td #{o.user.email}
+                    td #{((o.state.eql? 'canceled') ? 'rejected' : o.state).titleize}
                     td #{o.total}
-                    td #{o.completed_at}
-                    td #{o.approved_at}
-                    td #{o.canceled_at}
-                    td = link_to 'View', edit_manage_order_path(o.number)
+                    td #{o.created_at.strftime('%F %H:%M')}
         - else
           .alert.alert-info
             ' No Orders found,
