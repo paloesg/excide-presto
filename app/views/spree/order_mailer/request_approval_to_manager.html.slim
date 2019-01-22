@@ -40,4 +40,6 @@ table.container
           = render 'spree/order_mailer/adjustment', adjustment: adjustment
         = render 'spree/order_mailer/total', order: @order
 
+p Here the link to manage this order : #{link_to "Order #{@order.number}", main_app.edit_manage_order_url(@order.number)}
+
 p If the above URL does not work try copying and pasting it into your browser. If you continue to have problems please feel free to contact us.
