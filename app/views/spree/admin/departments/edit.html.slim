@@ -4,7 +4,8 @@
   = link_to @company.name, spree.edit_admin_company_url(@company)
   | /
   '
-  = Spree.t(:edit_department)
+  = link_to Spree.t(:departments), spree.admin_company_departments_path(@company)
+  | / #{@department.name}
 
 = render partial: 'spree/admin/shared/error_messages', locals: { target: @company }
 
