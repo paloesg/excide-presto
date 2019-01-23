@@ -11,6 +11,7 @@ class Manage::OrdersController < Spree::BaseController
 
   def approve
     @order.approved_by(spree_current_user)
+    @order.update_column(:state, 'complete')
     Spree::OrderMailer.approve_email(@order).deliver_later
     redirect_to manage_orders_path
   end
