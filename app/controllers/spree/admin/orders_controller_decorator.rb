@@ -1,4 +1,5 @@
 Spree::Admin::OrdersController.class_eval do
+  # Override index method of spree/backend/app/controllers/spree/admin/orders_controller.rb
   def index
     params[:q] ||= {}
     params[:q][:completed_at_not_null] ||= '1' if Spree::Config[:show_only_complete_orders_by_default]
@@ -27,6 +28,7 @@ Spree::Admin::OrdersController.class_eval do
       params[:q][:completed_at_lt] = params[:q].delete(:created_at_lt)
     end
 
+    # Get completed orders from search
     @search = Spree::Order.where(state: 'complete').preload(:user).accessible_by(current_ability, :index).ransack(params[:q])
 
     # lazy loading other models here (via includes) may result in an invalid query
