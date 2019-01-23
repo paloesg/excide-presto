@@ -34,6 +34,7 @@ en:
   spree:
     order_state:
       awaiting_approval: 'Awaiting for Approval'
+      rejected: 'Rejected'
     order_mailer:
       cancel_email:
         subject: "order Rejected"
