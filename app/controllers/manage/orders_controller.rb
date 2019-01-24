@@ -19,6 +19,7 @@ class Manage::OrdersController < Spree::BaseController
   def cancel
     @order.canceled_by(spree_current_user)
     @order.update_column(:state, 'rejected')
+    Spree::OrderMailer.cancel_email(@order).deliver_later
     redirect_to manage_orders_path
   end
 

@@ -21,4 +21,8 @@ Spree::Order.class_eval do
     end).map(&:to_s)
     steps
   end
+
+  # Override spree send email to fix not send who is canceler and send email twice
+  def send_cancel_email
+  end
 end
