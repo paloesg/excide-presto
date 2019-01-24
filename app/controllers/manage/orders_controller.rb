@@ -11,14 +11,14 @@ class Manage::OrdersController < Spree::BaseController
 
   def approve
     @order.approved_by(spree_current_user)
-    @order.update_column(:state, 'complete')
+    @order.update_columns(state: 'complete', updated_at: Time.current)
     Spree::OrderMailer.approve_email(@order).deliver_later
     redirect_to manage_orders_path
   end
 
   def cancel
     @order.canceled_by(spree_current_user)
-    @order.update_column(:state, 'rejected')
+    @order.update_column(state: 'rejected', updated_at: Time.current)
     Spree::OrderMailer.cancel_email(@order).deliver_later
     redirect_to manage_orders_path
   end
