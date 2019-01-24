@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         get '/roles/new', to: 'roles#new', as: 'new_role'
         get '/roles/edit/:id', to: 'roles#edit', as: 'edit_role'
         get '/roles/detail/:id', to: 'roles#show', as: 'show_role'
+        get '/roles/users/:id', to: 'roles#users', as: 'users_role'
         member do
           match '/addresses' => 'companies#addresses', via: [:get, :put]
         end

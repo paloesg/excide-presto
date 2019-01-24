@@ -2,6 +2,8 @@ module Spree
   module Admin
     class CompaniesController < ResourceController
       before_action :set_company, only: [:edit, :update]
+      before_action :set_departments, only: [:users]
+      before_action :set_roles, only: [:users]
 
       def index
         @companies = Spree::Company.all
@@ -53,6 +55,14 @@ module Spree
 
       def set_company
         @company = Spree::Company.find(params[:id])
+      end
+
+      def set_departments
+        @departments = Spree::Department.where(company_id: params[:id])
+      end
+
+      def set_roles
+        @roles = Spree::Role.where(company_id: params[:id])
       end
 
       def company_params

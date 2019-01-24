@@ -30,6 +30,8 @@
           td= role.company.name if role.company
           td.actions.text-right
             - if params[:company_id].present?
+              = button_link_to '', admin_company_users_role_path(id: role.id), class: 'btn-sm btn-success', icon: 'user', id: 'admin_users_role'
+              '
               = button_link_to '', admin_company_edit_role_path(id: role.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_role'
             - else
               = link_to_edit(role, no_text: true) if can? :edit, role
