@@ -29,3 +29,15 @@
 .icon.img-responsive, .hero.img-responsive {
   padding-bottom: 10px;
 }
+
+[class*=" icon-"]:before, [class^=icon-]:before{
+  font-family: 'Glyphicons Halflings' !important;
+}
+
+.glyphicon, .icon, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close, #ui-datepicker-div .ui-widget-header .ui-icon.ui-icon-circle-triangle-w, #ui-datepicker-div .ui-widget-header .ui-icon.ui-icon-circle-triangle-e {
+  font-family: 'Glyphicons Halflings' !important;
+}
+
+.form-wrap.form-builder .frmb .field-actions .btn {
+  width: 70px !important;
+}

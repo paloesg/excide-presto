@@ -17,8 +17,7 @@ module Spree
       end
 
       def edit
-        @input_type = ["text", "number", "file"]
-        @fields = JSON.parse @service.fields
+
       end
 
       def update
