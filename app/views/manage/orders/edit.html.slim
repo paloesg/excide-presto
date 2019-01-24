@@ -1,0 +1,22 @@
+.col-md-12
+  h1 Order ##{@order.number} ― Awaiting Approval
+  .panel.panel-default
+    .panel-heading
+    .panel-body
+      .col-md-12
+        .table-responsive
+          table.table
+            tbody
+              - @order.line_items.each do |line_item|
+                tr
+                  td = image_tag(main_app.url_for(line_item.variant.images.first.url(:small)))
+                  td
+                    = line_item.name
+                    br
+                    = line_item.single_money.to_html
+                  td =
+                  td = line_item.display_amount.to_html
+      .pull-right
+        = link_to 'Approve All', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'
+        '
+        = link_to 'Reject All', cancel_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'

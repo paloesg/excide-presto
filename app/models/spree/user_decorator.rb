@@ -1,4 +1,7 @@
 Spree::User.class_eval do
+  belongs_to  :company
+  belongs_to  :department
+
   def active_for_authentication?
     super && approved?
   end

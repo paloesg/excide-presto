@@ -1,5 +1,15 @@
 .container
-  .breadcumb Home ❯ Edit My Account
+  nav#breadcrumbs
+    ol.breadcrumb
+      li
+        span
+          = link_to Spree.t(:home), spree.root_path
+      li
+        span
+          = link_to 'My Account', spree.account_path
+      li
+        span
+          = link_to 'Edit', spree.edit_account_path
   h1.my-account-title Edit My Account
 .container
   = render :partial => 'spree/shared/error_messages', :locals => { :target => @user }

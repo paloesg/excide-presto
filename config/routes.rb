@@ -14,9 +14,26 @@ Rails.application.routes.draw do
   post '/services/*id' => 'pages#create_request', as: :create_request, format: false
 
   Spree::Core::Engine.add_routes do
+    match '/orders/:id/reorder' => 'orders#reorder', :via => :post, :as => :reorder_order
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
       resources :services
+      resources :companies do
+        get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
+        get '/departments', to: 'departments#index', as: 'departments'
+        get '/departments/new', to: 'departments#new', as: 'new_department'
+        get '/departments/edit/:id', to: 'departments#edit', as: 'edit_department'
+        get '/departments/detail/:id', to: 'departments#show', as: 'show_department'
+        member do
+          match '/addresses' => 'companies#addresses', via: [:get, :put]
+        end
+      end
+
+      resources :users do
+        put '/update/role', to: 'users#update_role', as: 'update_roles'
+      end
+
+      resources :departments
       get '/pages/*id' => 'pages#show', as: :page, format: false
 
       resources :products do
@@ -27,4 +44,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :manage do
+    get '/', to: 'orders#index'
+    resources :orders, param: :order_id do
+      member do
+        post :approve, to: 'orders#approve'
+        post :cancel, to: 'orders#cancel'
+      end
+    end
+  end
 end

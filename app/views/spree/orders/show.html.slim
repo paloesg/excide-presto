@@ -1,0 +1,12 @@
+fieldset#order_summary data-hook=""
+  h1= accurate_title
+  - if order_just_completed?(@order)
+    strong= Spree.t(:thank_you_for_your_order)
+  #order data-hook=""
+    = render partial: 'spree/shared/order_details', locals: { order: @order }
+    br.clear/
+    p data-hook="links"
+      = link_to Spree.t(:back_to_store), spree.root_path, class: "button"
+      - unless order_just_completed?(@order)
+        - if try_spree_current_user && respond_to?(:account_path)
+          = link_to Spree.t(:my_account), account_path, class: "button"

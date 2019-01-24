@@ -51,7 +51,7 @@ Spree::FrontendHelper.class_eval do
   end
 
   def quantity_order(variant_id)
-    item_order = current_order.line_items.find_by(variant_id: variant_id)
+    item_order = current_order.line_items.find_by(variant_id: variant_id) if current_order.present?
     return item_order ? item_order.quantity : 0
   end
 end

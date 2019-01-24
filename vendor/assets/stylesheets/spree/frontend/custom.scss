@@ -46,8 +46,24 @@ body {
   // margin: 0 auto -80px;
 }
 
+.bg-login {
+
+  /* Full height */
+  height: 200% !important;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
   font-family: 'AmsiPro-Ultra', sans-serif;
+}
+
+.product-body > img {
+  min-height: 100px;
+  margin: 0px -10px;
 }
 
 body#login {
@@ -119,7 +135,7 @@ select#sort-by {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
-  border-radius: 15px;
+  border-radius: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -235,18 +251,20 @@ span.badge.badge-presto {
   left: 0px;
 }
 
-/* Margin Left */
-.m-l-65 {
-  margin-left: 65px;
-}
+/* Margin & Padding Helper */
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 65, 75, 100); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
 
-/* margin Bottom */
-.m-b-10 {
-  margin-bottom: 10px;
-}
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
 
-.m-b-40 {
-  margin-bottom: 40px;
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
 }
 
 .sort-by-panel {
@@ -291,6 +309,10 @@ span.badge.badge-presto {
   color: #ffffff;
   padding: 2px 10px 2px 0px;
   background-color: #5f509b;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
 }
 
 #presto-header .navbar-inverse .navbar-nav > li > a {
@@ -351,7 +373,7 @@ button.btn.btn-default.btn-search:hover {
   color: #5f509b;
   height: 50px;
   padding: 5px 15px;
-  margin: 20px 0px 0px 0px;
+  margin: 30px 0px 0px 0px;
   width: 100%;
   position: absolute;
 }
@@ -441,7 +463,6 @@ ul.social-media-list i:hover {
   }
 }
 
-
 /* Product Page */
 
 .presto-product-panel {
@@ -453,7 +474,7 @@ ul.social-media-list i:hover {
 
 .thumbnail {
   border: 1px solid #5f509b;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 /* Products */
@@ -461,7 +482,14 @@ ul.social-media-list i:hover {
 .presto-panel-default {
   border-color: #ddd;
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+#product.presto-panel-default {
+  border-color: #ddd;
+  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  height: 270px;
 }
 
 .presto-panel-footer {
@@ -497,7 +525,7 @@ span.price.selling.lead {
 }
 
 .product-list-item > .presto-panel-default:hover {
-  background: #eaeae9;
+  background: #fff;
 }
 
 /* Pagination */
@@ -521,7 +549,6 @@ span.price.selling.lead {
 }
 
 .breadcumb-cart{
-  font-weight: bold;
   color: #ffffff !important;
 }
 
@@ -570,16 +597,16 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-.number-input {
+.number-quantity {
   display: inline-flex;
 }
 
-.number-input,
-.number-input * {
+.number-quantity,
+.number-quantity * {
   box-sizing: border-box;
 }
 
-.number-input button {
+.number-quantity button {
   outline:none;
   -webkit-appearance: none;
   background-color: transparent;
@@ -593,8 +620,8 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
 }
 
-.number-input button:before,
-.number-input button:after {
+.number-quantity button:before,
+.number-quantity button:after {
   display: inline-block;
   position: absolute;
   content: '';
@@ -603,19 +630,19 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #212121;
   transform: translate(-50%, -50%);
 }
-.number-input button.plus:after {
+.number-quantity button.increase-quantity:after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.number-input .plus {
+.number-quantity .increase-quantity {
   border-radius: 0px 10px 10px 0px;
 }
 
-.number-input .min {
+.number-quantity .decrease-quantity {
   border-radius: 10px 0px 0px 10px;
 }
 
-.number-input input[type=number] {
+.number-quantity input[type=number] {
   font-family: sans-serif;
   min-width: 25px;
   max-width: 80px;
@@ -628,11 +655,16 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 0px;
 }
 
-.number-input input[type=button] {
+.number-quantity input[type=button] {
   font-size: 20px;
   background-color: #ffcc4e;
   color: #fff;
   border-color: transparent;
+}
+
+
+.number-quantity input:focus, .number-quantity button:focus {
+  outline: none;
 }
 
 .total-price {
@@ -652,10 +684,17 @@ input[type=number]::-webkit-outer-spin-button {
 .category-name > h4 {
   color: #5f509b;
   position: absolute;
-  top: 170px;
+  top: 180px;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+@media (max-width: 768px) {
+  .category-name > h4 {
+    top: 172px;
+    font-size: 15px;
+  }
 }
 
 .icon-list {
@@ -671,7 +710,7 @@ input[type=number]::-webkit-outer-spin-button {
 .icon-list > a > img {
   margin: 0 auto;
   padding: 10px;
-  max-height: -webkit-fill-available;
+  max-height: 90%;
 }
 
 .hero-image {
@@ -761,7 +800,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .pages-content {
   font-family: 'AmsiPro-Regular';
-  font-size: 1.5em;
+  font-size: 14px;
 }
 
 .pages-content > h3 {
@@ -910,6 +949,7 @@ input[type=number]::-webkit-outer-spin-button {
 #service_form > h2 {
   font-family: "AmsiPro-Ultra", sans-serif !important;
   color: #5f509b !important;
+  padding-bottom: 20px;
 }
 
 #service_form > h3 {
@@ -959,13 +999,14 @@ $lines-to-show: 2;
 
 .add-cart {
   position: relative;
-  top: 50%;
   margin-bottom: 20px;
   text-align: center;
+  width: 85%;
+  left: 8%;
 }
 
 .add-cart button {
-  width: 85%;
+  width: 100%;
 }
 
 .add-cart button:focus {
@@ -974,26 +1015,32 @@ $lines-to-show: 2;
 
 .quantity-input {
   position: relative;
-  left: 8%;
-  top: 50%;
-  display: inline-flex;
+  text-align: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: #5f509b;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
-  border-radius: 0px 16px 16px 0px;
+  border-radius: 0px 10px 10px 0px;
+  height: 33px;
+  position: absolute;
+  top: 1px;
+  right: 14px;
 }
 
 .quantity-input .decrease {
   font-size: 20px;
-  background-color: #5f509b;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
-  border-radius: 16px 0px 0px 16px;
+  border-radius: 10px 0px 0px 10px;
+  height: 33px;
+  position: absolute;
+  top: 1px;
 }
 
 .quantity-input .increase:hover, .quantity-input .decrease:hover {
@@ -1002,7 +1049,7 @@ $lines-to-show: 2;
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 59%;
+  width: 85%;
   padding: .5rem;
   border: solid #5f509b;
   background-color: #5f509b;
@@ -1011,7 +1058,7 @@ $lines-to-show: 2;
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 0px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .quantity-input input:focus, .quantity-input button:focus {
@@ -1052,4 +1099,25 @@ $lines-to-show: 2;
 
 .coupon-form button {
   margin-top: 10px;
+}
+
+.modal-content{
+  top:100px;
+}
+
+.container{
+  margin-top: 55px;
+}
+
+@media screen and (min-width: 768px){
+  .jumbotron {
+    margin-top: 20px;
+  }
+}
+
+.to {
+  position: absolute;
+  top: 6px;
+  right: -2px;
+  font-weight: bold
 }

@@ -4,7 +4,7 @@
 - if can? :admin, Spree::ServiceRequest
   ul.nav.nav-sidebar
     li.sidebar-menu-item
-      = link_to admin_service_requests_path do
+      = link_to admin_service_requests_path, class: 'icon-link' do
         span.icon.icon-star
         span.text Services Request
 - if can? :admin, Spree::Service
@@ -28,6 +28,12 @@
 - if Spree.user_class && can?(:admin, Spree.user_class)
   ul.nav.nav-sidebar
     = tab *Spree::BackendConfiguration::USER_TABS, url: spree.admin_users_path, icon: 'user'
+- if can? :admin, Spree::Company
+  ul.nav.nav-sidebar
+    li.sidebar-menu-item
+      = link_to admin_companies_path, class: 'icon-link' do
+        span.icon.icon-home
+        span.text Company
 - if can? :admin, current_store
   ul.nav.nav-sidebar
     = main_menu_tree Spree.t(:configurations), icon: "wrench", sub_menu: "configuration", url: "#sidebar-configuration"

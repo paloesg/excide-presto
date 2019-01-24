@@ -8,6 +8,8 @@
 //= require jquery_ujs
 //= require spree/backend
 //= require components/append_service_fields
+//= require components/get_departments_by_company
+//= require components/update_manager_role
 
 //= require_tree .
 //= require spree/backend/spree_multi_domain

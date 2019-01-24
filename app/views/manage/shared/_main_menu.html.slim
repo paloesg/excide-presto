@@ -1,0 +1,6 @@
+- if can? :manager, Spree::Order
+  ul.nav.nav-sidebar
+    li.sidebar-menu-item
+      = link_to manage_orders_path, class: 'icon-link' do
+        span.icon.icon-home
+        span.text Orders

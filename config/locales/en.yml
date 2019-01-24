@@ -32,9 +32,21 @@
 en:
   hello: "Hello world"
   spree:
+    order_mailer:
+      cancel_email:
+        subject: "order Rejected"
     admin:
       tab:
         product_sales: "Product Sales"
+      company:
+        details: "Details"
+        departments: "Departments"
+        address: "Address"
+    company: "Company"
+    company_updated: "Company Updated"
+    company_address: "Company Address"
+    department: "Department"
+    department_updated: "Department Updated"
     product_sales: "Product Sales"
     new_product_sale: "New Product Sales"
     sale_price: "Sale Price"
