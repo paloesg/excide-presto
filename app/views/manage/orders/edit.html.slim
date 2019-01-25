@@ -23,4 +23,4 @@
       .pull-right
         = link_to 'Approve All', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'
         '
-        = link_to 'Reject All', cancel_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'
+        = link_to 'Reject All', reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'

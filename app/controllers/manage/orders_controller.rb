@@ -1,6 +1,6 @@
 class Manage::OrdersController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
-  before_action :set_order, only: [:edit, :approve, :cancel]
+  before_action :set_order, only: [:edit, :approve, :reject]
 
   layout 'layouts/manage'
 
@@ -16,7 +16,7 @@ class Manage::OrdersController < Spree::BaseController
     redirect_to manage_orders_path
   end
 
-  def cancel
+  def reject
     @order.update_columns(state: 'rejected', updated_at: Time.current)
     @order.canceled_by(spree_current_user)
     Spree::OrderMailer.cancel_email(@order).deliver_later
