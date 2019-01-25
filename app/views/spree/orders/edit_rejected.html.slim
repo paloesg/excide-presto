@@ -38,6 +38,7 @@ hr
 div data-hook="cart_container"
   div data-hook="outside_cart_form"
     = form_for @order, url: reorder_rejected_path, html: { id: 'update-cart' } do |order_form|
+      = hidden_field_tag :order_id, @order.number
       .col-md-9 data-hook="inside_cart_form"
         .table-responsive data-hook="cart_items"
           = render partial: 'form', locals: { order_form: order_form }
@@ -59,7 +60,7 @@ div data-hook="cart_container"
               .col-md-8
                 h5
                   = Spree.t(:shipping)
-                  | \: #{shipment.shipping_method.name}
+                  | : #{shipment.shipping_method.name}
               .col-md-4
                 h5
                   strong= shipment.display_discounted_cost
