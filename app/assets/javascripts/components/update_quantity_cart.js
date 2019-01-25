@@ -1,8 +1,9 @@
-function update_quantity_cart(variant_id, quantity, order_id = null) {
+// If the order number is null it will update the order in cart
+function update_quantity_cart(variant_id, quantity, order_number = null) {
   console.log(variant_id, quantity, order_id);
   $.ajax({
     url: "/orders/populate",
-    data: "quantity="+quantity+"&variant_id="+variant_id+"&order_id="+order_id,
+    data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
       location.reload();
@@ -17,13 +18,13 @@ $(document).on('mouseleave','.popover-content',function(){
 
 $(document).ready(function (){
   var update_data;
-  var order_id = $('#order_id').val();
+  var order_number = $('#order_number').val();
   function start_timer_function(type, variant_id, quantity) {
     $('[data-toggle="item-cart"]').popover('destroy');
     update_data = setTimeout(function(){
       var item_text = quantity <= 1 ? "item" : "items";
       var type_text = type=='increase' ? "added" : "removed";
-      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_id);
+      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number);
 
       $('.decrease-quantity').data("click_count", 0)
       $('.increase-quantity').data("click_count", 0)

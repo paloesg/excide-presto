@@ -30,7 +30,7 @@ Spree::OrdersController.class_eval do
   end
 
   def populate
-    @order   = Spree::Order.find_by(number: params[:order_id]).present? ? Spree::Order.find_by(number: params[:order_id]) : current_order(create_order_if_necessary: true)
+    @order   = Spree::Order.find_by(number: params[:order_number]).present? ? Spree::Order.find_by(number: params[:order_number]) : current_order(create_order_if_necessary: true)
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
