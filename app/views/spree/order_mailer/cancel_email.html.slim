@@ -2,6 +2,7 @@ p Hi, #{@order.email}
 
 p Your order with order number : #{@order.number}
 p Has been rejected, you can edit the order and submit for approval again.
+p = link_to "Edit #{@order.number}", edit_rejected_url(@order.number)
 p
   | Rejected by : #{@order.canceler.email}
   - if @order.canceler.first_name.present?
