@@ -1,6 +1,5 @@
 // If the order number is null it will update the order in cart
 function update_quantity_cart(variant_id, quantity, order_number = null) {
-  console.log(variant_id, quantity, order_id);
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
