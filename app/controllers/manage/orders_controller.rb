@@ -13,6 +13,9 @@ class Manage::OrdersController < Spree::BaseController
     @order.update_columns(state: 'complete', updated_at: Time.current)
     @order.approved_by(spree_current_user)
     Spree::OrderMailer.approve_email(@order).deliver_later
+    admins.each do |admin|
+      Spree::OrderMailer.confirm_order_approved(@order, admin).deliver_now
+    end
     redirect_to manage_orders_path
   end
 
@@ -20,10 +23,17 @@ class Manage::OrdersController < Spree::BaseController
     @order.update_columns(state: 'rejected', updated_at: Time.current)
     @order.canceled_by(spree_current_user)
     Spree::OrderMailer.cancel_email(@order).deliver_later
+    admins.each do |admin|
+      Spree::OrderMailer.confirm_order_rejected(@order, admin).deliver_now
+    end
     redirect_to manage_orders_path
   end
 
   private
+
+  def admins
+    Spree::Role.find_by_name('admin').users
+  end
 
   def set_order
     @order = Spree::Order.includes(:adjustments).find_by!(number: params[:order_id])
