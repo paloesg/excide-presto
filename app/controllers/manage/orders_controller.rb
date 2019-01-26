@@ -16,7 +16,7 @@ class Manage::OrdersController < Spree::BaseController
     admins.each do |admin|
       Spree::OrderMailer.confirm_order_approved(@order, admin).deliver_now
     end
-    flash.notice = "The order with order number #{@order.number}, has been approved"
+    flash.notice = "The order with order number #{@order.number}, has been approved."
     redirect_to manage_orders_path
   end
 
@@ -27,7 +27,7 @@ class Manage::OrdersController < Spree::BaseController
     admins.each do |admin|
       Spree::OrderMailer.confirm_order_rejected(@order, admin).deliver_now
     end
-    flash.notice = "The order with order number #{@order.number}, has been rejected"
+    flash.notice = "The order with order number #{@order.number}, has been rejected."
     redirect_to manage_orders_path
   end
 

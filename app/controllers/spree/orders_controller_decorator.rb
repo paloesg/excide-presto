@@ -25,6 +25,7 @@ Spree::OrdersController.class_eval do
 
   def reorder_rejected
     @order.update_columns(state: 'awaiting_approval', updated_at: Time.current)
+    flash.notice = "Your order with order number #{@order.number}, is awaiting for approval."
     redirect_to account_path
   end
 
