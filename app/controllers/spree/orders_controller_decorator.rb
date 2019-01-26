@@ -1,5 +1,6 @@
 Spree::OrdersController.class_eval do
   respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
+  before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
   def update
     @variant = Spree::Variant.find(params[:variant_id]) if params[:variant_id]
@@ -20,11 +21,9 @@ Spree::OrdersController.class_eval do
   end
 
   def edit_rejected
-    @order = Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
   end
 
   def reorder_rejected
-    @order = Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
     @order.update_columns(state: 'awaiting_approval', updated_at: Time.current)
     redirect_to account_path
   end
@@ -64,4 +63,11 @@ Spree::OrdersController.class_eval do
       end
     end
   end
+
+  private
+
+  def rejected_order
+    @order = Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
+  end
+
 end
