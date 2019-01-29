@@ -1,5 +1,5 @@
 Spree::Admin::RolesController.class_eval do
-  before_action :set_companies, only: [:index, :new, :edit, :users]
+  before_action :set_companies, only: [:index, :new, :edit]
   before_action :set_company, only: [:index, :new, :edit, :users]
   before_action :set_roles, only: [:index]
   before_action :set_role, only: [:edit, :show, :users]

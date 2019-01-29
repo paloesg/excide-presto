@@ -20,16 +20,10 @@ Rails.application.routes.draw do
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
         #departments in company
-        get '/departments', to: 'departments#index', as: 'departments'
-        get '/departments/new', to: 'departments#new', as: 'new_department'
-        get '/departments/edit/:id', to: 'departments#edit', as: 'edit_department'
-        get '/departments/detail/:id', to: 'departments#show', as: 'show_department'
+        resources :departments
         #roles in company
-        get '/roles', to: 'roles#index', as: 'roles'
-        get '/roles/new', to: 'roles#new', as: 'new_role'
-        get '/roles/edit/:id', to: 'roles#edit', as: 'edit_role'
-        get '/roles/detail/:id', to: 'roles#show', as: 'show_role'
-        get '/roles/users/:id', to: 'roles#users', as: 'users_role'
+        resources :roles
+        get '/roles/:id/users', to: 'roles#users', as: 'users_role'
         member do
           match '/addresses' => 'companies#addresses', via: [:get, :put]
         end

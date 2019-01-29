@@ -25,4 +25,5 @@
               = check_box_tag 'manager', 'yes', role_manager.present? ? true : false, id: "user_spree_role_#{user.id}", class:'role-check'
           td = button_link_to '', edit_admin_user_path(id: user.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department'
 - else
-  | No users in this department.
+  .alert.alert-warning
+    | No users in this department.
