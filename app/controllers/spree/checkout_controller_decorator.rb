@@ -7,16 +7,15 @@ Spree::CheckoutController.class_eval do
         redirect_to(checkout_state_path(@order.state)) && return
       end
 
-      if @order.completed?
-        @current_order = nil
-        flash.notice = Spree.t(:order_processed_successfully)
-        flash['order_completed'] = true
-        redirect_to completion_route
-        @order.approved_by(@order.user) if managers.empty? or @order.user.has_spree_role? :manager
-      elsif @order.awaiting_approval?
-        send_email_to_manager
+      if @order.awaiting_approval?
         @order.finalize!
-        flash.notice = 'Your order has been processed successfully, awaiting for approval'
+        if managers.empty? or @order.user.has_spree_role? :manager
+          @order.approved_by(@order.user)
+          flash.notice = 'Your order has been processed successfully'
+        else
+          send_email_to_managers
+          flash.notice = 'Your order is awaiting for approval from manager'
+        end
         redirect_to completion_route
       else
         redirect_to checkout_state_path(@order.state)
@@ -28,11 +27,14 @@ Spree::CheckoutController.class_eval do
 
   private
 
-  def send_email_to_manager
-    managers = Spree::Role.get_manager_by_department(current_store, @order.user)
+  def send_email_to_managers
     managers.each do |manager|
       Spree::OrderMailer.request_approval_to_manager(@order, manager).deliver_now
     end
+  end
+
+  def managers
+    managers = Spree::Role.get_manager_by_department(current_store, @order.user)
   end
 
   def set_order
