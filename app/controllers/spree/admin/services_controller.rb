@@ -17,10 +17,12 @@ module Spree
       end
 
       def edit
-
       end
 
       def update
+        if params[:taxon_ids].present?
+          params[:taxon_ids] = params[:taxon_ids].split(',')
+        end
         @service = Service.find(params['id'])
         if @service.update(service_params)
           flash[:success] = flash_message_for(@service, :successfully_updated)
@@ -32,7 +34,7 @@ module Spree
       private
 
       def service_params
-        params.permit(:name, :fields)
+        params.permit(:name, :fields, taxon_ids: [])
       end
     end
   end

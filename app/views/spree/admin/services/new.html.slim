@@ -8,12 +8,11 @@
 
 .row
   .col-xs-12.col-md-12
-    = form_tag('', id: "new_service")
-      .form-group
-        = label_tag :name
-        = text_field_tag :name, nil, class: 'form-control name-service'
+    = form_for [:admin, @service], html: { class:"new_form_service" } do |f|
+      = render partial: 'form', locals: { f: f }
       .form-group
         .new-field-service-form
-      .form-group
-        .pull-right
-          input#save_service type="button" value=("Submit") class="btn btn-success btn-save-service"
+      .form-actions data-hook="buttons"
+        = button Spree.t('actions.create'), 'ok', 'button', {class: 'btn-success btn-save-service', data: { disable_with: "#{ Spree.t(:saving) }..." }}
+        span.or= Spree.t(:or)
+        = button_link_to Spree.t('actions.cancel'), collection_url, icon: 'remove'

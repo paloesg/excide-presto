@@ -1,7 +1,7 @@
-function new_service(name, fields) {
+function new_service(name, fields, taxon_ids) {
   $.ajax({
     url: "/admin/services",
-    data: "name="+name+"&fields="+fields,
+    data: "name="+name+"&fields="+fields+"&taxon_ids="+taxon_ids,
     type:"post",
     success:function( data ) {
       console.log("success")
@@ -11,10 +11,10 @@ function new_service(name, fields) {
   });
 }
 
-function edit_service(id, name, fields) {
+function edit_service(id, name, fields, taxon_ids) {
   $.ajax({
     url: "/admin/services/"+id,
-    data: "name="+name+"&fields="+fields,
+    data: "name="+name+"&fields="+fields+"&taxon_ids="+taxon_ids,
     type:"put",
     success:function( data ) {
       console.log("success")
@@ -39,15 +39,18 @@ $(document).ready(function() {
 
   $(document).on('click', '.btn-save-service', function() {
     var fields_service = new_service_form.actions.getData('json', true);
-    var name_service = $('.name-service').val();
-    new_service(name_service, fields_service);
+    var name_service = $('#service_name').val();
+    var taxon_ids = $(".taxon_ids").select2('val');
+    new_service(name_service, fields_service, taxon_ids);
   });
 
-  $(document).on('click', '.btn-edit-service', function() {
+   $(document).on('click', '.btn-edit-service', function() {
     var fields_service = edit_service_form.actions.getData('json', true);
     var id_service = $('.id-edit-service').val();
-    var name_service = $('.name-edit-service').val();
-    edit_service(id_service, name_service, fields_service);
+    var name_service = $('#service_name').val();
+    var taxon_ids = $(".taxon_ids").select2('val');
+    console.log(taxon_ids);
+    edit_service(id_service, name_service, fields_service, taxon_ids);
   });
 })
 

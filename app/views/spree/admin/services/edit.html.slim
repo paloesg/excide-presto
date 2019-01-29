@@ -8,14 +8,14 @@
 
 .row
   .col-xs-12.col-md-12
-    = form_tag('', id: "edit_service")
+    = form_for [:admin, @service], method: :put, html: { class:"edit_form_service" } do |f|
+      = render partial: 'form', locals: { f: f }
       .form-group
-        = label_tag :name
-        = text_field_tag :name, @service.name, class: 'form-control name-edit-service'
+        = label_tag :fields
         = hidden_field_tag :service_id, @service.id, class: 'id-edit-service'
         = hidden_field_tag :service_fields, @service.fields, class: "service-fields"
-      .form-group
         .edit-field-service-form
-      .form-group
-        .pull-right
-          input#save_edit_service type="button" value=("Submit") class="btn btn-success btn-edit-service"
+      .form-actions data-hook="buttons"
+        = button Spree.t('actions.update'), 'refresh', 'button', {class: 'btn-success btn-edit-service', data: { disable_with: "#{ Spree.t(:saving) }..." }}
+        span.or= Spree.t(:or)
+        = button_link_to Spree.t('actions.cancel'), collection_url, icon: 'delete'
