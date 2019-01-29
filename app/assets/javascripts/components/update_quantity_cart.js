@@ -35,6 +35,13 @@ $(document).ready(function (){
     clearTimeout(update_data);
   }
 
+  $(document).on('click', '.delete_line_item', function() {
+    var this_variant = $(this).parent().parent().find('.variant').val();
+    var this_quantity = $(this).parent().parent().find('.line_item_quantity').val();
+    var this_order_number = $('#order_number').val();
+    update_quantity_cart(this_variant, -(this_quantity), this_order_number);
+  })
+
   $(document).on('click', '.decrease-quantity,.increase-quantity', function() {
     stop_timer_function();
     var $btn = $(this);
