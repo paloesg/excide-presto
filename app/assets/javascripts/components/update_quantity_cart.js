@@ -36,10 +36,11 @@ $(document).ready(function (){
   }
 
   $(document).on('click', '.delete_line_item', function() {
-    var this_variant = $(this).parent().parent().find('.variant').val();
-    var this_quantity = $(this).parent().parent().find('.line_item_quantity').val();
-    var this_order_number = $('#order_number').val();
-    update_quantity_cart(this_variant, -(this_quantity), this_order_number);
+    var variant = $(this).closest('tr').find('.variant').val();
+    var quantity = $(this).closest('tr').find('.line_item_quantity');
+    var order_number = $('#order_number').val();
+    update_quantity_cart(variant, -(quantity.val()), order_number);
+    quantity.val(0);
   })
 
   $(document).on('click', '.decrease-quantity,.increase-quantity', function() {
