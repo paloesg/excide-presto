@@ -41,4 +41,4 @@
   .alert.alert-warning
     = Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Role))
     | ,
-    | \#{link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::Role}!
+    | #{link_to(Spree.t(:add_one), params[:company_id].present? ? admin_company_new_role_path : new_object_url) if can? :create, Spree::Role}!
