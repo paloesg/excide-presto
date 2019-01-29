@@ -366,9 +366,16 @@ input#keywords {
 }
 
 button.btn.btn-default.btn-search {
+  font-size: 14.2px;
+  border: 1px solid #ccc;
   border-left: 0;
   color: #d0d0d0;
   z-index: 10;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
 button.btn.btn-default.btn-search:hover {
