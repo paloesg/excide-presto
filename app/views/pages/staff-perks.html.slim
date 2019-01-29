@@ -2,16 +2,21 @@
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/perks.png')}); background-color: '#ffcc4e'"
     .container.category-container
-      .breadcumb-cart Home ❯ Service
+      nav#breadcrumbs
+        ol.breadcrumb.hero-breadcrumbs
+          li
+            span
+              = link_to Spree.t(:home), spree.root_path
+          li
+            span
+              = link_to 'Staff Perks', page_path('staff-perks')
       h1.shopping-cart-title Staff Perks
 
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-= link_to 'Vouchers', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple'
-
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p Staff rewards are an essential component of effective employee engagement strategies. Great work perks go beyond salary to keep your talent both happy and engaged.
 
@@ -24,7 +29,7 @@
       #modalContent.modal-body
         #service_form
           h2 Vouchers Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Vouchers'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -49,3 +54,4 @@
               = label_tag :enquiry, 'Enquiry'
               = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+= link_to 'GET QUOTE', '#', 'data-toggle': 'modal', 'data-target': '#formContent', class: 'presto-btn btn-purple m-r-10 m-b-10'

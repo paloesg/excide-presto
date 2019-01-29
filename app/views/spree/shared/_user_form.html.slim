@@ -1,12 +1,16 @@
-fieldset#password-credentials
-  .form-group
-    = f.text_field :first_name, :class => 'form-control', :placeholder => Spree.t(:first_name)
-  .form-group
-    = f.text_field :last_name, :class => 'form-control', :placeholder => Spree.t(:last_name)
-  .form-group
-    = f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email)
-  .form-group
-    = f.text_field :company_name, :class => 'form-control', :placeholder => Spree.t(:company_name)
-  .form-group
-    = f.text_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)
-div data-hook="signup_below_password_fields"
+= form_for Spree::User.new, :as => :spree_user, :url => spree.registration_path do |f|
+  div data-hook="signup_inside_form"
+    fieldset
+      .form-group
+        = f.text_field :first_name, :class => 'form-control', :placeholder => Spree.t(:first_name)
+      .form-group
+        = f.text_field :last_name, :class => 'form-control', :placeholder => Spree.t(:last_name)
+      .form-group
+        = f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email)
+      .form-group
+        = f.text_field :company_name, :class => 'form-control', :placeholder => Spree.t(:company_name)
+      .form-group
+        = f.text_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)
+    p= f.submit Spree.t(:submit), :class => 'presto-btn btn-lg btn-purple btn-block'
+
+
