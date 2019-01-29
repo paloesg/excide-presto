@@ -6,3 +6,6 @@ div data-hook="admin_service_form_taxons"
   = f.field_container :taxons, class: ['form-group'] do
     = f.label :taxon_ids, Spree.t(:taxons)
     = f.select :taxon_ids, Spree::Taxon.where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Services').id}).map { |t| [t.name, t.id] }, {}, { multiple: true, class: "select2 taxon_ids" }
+.form-group
+  = label_tag :fields
+  .service-formbuilder

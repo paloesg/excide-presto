@@ -11,10 +11,8 @@
     = form_for [:admin, @service], method: :put, html: { class:"edit_form_service" } do |f|
       = render partial: 'form', locals: { f: f }
       .form-group
-        = label_tag :fields
         = hidden_field_tag :service_id, @service.id, class: 'id-edit-service'
         = hidden_field_tag :service_fields, @service.fields, class: "service-fields"
-        .edit-field-service-form
       .form-actions data-hook="buttons"
         = button Spree.t('actions.update'), 'refresh', 'button', {class: 'btn-success btn-edit-service', data: { disable_with: "#{ Spree.t(:saving) }..." }}
         span.or= Spree.t(:or)

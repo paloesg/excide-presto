@@ -7,6 +7,9 @@ module Spree
       end
 
       def create
+        if params[:taxon_ids].present?
+          params[:taxon_ids] = params[:taxon_ids].split(',')
+        end
         @service = Service.new(service_params)
         @service.save
         if @service.save

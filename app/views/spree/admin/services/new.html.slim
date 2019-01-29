@@ -10,8 +10,6 @@
   .col-xs-12.col-md-12
     = form_for [:admin, @service], html: { class:"new_form_service" } do |f|
       = render partial: 'form', locals: { f: f }
-      .form-group
-        .new-field-service-form
       .form-actions data-hook="buttons"
         = button Spree.t('actions.create'), 'ok', 'button', {class: 'btn-success btn-save-service', data: { disable_with: "#{ Spree.t(:saving) }..." }}
         span.or= Spree.t(:or)
