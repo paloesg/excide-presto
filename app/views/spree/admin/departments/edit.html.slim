@@ -9,5 +9,4 @@
   .col-xs-12.col-md-12
     = form_for @department, url: spree.admin_department_url, method: :put do |f|
       = render partial: 'form', locals: { f: f }
-      .form-actions
-        = f.submit 'Submit', class: 'btn btn-primary btn-success'
+      = render partial: 'spree/admin/shared/edit_resource_links', locals: { collection_url: spree.admin_company_departments_path(@company) }

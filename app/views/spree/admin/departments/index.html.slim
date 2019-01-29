@@ -23,4 +23,5 @@
             '
             = button_link_to '', admin_company_department_path(id: department.id), class: 'btn-sm btn-success', icon: 'user', id: 'admin_show_department'
 - else
-  | No departments created yet.
+  .alert.alert-warning
+    | #{Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Department))}, #{link_to(Spree.t(:add_one), new_admin_company_department_path) if can? :create, Spree::Department}!

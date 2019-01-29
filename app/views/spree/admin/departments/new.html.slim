@@ -10,5 +10,4 @@
     = form_for ([:admin, Spree::Department.new]), url: spree.admin_departments_url, method: :post do |f|
       = render partial: 'form', locals: { f: f }
       = f.hidden_field :company_id, value: @company.id
-      .form-actions
-        = f.submit 'Submit', class: 'btn btn-primary btn-success'
+      = render partial: 'spree/admin/shared/new_resource_links', locals: { collection_url: spree.admin_company_departments_path(@company) }

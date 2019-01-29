@@ -12,4 +12,4 @@
 = form_for [:admin, @role] do |f|
   fieldset
     = render partial: 'form', locals: { f: f }
-    = render partial: 'spree/admin/shared/new_resource_links'
+    = render partial: 'spree/admin/shared/new_resource_links', locals: { collection_url: params[:company_id].present? ? spree.admin_company_roles_path(@company) : spree.admin_roles_url }

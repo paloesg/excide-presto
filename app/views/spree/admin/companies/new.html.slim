@@ -7,3 +7,4 @@
   .col-xs-12.col-md-12
     = form_for @company, url: spree.admin_companies_url, method: :post do |f|
       = render partial: 'form', locals: { f: f }
+      = render partial: 'spree/admin/shared/new_resource_links'
