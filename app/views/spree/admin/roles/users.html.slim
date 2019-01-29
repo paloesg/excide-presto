@@ -2,16 +2,11 @@
   = render partial: 'spree/admin/companies/sidebar', locals: { current: :role }
 
   - content_for :page_title do
-    = link_to @company.name, spree.edit_admin_company_url(@company)
-    | /
-    '
-    = link_to Spree.t(:roles), spree.admin_company_roles_path(@company)
-    | / #{@role.name.capitalize} / #{Spree.t(:users)}
+    | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{link_to Spree.t(:roles), spree.admin_company_roles_path(@company)} / #{@role.name.capitalize} / #{Spree.t(:users)}
 
 - else
   - content_for :page_title do
-    = link_to Spree.t(:roles), spree.admin_roles_url
-    | / #{@role.name.capitalize}
+    | #{link_to Spree.t(:roles), spree.admin_roles_url} / #{@role.name.capitalize}
 
 - if @role.users.any?
   table.table

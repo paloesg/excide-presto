@@ -1,8 +1,7 @@
 = render partial: 'spree/admin/companies/sidebar', locals: { current: :department }
 
 - content_for :page_title do
-  = link_to @company.name, spree.edit_admin_company_url(@company)
-  | / #{Spree.t(:departments)}
+  | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{Spree.t(:departments)}
 
 - content_for :page_actions do
   = button_link_to Spree.t(:new_department), new_admin_company_department_path, class: 'btn-success', icon: 'add', id: 'admin_new_department'

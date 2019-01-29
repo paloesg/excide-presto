@@ -1,10 +1,7 @@
 = render partial: 'spree/admin/companies/sidebar', locals: { current: :address }
 
 - content_for :page_title do
-  = link_to @company.name, spree.edit_admin_company_url(@company)
-  | /
-  '
-  = Spree.t(:addresses)
+  | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{Spree.t(:addresses)}
 
 #admin_company_edit_addresses data-hook="admin_company_addresses"
   div data-hook="admin_company_edit_form_header"
