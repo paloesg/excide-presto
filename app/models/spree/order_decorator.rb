@@ -42,4 +42,20 @@ Spree::Order.class_eval do
   # Override spree send email to fix not send who is canceler and send email twice
   def send_cancel_email
   end
+
+  # Override spree method finalize!, remove send email method deliver_order_confirmation_email
+  # spree/core/app/models/spree/order.rb
+  def finalize!
+    all_adjustments.each(&:close)
+    updater.update_payment_state
+    shipments.each do |shipment|
+      shipment.update!(self)
+      shipment.finalize!
+    end
+    updater.update_shipment_state
+    save!
+    updater.run_hooks
+    touch :completed_at
+    consider_risk
+  end
 end

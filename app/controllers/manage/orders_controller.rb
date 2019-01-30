@@ -11,6 +11,7 @@ class Manage::OrdersController < Spree::BaseController
 
   def approve
     @order.completed_by(spree_current_user)
+    @order.deliver_order_confirmation_email
     Spree::OrderMailer.approve_email(@order).deliver_later
     admins.each do |admin|
       Spree::OrderMailer.confirm_order_approved(@order, admin).deliver_now
