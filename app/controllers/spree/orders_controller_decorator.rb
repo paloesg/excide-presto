@@ -25,6 +25,8 @@ Spree::OrdersController.class_eval do
 
   def reorder_rejected
     @order.update_columns(state: 'awaiting_approval', updated_at: Time.current)
+    @order.deliver_order_confirmation_email
+    send_email_to_managers
     flash.notice = "Your order with order number #{@order.number}, is awaiting for approval."
     redirect_to account_path
   end
@@ -66,6 +68,16 @@ Spree::OrdersController.class_eval do
   end
 
   private
+
+  def send_email_to_managers
+    managers.each do |manager|
+      Spree::OrderMailer.request_approval_to_manager(@order, manager).deliver_now
+    end
+  end
+
+  def managers
+    managers = Spree::Role.get_manager_by_department(current_store, @order.user)
+  end
 
   def rejected_order
     @order = Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
