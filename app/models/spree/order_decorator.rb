@@ -4,6 +4,13 @@ Spree::Order.class_eval do
     go_to_state :confirm, if: ->(order) { order.confirmation_required? }
     go_to_state :awaiting_approval
     go_to_state :rejected
+    go_to_state :complete
+  end
+
+  # Order completed and approved by user
+  def completed_by(user)
+    approved_by(user)
+    update_column(:state, 'complete')
   end
 
   def self.department(current_user)
