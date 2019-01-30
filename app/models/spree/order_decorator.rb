@@ -7,10 +7,16 @@ Spree::Order.class_eval do
     go_to_state :complete
   end
 
-  # Order completed and approved by user
+  # Update order state and approved by user
   def completed_by(user)
     approved_by(user)
-    update_column(:state, 'complete')
+    update_columns(state: 'complete', updated_at: Time.current)
+  end
+
+  # Update order state and canceled by user
+  def rejected_by(user)
+    canceled_by(user)
+    update_columns(state: 'rejected', updated_at: Time.current)
   end
 
   def self.department(current_user)

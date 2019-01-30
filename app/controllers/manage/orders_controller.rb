@@ -10,8 +10,7 @@ class Manage::OrdersController < Spree::BaseController
   end
 
   def approve
-    @order.update_columns(state: 'complete', updated_at: Time.current)
-    @order.approved_by(spree_current_user)
+    @order.completed_by(spree_current_user)
     Spree::OrderMailer.approve_email(@order).deliver_later
     admins.each do |admin|
       Spree::OrderMailer.confirm_order_approved(@order, admin).deliver_now
@@ -21,8 +20,7 @@ class Manage::OrdersController < Spree::BaseController
   end
 
   def reject
-    @order.update_columns(state: 'rejected', updated_at: Time.current)
-    @order.canceled_by(spree_current_user)
+    @order.rejected_by(spree_current_user)
     Spree::OrderMailer.cancel_email(@order).deliver_later
     admins.each do |admin|
       Spree::OrderMailer.confirm_order_rejected(@order, admin).deliver_now
