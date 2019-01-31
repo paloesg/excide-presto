@@ -2,7 +2,7 @@
   .col-md-6.col-sm-5.flex-col
     #product-description.flex-panel data-hook="product_description"
       h3.product-section-title itemprop="name" = @product.brand if @product.brand
-      = @product.name
+      strong.product-name = @product.name
       #cart-form.flex-footer data-hook="cart_form"
         span.lead.price.selling.modal-price content="#{@product.price_in(current_currency).amount.to_d}" itemprop="price"
           = display_price(@product)

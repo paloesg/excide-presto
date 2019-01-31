@@ -61,6 +61,10 @@ h1.product-title.text-center, span.lead.price.selling, h3.product-section-title,
   font-family: 'AmsiPro-Ultra', sans-serif;
 }
 
+h3.product-section-title {
+  margin-bottom: 5px !important;
+}
+
 .product-body > img {
   min-height: 100px;
   margin: 0px -10px;
@@ -804,6 +808,11 @@ input[type=number]::-webkit-outer-spin-button {
 
 .flex-footer {
   margin-top: 57px;
+}
+
+.flex-panel > strong.product-name {
+  font-family: 'AmsiPro-Regular', sans-serif;
+  font-size: 16px;
 }
 
 /* Presto Modal */
