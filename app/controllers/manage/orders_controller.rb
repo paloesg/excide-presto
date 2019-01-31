@@ -5,7 +5,7 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
+    @orders = current_store.orders.department(spree_current_user).order(:state, created_at: :desc)
     authorize! :read, @orders
   end
 
