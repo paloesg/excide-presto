@@ -18,10 +18,10 @@
                 - @orders.each do |o|
                   tr
                     td = link_to o.number, edit_manage_order_path(o.number)
-                    td #{o.user.email}
-                    td #{((o.state.eql? 'canceled') ? 'rejected' : o.state).titleize}
-                    td #{o.total}
-                    td #{o.created_at.strftime('%F %H:%M')}
+                    td = o.user.email
+                    td = ((o.state.eql? 'complete') ? 'approved' : o.state).titleize
+                    td = o.total
+                    td = o.created_at.strftime('%F %H:%M')
         - else
           .alert.alert-info
             ' No Orders found,
