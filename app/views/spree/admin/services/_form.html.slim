@@ -2,6 +2,10 @@
   = f.label :name
   = f.text_field :name, class: 'form-control name-service'
   = f.error_message_on :name
+= f.field_container :description, class: ['form-group'] do
+  = f.label :description
+  = f.text_field :description, class: 'form-control description-service'
+  = f.error_message_on :description
 div data-hook="admin_service_form_taxons"
   = f.field_container :taxons, class: ['form-group'] do
     = f.label :taxon_ids, Spree.t(:taxons)
@@ -9,3 +13,15 @@ div data-hook="admin_service_form_taxons"
 .form-group
   = label_tag :fields
   .service-formbuilder
+= f.field_container :meta_title, class: ['form-group'] do
+  = f.label :meta_title
+  = f.text_field :meta_title, class: 'form-control meta_title-service'
+  = f.error_message_on :meta_title
+= f.field_container :meta_keywords, class: ['form-group'] do
+  = f.label :meta_keywords
+  = f.text_field :meta_keywords, class: 'form-control meta_keywords-service'
+  = f.error_message_on :meta_keywords
+= f.field_container :meta_description, class: ['form-group'] do
+  = f.label :meta_description
+  = f.text_field :meta_description, class: 'form-control meta_description-service'
+  = f.error_message_on :meta_description

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_081753) do
+ActiveRecord::Schema.define(version: 2019_01_31_043634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -730,6 +730,11 @@ ActiveRecord::Schema.define(version: 2019_01_28_081753) do
     t.json "fields", default: "[]"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.text "description"
+    t.string "meta_title"
+    t.string "meta_keywords"
+    t.text "meta_description"
   end
 
   create_table "spree_services_taxons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

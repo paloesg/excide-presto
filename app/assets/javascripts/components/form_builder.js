@@ -1,24 +1,24 @@
-function new_service(name, fields, taxon_ids) {
+function new_service(data) {
   $.ajax({
     url: "/admin/services",
-    data: "name="+name+"&fields="+fields+"&taxon_ids="+taxon_ids,
+    data: "name="+data.name+"&fields="+data.fields+"&taxon_ids="+data.taxon_ids+"&description="+data.description+"&meta_title="+data.meta_title+"&meta_keywords="+data.meta_keywords+"&meta_description="+data.meta_description,
     type:"post",
-    success:function( data ) {
+    success:function() {
       window.location.replace("/admin/services");
     },
-    error:function( result ){ console.log(["error", result]); }
+    error:function( error ){ console.log(["error", error]); }
   });
 }
 
-function edit_service(id, name, fields, taxon_ids) {
+function edit_service(data) {
   $.ajax({
-    url: "/admin/services/"+id,
-    data: "name="+name+"&fields="+fields+"&taxon_ids="+taxon_ids,
+    url: "/admin/services/"+data.id,
+    data: "name="+data.name+"&fields="+data.fields+"&taxon_ids="+data.taxon_ids+"&description="+data.description+"&meta_title="+data.meta_title+"&meta_keywords="+data.meta_keywords+"&meta_description="+data.meta_description,
     type:"put",
-    success:function( data ) {
+    success:function() {
       window.location.replace("/admin/services");
     },
-    error:function( result ){ console.log(["error", result]); }
+    error:function( error ){ console.log(["error", error]); }
   });
 }
 
@@ -36,17 +36,29 @@ $(document).ready(function() {
   }
 
   $(document).on('click', '.btn-save-service', function() {
-    var fields_service = service_formbuilder.actions.getData('json', true);
-    var name_service = $('#service_name').val();
-    var taxon_ids = $(".taxon_ids").select2('val');
-    new_service(name_service, fields_service, taxon_ids);
+    data = {
+      "name": $('#service_name').val(),
+      "description": $('#service_description').val(),
+      "taxon_ids": $(".taxon_ids").select2('val'),
+      "fields": service_formbuilder.actions.getData('json', true),
+      "meta_title": $('#service_meta_title').val(),
+      "meta_keywords": $('#service_meta_keywords').val(),
+      "meta_description": $('#service_meta_description').val(),
+    }
+    new_service(data);
   });
 
    $(document).on('click', '.btn-edit-service', function() {
-    var fields_service = service_formbuilder.actions.getData('json', true);
-    var id_service = $('.id-edit-service').val();
-    var name_service = $('#service_name').val();
-    var taxon_ids = $(".taxon_ids").select2('val');
-    edit_service(id_service, name_service, fields_service, taxon_ids);
+    data = {
+      "id": $('.id-edit-service').val(),
+      "name": $('#service_name').val(),
+      "description": $('#service_description').val(),
+      "taxon_ids": $(".taxon_ids").select2('val'),
+      "fields": service_formbuilder.actions.getData('json', true),
+      "meta_title": $('#service_meta_title').val(),
+      "meta_keywords": $('#service_meta_keywords').val(),
+      "meta_description": $('#service_meta_description').val(),
+    }
+    edit_service(data);
   });
 })

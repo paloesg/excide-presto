@@ -1,8 +1,5 @@
 - content_for :page_title do
-  = link_to Spree.t(:service), spree.admin_services_url
-  | /
-  '
-  = Spree.t(:edit_service)
+  | #{link_to Spree.t(:service), spree.admin_services_url} / #{Spree.t(:edit_service)}
 
 = render partial: 'spree/admin/shared/error_messages', locals: { target: @service }
 

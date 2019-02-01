@@ -13,6 +13,16 @@
           = link_to(image_tag(main_app.url_for(category.icon.try(:attachment)), class: 'img-responsive'), seo_url(category))
         - else
           = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(category))
+  - @services.each do |service|
+    .col-md-3.col-xs-6
+      .icon-list.text-center style="background-color: #{service.color}"
+        .category-name
+          h4= service.name
+        / Category icon image size 600x480
+        - if service.icon
+          = link_to(image_tag(main_app.url_for(service.icon.try(:attachment)), class: 'img-responsive'), seo_url(service))
+        - else
+          = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(service))
   .col-md-3.col-xs-6
     .icon-list.text-center style="background-color: #7FC2BA"
         .category-name
