@@ -4,10 +4,10 @@ function showServiceForm(url, fields) {
   //Change field name
   for (var i in formData) {
     if (formData[i].type == "file") {
-      formData[i].name = "fields[file]["+formData[i].name+"]";
+      formData[i].name = "fields[file]["+formData[i].label+"]";
     }
     else {
-      formData[i].name = "fields[text]["+formData[i].name+"]";
+      formData[i].name = "fields[text]["+formData[i].label+"]";
     }
   }
 
@@ -41,4 +41,3 @@ function showServiceForm(url, fields) {
     $('#serviceContent').find('.modal-body').html('<div class="col-xs-offset-5"><div class="loader"></div></div>');
   })
 }
-

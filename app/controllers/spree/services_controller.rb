@@ -1,6 +1,11 @@
 class Spree::ServicesController < Spree::StoreController
   before_action :load_service, only: :show
   before_action :load_taxon, only: :index
+  before_action :set_taxonomies
+
+  def index
+    @services = Spree::Taxonomy.find_by_name('Services').root.children.all()
+  end
 
   def show_modal
     load_service
@@ -33,6 +38,10 @@ class Spree::ServicesController < Spree::StoreController
       params.permit!
       redirect_to url_for(params), status: :moved_permanently
     end
+  end
+
+  def set_taxonomies
+    @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
 end

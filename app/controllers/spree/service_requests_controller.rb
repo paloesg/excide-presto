@@ -18,7 +18,7 @@ class Spree::ServiceRequestsController < Spree::StoreController
     @users.each do |user|
       NotificationMailer.new_service_request(@service_request, user).deliver_later
     end
-    redirect_to service_requests_path, notice: 'Thank you! Your request has been recorded. We will get back to you shortly.'
+    redirect_to services_path, notice: 'Thank you! Your request has been recorded. We will get back to you shortly.'
   end
 
   private

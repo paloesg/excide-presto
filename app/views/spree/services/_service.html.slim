@@ -2,6 +2,5 @@
 .col-md-3.col-sm-6.col-xs-6.service-list-item data-hook="services_list_item" id="service_#{service.id}" itemscope="" itemtype="https://schema.org/Service"
   #service.panel.presto-panel-default.block
     = link_to '', '#', 'data-toggle': 'modal', 'data-target': '#serviceContent', class: 'overlay none-style-links', onclick: "showServiceForm('services-load/#{service.id}', #{service.fields.to_s});"
-    - cache(taxon.present? ? [I18n.locale, current_currency, taxon, service] : cache_key_for_service(service)) do
-      .panel-body.text-center.service-body
-        = content_tag(:span, truncate(service.name, length: 50), class: 'info presto-services-title', itemprop: "name", title: service.name)
+    .panel-body.text-center.service-body
+      = content_tag(:span, truncate(service.name, length: 50), class: 'info presto-services-title', itemprop: "name", title: service.name)
