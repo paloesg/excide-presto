@@ -13,6 +13,10 @@ div data-hook="admin_service_form_taxons"
 .form-group
   = label_tag :fields
   .service-formbuilder
+= f.field_container :icon, class: ['form-group'] do
+  = f.label :icon, Spree.t(:icon)
+  = image_tag main_app.url_for(@service.icon.try(:attachment)), class: 'icon img-responsive' if @service.icon
+  = f.file_field :icon
 = f.field_container :meta_title, class: ['form-group'] do
   = f.label :meta_title
   = f.text_field :meta_title, class: 'form-control meta_title-service'

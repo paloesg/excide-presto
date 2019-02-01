@@ -1,7 +1,10 @@
 function new_service(data) {
   $.ajax({
     url: "/admin/services",
-    data: "name="+data.name+"&fields="+data.fields+"&taxon_ids="+data.taxon_ids+"&description="+data.description+"&meta_title="+data.meta_title+"&meta_keywords="+data.meta_keywords+"&meta_description="+data.meta_description,
+    enctype: 'multipart/form-data',
+    data: data,
+    processData: false,
+    contentType: false,
     type:"post",
     success:function() {
       window.location.replace("/admin/services");
@@ -10,10 +13,13 @@ function new_service(data) {
   });
 }
 
-function edit_service(data) {
+function edit_service(id, data) {
   $.ajax({
-    url: "/admin/services/"+data.id,
-    data: "name="+data.name+"&fields="+data.fields+"&taxon_ids="+data.taxon_ids+"&description="+data.description+"&meta_title="+data.meta_title+"&meta_keywords="+data.meta_keywords+"&meta_description="+data.meta_description,
+    url: "/admin/services/"+id,
+    enctype: 'multipart/form-data',
+    data: data,
+    processData: false,
+    contentType: false,
     type:"put",
     success:function() {
       window.location.replace("/admin/services");
@@ -36,29 +42,36 @@ $(document).ready(function() {
   }
 
   $(document).on('click', '.btn-save-service', function() {
-    data = {
-      "name": $('#service_name').val(),
-      "description": $('#service_description').val(),
-      "taxon_ids": $(".taxon_ids").select2('val'),
-      "fields": service_formbuilder.actions.getData('json', true),
-      "meta_title": $('#service_meta_title').val(),
-      "meta_keywords": $('#service_meta_keywords').val(),
-      "meta_description": $('#service_meta_description').val(),
+    form_data = new FormData();
+    service_icon = $('#service_icon')[0].files[0];
+    if (service_icon){
+      form_data.append( 'icon', service_icon );
     }
-    new_service(data);
+    form_data.append( 'name', $('#service_name').val() );
+    form_data.append( 'description', $('#service_description').val() );
+    form_data.append( 'taxon_ids', $(".taxon_ids").select2('val') );
+    form_data.append( 'fields', service_formbuilder.actions.getData('json', true) );
+    form_data.append( 'meta_title', $('#service_meta_title').val() );
+    form_data.append( 'meta_keywords', $('#service_meta_keywords').val() );
+    form_data.append( 'meta_description', $('#service_meta_description').val() );
+
+    new_service(form_data);
   });
 
    $(document).on('click', '.btn-edit-service', function() {
-    data = {
-      "id": $('.id-edit-service').val(),
-      "name": $('#service_name').val(),
-      "description": $('#service_description').val(),
-      "taxon_ids": $(".taxon_ids").select2('val'),
-      "fields": service_formbuilder.actions.getData('json', true),
-      "meta_title": $('#service_meta_title').val(),
-      "meta_keywords": $('#service_meta_keywords').val(),
-      "meta_description": $('#service_meta_description').val(),
+    form_data = new FormData();
+    service_icon = $('#service_icon')[0].files[0];
+    if (service_icon){
+      form_data.append( 'icon', service_icon );
     }
-    edit_service(data);
+    form_data.append( 'name', $('#service_name').val() );
+    form_data.append( 'description', $('#service_description').val() );
+    form_data.append( 'taxon_ids', $(".taxon_ids").select2('val') );
+    form_data.append( 'fields', service_formbuilder.actions.getData('json', true) );
+    form_data.append( 'meta_title', $('#service_meta_title').val() );
+    form_data.append( 'meta_keywords', $('#service_meta_keywords').val() );
+    form_data.append( 'meta_description', $('#service_meta_description').val() );
+
+    edit_service($('.id-edit-service').val(), form_data);
   });
 })

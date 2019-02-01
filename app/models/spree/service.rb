@@ -1,4 +1,5 @@
 class Spree::Service < Spree::Base
+  has_one :icon, as: :viewable, dependent: :destroy, class_name: 'Spree::ServiceIcon'
   has_many :services_taxons
   has_many :taxons, through: :services_taxons
 

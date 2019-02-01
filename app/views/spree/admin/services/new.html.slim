@@ -5,7 +5,7 @@
 
 .row
   .col-xs-12.col-md-12
-    = form_for [:admin, @service], html: { class:"new_form_service" } do |f|
+    = form_for [:admin, @service], html: { multipart:true, class:"new_form_service" } do |f|
       = render partial: 'form', locals: { f: f }
       .form-actions data-hook="buttons"
         = button Spree.t('actions.create'), 'ok', 'button', {class: 'btn-success btn-save-service', data: { disable_with: "#{ Spree.t(:saving) }..." }}

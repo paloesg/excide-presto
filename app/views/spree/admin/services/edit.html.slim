@@ -5,7 +5,7 @@
 
 .row
   .col-xs-12.col-md-12
-    = form_for [:admin, @service], method: :put, html: { class:"edit_form_service" } do |f|
+    = form_for [:admin, @service], method: :put, html: { multipart:true, class:"edit_form_service" } do |f|
       = render partial: 'form', locals: { f: f }
       .form-group
         = hidden_field_tag :service_id, @service.id, class: 'id-edit-service'
