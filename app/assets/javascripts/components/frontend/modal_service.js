@@ -1,6 +1,7 @@
 function showServiceForm(url, fields) {
   //Render form
   formData = fields;
+  //Change field name
   for (var i in formData) {
     if (formData[i].type == "file") {
       formData[i].name = "fields[file]["+formData[i].name+"]";
@@ -9,7 +10,7 @@ function showServiceForm(url, fields) {
       formData[i].name = "fields[text]["+formData[i].name+"]";
     }
   }
-  console.log(formData);
+
   addLineBreaks = html => html.replace(new RegExp("><", "g"), ">\n<");
   markup = $("<div/>");
   markup.formRender({ formData });
@@ -35,7 +36,6 @@ function showServiceForm(url, fields) {
       return ($("#main-image img")).attr("src", ($("#main-image")).data("selectedThumb"));
     });
     $( ".form_service" ).append( form_service );
-    console.log(fields);
   });
   $('#serviceContent').on('hidden.bs.modal', function (e) {
     $('#serviceContent').find('.modal-body').html('<div class="col-xs-offset-5"><div class="loader"></div></div>');
