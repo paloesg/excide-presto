@@ -33,6 +33,7 @@ en:
   hello: "Hello world"
   spree:
     order_state:
+      preview: "Preview Order"
       awaiting_approval: 'Awaiting Approval'
     order_mailer:
       cancel_email:
