@@ -16,13 +16,7 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-- sub_categories_service = ['Bus Charter', 'Car Rental', 'Courier', 'Last Mile Delivery']
-.row
-  - sub_categories_service.each do |service|
-    .col-md-3
-      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
-
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -36,7 +30,7 @@
       #modalContent.modal-body
         #service_form
           h2 Bus Charter Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Bus Charter'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -49,11 +43,11 @@
                 .col-md-3
                   = label_tag :name, 'Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :tel, 'Tel*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
@@ -63,7 +57,7 @@
                 .col-md-3
                   = label_tag :mobile, 'Mobile*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
@@ -79,7 +73,7 @@
                 .col-md-3
                   = label_tag :postal_code, 'Postal Code*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Postal Code]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Postal Code]', nil, class: 'form-control', required: true
             h3
               strong Charter Information
             .form-group
@@ -87,7 +81,7 @@
                 .col-md-3
                   = label_tag :no_of_passenger, 'No. of Passenger*'
                 .col-md-3
-                  = text_field_tag 'fields[text][No of Passenger]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][No of Passenger]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :to_and_from, 'To & From?'
                 .col-md-3
@@ -97,17 +91,17 @@
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
+                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :pick_up_location, 'Pick Up Location*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Pick Up Location]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Pick Up Location]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :destination, 'Destination'
                 .col-md-3
@@ -154,7 +148,7 @@
       #modalContent.modal-body
         #service_form
           h2 Car Rental Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Car Rental'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -166,31 +160,31 @@
               = label_tag :fullname, 'Full Name*'
               i
                 |  (As in Passport/NRIC)
-              = text_field_tag 'fields[text][Full Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Full Name]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :company, 'NRIC*'
                 .col-md-3
-                  = text_field_tag 'fields[text][NRIC]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][NRIC]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :email, 'Email*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :date_of_birth, 'Date Of Birth*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Date Of Birth]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Date Of Birth]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-1
                   = label_tag :age, 'Age*'
                 .col-md-2
-                  = number_field_tag 'fields[text][Age]', 0, class: 'form-control'
+                  = number_field_tag 'fields[text][Age]', 0, class: 'form-control', required: true
                 .col-md-1
                   = label_tag :gender, 'Gender*'
                 .col-md-2
-                  = select_tag 'fields[text][Gender]', options_for_select(['Male', 'Female']), class: 'form-control'
+                  = select_tag 'fields[text][Gender]', options_for_select(['Male', 'Female']), class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
@@ -200,7 +194,7 @@
                 .col-md-3
                   = label_tag :mobile, 'Mobile*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Mobile]', nil, class: 'form-control', required: true
             h3
               strong Rental Information
             .form-group
@@ -211,47 +205,47 @@
                 .col-md-3
                   = label_tag :period, 'Rental Period*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Period Start]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Rental Period Start]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :period, 'to'
                 .col-md-3
-                  = date_field_tag 'fields[text][Rental Period End]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Rental Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               .row
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :return_date, 'Return Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Return Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Return Date]', Date.today, class: 'form-control datetime-picker', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control'
+                  = time_field_tag 'fields[text][Pick Up Date]', '00:00', class: 'form-control', required: true
                 .col-md-3
                   = label_tag :return_time, 'Return Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Return Time]', '00:00', class: 'form-control'
+                  = time_field_tag 'fields[text][Return Time]', '00:00', class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :pick_up_location, 'Pick Up Location*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Pick Up Location*]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Pick Up Location*]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :return_location, 'Return Location*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Return Location]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Return Location]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :total_days, 'Total No. Of Days*'
                 .col-md-3
-                  = number_field_tag 'fields[text][Total No. Of Days]', 0, class: 'form-control'
+                  = number_field_tag 'fields[text][Total No. Of Days]', 0, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :total_hours, 'Total No. Of Hours'
                 .col-md-3
@@ -266,7 +260,7 @@
       #modalContent.modal-body
         #service_form
           h2 Courier Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Courier'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -279,21 +273,21 @@
                 .col-md-3
                   = label_tag :name, 'Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :tel, 'Tel*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :company, 'Company*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :email, 'Email*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control', required: true
             h3
               strong Parcel Information
             .form-group
@@ -304,10 +298,10 @@
                   = select_tag 'fields[text][Kg]', options_for_select(['-Parcel-', 'Small (1 to 5kg)', 'Medium (5 to 10kg)', 'Large (10 to 20kg)']), class: 'form-control'
             .form-group
               = label_tag :description, 'Description*'
-              = text_field_tag 'fields[text][Description]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Description]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :package_value, 'Package Value*'
-              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control', required: true
             h3
               strong Pick Up Information
             .form-group
@@ -315,24 +309,24 @@
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :pick_up_time, 'Pick Up Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control'
+                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control', required: true
             .form-group
               = label_tag :pick_up_add, 'Pick Up Add*'
-              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :sender_name, 'Sender Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :sender_tel_no, 'Sender Tel No*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control', required: true
             h3
               strong Delivery Information
             .form-group
@@ -340,24 +334,24 @@
                 .col-md-3
                   = label_tag :delivery_date, 'Delivery Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :delivery_time, 'Delivery Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control'
+                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control', required: true
             .form-group
               = label_tag :delivery_add, 'Delivery Add*'
-              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :recipient_name, 'Recipient Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :recipient_tel_no, 'Recipient Tel No*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
 
 .modal.fade role="dialog" id="LastMileDelivery"
@@ -369,7 +363,7 @@
       #modalContent.modal-body
         #service_form
           h2 Last Mile Delivery Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Last Mile Delivery'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -382,21 +376,21 @@
                 .col-md-3
                   = label_tag :name, 'Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :tel, 'Tel*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :company, 'Company*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Company]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :email, 'Email*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Email]', nil, class: 'form-control', required: true
             h3
               strong Parcel Information
             .form-group
@@ -409,10 +403,10 @@
                   = select_tag 'fields[text][Kg]', options_for_select(['-Parcel-', 'Small (1 to 5kg)', 'Medium (5 to 10kg)', 'Large (10 to 20kg)']), class: 'form-control'
             .form-group
               = label_tag :description, 'Description*'
-              = text_field_tag 'fields[text][Description]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Description]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :package_value, 'Package Value*'
-              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Package Value]', nil, class: 'form-control', required: true
             h3
               strong Pick Up Information
             .form-group
@@ -420,24 +414,24 @@
                 .col-md-3
                   = label_tag :pick_up_date, 'Pick Up Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Pick Up Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :pick_up_time, 'Pick Up Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control'
+                  = time_field_tag 'fields[text][Pick Up Time]', Time.now, class: 'form-control', required: true
             .form-group
               = label_tag :pick_up_add, 'Pick Up Add*'
-              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Pick Up Add]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :sender_name, 'Sender Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Sender Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :sender_tel_no, 'Sender Tel No*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Sender Tel No]', nil, class: 'form-control', required: true
             h3
               strong Delivery Information
             .form-group
@@ -445,22 +439,25 @@
                 .col-md-3
                   = label_tag :delivery_date, 'Delivery Date*'
                 .col-md-3
-                  = date_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control'
+                  = text_field_tag 'fields[text][Delivery Date]', Date.today, class: 'form-control datetime-picker', required: true
                 .col-md-3
                   = label_tag :delivery_time, 'Delivery Time*'
                 .col-md-3
-                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control'
+                  = time_field_tag 'fields[text][Delivery Time]', Time.now, class: 'form-control', required: true
             .form-group
               = label_tag :delivery_add, 'Delivery Add*'
-              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Delivery Add]', nil, class: 'form-control', required: true
             .form-group
               .row
                 .col-md-3
                   = label_tag :recipient_name, 'Recipient Name*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Recipient Name]', nil, class: 'form-control', required: true
                 .col-md-3
                   = label_tag :recipient_tel_no, 'Recipient Tel No*'
                 .col-md-3
-                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control'
+                  = text_field_tag 'fields[text][Recipient Tel No]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
+- sub_categories_service = ['Bus Charter', 'Car Rental', 'Courier', 'Last Mile Delivery']
+- sub_categories_service.each do |service|
+  = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple m-r-10 m-b-10'

@@ -16,13 +16,7 @@
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-- sub_categories_service = ['Event Spaces', 'Manpower Support', 'Outdoor Ads']
-.row
-  - sub_categories_service.each do |service|
-    .col-md-4
-      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
-
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p In event planning, no detail is too small. Hiring a professional event planner can guarantee that your event is not only memorable but full of flair. We will listen to your ideas, understand your vision, and then work with that vision to bring your ideas to life.
 
@@ -35,7 +29,7 @@
       #modalContent.modal-body
         #service_form
           h2 Event Spaces Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Event Spaces'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -45,13 +39,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -60,21 +54,23 @@
             .form-group.row
               .col-md-12
                 = label_tag :period, 'Campaign Period'
-              .col-md-6
-                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
-              .col-md-6
-                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+              .col-xs-6
+                = text_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control datetime-picker'
+                .to
+                  | -
+              .col-xs-6
+                = text_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               = label_tag :date, 'Date of Event*'
-              = date_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control'
+              = text_field_tag 'fields[text][Date of Event]', Date.today, class: 'form-control datetime-picker', required: true
             .form-group
               = label_tag :event, 'Event Purpose'
               i
                 |  (Eg. New Launch, sales, sampling, games etc)
-              = date_field_tag 'fields[text][Event Purpose]', Date.today, class: 'form-control'
+              = text_field_tag 'fields[text][Event Purpose]', nil, class: 'form-control'
             .form-group
               = label_tag :indoor, 'Indoor/Outdoor?*'
-              = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control'
+              = select_tag 'fields[text][Indoor or Outdoor]', options_for_select(['Indoor', 'Outdoor']), class: 'form-control', required: true
             .form-group
               = label_tag :manpower, 'Requires Manpower?'
               = select_tag 'fields[text][Requires Manpower?]', options_for_select(['No', 'Yes']), class: 'form-control'
@@ -95,7 +91,7 @@
       #modalContent.modal-body
         #service_form
           h2 Manpower Support Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Manpower Support'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -105,13 +101,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -121,32 +117,32 @@
               .col-md-12
                 = label_tag :period, 'Campaign Period'
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control datetime-picker'
+                .to
+                  | -
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               = label_tag :date, 'Brand/Type of Product*'
-              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :date, 'No. of Locations Per Day*'
-              = number_field_tag 'fields[text][No of Locations Per Day]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No of Locations Per Day]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :no_of_manpower, 'No. of Manpower Required Per Location*'
-              = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control'
+              = number_field_tag 'fields[text][No of Manpower Required Per Location]', 0, class: 'form-control', required: true
             .form-group
               = label_tag :job_scope, 'Key Job Scope*'
               i
                 |  (Eg. Product Promotion, Give Out Flyers, Sampling, Survey, Mascot etc)
-              = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Key Job Scope]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :require_certification, 'Require Manpower With F&B Hygiene Certification*'
-              = select_tag 'fields[text][Require Manpower With F&B Hygiene Certification]', options_for_select(['Yes', 'No']), class: 'form-control'
+              = select_tag 'fields[text][Require Manpower With F&B Hygiene Certification]', options_for_select(['Yes', 'No']), class: 'form-control', required: true
             .form-group
               = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
-
-
 .modal.fade role="dialog" id="OutdoorAds"
   .modal-dialog.modal-lg
     /! Modal content
@@ -156,7 +152,7 @@
       #modalContent.modal-body
         #service_form
           h2 Outdoor Ads Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Outdoor Ads'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -166,13 +162,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true, required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true, required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -182,18 +178,20 @@
               .col-md-12
                 = label_tag :period, 'Campaign Period'
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period Start]', Date.today, class: 'form-control datetime-picker'
+                .to
+                  | -
               .col-md-6
-                = date_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control'
+                = text_field_tag 'fields[text][Campaign Period End]', Date.today, class: 'form-control datetime-picker'
             .form-group
               = label_tag :brand_type, 'Brand/Type of Product*'
-              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Brand or Type of Product]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :mode_of_ad, 'Mode of Ad*'
-              = select_tag 'fields[text][Mode of Ad]', options_for_select(['Banner', 'Yes', 'No']), class: 'form-control'
+              = select_tag 'fields[text][Mode of Ad]', options_for_select(['Banner', 'Yes', 'No']), class: 'form-control', required: true
             .form-group
               = label_tag :ad_visual, 'Ad Visual*'
-              = select_tag 'fields[text][Ad Visual]', options_for_select(['Yes', 'No']), class: 'form-control'
+              = select_tag 'fields[text][Ad Visual]', options_for_select(['Yes', 'No']), class: 'form-control', required: true
             .form-group
               = label_tag :top_up, 'Top Up Ad Package With Brand Activation'
               = select_tag 'fields[text][Top Up Ad Package With Brand Activation]', options_for_select(['Yes', 'No']), class: 'form-control'
@@ -204,3 +202,6 @@
               = label_tag :additional, 'Additional Information'
               = text_area_tag 'fields[text][Additional Information]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+- sub_categories_service = ['Event Spaces', 'Manpower Support', 'Outdoor Ads']
+- sub_categories_service.each do |service|
+  = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple m-r-10 m-b-10'

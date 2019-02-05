@@ -18,4 +18,10 @@ $(document).on('turbolinks:load', function () {
     daysOfWeekDisabled: [0, 6],
     enabledHours: [9, 10, 11, 12, 13, 14, 15, 16, 17],
   })
+
+  $('.datetime-picker').datetimepicker( {
+    format: 'DD-MM-YYYY',
+    minDate: moment()
+  });
+  $('.datetime-picker').attr("placeholder","DD-MM-YYYY");
 });
