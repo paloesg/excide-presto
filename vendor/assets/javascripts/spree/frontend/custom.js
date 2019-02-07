@@ -1,6 +1,10 @@
 function showProduct(url) {
   // Load Product Content
-  $("#modalContent").load(window.location.origin +'/'+ url, function() {
+  $("#modalContent").load(window.location.origin +'/'+ url, function(response, status, xhr) {
+    if (status == "success") {
+      $('.loader').hide();
+      $('.modal-content').show();
+    }
     // Load Js for switching the product main image by hovering the thumbnails
     var thumbnails = $("#product-images").next();
     ($("#main-image")).data("selectedThumb", ($("#main-image img")).attr("src"));
@@ -20,6 +24,8 @@ function showProduct(url) {
     });
   });
   $('#productContent').on('hidden.bs.modal', function (e) {
+    $('.loader').show();
+    $('.modal-content').hide();
     $('#productContent').find('.modal-body').html('<div class="col-xs-offset-5"><div class="loader"></div></div>');
   })
 }
