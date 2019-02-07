@@ -1,5 +1,5 @@
 <% if @product.taxons.present? %>
-  <h3 class="product-section-title"><%= Spree.t(:look_for_similar_items) %></h3>
+  <h4 class="product-section-title"><%= Spree.t(:look_for_similar_items) %></h4>
   <ul class="list-group" id="similar_items_by_taxon" data-hook>
     <% @product.taxons.each do |taxon| %>
       <li class="list-group-item"><%= link_to taxon.name, seo_url(taxon) %></li>
