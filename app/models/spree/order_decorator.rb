@@ -6,6 +6,7 @@ Spree::Order.class_eval do
     go_to_state :awaiting_approval
   end
 
+  # select all orders where users department same with current user department
   def self.department(current_user)
     self.joins(:user).where('spree_users.department_id': current_user.department_id)
   end
