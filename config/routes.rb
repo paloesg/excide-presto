@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   Spree::Core::Engine.add_routes do
     match '/orders/:id/reorder' => 'orders#reorder', :via => :post, :as => :reorder_order
+    resource :account, controller: 'users' do
+      get '/password' => 'users#password', as: 'password'
+    end
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
       resources :companies do
