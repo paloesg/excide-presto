@@ -1,5 +1,6 @@
 class Manage::OrdersController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
+  before_action :set_roles
   before_action :set_order, only: [:edit, :approve, :cancel]
 
   layout 'layouts/manage'
@@ -21,6 +22,13 @@ class Manage::OrdersController < Spree::BaseController
   end
 
   private
+
+  def set_roles
+    unless spree_current_user.has_spree_role? :manager
+      flash[:error] = 'Authorization Failure'
+      redirect_to forbidden_path
+    end
+  end
 
   def set_order
     @order = Spree::Order.includes(:adjustments).find_by!(number: params[:order_id])
