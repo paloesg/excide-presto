@@ -2,20 +2,21 @@
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url(#{asset_path('banner/it-equipment-and-services.png')}); background-color: '#ffcc4e'"
     .container.category-container
-      .breadcumb-cart Home ❯ Service
+      nav#breadcrumbs
+        ol.breadcrumb.hero-breadcrumbs
+          li
+            span
+              = link_to Spree.t(:home), spree.root_path
+          li
+            span
+              = link_to 'IT Equipment & Services', page_path('it-equipment-&-services')
       h1.shopping-cart-title IT Equipment & Services
 
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 
-- sub_categories_service = ['Computer Repair', 'Data Recovery', 'Electrician and Handyman Services', 'IPad Repair', 'Phone Repair', 'Sell Your Device']
-.row
-  - sub_categories_service.each do |service|
-    .col-md-4.m-b-10
-      = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple'
-
-.pages-content
+.pages-content.m-b-30
   h3 Description
   p All organisations need quick access to IT support services. It guarantees that the business’ techninal systems and equipments work flawlessly constantly and reduces any IT downtimes to prevent financial loss and customer disatisfaction.
 
@@ -28,7 +29,7 @@
       #modalContent.modal-body
         #service_form
           h2 Computer Repair Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Computer Repair'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -38,13 +39,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -54,10 +55,10 @@
               = label_tag :device_type, 'Device Type*'
               i
                 |  (Eg. Laptop, Desktop, HDD)
-              = text_field_tag 'fields[text][Device Type]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Device Type]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :issue, 'Issue(s) with Device*'
-              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :remarks, 'Remarks'
               = text_area_tag 'fields[text][Remarks]', nil, class: 'form-control'
@@ -72,7 +73,7 @@
       #modalContent.modal-body
         #service_form
           h2 Data Recovery Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Data Recovery'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -82,13 +83,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -96,7 +97,7 @@
               strong Details About Hard Drive
             .form-group
               = label_tag :storage_type, 'Storage Type*'
-              = select_tag 'fields[text][Storage Type]', options_for_select(['Portable USB Hard Disk', 'Laptop Hard Disk', 'NAS (Network Attached Storage)', 'USB Thumb Drive', 'SD Card', 'Others']), class: 'form-control'
+              = select_tag 'fields[text][Storage Type]', options_for_select(['Portable USB Hard Disk', 'Laptop Hard Disk', 'NAS (Network Attached Storage)', 'USB Thumb Drive', 'SD Card', 'Others']), class: 'form-control', required: true
             .form-group
               = label_tag :applicable, 'Please check those that are applicable*'
               .checkbox
@@ -125,7 +126,7 @@
       #modalContent.modal-body
         #service_form
           h2 Electrician & Handyman Services
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Electrician and Handyman Services'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -135,13 +136,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -149,15 +150,15 @@
               strong How Can We Help?
             .form-group
               = label_tag :service_requirement, 'Service Requirement*'
-              = select_tag 'fields[text][Storage Type]', options_for_select(['Electrician', 'Plumbing', 'Handyman', 'Locksmith', 'TV Mounting', 'General Works', 'Others']), class: 'form-control'
+              = select_tag 'fields[text][Storage Type]', options_for_select(['Electrician', 'Plumbing', 'Handyman', 'Locksmith', 'TV Mounting', 'General Works', 'Others']), class: 'form-control', required: true
             .form-group
               = label_tag :location, 'Your Location*'
               i
                 |  (eg. Bukit Batok)
-              = text_field_tag 'fields[text][Your Location]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Your Location]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :remarks, 'Enquiry*'
-              = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Enquiry]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
 
 .modal.fade role="dialog" id="IPadRepair"
@@ -169,7 +170,7 @@
       #modalContent.modal-body
         #service_form
           h2 IPad Repair Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'IPad Repair'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -179,13 +180,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -195,13 +196,13 @@
               = label_tag :ipad_model, 'Ipad Model No*'
               i
                 |  (Located at the lower back of the iPad, starting with A1xxx)
-              = text_field_tag 'fields[text][Ipad Model No]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Ipad Model No]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :issues, 'Issue(s) With Ipad*'
-              = select_tag 'fields[text][Issues with Ipad]', options_for_select(['Screen cracked or touch faulty', "Device can't be powered on", 'Faulty Battery', 'LCD Display Faulty', 'Other']), class: 'form-control'
+              = select_tag 'fields[text][Issues with Ipad]', options_for_select(['Screen cracked or touch faulty', "Device can't be powered on", 'Faulty Battery', 'LCD Display Faulty', 'Other']), class: 'form-control', required: true
             .form-group
               = label_tag :detail, 'Please state the problems with your iPad in detail*'
-              = text_area_tag 'fields[text][Please state the problems with your iPad in detail]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Please state the problems with your iPad in detail]', nil, class: 'form-control', required: true
             = submit_tag 'Request', class: 'btn btn-default'
 
 .modal.fade role="dialog" id="PhoneRepair"
@@ -213,7 +214,7 @@
       #modalContent.modal-body
         #service_form
           h2 Phone Repair Request
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Phone Repair'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -223,13 +224,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -237,13 +238,13 @@
               strong How Can We Help?
             .form-group
               = label_tag :phone_brand, 'Phone Brand*'
-              = text_field_tag 'fields[text][Phone Brand]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Phone Brand]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :phone_model, 'Phone Model'
               = text_field_tag 'fields[text][Phone Model]', nil, class: 'form-control'
             .form-group
               = label_tag :issues, 'Issue(s) With Device*'
-              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control'
+              = text_area_tag 'fields[text][Issues with Device]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :remarks, 'Remarks'
               = text_area_tag 'fields[text][Remarks]', nil, class: 'form-control'
@@ -258,7 +259,7 @@
       #modalContent.modal-body
         #service_form
           h2 Sell Your Device
-          h4 Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
+          p Tell us what you need in the fields below and we will do our best to find a suitable solution for you  All fields marked with an *(asterisk) are compulsory.
           = form_tag create_request_path, method: 'post', multipart: true do
             = hidden_field_tag 'fields[text][Sub Service Name]', 'Sell Your Device'
             /  Format of naming for text or number fields `fields[text][name of label]`,
@@ -268,13 +269,13 @@
               strong Contact Information
             .form-group
               = label_tag :name, 'Name*'
-              = text_field_tag 'fields[text][Name]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Name]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :company, 'Company'
               = text_field_tag 'fields[text][Company]', nil, class: 'form-control'
             .form-group
               = label_tag :tel, 'Tel*'
-              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Tel]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :email, 'Email'
               = text_field_tag 'fields[text][Email]', nil, class: 'form-control'
@@ -284,12 +285,12 @@
               = label_tag :device_model, 'Device Model*'
               i
                 |  (Eg. Iphone 7 Plus)
-              = text_field_tag 'fields[text][Device Model]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Device Model]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :memory_capacity, 'Memory Capacity*'
               i
                 |  (Eg. 128GB)
-              = text_field_tag 'fields[text][Memory Capacity]', nil, class: 'form-control'
+              = text_field_tag 'fields[text][Memory Capacity]', nil, class: 'form-control', required: true
             .form-group
               = label_tag :condition, 'Device Condition*'
               i
@@ -306,3 +307,6 @@
               = label_tag :additional, 'Additional'
               = text_area_tag 'fields[text][Additional]', nil, class: 'form-control'
             = submit_tag 'Request', class: 'btn btn-default'
+- sub_categories_service = ['Computer Repair', 'Data Recovery', 'Electrician and Handyman Services', 'IPad Repair', 'Phone Repair', 'Sell Your Device']
+- sub_categories_service.each do |service|
+  = link_to service, '#', 'data-toggle': 'modal', 'data-target': "##{service.gsub(' ', '')}", class: 'presto-btn btn-purple m-r-10 m-b-10'

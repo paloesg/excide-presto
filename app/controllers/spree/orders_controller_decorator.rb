@@ -1,7 +1,5 @@
 Spree::OrdersController.class_eval do
   respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
-  before_action :update_preferred_delivery_datetime, only: :update
-  before_action :set_order, only: [:update_preferred_delivery_datetime, :populate]
 
   def update
     @variant = Spree::Variant.find(params[:variant_id]) if params[:variant_id]
@@ -35,6 +33,7 @@ Spree::OrdersController.class_eval do
   end
 
   def populate
+    @order    = current_order(create_order_if_necessary: true)
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
@@ -67,19 +66,5 @@ Spree::OrdersController.class_eval do
         format.html { redirect_to(cart_path(variant_id: variant.id)) }
       end
     end
-  end
-
-  private
-
-  def update_preferred_delivery_datetime
-    preferred_delivery = []
-    params[:order][:preferred_delivery_time].each do |index, time|
-      preferred_delivery << "Preferred delivery time #{index}: #{time}"
-    end
-    @order.update_attribute(:special_instructions, preferred_delivery.join(', '))
-  end
-
-  def set_order
-    @order    = current_order(create_order_if_necessary: true)
   end
 end

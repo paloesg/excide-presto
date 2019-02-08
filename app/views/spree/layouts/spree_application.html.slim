@@ -8,9 +8,10 @@ html lang="#{I18n.locale}"
   /! <![endif]
   head data-hook="inside_head"
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+
     = render partial: 'spree/shared/head'
   body class=body_class data-hook="body" id=("#{@body_id || 'default'}")
-    .content
+    div class="content #{'bg-login' if @body_id=='login'}" style="background-image: url(#{asset_path('login-page.jpg') if @body_id=='login'});"
       = render partial: 'spree/shared/header'
       = yield :hero_image
       .container

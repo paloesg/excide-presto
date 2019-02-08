@@ -9,7 +9,8 @@ class PagesController < Spree::BaseController
   # Example `= file_field_tag 'fields[file][Upload office floor plan]', class: 'form-control'`
   def create_request
     @service_request = Spree::ServiceRequest.new
-    @service_request.service_name = params[:id].gsub('-', ' ').titleize
+    # Save service name capitalise “IT”
+    @service_request.service_name = params[:id].eql?('it-equipment-&-services') ? 'IT Equipment & Services' : params[:id].gsub('-', ' ').titleize
     @service_request.spree_user_id = spree_current_user.id
     @service_request.fields = params[:fields] if params[:fields][:text]
     @service_request.save

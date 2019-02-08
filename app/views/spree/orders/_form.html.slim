@@ -3,10 +3,3 @@ table#cart-detail.table.presto-table data-hook=""
   tbody#line_items data-hook=""
     = render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form }
   - if @order.adjustments.nonzero.exists? || @order.line_item_adjustments.nonzero.exists? || @order.shipment_adjustments.nonzero.exists? || @order.shipments.any?
-    tr.cart-subtotal
-      / td align="right" colspan="4"
-      /   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
-      / td colspan=""
-      /   h5= order_form.object.display_item_total
-      / td
-    / = render "spree/orders/adjustments"
