@@ -35,6 +35,8 @@ en:
     order_state:
       awaiting_approval: 'Awaiting for Approval'
       rejected: 'Rejected'
+      preview: "Preview Order"
+      awaiting_approval: 'Awaiting Approval'
     order_mailer:
       cancel_email:
         subject: "order Rejected"
