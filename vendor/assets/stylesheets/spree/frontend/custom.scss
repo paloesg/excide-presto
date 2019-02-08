@@ -545,6 +545,12 @@ span.price.selling.lead {
   background: #fff;
 }
 
+ul#product-thumbnails {
+  height: 260px;
+  overflow: auto;
+  padding: 0px;
+}
+
 /* Pagination */
 
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
