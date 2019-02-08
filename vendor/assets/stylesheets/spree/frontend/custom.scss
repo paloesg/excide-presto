@@ -57,8 +57,16 @@ body {
   background-size: cover;
 }
 
-h1.product-title.text-center, span.lead.price.selling, h3.product-section-title, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
+h1.product-title.text-center, span.lead.price.selling, h1.product-section-title, h4.product-section-title, span.info, .login-panel-title, .presto-h1, .presto-h2, .category-name > h4 {
   font-family: 'AmsiPro-Ultra', sans-serif;
+}
+
+h1.product-section-title {
+  margin-bottom: 5px !important;
+}
+
+h4.product-section-title {
+  margin-bottom: 5px !important;
 }
 
 .product-body > img {
@@ -803,7 +811,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .flex-footer {
-  margin-top: auto;
+  margin-top: 57px;
+}
+
+.flex-panel > h2.product-name {
+  font-family: 'AmsiPro-Regular', sans-serif;
+  margin: 0;
 }
 
 /* Presto Modal */
@@ -967,8 +980,9 @@ input[type=number]::-webkit-outer-spin-button {
   vertical-align: middle;
   line-height: 50px;
   position: absolute;
-  bottom: 57px;
+  bottom: 90px;
   right: 13px;
+  margin-top: 6px;
 }
 
 /* Static page form */
@@ -1031,6 +1045,13 @@ $lines-to-show: 2;
   left: 8%;
 }
 
+button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=number], .quantity-input-modal .increase, .quantity-input-modal .decrease {
+  height: 45px !important;
+  font-size: 1.4em !important;
+  margin-top: 7px !important;
+  border-radius: 20px !important;
+}
+
 .add-cart button {
   width: 100%;
 }
@@ -1042,7 +1063,7 @@ $lines-to-show: 2;
 .quantity-input {
   position: relative;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   width: 100%;
 }
 
