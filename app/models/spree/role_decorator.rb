@@ -8,8 +8,8 @@ Spree::Role.class_eval do
     end
   end
 
-  def self.get_manager_by_department(store, user)
-    Spree::Role.find_by(name: 'manager', company_id: store.company_id)&.users&.where('department_id': user.department_id)
+  def self.get_manager_by_department(company_id, departement_id)
+    Spree::Role.find_by(name: 'manager', company_id: company_id)&.users&.where('department_id': departement_id)
   end
 
 end
