@@ -9,7 +9,7 @@ Spree::CheckoutController.class_eval do
 
       if @order.awaiting_approval?
         @order.finalize!
-        if managers.empty? or @order.user.has_spree_role? :manager
+        if managers.blank? or @order.user.has_spree_role? :manager
           @order.approved_by(@order.user)
           flash.notice = 'Your order has been processed successfully'
         else
