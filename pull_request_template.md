@@ -20,3 +20,4 @@ Please describe the tests that you used to verify your changes. Provide instruct
 - [ ] I have tested my code thoroughly
 - [ ] The code does not break existing functionality
 - [ ] I have added instructions and data required to test the code
+- [ ] If there are any front-end changes, I have tested it on Chrome, Firefox and IE
