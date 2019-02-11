@@ -9,7 +9,7 @@ Spree::CheckoutController.class_eval do
 
       if @order.awaiting_approval?
         @order.finalize!
-        if managers.empty? or @order.user.has_spree_role? :manager
+        if managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
           flash.notice = 'Your order has been processed successfully'
         else
@@ -35,7 +35,7 @@ Spree::CheckoutController.class_eval do
   end
 
   def managers
-    managers = Spree::Role.get_manager_by_department(current_store, @order.user)
+    managers = Spree::Role.get_manager_by_department(@order.user)
   end
 
   def set_order
