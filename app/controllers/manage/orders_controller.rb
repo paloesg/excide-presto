@@ -23,9 +23,6 @@ class Manage::OrdersController < Spree::BaseController
   def reject
     @order.rejected_by(spree_current_user)
     Spree::OrderMailer.cancel_email(@order).deliver_later
-    admins.each do |admin|
-      Spree::OrderMailer.confirm_order_rejected(@order, admin).deliver_now
-    end
     flash.notice = "The order with order number #{@order.number}, has been rejected."
     redirect_to manage_orders_path
   end

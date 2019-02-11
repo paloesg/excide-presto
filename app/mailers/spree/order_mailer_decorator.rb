@@ -25,10 +25,4 @@ Spree::OrderMailer.class_eval do
     @order = order
     mail to: sent_to, from: from_address, subject: Spree::Store.current.name + " order Approved ##{@order.number}"
   end
-
-  def confirm_order_rejected(order, admin)
-    sent_to = admin.email
-    @order = order
-    mail to: sent_to, from: from_address, subject: Spree::Store.current.name + " order Rejected ##{@order.number}"
-  end
 end
