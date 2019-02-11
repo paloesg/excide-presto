@@ -7,9 +7,9 @@
       = form_for @spree_user, :as => :spree_user, :url => spree.update_password_path, :method => :put do |f|
         .form-group
           = f.label :password, Spree.t(:password)
-          = f.password_field :password, :class => "form-control"
+          = f.password_field :password, :class => "form-control", :required => true
         .form-group
           = f.label :password_confirmation, Spree.t(:confirm_password)
-          = f.password_field :password_confirmation, :class => "form-control"
+          = f.password_field :password_confirmation, :class => "form-control", :required => true
         = f.hidden_field :reset_password_token
         = f.submit "Save My Password", :class => 'presto-btn btn btn-lg btn-purple btn-block'

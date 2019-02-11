@@ -1,0 +1,15 @@
+- if params[:company_id].present?
+  = render partial: 'spree/admin/companies/sidebar', locals: { current: :role }
+
+  - content_for :page_title do
+    | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{link_to Spree.t(:roles), spree.admin_company_roles_path(@company)} / #{@role.name.capitalize}
+
+- else
+  - content_for :page_title do
+    | #{link_to Spree.t(:roles), spree.admin_roles_url} / #{@role.name.capitalize}
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @role }
+= form_for [:admin, @role] do |f|
+  fieldset
+    = render partial: 'form', locals: { f: f }
+    = render partial: 'spree/admin/shared/edit_resource_links', locals: { collection_url: params[:company_id].present? ? spree.admin_company_roles_path(@company) : spree.admin_roles_url }

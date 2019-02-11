@@ -1,8 +1,7 @@
 = render partial: 'spree/admin/companies/sidebar', locals: { current: :department }
 
 - content_for :page_title do
-  = link_to @company.name, spree.edit_admin_company_url(@company)
-  | / #{Spree.t(:department)} / #{@department.name}
+  | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{Spree.t(:department)} / #{@department.name}
 
 = render partial: 'spree/admin/shared/error_messages', locals: { target: @company }
 
@@ -15,7 +14,7 @@
         th Action
     tbody
       - @department.users.each do |user|
-        - role_manager = user.spree_roles.find_by(company_id:@company.id, name:"manager")
+        - role_manager = user.spree_roles.find_by(company_id: @company.id, name: "manager")
         tr
           td = user.email
           td.role-form
@@ -25,4 +24,5 @@
               = check_box_tag 'manager', 'yes', role_manager.present? ? true : false, id: "user_spree_role_#{user.id}", class:'role-check'
           td = button_link_to '', edit_admin_user_path(id: user.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department'
 - else
-  | No users in this department.
+  .alert.alert-warning
+    | No users in this department.

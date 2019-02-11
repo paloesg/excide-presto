@@ -10,6 +10,9 @@
     <li<%== ' class="active"' if current == :address %>>
       <%= link_to_with_icon 'map-marker', Spree.t(:"admin.company.address"), spree.addresses_admin_company_path(@company) %>
     </li>
+    <li<%== ' class="active"' if current == :role %>>
+      <%= link_to_with_icon 'flag', Spree.t(:"admin.company.roles"), spree.admin_company_roles_path(@company) %>
+    </li>
     <li<%== ' class="active"' if current == :department %>>
       <%= link_to_with_icon 'briefcase', Spree.t(:"admin.company.departments"), spree.admin_company_departments_path(@company) %>
     </li>

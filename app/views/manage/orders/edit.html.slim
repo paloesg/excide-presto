@@ -6,6 +6,11 @@
       .col-md-12
         .table-responsive
           table.table
+            thead
+              tr
+                th Product
+                th Price
+                th Amount
             tbody
               - @order.line_items.each do |line_item|
                 tr
@@ -14,7 +19,6 @@
                     = line_item.name
                     br
                     = line_item.single_money.to_html
-                  td =
                   td = line_item.display_amount.to_html
       .pull-right
         = link_to 'Approve All', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'

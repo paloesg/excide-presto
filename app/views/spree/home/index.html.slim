@@ -24,5 +24,6 @@
         - else
           = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(service))
   .col-md-6.col-xs-12
-    .icon-list
-      = image_tag 'contact-image.png', class: 'img-responsive img-rounded'
+    .contact-icon-list
+      = link_to(image_tag('contact-image.jpg', class: 'img-responsive img-rounded'), "tel:+6562850320")
+      / = image_tag 'contact-image.jpg', class: 'img-responsive img-rounded'
