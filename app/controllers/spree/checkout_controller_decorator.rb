@@ -34,7 +34,7 @@ Spree::CheckoutController.class_eval do
   end
 
   def managers
-    managers = Spree::Role.get_manager_by_department(current_store, @order.user)
+    managers = Spree::Role.get_manager_by_department(@order.user)
   end
 
   def set_order
