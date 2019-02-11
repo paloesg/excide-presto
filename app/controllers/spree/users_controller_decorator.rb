@@ -16,7 +16,7 @@ Spree::UsersController.class_eval do
           render :edit
         end
       else
-        flash[:error] = "Password not mismatch"
+        flash[:error] = "Your passwords do not match. Please try again."
         redirect_back fallback_location: spree.password_account_path
       end
     else
