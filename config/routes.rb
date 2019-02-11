@@ -19,10 +19,11 @@ Rails.application.routes.draw do
       resources :service_requests
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
-        get '/departments', to: 'departments#index', as: 'departments'
-        get '/departments/new', to: 'departments#new', as: 'new_department'
-        get '/departments/edit/:id', to: 'departments#edit', as: 'edit_department'
-        get '/departments/detail/:id', to: 'departments#show', as: 'show_department'
+        #departments in company
+        resources :departments
+        #roles in company
+        resources :roles
+        get '/roles/:id/users', to: 'roles#users', as: 'users_role'
         member do
           match '/addresses' => 'companies#addresses', via: [:get, :put]
         end

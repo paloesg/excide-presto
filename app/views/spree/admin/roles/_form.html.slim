@@ -5,7 +5,10 @@ div data-hook="admin_role_form_fields"
     = f.text_field :name, class: 'form-control'
     = f.error_message_on :name
   = f.field_container :company, class: ['form-group'] do
-    = f.label :company
-    = f.collection_select :company_id, @companies, :id, :name, {include_blank: true}, class: 'form-control'
-    = f.error_message_on :company
+    - if params[:company_id].present?
+      = f.hidden_field :company_id, value: @company.id
+    - else
+      = f.label :company
+      = f.collection_select :company_id, @companies, :id, :name, {include_blank: true}, class: 'form-control'
+      = f.error_message_on :company
   div data-hook="additional_role_fields"
