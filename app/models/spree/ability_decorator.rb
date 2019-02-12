@@ -17,6 +17,7 @@ Spree::Ability.class_eval do
       can :manage, :all
     elsif user.has_spree_role?('manager')
       can :manage, Spree::Order
+      can [:read, :update, :destroy], Spree.user_class, id: user.id
     elsif user.has_spree_role?('superadmin')
       can :manage, :all
     else
