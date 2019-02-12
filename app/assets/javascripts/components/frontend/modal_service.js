@@ -17,7 +17,11 @@ function showServiceForm(url, fields) {
   form_service = markup.formRender("html");
 
   // Load Product Content
-  $("#modalContent").load(window.location.origin +'/'+ url, function() {
+  $("#modalContent").load(window.location.origin +'/'+ url, function(response, status, xhr) {
+    if (status == "success") {
+      $('.loader').hide();
+      $('.modal-content').show();
+    }
     // Load Js for switching the service main image by hovering the thumbnails
     var thumbnails = $("#service-images").next();
     ($("#main-image")).data("selectedThumb", ($("#main-image img")).attr("src"));
@@ -38,6 +42,8 @@ function showServiceForm(url, fields) {
     $( ".form_service" ).append( form_service );
   });
   $('#serviceContent').on('hidden.bs.modal', function (e) {
+    $('.loader').show();
+    $('.modal-content').hide();
     $('#serviceContent').find('.modal-body').html('<div class="col-xs-offset-5"><div class="loader"></div></div>');
   })
 }
