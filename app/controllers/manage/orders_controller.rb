@@ -15,14 +15,14 @@ class Manage::OrdersController < Spree::BaseController
     admins.each do |admin|
       Spree::OrderMailer.confirm_order_approved(@order, admin).deliver_now
     end
-    flash.notice = "The order with order number #{@order.number}, has been approved."
+    flash.notice = "Order ##{@order.number} has been approved."
     redirect_to manage_orders_path
   end
 
   def reject
     @order.rejected_by(spree_current_user)
     Spree::OrderMailer.cancel_email(@order).deliver_later
-    flash.notice = "The order with order number #{@order.number}, has been rejected."
+    flash.notice = "Order ##{@order.number} has been rejected."
     redirect_to manage_orders_path
   end
 
