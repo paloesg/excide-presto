@@ -1,7 +1,7 @@
 class Manage::OrdersController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
   before_action :set_roles
-  before_action :set_order, only: [:edit, :approve, :cancel]
+  before_action :set_order, only: [:edit, :approve, :reject]
 
   layout 'layouts/manage'
 
