@@ -16,7 +16,7 @@ function showServiceForm(url, fields) {
   markup.formRender({ formData });
   form_service = markup.formRender("html");
 
-  // Load Product Content
+  // Load Service Content
   $("#modalContent").load(window.location.origin +'/'+ url, function(response, status, xhr) {
     if (status == "success") {
       $('.loader').hide();
