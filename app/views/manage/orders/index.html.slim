@@ -24,7 +24,6 @@
                     td = o.created_at.strftime('%F %H:%M')
         - else
           .alert.alert-info
-            ' No Orders found,
-            = link_to 'Add One!', spree_path
+            ' No Orders found
   .col-xs-4.col-md-3
     = render partial: 'manage/orders/sidebar'

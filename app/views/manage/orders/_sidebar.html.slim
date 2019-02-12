@@ -1,4 +1,7 @@
 ul.nav.nav-pills.nav-stacked
-  li.active = link_to_with_icon 'info-sign', 'Awaiting Approval', manage_orders_path
-  li = link_to_with_icon 'info-sign', 'Approved', manage_orders_path(sort: 'approved')
-  li = link_to_with_icon 'info-sign', 'Rejected', manage_orders_path(sort: 'rejected')
+  li class="#{'active' if params[:sort].blank?}" 
+    = link_to_with_icon 'edit', 'Awaiting Approval', manage_orders_path
+  li class="#{'active' if params[:sort] == 'approved'}" 
+    = link_to_with_icon 'check', 'Approved', manage_orders_path(sort: 'approved')
+  li class="#{'active' if params[:sort] == 'rejected'}" 
+    = link_to_with_icon 'remove-circle', 'Rejected', manage_orders_path(sort: 'rejected')
