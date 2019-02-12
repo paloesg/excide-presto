@@ -5,11 +5,7 @@ class Spree::ServiceRequestsController < Spree::StoreController
     @service_request = Spree::ServiceRequest.new
     # Save service name capitalise “IT”
     service = Spree::Service.find(params[:service_id])
-    # render json: params[:service_id].to_json
-
-    # @service_request.service_name = params[:id].eql?('it-equipment-&-services') ? 'IT Equipment & Services' : params[:id].gsub('-', ' ').titleize
     @service_request.service_name = service.name
-
     @service_request.spree_user_id = spree_current_user.id
     @service_request.fields = params[:fields] if params[:fields][:text]
     @service_request.save
@@ -18,7 +14,8 @@ class Spree::ServiceRequestsController < Spree::StoreController
     @users.each do |user|
       NotificationMailer.new_service_request(@service_request, user).deliver_later
     end
-    redirect_to services_path, notice: 'Thank you! Your request has been recorded. We will get back to you shortly.'
+    flash.notice = 'Thank you! Your request has been recorded. We will get back to you shortly.'
+    redirect_back(fallback_location: root_path)
   end
 
   private
