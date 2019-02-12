@@ -20,6 +20,7 @@ Spree::Order.class_eval do
     update_columns(state: 'rejected', updated_at: Time.current)
   end
 
+  # select all orders where users department same with current user department
   def self.department(current_user)
     self.joins(:user).where('spree_users.department_id': current_user.department_id)
   end

@@ -1,12 +1,12 @@
 class Manage::OrdersController < Spree::BaseController
   include Spree::Core::ControllerHelpers::Order
-  before_action :set_order, only: [:edit, :approve, :reject]
+  before_action :set_roles
+  before_action :set_order, only: [:edit, :approve, :cancel]
 
   layout 'layouts/manage'
 
   def index
     @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
-    authorize! :read, @orders
   end
 
   def approve
@@ -31,6 +31,13 @@ class Manage::OrdersController < Spree::BaseController
 
   def admins
     Spree::Role.find_by_name('admin').users
+  end
+
+  def set_roles
+    unless spree_current_user.has_spree_role? :manager
+      flash[:error] = 'Authorization Failure'
+      redirect_to forbidden_path
+    end
   end
 
   def set_order
