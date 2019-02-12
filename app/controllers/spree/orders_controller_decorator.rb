@@ -76,7 +76,7 @@ Spree::OrdersController.class_eval do
   end
 
   def managers
-    managers = Spree::Role.get_manager_by_department(@order.user)
+    managers = Spree::Role.get_manager_by_department(current_store, @order.user)
   end
 
   def rejected_order
