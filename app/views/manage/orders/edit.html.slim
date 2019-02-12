@@ -1,27 +1,29 @@
 .col-md-12
-  h1 Order ##{@order.number} ― #{Spree.t("order_state.#{@order.state}").titleize}
+  h1 Review order
   .panel.panel-default
-    .panel-heading
+    .panel-heading Order ##{@order.number} ― #{Spree.t("order_state.#{@order.state}").titleize}
     .panel-body
       .col-md-12
         .table-responsive
           table.table
             thead
               tr
+                th
                 th Product
                 th Price
-                th Amount
+                th Quantity
+                th Total Price
             tbody
               - @order.line_items.each do |line_item|
                 tr
-                  td = image_tag(main_app.url_for(line_item.variant.images.first.url(:small)))
-                  td
-                    = line_item.name
-                    br
-                    = line_item.single_money.to_html
+                  td = mini_image(line_item.variant)
+                  td = line_item.name
+                  td = line_item.single_money.to_html
+                  td = line_item.quantity
                   td = line_item.display_amount.to_html
-      - if @order.state.eql? 'awaiting_approval'
-        .pull-right
-          = link_to 'Approve All', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'
-          '
-          = link_to 'Reject All', reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-default'
+    .panel-footer
+      ' Order Total:
+      strong #{@order.display_total}
+  - if @order.state.eql? 'awaiting_approval'
+    = link_to 'Reject Order', reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-danger'
+    = link_to 'Approve Order', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-success pull-right'
