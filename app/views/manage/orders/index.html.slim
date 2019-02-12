@@ -1,6 +1,6 @@
 - if can? :manager, Spree::Order
-  .col-md-12
-    h1 Order Awaiting Approval
+  h1 Order Awaiting Approval
+  .col-xs-8.col-md-9
     .panel.panel-default
       .panel-heading Order Listing
       .panel-body
@@ -26,3 +26,5 @@
           .alert.alert-info
             ' No Orders found,
             = link_to 'Add One!', spree_path
+  .col-xs-4.col-md-3
+    = render partial: 'manage/orders/sidebar'

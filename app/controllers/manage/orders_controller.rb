@@ -5,8 +5,12 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    @orders = current_store.orders.department(spree_current_user).where.not(state: :cart).order(:state, created_at: :desc)
-    authorize! :read, @orders
+    if params[:sort] == 'approved' or params[:sort] == 'rejected'
+      @orders = current_store.orders.department(spree_current_user).where(state: params[:sort].to_sym).order(:state, created_at: :desc)
+    else
+      @orders = current_store.orders.department(spree_current_user).where(state: :awaiting_approval).order(:state, created_at: :desc)
+    end
+    # authorize! :read, @orders
   end
 
   def approve
