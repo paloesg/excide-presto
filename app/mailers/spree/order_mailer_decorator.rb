@@ -30,6 +30,7 @@ Spree::OrderMailer.class_eval do
   # Send email to admin for an order that has been approved by manager
   def order_notify_admin(order, admin)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
+    @admin = admin
     subject = "#{Spree::Store.current.name} | An order ##{@order.number} has been received"
 
     mail(to: admin.email, from: from_address, subject: subject)

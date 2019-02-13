@@ -1,11 +1,7 @@
-p Hi, #{@order.email}
+p Hi #{@admin.first_name},
 
-p The order with order number : #{@order.number}
-p Has been approved, the order is waiting to be processed
-p
-  | Approved by : #{@order.approver.email}
-  - if @order.approver.first_name.present?
-    |- #{@order.approver.full_name}
+p Order ##{@order.number} has been approved and is ready to be processed.
+
 table.container
   tr
     td.wrapper.last
@@ -19,7 +15,7 @@ table.container
                 td.six.sub-columns
                   = Spree.t(:promotion)
                   = label
-                  | \:
+                  | :
                 td.six.sub-columns.last.right
                   = Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
         - @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments|
@@ -27,7 +23,7 @@ table.container
             td.six.sub-columns
               = Spree.t(:shipping)
               = name
-              | \:
+              | :
             td.six.sub-columns.last.right
               = Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency)
         - if @order.all_adjustments.eligible.tax.exists?
@@ -36,7 +32,7 @@ table.container
               td.six.sub-columns
                 = Spree.t(:tax)
                 = label
-                | \:
+                | :
               td.six.sub-columns.last.right
                 = Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
         - @order.adjustments.eligible.each do |adjustment|
@@ -44,5 +40,4 @@ table.container
           = render 'spree/order_mailer/adjustment', adjustment: adjustment
         = render 'spree/order_mailer/total', order: @order
 
-p If you did not make this request, please ignore this email.
-br If you continue to have problems please feel free to contact us.
+p Approved by: #{@order.approver.full_name} (#{@order.approver.email})
