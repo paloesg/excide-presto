@@ -10,11 +10,12 @@ Spree::OrderMailer.class_eval do
   end
 
   # Send email to managers for new order that is awaiting approval
-  def request_approval_to_manager(order, manager)
+  def order_request_approval_manager(order, manager)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
+    @manager = manager
     subject = "#{Spree::Store.current.name} | Order ##{@order.number} requires your approval"
 
-    mail(to: manager.email, from: from_address, subject: subject)
+    mail(to: @manager.email, from: from_address, subject: subject)
   end
 
   # Send email to user after the order is approved
