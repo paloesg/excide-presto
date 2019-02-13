@@ -1,12 +1,7 @@
-p Hi, #{@order.email}
+p Hi #{@order.user.first_name},
 
-p Your order with order number : #{@order.number}
-p Has been rejected, you can edit the order and submit for approval again.
-p = link_to "Edit #{@order.number}", edit_rejected_url(@order.number)
-p
-  | Rejected by : #{@order.canceler.email}
-  - if @order.canceler.first_name.present?
-    |- #{@order.canceler.full_name}
+p Order ##{@order.number} has been approved and will be processed shortly.
+
 table.container
   tr
     td.wrapper.last
@@ -45,5 +40,4 @@ table.container
           = render 'spree/order_mailer/adjustment', adjustment: adjustment
         = render 'spree/order_mailer/total', order: @order
 
-p If you did not make this request, please ignore this email.
-br If you continue to have problems please feel free to contact us.
+p Approved by: #{@order.approver.full_name} (#{@order.approver.email})
