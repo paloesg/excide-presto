@@ -20,7 +20,7 @@ table.row.header
                       td.six.sub-columns
                         = Spree.t(:promotion)
                         = label
-                        | \:
+                        | :
                       td.six.sub-columns.last.right
                         = Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
               - @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments|
@@ -28,7 +28,7 @@ table.row.header
                   td.six.sub-columns
                     = Spree.t(:shipping)
                     = name
-                    | \:
+                    | :
                   td.six.sub-columns.last.right
                     = Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency)
               - if @order.all_adjustments.eligible.tax.exists?
@@ -37,18 +37,15 @@ table.row.header
                     td.six.sub-columns
                       = Spree.t(:tax)
                       = label
-                      | \:
+                      | :
                     td.six.sub-columns.last.right
                       = Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
               - @order.adjustments.eligible.each do |adjustment|
                 - next if (adjustment.source_type == 'Spree::TaxRate') || (adjustment.amount == 0)
                 = render 'spree/order_mailer/adjustment', adjustment: adjustment
               = render 'spree/order_mailer/total', order: @order
-      p Manager List :
-      - @managers.each do |manager|
-        ul
-          li
-            ' #{manager.email}
-            - if manager.first_name.present?
-              |- #{manager.full_name}
+      p
+        ' Your order has been sent to your managers for approval:
+        - @managers.each do |manager|
+          ' #{manager.full_name} (#{manager.email})
     td.expander
