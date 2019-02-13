@@ -62,4 +62,9 @@ Spree::Order.class_eval do
     touch :completed_at
     consider_risk
   end
+
+  def deliver_order_confirmation_email
+    Spree::OrderMailer.confirm_order(id).deliver_later
+    update_column(:confirmation_delivered, true)
+  end
 end
