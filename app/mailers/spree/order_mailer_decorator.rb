@@ -9,7 +9,7 @@ Spree::OrderMailer.class_eval do
   end
 
   # sent email to user the order is approved
-  def approve_email(order, resend = false)
+  def order_approved(order, resend = false)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
     subject = (resend ? "[#{Spree.t(:resend).upcase}] " : '')
     subject += "#{Spree::Store.current.name} order Approved ##{@order.number}"

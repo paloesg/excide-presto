@@ -11,7 +11,7 @@ Spree::CheckoutController.class_eval do
         @order.finalize!
         if managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
-          Spree::OrderMailer.approve_email(@order.id).deliver_now
+          Spree::OrderMailer.order_approved(@order.id).deliver_now
           flash.notice = 'Your order has been processed successfully'
         else
           send_email_to_managers
