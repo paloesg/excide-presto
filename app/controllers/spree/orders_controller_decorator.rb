@@ -71,7 +71,7 @@ Spree::OrdersController.class_eval do
 
   def send_email_to_managers
     managers.each do |manager|
-      Spree::OrderMailer.request_approval_to_manager(@order, manager).deliver_now
+      Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
     end
   end
 

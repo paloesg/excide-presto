@@ -13,7 +13,7 @@ class Manage::OrdersController < Spree::BaseController
     @order.completed_by(spree_current_user)
     Spree::OrderMailer.order_approved(@order).deliver_later
     admins.each do |admin|
-      Spree::OrderMailer.confirm_order_approved(@order, admin).deliver_now
+      Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
     flash.notice = "Order ##{@order.number} has been approved."
     redirect_to manage_orders_path

@@ -64,7 +64,7 @@ Spree::Order.class_eval do
   end
 
   def deliver_order_confirmation_email
-    Spree::OrderMailer.confirm_order(id).deliver_later
+    Spree::OrderMailer.order_confirmation(id).deliver_later
     update_column(:confirmation_delivered, true)
   end
 end
