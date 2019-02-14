@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class ProductSalesController < ResourceController  
+    class ProductSalesController < ResourceController
 
       def create
         variant = Variant.find(params[:variant_id])
@@ -13,8 +13,8 @@ module Spree
             flash[:error] = Spree.t(:could_not_create_product_sale)
           end
         else
-          flash[:error] = "Sale is already, please remove existing sale if you want to add the new sale"
-        end       
+          flash[:error] = "There is already an existing sale price set for this store. Please remove it to add a new sale price."
+        end
         redirect_back fallback_location: spree.admin_product_sale_url(variant.product)
       end
 

@@ -1,7 +1,8 @@
-function update_quantity_cart(variant_id, quantity) {
+// If the order number is null it will update the order in cart
+function update_quantity_cart(variant_id, quantity, order_number = null) {
   $.ajax({
     url: "/orders/populate",
-    data: "quantity="+quantity+"&variant_id="+variant_id,
+    data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
       location.reload();
@@ -16,12 +17,13 @@ $(document).on('mouseleave','.popover-content',function(){
 
 $(document).ready(function (){
   var update_data;
+  var order_number = $('#order_number').val();
   function start_timer_function(type, variant_id, quantity) {
     $('[data-toggle="item-cart"]').popover('destroy');
     update_data = setTimeout(function(){
       var item_text = quantity <= 1 ? "item" : "items";
       var type_text = type=='increase' ? "added" : "removed";
-      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity));
+      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number);
 
       $('.decrease-quantity').data("click_count", 0)
       $('.increase-quantity').data("click_count", 0)
@@ -32,6 +34,14 @@ $(document).ready(function (){
   function stop_timer_function() {
     clearTimeout(update_data);
   }
+
+  $(document).on('click', '.delete_line_item', function() {
+    var variant = $(this).closest('tr').find('.variant').val();
+    var quantity = $(this).closest('tr').find('.line_item_quantity');
+    var order_number = $('#order_number').val();
+    update_quantity_cart(variant, -(quantity.val()), order_number);
+    quantity.val(0);
+  })
 
   $(document).on('click', '.decrease-quantity,.increase-quantity', function() {
     stop_timer_function();
