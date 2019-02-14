@@ -8,6 +8,9 @@
       - if shipment.ready? and can? :update, shipment
         = link_to Spree.t(:ship), 'javascript:;', class: 'ship pull-right btn btn-success', data: { 'shipment-number' => shipment.number }
         .clearfix
+      - if shipment.shipped? and can? :update, shipment
+        = link_to Spree.t(:delivered), 'javascript:;', class: 'delivered pull-right btn btn-success', data: { 'shipment-number' => shipment.number }
+        .clearfix
   .table-responsive
     table.table.table-bordered.stock-contents data-hook="stock-contents"
       thead

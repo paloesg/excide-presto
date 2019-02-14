@@ -1,4 +1,7 @@
 Spree::Order.class_eval do
+
+  SHIPMENT_STATES = %w(backorder canceled partial pending ready shipped delivered)
+
   checkout_flow do
     go_to_state :address
     go_to_state :delivery
