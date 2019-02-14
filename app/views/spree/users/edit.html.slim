@@ -42,5 +42,5 @@
           = f.text_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)
       .row.col-md-12.form-group.text-right
         .col-md-12
-          = f.submit Spree.t(:update), :class => 'presto-btn btn btn-purple'
+          = render partial: 'spree/shared/edit_resource_links', locals: { collection_url: spree.account_path }
     div data-hook="signup_below_password_fields"
