@@ -1,0 +1,72 @@
+.panel.panel-default data-hook="admin_shipment_form" id="shipment_#{shipment.id}"
+  = render partial: "spree/admin/variants/split", formats: :js
+  .panel-heading.stock-location.no-borderb data-hook="stock-location"
+    h1.panel-title
+      span.shipment-number= shipment.number
+      | -
+      span.shipment-state= Spree.t("shipment_states.#{shipment.state}")
+      - if shipment.ready? and can? :update, shipment
+        = link_to Spree.t(:ship), 'javascript:;', class: 'ship pull-right btn btn-success', data: { 'shipment-number' => shipment.number }
+        .clearfix
+  .table-responsive
+    table.table.table-bordered.stock-contents data-hook="stock-contents"
+      thead
+        tr
+          th colspan="2" = Spree.t(:item_description)
+          th.text-center width="15%" = Spree.t(:price)
+          th.text-center width="15%" = Spree.t(:quantity)
+          th.text-center width="15%" = Spree.t(:total)
+          th.orders-actions.actions.text-center data-hook="admin_order_form_line_items_header_actions"
+      tbody data-order-number="#{order.number}" data-shipment-number="#{shipment.number}"
+        = render 'spree/admin/orders/shipment_manifest', shipment: shipment
+        - unless shipment.shipped?
+          tr.edit-method.is-hidden.total
+            td colspan="5"
+              .field.alpha.five.columns
+                = label_tag 'selected_shipping_rate_id', Spree.t(:shipping_method)
+                = select_tag :selected_shipping_rate_id, options_for_select(shipment.shipping_rates.map {|sr| ["#{sr.name} #{sr.display_price}", sr.id] }, shipment.selected_shipping_rate_id), \
+                  { class: 'select2', data: {'shipment-number' => shipment.number } }
+            td.actions.text-center
+              - if can? :update, shipment
+                = link_to_with_icon 'cancel', Spree.t('actions.cancel'), "#", class: 'cancel-method btn btn-primary btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true
+                = link_to_with_icon 'save', Spree.t('actions.save'), "#", class: 'save-method btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true
+        tr.show-method.total
+          - if rate = shipment.selected_shipping_rate
+            td colspan="4"
+              strong= rate.name
+            td.total.text-center
+              = shipment.display_cost
+          - else
+            td colspan="5" = Spree.t(:no_shipping_method_selected)
+          td.actions.text-center
+            - if( (can? :update, shipment) and !shipment.shipped?)
+              = link_to_with_icon 'edit', Spree.t('edit'), "javascript:;", class: 'edit-method with-tip btn btn-sm btn-primary', data: {action: 'edit'}, no_text: true
+        tr.edit-tracking.is-hidden.total
+          td colspan="5"
+            label
+              = Spree.t(:tracking_number)
+              | \:
+            = text_field_tag :tracking, shipment.tracking, class: "form-control"
+          td.actions
+            - if can? :update, shipment
+              = link_to_with_icon 'cancel', Spree.t('actions.cancel'), "#", class: 'cancel-tracking btn btn-primary btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true
+              = link_to_with_icon 'save', Spree.t('actions.save'), "#", class: 'save-tracking btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true
+        - if order.special_instructions.present?
+          tr.special_instructions
+            td colspan="5"
+              strong
+                = Spree.t(:special_instructions)
+                | \: 
+              = order.special_instructions
+        tr.show-tracking.total
+          td.tracking-value colspan="5"
+            - if shipment.tracking.present?
+              strong
+                = Spree.t(:tracking)
+                | \:
+              = link_to_tracking(shipment, target: '_blank')
+            - else
+              = Spree.t(:no_tracking_present)
+          td.actions.text-center
+            - if can? :update, shipment
+              = link_to_with_icon 'edit', Spree.t('edit'), "#", class: 'edit-tracking btn btn-primary btn-sm', data: {action: 'edit'}, title: Spree.t('edit'), no_text: true

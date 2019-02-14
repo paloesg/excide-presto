@@ -11,7 +11,8 @@ class Manage::OrdersController < Spree::BaseController
 
   def approve
     @order.completed_by(spree_current_user)
-    Spree::OrderMailer.order_approved(@order).deliver_later
+    @order.update_with_updater!
+    Spree::OrderMailer.approve_email(@order).deliver_later
     admins.each do |admin|
       Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
@@ -21,6 +22,7 @@ class Manage::OrdersController < Spree::BaseController
 
   def reject
     @order.rejected_by(spree_current_user)
+    @order.update_with_updater!
     Spree::OrderMailer.cancel_email(@order).deliver_later
     flash.notice = "Order ##{@order.number} has been rejected."
     redirect_to manage_orders_path
