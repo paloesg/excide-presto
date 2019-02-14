@@ -10,7 +10,7 @@ Spree::OrderUpdater.class_eval do
                                'partial'
                              else
         # will return nil if no shipments are found
-                               'ready'
+                                shipment_states.first
         # TODO: inventory unit states?
         # if order.shipment_state && order.inventory_units.where(shipment_id: nil).exists?
         #   shipments exist but there are unassigned inventory units
@@ -25,8 +25,14 @@ Spree::OrderUpdater.class_eval do
 
   def update_payment_state
     last_state = order.payment_state
-    order.payment_state = 'paid'
-    order.state_changed('shipment')
+    if payments.present? && payments.valid.empty?
+      order.payment_state = 'failed'
+    elsif order.canceled? && order.payment_total == 0
+      order.payment_state = 'void'
+    else
+      order.payment_state = 'paid'
+    end
+    order.state_changed('payment') if last_state != order.payment_state
     order.payment_state
   end
 end
