@@ -16,6 +16,8 @@ class Manage::OrdersController < Spree::BaseController
       Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
     flash.notice = "Order ##{@order.number} has been approved."
+    pdf = PurchaseOrder.new(@order)
+    # send_data pdf.render, filename: "purchase-order-#{@order.number}.pdf", type: "application/pdf", disposition: 'inline'
     redirect_to manage_orders_path
   end
 
