@@ -12,7 +12,7 @@ class Manage::OrdersController < Spree::BaseController
   def approve
     @order.completed_by(spree_current_user)
     @order.update_with_updater!
-    Spree::OrderMailer.approve_email(@order).deliver_later
+    Spree::OrderMailer.order_approved(@order).deliver_later
     admins.each do |admin|
       Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
