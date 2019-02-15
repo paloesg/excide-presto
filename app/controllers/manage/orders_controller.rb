@@ -17,7 +17,7 @@ class Manage::OrdersController < Spree::BaseController
     end
     flash.notice = "Order ##{@order.number} has been approved."
     generate_pdf = PurchaseOrder.new(@order)
-    @order.create_purchase_order(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
+    @order.create_purchase_order_pdf(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
     redirect_to manage_orders_path
   end
 

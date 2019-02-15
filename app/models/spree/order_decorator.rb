@@ -1,5 +1,5 @@
 Spree::Order.class_eval do
-  has_one :purchase_order, as: :viewable, dependent: :destroy, class_name: 'Spree::PurchaseOrderPdf'
+  has_one :purchase_order_pdf, as: :viewable, dependent: :destroy, class_name: 'Spree::PurchaseOrderPdf'
 
   checkout_flow do
     go_to_state :address
