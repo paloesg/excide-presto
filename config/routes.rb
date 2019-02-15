@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :shipments, only: [:create, :update] do
           member do
-            put :delivered
+            put :delivery
           end
         end
       end

@@ -24,12 +24,11 @@ Spree::Shipment.class_eval do
     event :ship do
       transition from: %i(ready canceled), to: :shipped
     end
-    after_transition to: :shipped, do: :after_ship
 
-    event :delivered do
+    event :delivery do
       transition from: :shipped, to: :delivered
     end
-    after_transition to: :delivered, do: :after_delivered
+    # after_transition to: :delivered, do: :after_ship
 
     event :cancel do
       transition to: :canceled, from: %i(pending ready)
@@ -42,7 +41,7 @@ Spree::Shipment.class_eval do
       }
       transition from: :canceled, to: :pending
     end
-    after_transition from: :canceled, to: %i(pending ready shipped), do: :after_resume
+    after_transition from: :canceled, to: %i(pending ready shipped delivered), do: :after_resume
 
     after_transition do |shipment, transition|
       shipment.state_changes.create!(
@@ -67,9 +66,6 @@ Spree::Shipment.class_eval do
     order.paid? || Spree::Config[:auto_capture_on_dispatch] ? 'ready' : 'pending'
   end
 
-  # Updates various aspects of the Shipment while bypassing any callbacks.  Note that this method takes an explicit reference to the
-  # Order object.  This is necessary because the association actually has a stale (and unsaved) copy of the Order and so it will not
-  # yield the correct results.
   def update!(order)
     old_state = state
     new_state = determine_state(order)
@@ -77,18 +73,11 @@ Spree::Shipment.class_eval do
       state: new_state,
       updated_at: Time.current
     )
-    after_ship if new_state == 'shipped' && old_state != 'shipped'
-    after_delivered if new_state == 'delivered' && old_state != 'delivered'
+    after_ship if new_state == 'delivered' && old_state != 'delivered'
   end
 
   def delivered=(value)
-    # return unless value == '1' && delivered_at.nil?
-    # self.delivered_at = Time.current
+    return unless value == '1' && delivered_at.nil?
+    self.delivered_at = Time.current
   end
-
-  def after_delivered
-    ShipmentHandler.factory(self).perform
-  end
-
-
 end
