@@ -32,8 +32,10 @@ gem 'jbuilder', '~> 2.5'
 
 # AWS S3 gem for file storage
 gem "aws-sdk-s3", require: false
-# Prawn generate PDF file
+# PrawnPDF generate PDF file
 gem "prawn"
+# Provides table support for PrawnPDF. 
+gem "prawn-table"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
