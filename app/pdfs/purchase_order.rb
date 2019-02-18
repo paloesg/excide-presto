@@ -7,19 +7,15 @@ class PurchaseOrder < Prawn::Document
     # row logo
     logo
     purchase_order
-
     # row company details
     company_details
     order_date
     order_number
-
     # row bill to
     bill_to
     ship_to
-
     # table order line items
     line_items
-
     # row footer
     total_price
     authorized_signature
@@ -43,32 +39,47 @@ class PurchaseOrder < Prawn::Document
 
   def order_date
     move_up 20
-    text "DATE", align: :right
+    text "DATE", align: :right, size: 11
     horizontal_line_left
     move_down 4
-    text @order.created_at.strftime("%d/%m/%Y"), align: :right
+    text @order.created_at.strftime("%d/%m/%Y"), align: :right, size: 10
   end
 
   def order_number
     move_down 5
-    text "ORDER NUMBER", align: :right
+    text "ORDER NUMBER", align: :right, size: 11
     horizontal_line_left
     move_down 4
-    text @order.number, align: :right
+    text @order.number, align: :right, size: 10
   end
 
-  def horizontal_line_left
-    horizontal_line 420, 550
-  end
-  
   def bill_to
     move_down 20
-    text "BILL TO"
+    text "BILL TO", size: 11
+    horizontal_line 0, 300
+    move_down 4
+    text @order.bill_address.address1, size: 10
+    text @order.bill_address.address2, size: 10
+    text @order.bill_address.city, size: 10
+    text @order.bill_address.phone, size: 10
   end
 
   def ship_to
     move_up 20
-    text "SHIP TO", align: :right
+    text "SHIP TO", align: :right, size: 11
+    horizontal_line 400, 540
+    move_down 4
+    if @order.ship_address
+      text @order.ship_address.address1, size: 10, align: :right
+      text @order.ship_address.address2, size: 10, align: :right
+      text @order.ship_address.city, size: 10, align: :right
+      text @order.ship_address.phone, size: 10, align: :right
+    else
+      text @order.bill_address.address1, size: 10, align: :right
+      text @order.bill_address.address2, size: 10, align: :right
+      text @order.bill_address.city, size: 10, align: :right
+      text @order.bill_address.phone, size: 10, align: :right
+    end
   end 
 
   def line_items
@@ -76,9 +87,9 @@ class PurchaseOrder < Prawn::Document
     table line_items_rows, width: bounds.width do
       row(0).font_style = :bold
       row(0).borders = [:bottom]
-      row(0).border_width = 1
+      row(0).border_width = 0.5
       row(0).align = :center
-      row(1).columns(1..3).align = :right
+      row(1..99).columns(1..3).align = :right
       self.header = true
     end
   end
@@ -92,12 +103,12 @@ class PurchaseOrder < Prawn::Document
 
   def total_price
     move_down 15
-    text "Total Price: #{@order.display_total}", size: 16, style: :bold, align: :right
+    text "Total Price: #{@order.display_total}", size: 12, style: :bold, align: :right
   end
 
   def authorized_signature
     move_down 15
-    text "AUTHORIZED SIGNATURE"
+    text "AUTHORIZED SIGNATURE", size: 11
   end
 
   def date
@@ -110,5 +121,9 @@ class PurchaseOrder < Prawn::Document
     text "For questions concerring this invoice, please contact", align: :center
     text "Name, Phone, Email Address", align: :center
     text "gobblerco.herokuapp.com", align: :center
+  end
+
+  def horizontal_line_left
+    horizontal_line 420, 540
   end
 end
