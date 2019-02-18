@@ -116,6 +116,8 @@ class PurchaseOrder < Prawn::Document
   end
 
   def authorized_signature
+    move_up 40
+    text "THANK YOU", size: 25
     move_down 15
     text "<u>AUTHORIZED SIGNATURE</u>", size: 11, inline_format: true
   end
@@ -128,8 +130,8 @@ class PurchaseOrder < Prawn::Document
 
   def footer
     text "For questions concerring this invoice, please contact", align: :center, size: 10
-    text "Name, Phone, Email Address", align: :center, size: 10
-    text "gobblerco.herokuapp.com", align: :center, size: 11
+    text "Name, +65 6285 0320, Email Address", align: :center, size: 10
+    text "gobbler.com", align: :center, size: 11
   end
 
   def horizontal_line_left
