@@ -21,6 +21,7 @@ class PurchaseOrder < Prawn::Document
     authorized_signature
     date
     footer
+    stroke_axis
   end
 
   def logo
@@ -84,7 +85,7 @@ class PurchaseOrder < Prawn::Document
 
   def line_items
     move_down 20
-    table line_items_rows, width: bounds.width do
+    table line_items_rows, width: bounds.width, cell_style: {size: 10} do
       row(0).font_style = :bold
       row(0).borders = [:bottom]
       row(0).border_width = 0.5
@@ -118,9 +119,9 @@ class PurchaseOrder < Prawn::Document
 
   def footer
     move_down 15
-    text "For questions concerring this invoice, please contact", align: :center
-    text "Name, Phone, Email Address", align: :center
-    text "gobblerco.herokuapp.com", align: :center
+    text "For questions concerring this invoice, please contact", align: :center, size: 10
+    text "Name, Phone, Email Address", align: :center, size: 10
+    text "gobblerco.herokuapp.com", align: :center, size: 11
   end
 
   def horizontal_line_left
