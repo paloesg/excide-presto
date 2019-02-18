@@ -7,21 +7,25 @@ class PurchaseOrder < Prawn::Document
     # row logo
     logo
     purchase_order
+
     # row company details
     company_details
     order_date
     order_number
+
     # row bill to
     bill_to
     ship_to
+
     # table order line items
     line_items
-    # row footer
     total_price
+
+    # row footer
+    move_cursor_to 80
     authorized_signature
     date
     footer
-    stroke_axis
   end
 
   def logo
@@ -57,35 +61,39 @@ class PurchaseOrder < Prawn::Document
   def bill_to
     move_down 20
     text "BILL TO", size: 11
-    horizontal_line 0, 300
+    horizontal_line 0, 230
     move_down 4
-    text @order.bill_address.address1, size: 10
-    text @order.bill_address.address2, size: 10
-    text @order.bill_address.city, size: 10
-    text @order.bill_address.phone, size: 10
+    span(200, position: :left) do
+      text @order.bill_address.address1, size: 10
+      text @order.bill_address.address2, size: 10
+      text @order.bill_address.city, size: 10
+      text @order.bill_address.phone, size: 10
+    end
   end
 
   def ship_to
-    move_up 20
+    move_up 75
     text "SHIP TO", align: :right, size: 11
-    horizontal_line 400, 540
+    horizontal_line 350, 540
     move_down 4
-    if @order.ship_address
-      text @order.ship_address.address1, size: 10, align: :right
-      text @order.ship_address.address2, size: 10, align: :right
-      text @order.ship_address.city, size: 10, align: :right
-      text @order.ship_address.phone, size: 10, align: :right
-    else
-      text @order.bill_address.address1, size: 10, align: :right
-      text @order.bill_address.address2, size: 10, align: :right
-      text @order.bill_address.city, size: 10, align: :right
-      text @order.bill_address.phone, size: 10, align: :right
-    end
+    span(200, position: :right) do
+      if @order.ship_address
+        text @order.ship_address.address1, size: 10, align: :right
+        text @order.ship_address.address2, size: 10, align: :right
+        text @order.ship_address.city, size: 10, align: :right
+        text @order.ship_address.phone, size: 10, align: :right
+      else
+        text @order.bill_address.address1, size: 10, align: :right
+        text @order.bill_address.address2, size: 10, align: :right
+        text @order.bill_address.city, size: 10, align: :right
+        text @order.bill_address.phone, size: 10, align: :right
+      end
+     end
   end 
 
   def line_items
     move_down 20
-    table line_items_rows, width: bounds.width, cell_style: {size: 10} do
+    table line_items_rows, width: bounds.width, cell_style: {size: 9} do
       row(0).font_style = :bold
       row(0).borders = [:bottom]
       row(0).border_width = 0.5
@@ -118,7 +126,6 @@ class PurchaseOrder < Prawn::Document
   end
 
   def footer
-    move_down 15
     text "For questions concerring this invoice, please contact", align: :center, size: 10
     text "Name, Phone, Email Address", align: :center, size: 10
     text "gobblerco.herokuapp.com", align: :center, size: 11
