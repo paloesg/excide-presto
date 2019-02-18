@@ -117,12 +117,13 @@ class PurchaseOrder < Prawn::Document
 
   def authorized_signature
     move_down 15
-    text "AUTHORIZED SIGNATURE", size: 11
+    text "<u>AUTHORIZED SIGNATURE</u>", size: 11, inline_format: true
   end
 
   def date
     move_up 15
-    text "DATE", align: :right
+    text "<u>DATE</u>", align: :right, inline_format: true
+    horizontal_line 420, 540
   end
 
   def footer
