@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2019_02_15_040638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "address_id"
-    t.string "default_currency"
     t.index ["address_id"], name: "index_spree_companies_on_address_id"
   end
 
@@ -724,27 +723,6 @@ ActiveRecord::Schema.define(version: 2019_02_15_040638) do
     t.datetime "updated_at", null: false
     t.string "service_name"
     t.index ["spree_user_id"], name: "index_spree_service_requests_on_spree_user_id"
-  end
-
-  create_table "spree_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.json "fields", default: "[]"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.text "description"
-    t.string "meta_title"
-    t.string "meta_keywords"
-    t.text "meta_description"
-  end
-
-  create_table "spree_services_taxons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "service_id", null: false
-    t.integer "taxon_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_spree_services_taxons_on_service_id"
-    t.index ["taxon_id"], name: "index_spree_services_taxons_on_taxon_id"
   end
 
   create_table "spree_shipments", id: :serial, force: :cascade do |t|
