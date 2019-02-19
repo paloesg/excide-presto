@@ -16,8 +16,8 @@ class Manage::OrdersController < Spree::BaseController
       Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
     flash.notice = "Order ##{@order.number} has been approved."
-    generate_pdf = PurchaseOrder.new(@order)
-    @order.create_purchase_order_pdf(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
+    generate_pdf = PurchaseOrderPdf.new(@order)
+    @order.create_purchase_order(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
     redirect_to manage_orders_path
   end
 

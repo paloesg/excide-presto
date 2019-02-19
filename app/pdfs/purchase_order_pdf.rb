@@ -1,4 +1,4 @@
-class PurchaseOrder < Prawn::Document
+class PurchaseOrderPdf < Prawn::Document
   def initialize(order)
     super(top_margin: 70)
     @order = order
