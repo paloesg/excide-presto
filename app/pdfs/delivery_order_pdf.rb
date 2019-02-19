@@ -137,4 +137,4 @@ class DeliveryOrderPdf < Prawn::Document
   def horizontal_line_left
     horizontal_line 420, 540
   end
-e
+end
