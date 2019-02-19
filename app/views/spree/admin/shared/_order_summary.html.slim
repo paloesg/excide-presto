@@ -56,15 +56,7 @@
               ' :
           td#shipment_status
             span class=("state label label-#{@order.shipment_state}")
-              = Spree.t(@order.shipment_state, scope: :shipment_states, default: [:missing, "none"])
-        tr
-          td
-            strong
-              = Spree.t(:payment)
-              ' :
-          td#payment_status
-            span class=("state label label-#{@order.payment_state}")
-              = Spree.t(@order.payment_state, scope: :payment_states, default: [:missing, "none"])
+              = Spree.t(@order.shipment_state)
         tr
           td data-hook="admin_order_tab_date_completed_title"
             strong

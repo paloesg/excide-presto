@@ -67,6 +67,7 @@ en:
     company_name: "Company name"
     phone: "Phone"
     update_cart: "Update Cart"
+    delivered: "Delivered"
   devise:
     mailer:
       new_password_instructions:
