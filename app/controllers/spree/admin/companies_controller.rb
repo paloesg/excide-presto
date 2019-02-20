@@ -66,7 +66,7 @@ module Spree
       end
 
       def company_params
-        params.require(:company).permit(:name, :address_id, :description, :default_currency, company_address_attributes: permitted_address_attributes)
+        params.require(:company).permit(:name, :address_id, :description, :limit_order_price, company_address_attributes: permitted_address_attributes)
       end
     end
   end
