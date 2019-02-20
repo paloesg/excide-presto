@@ -17,4 +17,5 @@
           td = company.description
           td = link_to_edit company, no_text: true, class: 'edit' if can?(:edit, company)
 - else
-  | No companies created yet.
+  .alert.alert-warning
+    | #{Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Department))}, #{link_to(Spree.t(:add_one), new_admin_company_url) if can? :create, Spree::Department}!

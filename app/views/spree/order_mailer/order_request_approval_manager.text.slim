@@ -1,7 +1,6 @@
-p Hi, new request order awaiting your approval from: #{@order.email}
+p Hi #{@manager.first_name},
 
-p With order number : #{@order.number}
-
+p There is a new order ##{@order.number} placed by #{@order.user.full_name} (#{@order.user.email}) awaiting your approval.
 br
 - @order.line_items.each do |item|
   = item.variant.sku
@@ -36,4 +35,4 @@ br
 = Spree.t('order_mailer.total')
 = @order.display_total
 
-p If the above URL does not work try copying and pasting it into your browser. If you continue to have problems please feel free to contact us.
+p Go to #{main_app.edit_manage_order_url(@order.number)} to manage this order.

@@ -11,15 +11,17 @@ Spree::CheckoutController.class_eval do
         @order.finalize!
         total_price_order = @order.total
         limit_amount_company = spree_current_user.company.default_currency if spree_current_user.company.present?
-        if managers.empty? or @order.user.has_spree_role? :manager
-          @order.approved_by(@order.user)
+        if managers.blank? or @order.user.has_spree_role? :manager
+          @order.completed_by(@order.user)
+          Spree::OrderMailer.order_approved(@order.id).deliver_later
           flash.notice = 'Your order has been processed successfully'
         elsif limit_amount_company.present? and limit_amount_company.to_f > total_price_order.to_f
           @order.approved_by(@order.user)
           flash.notice = 'Your order has been processed successfully'
         else
           send_email_to_managers
-          flash.notice = 'Your order is awaiting for approval from manager'
+          @order.deliver_order_confirmation_email
+          flash.notice = 'Your order is awaiting approval from your manager'
         end
         redirect_to completion_route
       else
@@ -34,12 +36,12 @@ Spree::CheckoutController.class_eval do
 
   def send_email_to_managers
     managers.each do |manager|
-      Spree::OrderMailer.request_approval_to_manager(@order, manager).deliver_now
+      Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
     end
   end
 
   def managers
-    managers = Spree::Role.get_manager_by_department(@order.user.company_id, @order.user.department_id)
+    managers = Spree::Role.get_manager_by_department(@order.user)
   end
 
   def set_order

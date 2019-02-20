@@ -17,6 +17,7 @@ Spree::Ability.class_eval do
       can :manage, :all
     elsif user.has_spree_role?('manager')
       can :manage, Spree::Order
+      can [:read, :update, :destroy], Spree.user_class, id: user.id
     elsif user.has_spree_role?('superadmin')
       can :manage, :all
     else
@@ -28,7 +29,7 @@ Spree::Ability.class_eval do
         order.user == user || order.guest_token && token == order.guest_token
       end
       can :update, Spree::Order do |order, token|
-        !order.completed? && (order.user == user || order.guest_token && token == order.guest_token)
+        order.user == user && order.rejected? || !order.completed? && (order.user == user || order.guest_token && token == order.guest_token)
       end
       can :display, Spree::CreditCard, user_id: user.id
       can :display, Spree::Product

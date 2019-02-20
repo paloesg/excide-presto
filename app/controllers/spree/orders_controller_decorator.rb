@@ -1,5 +1,6 @@
 Spree::OrdersController.class_eval do
   respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
+  before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
   def update
     @variant = Spree::Variant.find(params[:variant_id]) if params[:variant_id]
@@ -19,21 +20,19 @@ Spree::OrdersController.class_eval do
     end
   end
 
-  def reorder
-    order    = current_order(create_order_if_necessary: true)
-    order.empty!
-    rejected_order  = Spree::Order.find_by_number(params[:id])
-    rejected_order.line_items.each do |line_item|
-      order.contents.add(line_item.variant, line_item.quantity, {})
-    end
-    order.update_line_item_prices!
-    order.create_tax_charge!
-    order.update_with_updater!
-    redirect_to cart_path
+  def edit_rejected
+  end
+
+  def reorder_rejected
+    @order.update_columns(state: 'awaiting_approval', updated_at: Time.current)
+    @order.deliver_order_confirmation_email
+    send_email_to_managers
+    flash.notice = "Your order with order number #{@order.number}, is awaiting for approval."
+    redirect_to account_path
   end
 
   def populate
-    @order    = current_order(create_order_if_necessary: true)
+    @order   = Spree::Order.find_by(number: params[:order_number]).present? ? Spree::Order.find_by(number: params[:order_number]) : current_order(create_order_if_necessary: true)
     variant  = Spree::Variant.find(params[:variant_id])
     quantity = params[:quantity].to_i
     options  = params[:options] || {}
@@ -67,4 +66,21 @@ Spree::OrdersController.class_eval do
       end
     end
   end
+
+  private
+
+  def send_email_to_managers
+    managers.each do |manager|
+      Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
+    end
+  end
+
+  def managers
+    managers = Spree::Role.get_manager_by_department(@order.user)
+  end
+
+  def rejected_order
+    @order = Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
+  end
+
 end
