@@ -5,6 +5,9 @@ Spree::Api::V1::ShipmentsController.class_eval do
     @shipment.delivery! unless @shipment.delivered?
     @shipment.order.update_with_updater!
     @shipment.delivered_at = Time.current
+    @order = @shipment.order
+    generate_pdf = InvoicePdf.new(@order)
+    @order.create_invoice(attachment: {io: StringIO.new(generate_pdf.render), filename: "invoice-#{@order.number}.pdf"})
     @shipment.save
     respond_with(@shipment, default_template: :show)
   end

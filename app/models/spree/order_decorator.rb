@@ -1,6 +1,7 @@
 Spree::Order.class_eval do
   has_one :purchase_order, as: :viewable, dependent: :destroy, class_name: 'Spree::PurchaseOrder'
   has_one :delivery_order, as: :viewable, dependent: :destroy, class_name: 'Spree::DeliveryOrder'
+  has_one :invoice, as: :viewable, dependent: :destroy, class_name: 'Spree::Invoice'
 
   SHIPMENT_STATES = %w(backorder canceled partial pending ready shipped delivered)
 
