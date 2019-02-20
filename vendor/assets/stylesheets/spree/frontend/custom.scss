@@ -63,6 +63,7 @@ h1.product-title.text-center, span.lead.price.selling, h1.product-section-title,
 
 h1.product-section-title {
   margin-bottom: 5px !important;
+  margin-top: 0px !important;
 }
 
 h4.product-section-title {
@@ -841,6 +842,26 @@ input[type=number]::-webkit-outer-spin-button {
 
 .presto-modal-header {
   padding: 15px;
+}
+
+.presto-modal-header > button.close{
+  position: absolute;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  right: 15px;
+  top: 15px;
+  font-size: 20px;
+}
+
+.modal-body {
+  position: relative !important;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 20px;
+  padding-top: 0px;
 }
 
 .close {
