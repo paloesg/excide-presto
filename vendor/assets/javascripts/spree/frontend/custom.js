@@ -1,6 +1,7 @@
 function showProduct(url) {
   // Load Product Content
   $("#modalContent").load(window.location.origin +'/'+ url, function(response, status, xhr) {
+    console.log(status)
     if (status == "success") {
       $('.loader').hide();
       $('.modal-content').show();
