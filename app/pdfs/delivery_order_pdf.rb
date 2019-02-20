@@ -9,22 +9,23 @@ class DeliveryOrderPdf < Prawn::Document
     delivery_order
 
     # row company details
-    company_details
+    company_name
     order_date
     order_number
 
     # row bill to
-    bill_to
-    ship_to
+    deliver_to
+    delivery_address
 
     # table order line items
     line_items
     total_price
 
     # row footer
-    move_cursor_to 80
-    authorized_signature
+    move_cursor_to 60
+    receiver_signature
     date
+    move_down 20
     footer
   end
 
@@ -37,8 +38,8 @@ class DeliveryOrderPdf < Prawn::Document
     text "DELIVERY ORDER", size: 15, align: :right, color: "878787"
   end
 
-  def company_details
-    move_down 20
+  def company_name
+    move_down 40
     text @company.name
   end
 
@@ -58,36 +59,26 @@ class DeliveryOrderPdf < Prawn::Document
     text @order.number, align: :right, size: 10
   end
 
-  def bill_to
+  def deliver_to
     move_down 20
-    text "BILL TO", size: 11
+    text "DELIVER TO", size: 11
     horizontal_line 0, 230
     move_down 4
     span(200, position: :left) do
-      text @order.bill_address.address1, size: 10
-      text @order.bill_address.address2, size: 10
-      text @order.bill_address.city, size: 10
-      text @order.bill_address.phone, size: 10
+      text "#{@order.ship_address.first_name} #{@order.ship_address.last_name}", size: 11
     end
   end
 
-  def ship_to
-    move_up 75
-    text "SHIP TO", align: :right, size: 11
+  def delivery_address
+    move_up 28
+    text "DELIVERY ADDRESS", align: :right, size: 11
     horizontal_line 350, 540
     move_down 4
     span(200, position: :right) do
-      if @order.ship_address
-        text @order.ship_address.address1, size: 10, align: :right
-        text @order.ship_address.address2, size: 10, align: :right
-        text @order.ship_address.city, size: 10, align: :right
-        text @order.ship_address.phone, size: 10, align: :right
-      else
-        text @order.bill_address.address1, size: 10, align: :right
-        text @order.bill_address.address2, size: 10, align: :right
-        text @order.bill_address.city, size: 10, align: :right
-        text @order.bill_address.phone, size: 10, align: :right
-      end
+      text @order.ship_address.address1, size: 10, align: :right
+      text @order.ship_address.address2, size: 10, align: :right
+      text @order.ship_address.city, size: 10, align: :right
+      text @order.ship_address.phone, size: 10, align: :right
      end
   end 
 
@@ -115,21 +106,21 @@ class DeliveryOrderPdf < Prawn::Document
     text "Total Price: #{@order.display_total}", size: 12, style: :bold, align: :right
   end
 
-  def authorized_signature
-    move_up 40
+  def receiver_signature
+    move_up 80
     text "THANK YOU", size: 25
-    move_down 15
-    text "<u>AUTHORIZED SIGNATURE</u>", size: 11, inline_format: true
+    move_down 30
+    text "<u>RECEIVER'S SIGNATURE / COMPANY STAMP</u>", size: 11, inline_format: true
   end
 
   def date
     move_up 15
-    text "<u>DATE</u>", align: :right, inline_format: true
+    text "<u>Time of Receipt</u>", align: :right, inline_format: true
     horizontal_line 420, 540
   end
 
   def footer
-    text "For questions concerring this invoice, please contact", align: :center, size: 10
+    text "For questions concerring this delivery order, please contact", align: :center, size: 10
     text "Name, +65 6285 0320, Email Address", align: :center, size: 10
     text "gobbler.com", align: :center, size: 11
   end
