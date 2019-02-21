@@ -22,10 +22,12 @@ class DeliveryOrderPdf < Prawn::Document
     total_price
 
     # row footer
-    move_cursor_to 60
+    move_cursor_to 80
+    horizontal_line 0, 230
+    horizontal_line 420, 540
     receiver_signature
     date
-    move_down 20
+    move_down 25
     footer
   end
 
@@ -107,22 +109,21 @@ class DeliveryOrderPdf < Prawn::Document
   end
 
   def receiver_signature
-    move_up 80
-    text "THANK YOU", size: 25
+    move_up 50
+    text "THANK YOU", size: 20
     move_down 30
-    text "<u>RECEIVER'S SIGNATURE / COMPANY STAMP</u>", size: 11, inline_format: true
+    text "RECEIVER'S SIGNATURE / COMPANY STAMP", size: 11
   end
 
   def date
-    move_up 15
-    text "<u>Time of Receipt</u>", align: :right, inline_format: true
-    horizontal_line 420, 540
+    move_up 13
+    text "Time of Receipt", align: :right
   end
 
   def footer
     text "For questions concerring this delivery order, please contact", align: :center, size: 10
     text "Name, +65 6285 0320, Email Address", align: :center, size: 10
-    text "gobbler.com", align: :center, size: 11
+    text "<u>www.gobbler.com</u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left
