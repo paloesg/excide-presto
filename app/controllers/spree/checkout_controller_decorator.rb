@@ -10,9 +10,9 @@ Spree::CheckoutController.class_eval do
       if @order.awaiting_approval?
         @order.finalize!
         total_order_price = @order.total
-        company_limit_order_price = spree_current_user.company.limit_order_price if spree_current_user.company.present?
+        company_preapproved_limit = spree_current_user.company.preapproved_limit if spree_current_user.company.present?
         #set automaticaly approved when company have limit order price and the order price less than the company limit or the user don't have manager or the user as manager
-        if (company_limit_order_price.present? and company_limit_order_price >= total_order_price) or managers.blank? or @order.user.has_spree_role? :manager
+        if (company_preapproved_limit.present? and company_preapproved_limit >= total_order_price) or managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
           Spree::OrderMailer.order_approved(@order.id).deliver_later
           flash.notice = 'Your order has been processed successfully'
