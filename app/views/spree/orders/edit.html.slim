@@ -28,6 +28,10 @@ div data-hook="cart_container"
           .panel.presto-panel-default
             .panel-body
               .col-md-12
+                h5.text-center
+                  strong Department Budget
+                .lead.total-price.text-center = number_to_currency(spree_current_user.department.department_budget.budget) if spree_current_user.department.department_budget.present?
+              .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
                 .col-md-4
