@@ -765,7 +765,6 @@ ActiveRecord::Schema.define(version: 2019_02_21_012313) do
     t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.datetime "delivered_at"
     t.index ["address_id"], name: "index_spree_shipments_on_address_id"
     t.index ["number"], name: "index_spree_shipments_on_number", unique: true
     t.index ["order_id"], name: "index_spree_shipments_on_order_id"
@@ -1123,13 +1122,13 @@ ActiveRecord::Schema.define(version: 2019_02_21_012313) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.uuid "company_id"
-    t.uuid "department_id"
     t.boolean "approved", default: false, null: false
     t.string "first_name"
     t.string "last_name"
     t.string "company_name"
     t.string "phone"
+    t.uuid "company_id"
+    t.uuid "department_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["company_id"], name: "index_spree_users_on_company_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
