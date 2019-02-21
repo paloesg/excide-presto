@@ -15,6 +15,9 @@ Spree::CheckoutController.class_eval do
         if (company_preapproved_limit.present? and company_preapproved_limit >= total_order_price) or managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
           Spree::OrderMailer.order_approved(@order.id).deliver_later
+          admins.each do |admin|
+            Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
+          end
           flash.notice = 'Your order has been processed successfully'
         else
           send_email_to_managers
@@ -40,6 +43,10 @@ Spree::CheckoutController.class_eval do
 
   def managers
     managers = Spree::Role.get_manager_by_department(@order.user)
+  end
+
+  def admins
+    Spree::Role.find_by_name('admin').users
   end
 
   def set_order
