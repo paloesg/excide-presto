@@ -21,8 +21,9 @@ class InvoicePdf < Prawn::Document
     total_price
 
     # row footer
-    move_cursor_to 80
+    move_cursor_to 60
     date
+    move_down 20
     footer
   end
 
