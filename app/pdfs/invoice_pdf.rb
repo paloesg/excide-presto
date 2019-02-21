@@ -21,7 +21,10 @@ class InvoicePdf < Prawn::Document
     total_price
 
     # row footer
-    move_cursor_to 60
+    move_cursor_to 75
+    horizontal_line 0, 230
+    horizontal_line 420, 540
+    authorized_signature
     date
     move_down 20
     footer
@@ -94,16 +97,22 @@ class InvoicePdf < Prawn::Document
     text "Total Price: #{@order.display_total}", size: 12, style: :bold, align: :right
   end
 
+  def authorized_signature
+    move_up 50
+    text "THANK YOU", size: 25
+    move_down 30
+    text "AUTHORIZED SIGNATURE", size: 11
+  end
+
   def date
     move_up 15
-    text "<u>DATE</u>", align: :right, inline_format: true
-    horizontal_line 420, 540
+    text "DATE", align: :right
   end
 
   def footer
     text "For questions concerring this invoice, please contact", align: :center, size: 10
     text "Name, +65 6285 0320, Email Address", align: :center, size: 10
-    text "gobbler.com", align: :center, size: 11
+    text "<u>gobbler.com</u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left
