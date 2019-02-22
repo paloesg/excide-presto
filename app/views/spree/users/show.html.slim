@@ -39,7 +39,9 @@
             td.order-date= l order.completed_at.to_date
             td.order-status= Spree.t("order_state.#{order.state}").titleize
             td.lead.text-primary.order-total= order.display_total
-            td = link_to 'Reorder', edit_rejected_path(id: order.number), class: "presto-btn btn-primary" if order.rejected?
+            td 
+              = link_to 'Reorder', edit_rejected_path(id: order.number), class: "presto-btn btn-primary" if order.rejected?
+              = link_to 'Purchase Order', main_app.url_for(order.purchase_order.attachment), class: "presto-btn btn-warning", target: :_blank if order.purchase_order
   - else
     .alert.alert-info= Spree.t(:you_have_no_orders_yet)
   br
