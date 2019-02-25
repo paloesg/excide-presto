@@ -1,4 +1,27 @@
 Spree::CheckoutController.class_eval do
+  def before_delivery
+    return if params[:order].present?
+
+    packages = @order.shipments.map(&:to_package)
+    @differentiator = Spree::Stock::Differentiator.new(@order, packages)
+
+    #we select the shipping for the user
+    @order.select_default_shipping
+    @order.next
+
+    #default logic for finalizing unless he can't select payment_method
+    if @order.completed?
+      session[:order_id] = nil
+      flash.notice = Spree.t(:order_processed_successfully)
+      flash[:commerce_tracking] = "nothing special"
+
+      return redirect_to completion_route
+    else
+      return redirect_to checkout_state_path(@order.state)
+    end
+
+  end
+
   def update
     if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
       @order.temporary_address = !params[:save_user_address]

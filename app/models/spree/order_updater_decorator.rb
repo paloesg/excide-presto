@@ -1,4 +1,20 @@
 Spree::OrderUpdater.class_eval do
+  def update
+    unless order.shipment_state == 'shipped'
+      order.select_default_shipping
+    end
+    update_item_count
+    update_totals
+    if order.completed?
+      update_payment_state
+      update_shipments
+      update_shipment_state
+      update_shipment_total
+    end
+    run_hooks
+    persist_totals
+  end
+
   def update_shipment_state
     if order.backordered?
       order.shipment_state = 'backorder'
