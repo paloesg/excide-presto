@@ -41,7 +41,11 @@
             td.lead.text-primary.order-total= order.display_total
             td 
               = link_to 'Reorder', edit_rejected_path(id: order.number), class: "presto-btn btn-primary" if order.rejected?
-              = link_to 'Purchase Order', main_app.url_for(order.purchase_order.attachment), class: "presto-btn btn-warning", target: :_blank if order.purchase_order
+              - if order.purchase_order
+                = link_to 'Purchase Order', main_app.url_for(order.purchase_order.attachment), class: "presto-btn btn-warning m-r-5", target: :_blank
+                .override-purchase-order.presto-btn.btn-primary
+                  ' Upload
+                  = file_field_tag :attachment, multipart: true, class: 'attachment'
   - else
     .alert.alert-info= Spree.t(:you_have_no_orders_yet)
   br

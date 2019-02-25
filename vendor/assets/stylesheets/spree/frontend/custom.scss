@@ -238,6 +238,18 @@ span.badge.badge-presto {
   top: 9px;
 }
 
+.override-purchase-order {
+  overflow: hidden;
+  position: relative;
+}
+
+.override-purchase-order > .attachment {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 50px;
+}
+
 /* Margin & Padding Helper */
 $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 65, 75, 100); // Adjust this to include the pixel amounts you need.
 $sides: (top, bottom, left, right); // Leave this variable alone
