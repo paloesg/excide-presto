@@ -168,8 +168,21 @@ select#sort-by {
   color: #5f509b;
 }
 
-.btn-purple:focus {
+.btn-purple:focus .btn-green:focus{
   color: #ffffff;
+}
+
+.btn-green {
+  background-color: #4da338;
+  border-color: #4da338;
+  font-family: "AmsiPro-Ultra", sans-serif;
+  color: #ffffff;
+}
+
+.btn-green:hover {
+  background-color: #ffcc4e;
+  border-color: #ffcc4e;
+  color: #4da338;
 }
 
 .btn-grey {
