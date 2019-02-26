@@ -67,6 +67,13 @@ Spree::OrdersController.class_eval do
     end
   end
 
+  def override_purchase_order
+    respond_to do |format|
+      msg = { status: "ok", message: "Successfully update purchase order file!" }
+      format.json  { render json: msg } # don't do msg.to_json
+    end
+  end
+
   private
 
   def send_email_to_managers
