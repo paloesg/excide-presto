@@ -68,9 +68,13 @@ Spree::OrdersController.class_eval do
   end
 
   def override_purchase_order
+    order   = Spree::Order.find_by(number: params[:id])
     respond_to do |format|
-      msg = { status: "ok", message: "Successfully update purchase order file!" }
-      format.json  { render json: msg } # don't do msg.to_json
+      if order.purchase_order.update(attachment: params[:attachment])
+        format.js { render js: 'Turbolinks.visit(location.toString());' }
+      else
+        format.js { render js: 'alert("Error update purchase order pdf file!")' }
+      end
     end
   end
 
