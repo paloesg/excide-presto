@@ -5,7 +5,7 @@
     '
     - if can?(:resend, order)
       = button_link_to Spree.t(:resend, scope: 'admin.order.events', default: Spree.t(:resend)), resend_admin_order_url(order),method: :post, icon: 'envelope'
-    .shipments_action data-hook="admin_shipment_form"
+    .shipments-action data-hook="admin_shipment_form"
       - if order.shipments.first.ready? and can? :update, order.shipments.first
         = link_to Spree.t(:shipped), 'javascript:;', class: 'ship pull-right btn btn-success', data: { 'shipment-number' => order.shipments.first.number }
 
