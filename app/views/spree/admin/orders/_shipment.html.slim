@@ -5,12 +5,6 @@
       span.shipment-number= shipment.number
       | -
       span.shipment-state= Spree.t("shipment_states.#{shipment.state}")
-      - if shipment.ready? and can? :update, shipment
-        = link_to Spree.t(:shipped), 'javascript:;', class: 'ship pull-right btn btn-success', data: { 'shipment-number' => shipment.number }
-        .clearfix
-      - if shipment.shipped? and can? :update, shipment
-        = link_to Spree.t(:delivered), 'javascript:;', class: 'delivered pull-right btn btn-success', data: { 'shipment-number' => shipment.number }
-        .clearfix
   .table-responsive
     table.table.table-bordered.stock-contents data-hook="stock-contents"
       thead
