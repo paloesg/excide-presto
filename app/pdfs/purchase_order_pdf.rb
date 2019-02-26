@@ -32,7 +32,7 @@ class PurchaseOrderPdf < Prawn::Document
   end
 
   def logo
-    text "GOBBLER", size: 25, color: "d9d9d9" 
+    text "GOBBLER", size: 25, color: "d9d9d9"
   end
 
   def purchase_order
@@ -92,7 +92,7 @@ class PurchaseOrderPdf < Prawn::Document
         text @order.bill_address.phone, size: 10, align: :right
       end
      end
-  end 
+  end
 
   def line_items
     move_down 20
@@ -133,7 +133,7 @@ class PurchaseOrderPdf < Prawn::Document
   def footer
     text "For questions concerring this invoice, please contact", align: :center, size: 10
     text "+65 6285 0320, customercare@gobblerco.com", align: :center, size: 10
-    text "<u><link href='http://gobbler.com'>gobbler.com</link></u>", align: :center, size: 11, inline_format: true
+    text "<u><link href='http://gobblerco.com'>gobblerco.com</link></u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left

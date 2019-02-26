@@ -31,7 +31,7 @@ class InvoicePdf < Prawn::Document
   end
 
   def logo
-    text "GOBBLER", size: 25, color: "d9d9d9" 
+    text "GOBBLER", size: 25, color: "d9d9d9"
   end
 
   def invoice
@@ -112,7 +112,7 @@ class InvoicePdf < Prawn::Document
   def footer
     text "For questions concerring this invoice, please contact", align: :center, size: 10
     text "+65 6285 0320, customercare@gobblerco.com", align: :center, size: 10
-    text "<u><link href='http://gobbler.com'>gobbler.com</link></u>", align: :center, size: 11, inline_format: true
+    text "<u><link href='http://gobblerco.com'>gobblerco.com</link></u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left

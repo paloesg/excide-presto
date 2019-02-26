@@ -32,7 +32,7 @@ class DeliveryOrderPdf < Prawn::Document
   end
 
   def logo
-    text "GOBBLER", size: 25, color: "d9d9d9" 
+    text "GOBBLER", size: 25, color: "d9d9d9"
   end
 
   def delivery_order
@@ -82,7 +82,7 @@ class DeliveryOrderPdf < Prawn::Document
       text @order.ship_address.city, size: 10, align: :right
       text @order.ship_address.phone, size: 10, align: :right
      end
-  end 
+  end
 
   def line_items
     move_down 20
@@ -123,7 +123,7 @@ class DeliveryOrderPdf < Prawn::Document
   def footer
     text "For questions concerring this delivery order, please contact", align: :center, size: 10
     text "+65 6285 0320, customercare@gobblerco.com", align: :center, size: 10
-    text "<u><link href='http://gobbler.com'>gobbler.com</link></u>", align: :center, size: 11, inline_format: true
+    text "<u><link href='http://gobblerco.com'>gobblerco.com</link></u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left
