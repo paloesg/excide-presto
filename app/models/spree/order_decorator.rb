@@ -8,6 +8,9 @@ Spree::Order.class_eval do
     go_to_state :complete
   end
 
+  before_validation :clone_company_address, if: :use_company_address?
+  attr_accessor :use_company_address
+
   # Update order state and approved by user
   def completed_by(user)
     approved_by(user)
@@ -67,4 +70,26 @@ Spree::Order.class_eval do
     Spree::OrderMailer.order_confirmation(id).deliver_later
     update_column(:confirmation_delivered, true)
   end
+
+  def use_company_address?
+    use_company_address.in?([true, 'true', '1'])
+  end
+
+  #to check is the bill address same with company address
+  def billing_address_eq_company_address?
+    company = self.user.company
+    bill_address == company.company_address
+  end
+
+  # create bill address clone by company
+  def clone_company_address
+    company = self.user.company
+    if company.company_address && bill_address.nil?
+      self.bill_address = company.company_address.clone
+    else
+      bill_address.attributes = company.company_address.attributes.except('id', 'updated_at', 'created_at')
+    end
+    true
+  end
+
 end
