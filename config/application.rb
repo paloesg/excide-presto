@@ -19,6 +19,7 @@ Bundler.require(*Rails.groups)
 
 module ExcidePresto
   class Application < Rails::Application
+    config.middleware.use Rack::Attack
 
     config.to_prepare do
       # Load application's model / class decorators

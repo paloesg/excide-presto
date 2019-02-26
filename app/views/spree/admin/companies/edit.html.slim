@@ -8,5 +8,8 @@
 .row
   .col-xs-12.col-md-12
     = form_for @company, url: spree.admin_company_url, method: :put do |f|
-      = render partial: 'form', locals: { f: f }
-      = render partial: 'spree/admin/shared/edit_resource_links'
+      .row
+        = render partial: 'form', locals: { f: f }
+      .row
+        .col-md-12.form-actions
+          = render partial: 'spree/admin/shared/edit_resource_links'
