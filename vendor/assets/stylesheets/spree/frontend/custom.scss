@@ -238,16 +238,17 @@ span.badge.badge-presto {
   top: 9px;
 }
 
-.override-purchase-order {
+.override-purchase-order-btn {
   overflow: hidden;
   position: relative;
 }
 
-.override-purchase-order > .attachment {
+.override-purchase-order-btn > .attachment {
   position: absolute;
   right: 0;
   top: 0;
   font-size: 50px;
+  color: transparent;
 }
 
 /* Margin & Padding Helper */
