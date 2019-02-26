@@ -43,9 +43,9 @@
               = link_to 'Reorder', edit_rejected_path(id: order.number), class: "presto-btn btn-primary" if order.rejected?
               - if order.purchase_order
                 = link_to 'Purchase Order', main_app.url_for(order.purchase_order.attachment), class: "presto-btn btn-warning m-r-5", target: :_blank
-                .override-purchase-order.presto-btn.btn-primary
+                .override-purchase-order-btn.presto-btn.btn-danger
                   ' Upload
-                  = file_field_tag :attachment, multipart: true, class: 'attachment'
+                  = file_field_tag :attachment, multipart: true, class: 'attachment', onchange: "overridePurchaseOrder(this);", "order-number": order.number
   - else
     .alert.alert-info= Spree.t(:you_have_no_orders_yet)
   br
