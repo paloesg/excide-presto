@@ -7,7 +7,7 @@
         .panel-body
           p.field.checkbox data-hook="use_company_address"
             = label_tag :order_use_company_address, id: 'use_company_address' do
-              = check_box_tag 'order[use_company_address]', '1', @order.billing_address_eq_company_address?
+              = check_box_tag 'order[use_company_address]', '1', @order.bill_address.empty? || @order.billing_address_eq_company_address?
               = Spree.t(:use_company_address)
           = render partial: 'spree/address/form', locals: { form: bill_form, address_type: 'billing', address: @order.bill_address }
   .col-sm-6 data-hook="shipping_fieldset_wrapper"
