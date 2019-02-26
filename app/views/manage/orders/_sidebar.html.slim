@@ -1,0 +1,7 @@
+ul.nav.nav-pills.nav-stacked
+  li class="#{'active' if params[:sort].blank?}" 
+    = link_to_with_icon 'edit', 'Awaiting Approval', manage_orders_path
+  li class="#{'active' if params[:sort] == 'complete'}" 
+    = link_to_with_icon 'check', 'Approved', manage_orders_path(sort: 'complete')
+  li class="#{'active' if params[:sort] == 'rejected'}" 
+    = link_to_with_icon 'remove-circle', 'Rejected', manage_orders_path(sort: 'rejected')
