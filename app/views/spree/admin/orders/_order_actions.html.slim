@@ -1,13 +1,12 @@
 - content_for :page_actions do
-  .row
-    - if can?(:fire, order)
-      = event_links(order, events)
+  .shipment-actions data-hook="admin_shipment_form"
+    - if order.shipments.first.ready? and can? :update, order.shipments.first
+      = link_to Spree.t(:shipped), 'javascript:;', class: 'ship btn btn-success', data: { 'shipment-number' => order.shipments.first.number }
+    - elsif order.shipments.first.shipped? and can? :update, order.shipments.first
+      = link_to Spree.t(:delivered), 'javascript:;', class: 'delivered btn btn-success', data: { 'shipment-number' => order.shipments.first.number }
     '
-    - if can?(:resend, order)
-      = button_link_to Spree.t(:resend, scope: 'admin.order.events', default: Spree.t(:resend)), resend_admin_order_url(order),method: :post, icon: 'envelope'
-    .shipments-action data-hook="admin_shipment_form"
-      - if order.shipments.first.ready? and can? :update, order.shipments.first
-        = link_to Spree.t(:shipped), 'javascript:;', class: 'ship pull-right btn btn-success', data: { 'shipment-number' => order.shipments.first.number }
-
-      - if order.shipments.first.shipped? and can? :update, order.shipments.first
-        = link_to Spree.t(:delivered), 'javascript:;', class: 'delivered pull-right btn btn-success', data: { 'shipment-number' => order.shipments.first.number }
+  - if can?(:fire, order)
+    = event_links(order, events)
+  '
+  - if can?(:resend, order)
+    = button_link_to Spree.t(:resend, scope: 'admin.order.events', default: Spree.t(:resend)), resend_admin_order_url(order),method: :post, icon: 'envelope'
