@@ -55,6 +55,12 @@ Spree::Order.class_eval do
     steps
   end
 
+  def select_default_shipping
+    create_proposed_shipments
+    shipments.find_each &:update_amounts
+    update_totals
+  end
+
   # Override spree send email to fix not send who is canceler and send email twice
   def send_cancel_email
   end
