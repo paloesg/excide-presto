@@ -726,27 +726,6 @@ ActiveRecord::Schema.define(version: 2019_02_21_012313) do
     t.index ["spree_user_id"], name: "index_spree_service_requests_on_spree_user_id"
   end
 
-  create_table "spree_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.json "fields", default: "[]"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.text "description"
-    t.string "meta_title"
-    t.string "meta_keywords"
-    t.text "meta_description"
-  end
-
-  create_table "spree_services_taxons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "service_id", null: false
-    t.integer "taxon_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["service_id"], name: "index_spree_services_taxons_on_service_id"
-    t.index ["taxon_id"], name: "index_spree_services_taxons_on_taxon_id"
-  end
-
   create_table "spree_shipments", id: :serial, force: :cascade do |t|
     t.string "tracking"
     t.string "number"
@@ -765,6 +744,7 @@ ActiveRecord::Schema.define(version: 2019_02_21_012313) do
     t.decimal "pre_tax_amount", precision: 12, scale: 4, default: "0.0", null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.datetime "delivered_at"
     t.index ["address_id"], name: "index_spree_shipments_on_address_id"
     t.index ["number"], name: "index_spree_shipments_on_number", unique: true
     t.index ["order_id"], name: "index_spree_shipments_on_order_id"
@@ -1122,13 +1102,13 @@ ActiveRecord::Schema.define(version: 2019_02_21_012313) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.uuid "company_id"
+    t.uuid "department_id"
     t.boolean "approved", default: false, null: false
     t.string "first_name"
     t.string "last_name"
     t.string "company_name"
     t.string "phone"
-    t.uuid "company_id"
-    t.uuid "department_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["company_id"], name: "index_spree_users_on_company_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
