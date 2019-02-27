@@ -1,43 +1,8 @@
-p Hi #{@admin.first_name},
-
-p Order ##{@order.number} has been approved and is ready to be processed.
-
-table.container
-  tr
-    td.wrapper.last
-      table.twelve.columns
-        = render collection: @order.line_items, partial: 'spree/shared/mailer_line_item', as: :line_item
-        = render 'spree/order_mailer/subtotal', order: @order
-        - if @order.line_item_adjustments.exists?
-          - if @order.all_adjustments.promotion.eligible.exists?
-            - @order.all_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
-              tr
-                td.six.sub-columns
-                  = Spree.t(:promotion)
-                  = label
-                  | :
-                td.six.sub-columns.last.right
-                  = Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
-        - @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments|
-          tr
-            td.six.sub-columns
-              = Spree.t(:shipping)
-              = name
-              | :
-            td.six.sub-columns.last.right
-              = Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency)
-        - if @order.all_adjustments.eligible.tax.exists?
-          - @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments|
-            tr
-              td.six.sub-columns
-                = Spree.t(:tax)
-                = label
-                | :
-              td.six.sub-columns.last.right
-                = Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
-        - @order.adjustments.eligible.each do |adjustment|
-          - next if (adjustment.source_type == 'Spree::TaxRate') || (adjustment.amount == 0)
-          = render 'spree/order_mailer/adjustment', adjustment: adjustment
-        = render 'spree/order_mailer/total', order: @order
-
-p Approved by: #{@order.approver.full_name} (#{@order.approver.email})
+p.lede
+  = Spree.t('order_mailer.confirm_email.dear_admin')
+p Order : #{@order.number}
+p Has been approved and is ready to be processed.
+br
+= render 'table_order', order: @order
+br
+= render partial: 'footer', locals: { order: @order, status: "approved" }

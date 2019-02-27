@@ -1,0 +1,13 @@
+table.row.header
+  tr
+    td
+      p.lede
+        = Spree.t('order_mailer.confirm_email.dear_customer')
+      p Your order : #{order.number}
+      p
+        - if (status == "rejected")
+          | Has been rejected, you can edit the order and submit for approval again.
+        - elsif (status == "approved")
+          | Has been approved, it will be processed shortly.
+        - elsif (status == "confirmation")
+          = Spree.t('order_mailer.confirm_email.instructions')
