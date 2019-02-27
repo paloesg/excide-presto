@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_073933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "address_id"
-    t.decimal "preapproved_limit", precision: 10, scale: 2
     t.index ["address_id"], name: "index_spree_companies_on_address_id"
   end
 

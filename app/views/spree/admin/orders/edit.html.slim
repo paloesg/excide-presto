@@ -1,0 +1,16 @@
+= render 'order_actions', order: @order, events: @order_events
+= render 'spree/admin/shared/order_tabs', current: :shipments
+- content_for :page_title do
+  | / #{plural_resource_name(Spree::Shipment)}
+div data-hook="admin_order_edit_header"
+  = render 'spree/admin/shared/error_messages', target: @order
+- if @order.payments.valid.any? && @order.considered_risky?
+  = render 'spree/admin/orders/risk_analysis', latest_payment: @order.payments.valid.last
+= render 'add_product' if @order.shipment_state != 'shipped' && @order.shipment_state != 'delivered' && can?(:update, @order)
+- if @order.line_items.empty?
+  .alert.alert-warning
+    = Spree.t(:your_order_is_empty_add_product)
+div data-hook="admin_order_edit_form"
+  #order-form-wrapper
+    = render partial: 'form', locals: { order: @order }
+= render 'spree/admin/shared/order_summary'

@@ -63,7 +63,6 @@ h1.product-title.text-center, span.lead.price.selling, h1.product-section-title,
 
 h1.product-section-title {
   margin-bottom: 5px !important;
-  margin-top: 0px !important;
 }
 
 h4.product-section-title {
@@ -168,8 +167,21 @@ select#sort-by {
   color: #5f509b;
 }
 
-.btn-purple:focus {
+.btn-purple:focus .btn-green:focus{
   color: #ffffff;
+}
+
+.btn-green {
+  background-color: #4da338;
+  border-color: #4da338;
+  font-family: "AmsiPro-Ultra", sans-serif;
+  color: #ffffff;
+}
+
+.btn-green:hover {
+  background-color: #ffcc4e;
+  border-color: #ffcc4e;
+  color: #4da338;
 }
 
 .btn-grey {
@@ -842,26 +854,6 @@ input[type=number]::-webkit-outer-spin-button {
 
 .presto-modal-header {
   padding: 15px;
-}
-
-.presto-modal-header > button.close{
-  position: absolute;
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  -webkit-appearance: none;
-  right: 15px;
-  top: 15px;
-  font-size: 20px;
-}
-
-.modal-body {
-  position: relative !important;
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-bottom: 20px;
-  padding-top: 0px;
 }
 
 .close {

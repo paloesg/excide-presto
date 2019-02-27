@@ -19,6 +19,15 @@ Rails.application.routes.draw do
     resource :account, controller: 'users' do
       get '/password' => 'users#password', as: 'password'
     end
+    namespace :api, defaults: { format: 'json' } do
+      namespace :v1 do
+        resources :shipments, only: [:create, :update] do
+          member do
+            put :delivery
+          end
+        end
+      end
+    end
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
       resources :companies do

@@ -9,6 +9,7 @@
 //= require spree/backend
 //= require components/get_departments_by_company
 //= require components/update_manager_role
+//= require spree/backend/shipments_delivered
 
 //= require_tree .
 //= require spree/backend/spree_multi_domain
