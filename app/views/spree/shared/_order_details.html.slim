@@ -14,7 +14,6 @@
       .col-md-3.col-sm-3.col-xs-6 data-hook="order-shipment"
         h4
           = Spree.t(:shipments)
-          = link_to "(#{Spree.t(:edit)})", checkout_state_path(:delivery) unless order.completed?
         .delivery
           - order.shipments.each do |shipment|
             div

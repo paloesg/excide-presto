@@ -39,13 +39,14 @@ div data-hook="cart_container"
               - @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments|
                 = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:tax)
               - @order.shipments.each do |shipment|
-                .col-md-8
-                  h5
-                    = Spree.t(:shipping)
-                    | \: #{shipment.shipping_method.name}
-                .col-md-4
-                  h5
-                    strong= shipment.display_discounted_cost
+                - if shipment.shipping_method.present?
+                  .col-md-8
+                    h5
+                      = Spree.t(:shipping)
+                      | : #{shipment.shipping_method.name}
+                  .col-md-4
+                    h5
+                      strong= shipment.display_discounted_cost
               - @order.adjustments.eligible.group_by(&:label).each do |label, adjustments|
                 = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
               .col-md-12
