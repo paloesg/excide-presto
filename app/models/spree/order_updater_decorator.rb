@@ -1,26 +1,18 @@
 Spree::OrderUpdater.class_eval do
-  def update_shipment_state
-    if order.backordered?
-      order.shipment_state = 'backorder'
-    else
-      # get all the shipment states for this order
-      shipment_states = shipments.states
-      order.shipment_state = if shipment_states.size > 1
-        # multiple shiment states means it's most likely partially shipped
-                               'partial'
-                             else
-        # will return nil if no shipments are found
-                                shipment_states.first
-        # TODO: inventory unit states?
-        # if order.shipment_state && order.inventory_units.where(shipment_id: nil).exists?
-        #   shipments exist but there are unassigned inventory units
-        #   order.shipment_state = 'partial'
-        # end
-                             end
+  def update
+    unless order.shipment_state == 'shipped'
+      order.select_default_shipping
     end
-
-    order.state_changed('shipment')
-    order.shipment_state
+    update_item_count
+    update_totals
+    if order.completed?
+      update_payment_state
+      update_shipments
+      update_shipment_state
+      update_shipment_total
+    end
+    run_hooks
+    persist_totals
   end
 
   def update_payment_state

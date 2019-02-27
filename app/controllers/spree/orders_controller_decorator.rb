@@ -39,9 +39,9 @@ Spree::OrdersController.class_eval do
     line_item = @order.line_items.find_by(variant_id: variant.id)
     line_item_quantity = line_item.present? ? line_item.quantity.to_i : 0
     last_quantity =  line_item_quantity + quantity
+
     if quantity
       begin
-
         if last_quantity >= 1
           @order.contents.add(variant, quantity, options)
         else
