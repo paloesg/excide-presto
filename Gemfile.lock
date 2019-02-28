@@ -224,8 +224,14 @@ GEM
       terrapin (~> 0.6.0)
     paranoia (2.4.1)
       activerecord (>= 4.0, < 5.3)
+    pdf-core (0.7.0)
     pg (1.1.4)
     polyglot (0.3.5)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     premailer (1.11.1)
       addressable
       css_parser (>= 1.6.0)
@@ -397,6 +403,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
+    ttfunk (1.5.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -442,6 +449,8 @@ DEPENDENCIES
   momentjs-rails (>= 2.9.0)
   oj
   pg (>= 0.18, < 2.0)
+  prawn
+  prawn-table
   puma (~> 3.11)
   rack-attack
   rails (= 5.2.2)

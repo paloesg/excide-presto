@@ -251,33 +251,17 @@ span.badge.badge-presto {
   top: 9px;
 }
 
-/* Preferred Delivery Date & Time */
-.preferred-delivery-date {
-  border: 1px solid;
-  margin-left: 0 !important;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  height: 40px;
-  font-weight: 600;
-  line-height: 35px;
-  width: 100%;
+.override-purchase-order-btn {
+  overflow: hidden;
   position: relative;
-  font-size: 12px;
-  padding-left: 25px;
 }
 
-.preferred-delivery-date input {
-  border: 0 !important;
-  text-align: center;
-  outline: none !important;
-}
-
-.preferred-delivery-date i {
-  font-size: 20px;
+.override-purchase-order-btn > .attachment {
   position: absolute;
-  padding: 7px;
-  pointer-events: none;
-  left: 0px;
+  right: 0;
+  top: 0;
+  font-size: 50px;
+  color: transparent;
 }
 
 /* Margin & Padding Helper */
@@ -1198,4 +1182,12 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   top: 6px;
   right: -2px;
   font-weight: bold
+}
+
+.label-processing, .label-pending, .label-awaiting_return, .label-returned, .label-credit_owed, .label-balance_due, .label-backorder, .label-checkout, .label-cart, .label-address, .label-delivery, .label-payment, .label-confirm, .label-canceled, .label-void, .label-inactive, .label-notice, .label-partial, .label-awaiting_approval {
+  background-color: #F8D053;
+}
+
+.label-rejected {
+  background-color: #a94442;
 }
