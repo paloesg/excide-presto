@@ -6,7 +6,11 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
+    if spree_current_user.has_spree_role? :manager
+      @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
+    elsif spree_current_user.has_spree_role? :finance
+      @orders = current_store.orders.company(spree_current_user).order(created_at: :desc)
+    end
   end
 
   def approve
@@ -35,7 +39,7 @@ class Manage::OrdersController < Spree::BaseController
   end
 
   def set_roles
-    unless spree_current_user.has_spree_role? :manager
+    unless spree_current_user.has_spree_role? :manager or spree_current_user.has_spree_role? :finance
       flash[:error] = 'Authorization Failure'
       redirect_to forbidden_path
     end

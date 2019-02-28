@@ -29,6 +29,11 @@ Spree::Order.class_eval do
     self.joins(:user).where('spree_users.department_id': current_user.department_id)
   end
 
+  # select all orders where users company same with current user company
+  def self.company(current_user)
+    self.joins(:user).where('spree_users.company_id': current_user.company_id)
+  end
+
   def awaiting_approval?
     state.eql? 'awaiting_approval'
   end
