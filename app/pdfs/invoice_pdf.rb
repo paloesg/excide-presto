@@ -110,9 +110,9 @@ class InvoicePdf < Prawn::Document
   end
 
   def footer
-    text "For questions concerring this invoice, please contact", align: :center, size: 10
+    text "For questions concerning this invoice, please contact", align: :center, size: 10
     text "+65 6285 0320, customercare@gobblerco.com", align: :center, size: 10
-    text "<u><link href='http://gobblerco.com'>gobblerco.com</link></u>", align: :center, size: 11, inline_format: true
+    text "<u><link href='https://gobblerco.com'>gobblerco.com</link></u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left
