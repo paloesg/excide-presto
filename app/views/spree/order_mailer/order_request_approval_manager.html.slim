@@ -7,5 +7,8 @@ br
 = render 'table_order', order: @order
 br
 p
-  | Please click this link, to manage the order.
+  ' Please click this link, to manage the order.
   = link_to "Order #{@order.number}", main_app.edit_manage_order_url(@order.number)
+br
+p If you did not make this request, please ignore this email.
+p If you continue to have problems please feel free to contact us.

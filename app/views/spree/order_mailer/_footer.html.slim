@@ -1,12 +1,12 @@
 p
   - if status == "rejected"
-    | Rejected by : #{order.canceler.email}
+    ' Rejected by : #{order.canceler.email}
     = "(#{order.canceler.full_name})" if order.canceler.first_name.present?
   - elsif status == "approved"
-    | Approved by: #{order.approver.email}
+    ' Approved by: #{order.approver.email}
     = "(#{order.approver.full_name})" if order.approver.full_name.present?
   - elsif status == "confirmation"
-    | Your order has been sent to your managers for approval:
+    ' Your order has been sent to your managers for approval:
     - managers.each do |manager|
       ' #{manager.email} (#{manager.full_name})
 br

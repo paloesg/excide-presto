@@ -1,6 +1,6 @@
 = render partial: 'header', locals: { order: @order, status: "rejected" }
 p
-  | If you want to edit your order, please click this link.
+  ' If you want to edit your order, please click this link.
   = link_to "Edit #{@order.number}", edit_rejected_url(@order.number)
 br
 = render 'table_order', order: @order

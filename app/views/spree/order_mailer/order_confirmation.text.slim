@@ -1,8 +1,7 @@
-p = Spree.t('order_mailer.confirm_email.dear_customer')
-
+p
+  = Spree.t('order_mailer.confirm_email.dear_customer')
 p
   = Spree.t('order_mailer.confirm_email.instructions')
-
 p
   = Spree.t('order_mailer.confirm_email.order_summary', number: @order.number)
   br
@@ -44,4 +43,7 @@ p
 p
   ' Your order has been sent to your managers for approval:
   - @managers.each do |manager|
-    ' #{manager.full_name} (#{manager.email})
+    ' #{manager.email} (#{manager.full_name})
+br
+p If you did not make this request, please ignore this email.
+p If you continue to have problems please feel free to contact us.

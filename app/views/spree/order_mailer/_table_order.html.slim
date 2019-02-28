@@ -1,4 +1,5 @@
-p Order detail:
+p
+  = Spree.t('order_mailer.confirm_email.order_summary', number: @order.number)
 table.container
   tr
     td.wrapper.last
