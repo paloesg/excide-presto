@@ -1,10 +1,13 @@
 p
   = Spree.t('order_mailer.confirm_email.dear_customer')
-p Your order : #{@order.number}
+p Your order with order number : #{@order.number}
 p Has been rejected, you can edit the order and submit for approval again.
 p
-  | If you want to edit your order, please click this link.
+  ' Please click this link, If you want to edit your order.
   = link_to "Edit #{@order.number}", edit_rejected_url(@order.number)
+p
+  ' Rejected by : #{@order.canceler.email}
+  = "(#{@order.canceler.full_name})" if @order.canceler.first_name.present?
 p
   = Spree.t('order_mailer.confirm_email.order_summary', number: @order.number)
   br
@@ -42,10 +45,6 @@ p
   br
   = Spree.t('order_mailer.total')
   = @order.display_total
-
-p
-  ' Rejected by : #{@order.canceler.email}
-  = "(#{@order.canceler.full_name})" if @order.canceler.first_name.present?
-
+br
 p If you did not make this request, please ignore this email.
 p If you continue to have problems please feel free to contact us.

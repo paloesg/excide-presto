@@ -1,7 +1,7 @@
 p
   = Spree.t('order_mailer.confirm_email.dear_manager')
-p Order : #{@order.number}
-p Placed by : #{@order.user.email} (#{@order.user.full_name})
+p There is a new order ##{@order.number} placed by #{@order.user.full_name} (#{@order.user.email}) awaiting your approval.
+
 p
   = Spree.t('order_mailer.confirm_email.order_summary', number: @order.number)
   br

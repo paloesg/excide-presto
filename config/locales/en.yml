@@ -41,8 +41,8 @@ en:
       cancel_email:
         subject: "order Rejected"
       confirm_email:
-        dear_admin: "Dear Admin"
-        dear_manager: "Dear Manager"
+        dear_admin: "Dear Admin,"
+        dear_manager: "Dear Manager,"
     admin:
       tab:
         product_sales: "Product Sales"

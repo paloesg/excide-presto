@@ -1,5 +1,11 @@
-= render partial: 'header', locals: { order: @order, status: "approved" }
+p.lede
+  = Spree.t('order_mailer.confirm_email.dear_customer')
+p Order ##{@order.number} has been approved and will be processed shortly.
 br
 = render 'table_order', order: @order
 br
-= render partial: 'footer', locals: { order: @order, status: "approved" }
+p
+  ' Approved by: #{@order.approver.email}
+  = "(#{@order.approver.full_name})" if @order.approver.full_name.present?
+br
+= render 'footer'
