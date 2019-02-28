@@ -1,27 +1,28 @@
-.col-md-12
-  h1 Order Awaiting Approval
-  .panel.panel-default
-    .panel-heading Order Listing
-    .panel-body
-      - if @orders.any?
-        .table-responsive
-          table.table.table-striped
-            thead
-              tr
-                th Number
-                th Email
-                th Status
-                th Total
-                th Created At
-            tbody
-              - @orders.each do |o|
+- if can?(:manager, Spree::Order) or can?(:finance, Spree::Order)
+  .col-md-12
+    h1 Order Awaiting Approval
+    .panel.panel-default
+      .panel-heading Order Listing
+      .panel-body
+        - if @orders.any?
+          .table-responsive
+            table.table.table-striped
+              thead
                 tr
-                  td = link_to o.number, edit_manage_order_path(o.number)
-                  td #{o.user.email}
-                  td #{((o.state.eql? 'canceled') ? 'rejected' : o.state).titleize}
-                  td #{o.total}
-                  td #{o.created_at.strftime('%F %H:%M')}
-      - else
-        .alert.alert-info
-          ' No Orders found,
-          = link_to 'Add One!', spree_path
+                  th Number
+                  th Email
+                  th Status
+                  th Total
+                  th Created At
+              tbody
+                - @orders.each do |o|
+                  tr
+                    td = link_to o.number, edit_manage_order_path(o.number)
+                    td #{o.user.email}
+                    td #{((o.state.eql? 'canceled') ? 'rejected' : o.state).titleize}
+                    td #{o.total}
+                    td #{o.created_at.strftime('%F %H:%M')}
+        - else
+          .alert.alert-info
+            ' No Orders found,
+            = link_to 'Add One!', spree_path

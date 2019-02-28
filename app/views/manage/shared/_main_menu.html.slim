@@ -1,5 +1,6 @@
-ul.nav.nav-sidebar
-  li.sidebar-menu-item
-    = link_to manage_orders_path, class: 'icon-link' do
-      span.icon.icon-home
-      span.text Orders
+- if can?(:manager, Spree::Order) or can?(:finance, Spree::Order)
+  ul.nav.nav-sidebar
+    li.sidebar-menu-item
+      = link_to manage_orders_path, class: 'icon-link' do
+        span.icon.icon-home
+        span.text Orders
