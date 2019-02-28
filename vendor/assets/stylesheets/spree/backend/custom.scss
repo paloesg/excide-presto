@@ -17,3 +17,11 @@
 .label-rejected {
   background-color: #a94442;
 }
+
+.label-completed, .label-complete, .label-resumed, .label-considered_safe, .label-paid, .label-shipped, .label-ready, .label-active, .label-success, .label-sold, .label-open, .label-authorized, .label-delivered{
+  background-color: #7DB942;
+}
+
+.shipment-actions{
+  display: inline;
+}
