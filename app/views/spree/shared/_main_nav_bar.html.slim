@@ -4,7 +4,7 @@ li#link-to-cart data-hook="" data-toggle="item-cart" data-placement="bottom"
     = link_to_cart
   |  
 - if spree_current_user
-  - if spree_current_user.has_spree_role? :manager
+  - if spree_current_user.has_spree_role? :manager or spree_current_user.has_spree_role? :finance
     li= link_to 'Manage', main_app.manage_path
   li= link_to Spree.t(:my_account), spree.account_path
   li= link_to Spree.t(:logout), spree.logout_path
