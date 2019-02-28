@@ -1,4 +1,7 @@
 Spree::Order.class_eval do
+  has_one :purchase_order, as: :viewable, dependent: :destroy, class_name: 'Spree::PurchaseOrder'
+  has_one :delivery_order, as: :viewable, dependent: :destroy, class_name: 'Spree::DeliveryOrder'
+  has_one :invoice, as: :viewable, dependent: :destroy, class_name: 'Spree::Invoice'
 
   SHIPMENT_STATES = %w(backorder canceled partial pending ready shipped delivered)
 
@@ -10,6 +13,7 @@ Spree::Order.class_eval do
     go_to_state :awaiting_approval
     go_to_state :rejected
     go_to_state :complete
+    remove_transition from: :delivery, to: :confirm
   end
 
   # Update order state and approved by user
@@ -39,6 +43,16 @@ Spree::Order.class_eval do
 
   def delivered?
     %w(partial delivered).include?(shipment_state)
+  end
+
+  # Override checkout_steps from spree file, remove "always append complete steps"
+  # 3.6.5 spree/core/app/models/spree/order/checkout.rb
+  def checkout_steps
+    steps = (self.class.checkout_steps.each_with_object([]) do |(step, options), checkout_steps|
+      next if options.include?(:if) && !options[:if].call(self)
+      checkout_steps << step
+    end).map(&:to_s)
+    steps
   end
 
   def select_default_shipping

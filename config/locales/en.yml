@@ -75,8 +75,8 @@ en:
     company_name: "Company name"
     phone: "Phone"
     update_cart: "Update Cart"
-    delivered: "Mark As Delivered"
-    shipped: "Mark As Shipped"
+    delivered_button: "Mark As Delivered"
+    shipped_button: "Mark As Shipped"
   devise:
     mailer:
       new_password_instructions:

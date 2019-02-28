@@ -29,7 +29,7 @@ Spree::Ability.class_eval do
         order.user == user || order.guest_token && token == order.guest_token
       end
       can :update, Spree::Order do |order, token|
-        order.user == user && order.rejected? || !order.completed? && (order.user == user || order.guest_token && token == order.guest_token)
+        order.user == user && order.rejected? || !order.completed? && (order.user == user || order.guest_token && token == order.guest_token) || order.completed? && order.user == user
       end
       can :display, Spree::CreditCard, user_id: user.id
       can :display, Spree::Product
