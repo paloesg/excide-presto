@@ -67,6 +67,17 @@ Spree::OrdersController.class_eval do
     end
   end
 
+  def override_purchase_order
+    order   = Spree::Order.find_by(number: params[:id])
+    respond_to do |format|
+      if order.purchase_order.update(attachment: params[:attachment])
+        format.js { render js: 'Turbolinks.visit(location.toString());' }
+      else
+        format.js { render js: 'alert("Error update purchase order pdf file!")' }
+      end
+    end
+  end
+
   private
 
   def send_email_to_managers

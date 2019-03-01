@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/services/*id' => 'pages#create_request', as: :create_request, format: false
 
   Spree::Core::Engine.add_routes do
+    match '/orders/:id/override_purchase_order' => 'orders#override_purchase_order', :via => :post, :as => :override_purchase_order
     match '/orders/:id/reorder' => 'orders#edit_rejected', :via => :get, :as => :edit_rejected
     match '/orders/:id/reorder' => 'orders#reorder_rejected', :via => :patch, :as => :reorder_rejected
     resource :account, controller: 'users' do
