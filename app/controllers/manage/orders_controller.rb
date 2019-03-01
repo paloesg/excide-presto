@@ -6,26 +6,26 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    if params[:sort] == 'complete' or params[:sort] == 'rejected'
-      @orders = current_store.orders.department(spree_current_user).where(state: params[:sort].to_sym).order(:state, created_at: :desc)
-    else
-      @orders = current_store.orders.department(spree_current_user).where(state: :awaiting_approval).order(:state, created_at: :desc)
-    end
+    @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
   end
 
   def approve
     @order.completed_by(spree_current_user)
+    @order.update_with_updater!
     Spree::OrderMailer.order_approved(@order).deliver_later
     admins.each do |admin|
       Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
     flash.notice = "Order ##{@order.number} has been approved."
+    generate_pdf = PurchaseOrderPdf.new(@order)
+    @order.create_purchase_order(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
     redirect_to manage_orders_path
   end
 
   def reject
     @order.rejected_by(spree_current_user)
     spree_current_user.department.decrease_budget_used(@order.total)
+    @order.update_with_updater!
     Spree::OrderMailer.cancel_email(@order).deliver_later
     flash.notice = "Order ##{@order.number} has been rejected."
     redirect_to manage_orders_path

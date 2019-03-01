@@ -14,6 +14,7 @@
 //= require components/update_quantity_product
 //= require components/update_quantity_cart
 //= require components/set_datetimepicker
+//= require components/override_purchase_order
 //= require moment
 //= require bootstrap-datetimepicker
 

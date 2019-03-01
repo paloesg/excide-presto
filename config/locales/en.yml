@@ -48,6 +48,14 @@ en:
         departments: "Departments"
         address: "Address"
         roles: "Roles"
+    shipment_state:
+      backorder: "Backordered"
+      canceled: "Cancelled"
+      partial: "Partial"
+      pending: "Pending"
+      ready: "Ready"
+      shipped: "Shipped"
+      delivered: "Delivered"
     company: "Company"
     company_updated: "Company Updated"
     company_address: "Company Address"
@@ -69,6 +77,8 @@ en:
     company_name: "Company name"
     phone: "Phone"
     update_cart: "Update Cart"
+    delivered_button: "Mark As Delivered"
+    shipped_button: "Mark As Shipped"
   devise:
     mailer:
       new_password_instructions:
