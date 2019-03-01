@@ -36,7 +36,7 @@ Spree::Ability.class_eval do
       can :display, Spree::ProductProperty
       can :display, Spree::Property
       can :create, Spree.user_class
-      can [:read, :update, :destroy], Spree.user_class, id: user.id
+      can [:read, :update, :destroy, :password], Spree.user_class, id: user.id
       can :display, Spree::State
       can :display, Spree::Taxon
       can :display, Spree::Taxonomy
