@@ -10,4 +10,4 @@ br
 p
   ' Rejected by: #{@order.canceler.email}
   = "(#{@order.canceler.full_name})" if @order.canceler.first_name.present?
-= render 'spree/order_mailer/footer'
+= render 'footer'
