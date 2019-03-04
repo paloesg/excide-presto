@@ -41,7 +41,7 @@ p
   = @order.display_total
 
 p
-  ' Please click this link, to manage the order.
+  ' Use this link to manage the order:
   = link_to "Order #{@order.number}", main_app.edit_manage_order_url(@order.number)
 br
 p If you did not make this request, please ignore this email.
