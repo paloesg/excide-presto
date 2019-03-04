@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require accounting.min
 //= require spree/frontend
+//= require spree/frontend/show_service
 //= require turbolinks
 //= require components/select_sort_by
 //= require components/sub_categories_popover
