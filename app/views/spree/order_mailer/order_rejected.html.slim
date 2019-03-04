@@ -1,0 +1,13 @@
+p
+  = Spree.t('order_mailer.confirm_email.dear_customer')
+p Order ##{@order.number} has been rejected.
+p
+  ' You can edit your order and submit it again:
+  = link_to "Edit #{@order.number}", edit_rejected_url(@order.number)
+br
+= render 'table_order', order: @order
+br
+p
+  ' Rejected by: #{@order.canceler.email}
+  = "(#{@order.canceler.full_name})" if @order.canceler.first_name.present?
+= render 'spree/order_mailer/footer'
