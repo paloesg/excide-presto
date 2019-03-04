@@ -32,7 +32,6 @@ Spree::CheckoutController.class_eval do
 
       if @order.awaiting_approval?
         @order.finalize!
-        @order.update_column(:awaiting_approval_at, Time.current)
         if managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
           Spree::OrderMailer.order_approved(@order.id).deliver_later
