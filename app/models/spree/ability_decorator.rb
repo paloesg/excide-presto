@@ -13,35 +13,34 @@ Spree::Ability.class_eval do
 
     user ||= Spree.user_class.new
 
-    if user.respond_to?(:has_spree_role?) && user.has_spree_role?('admin')
-      can :manage, :all
-    elsif user.has_spree_role?('manager')
-      can :manage, Spree::Order
-      can [:read, :update, :destroy], Spree.user_class, id: user.id
-    elsif user.has_spree_role?('superadmin')
-      can :manage, :all
-    else
-      can :display, Spree::Country
-      can :display, Spree::OptionType
-      can :display, Spree::OptionValue
-      can :create, Spree::Order
-      can :read, Spree::Order do |order, token|
-        order.user == user || order.guest_token && token == order.guest_token
+    if user.respond_to?(:has_spree_role?)
+      if user.has_spree_role?('admin') || user.has_spree_role?('superadmin')
+        can :manage, :all
+      elsif user.has_spree_role?('manager')
+        can :manage, Spree::Order
+      else
+        can :display, Spree::Country
+        can :display, Spree::OptionType
+        can :display, Spree::OptionValue
+        can :create, Spree::Order
+        can :read, Spree::Order do |order, token|
+          order.user == user || order.guest_token && token == order.guest_token
+        end
+        can :update, Spree::Order do |order, token|
+          order.user == user && order.rejected? || !order.completed? && (order.user == user || order.guest_token && token == order.guest_token) || order.completed? && order.user == user
+        end
+        can :display, Spree::CreditCard, user_id: user.id
+        can :display, Spree::Product
+        can :display, Spree::ProductProperty
+        can :display, Spree::Property
+        can :create, Spree.user_class
+        can :display, Spree::State
+        can :display, Spree::Taxon
+        can :display, Spree::Taxonomy
+        can :display, Spree::Variant
+        can :display, Spree::Zone
       end
-      can :update, Spree::Order do |order, token|
-        order.user == user && order.rejected? || !order.completed? && (order.user == user || order.guest_token && token == order.guest_token) || order.completed? && order.user == user
-      end
-      can :display, Spree::CreditCard, user_id: user.id
-      can :display, Spree::Product
-      can :display, Spree::ProductProperty
-      can :display, Spree::Property
-      can :create, Spree.user_class
-      can [:read, :update, :destroy, :password], Spree.user_class, id: user.id
-      can :display, Spree::State
-      can :display, Spree::Taxon
-      can :display, Spree::Taxonomy
-      can :display, Spree::Variant
-      can :display, Spree::Zone
+      can [:read, :update, :destroy, :password], Spree.user_class, id: user.id unless user.admin? or user.has_spree_role?('superadmin')
     end
   end
 end
