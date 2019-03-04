@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_031602) do
+ActiveRecord::Schema.define(version: 2019_02_21_012313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -332,7 +332,6 @@ ActiveRecord::Schema.define(version: 2019_02_28_031602) do
     t.integer "state_lock_version", default: 0, null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
-    t.datetime "awaiting_approval_at"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
