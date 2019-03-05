@@ -30,11 +30,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# Protect app from bad clients
+gem 'rack-attack'
+
 # AWS S3 gem for file storage
 gem "aws-sdk-s3", require: false
 # PrawnPDF generate PDF file
 gem "prawn"
-# Provides table support for PrawnPDF. 
+# Provides table support for PrawnPDF.
 gem "prawn-table"
 
 # Use Capistrano for deployment
