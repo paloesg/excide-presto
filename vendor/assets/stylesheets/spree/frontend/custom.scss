@@ -1016,6 +1016,25 @@ input[type=number]::-webkit-outer-spin-button {
   border: #ffcc4e;
   font-weight: bold;
 }
+
+.service-title {
+  font-family: "AmsiPro-Ultra", sans-serif !important;
+  color: #5f509b !important;
+  padding-bottom: 20px;
+}
+
+.service-description {
+  margin-bottom: 20px;
+}
+
+.service-form {
+  margin-bottom: 20px;
+}
+
+.service-button-submit {
+  margin-top: 40px;
+}
+
 /*custom message*/
 .success-message {
   color:#6b3898;

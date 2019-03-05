@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, at: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/products-load/:id', to: 'spree/products#show_modal'
-  get '/services/*id' => 'pages#show', as: :page, format: false
-  post '/services/*id' => 'pages#create_request', as: :create_request, format: false
+  get '/services-load/:id', to: 'spree/services#show_modal'
+  # get '/services-request/*id' => 'pages#show', as: :page, format: false
+  # post '/services-request/*id' => 'pages#create_request', as: :create_request, format: false
 
   Spree::Core::Engine.add_routes do
+    resources :services
+    resources :service_requests
+    match '/orders/:id/reorder' => 'orders#reorder', :via => :post, :as => :reorder_order
     match '/orders/:id/override_purchase_order' => 'orders#override_purchase_order', :via => :post, :as => :override_purchase_order
     match '/orders/:id/reorder' => 'orders#edit_rejected', :via => :get, :as => :edit_rejected
     match '/orders/:id/reorder' => 'orders#reorder_rejected', :via => :patch, :as => :reorder_rejected
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
     end
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
+      resources :services
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
         #departments in company
