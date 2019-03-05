@@ -27,6 +27,15 @@ Spree::OrderMailer.class_eval do
     mail(to: @order.email, from: from_address, subject: subject)
   end
 
+  # Send email to user after the order is rejected
+  def order_rejected(order, resend = false)
+    @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
+    subject = (resend ? "[#{Spree.t(:resend).upcase}] " : '')
+    subject += "#{Spree::Store.current.name} | Your order ##{@order.number} has been rejected"
+
+    mail(to: @order.email, from: from_address, subject: subject)
+  end
+
   # Send email to admin for an order that has been approved by manager
   def order_notify_admin(order, admin)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
