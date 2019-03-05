@@ -24,6 +24,7 @@
     .panel-footer
       ' Order Total:
       strong #{@order.display_total}
-  - if @order.state.eql? 'awaiting_approval'
-    = link_to 'Reject Order', reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-danger'
-    = link_to 'Approve Order', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-success pull-right'
+  - if spree_current_user.has_spree_role? :manager
+    - if @order.state.eql? 'awaiting_approval'
+      = link_to 'Reject Order', reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-danger'
+      = link_to 'Approve Order', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-success pull-right'

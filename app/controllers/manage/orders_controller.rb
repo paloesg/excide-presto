@@ -6,7 +6,21 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
+    if spree_current_user.has_spree_role? :manager
+      @orders = current_store.orders.department(spree_current_user)
+    elsif spree_current_user.has_spree_role? :finance
+      @orders = current_store.orders.company(spree_current_user)
+    end
+
+    if params[:sort] == 'complete' or params[:sort] == 'rejected'
+      @orders = @orders.where(state: params[:sort].to_sym).where.not(shipment_state: ['shipped', 'delivered']).order(:state, updated_at: :desc)
+    elsif params[:sort] == 'shipped' or params[:sort] == 'delivered'
+      @orders = @orders.where(shipment_state: params[:sort].to_sym)
+      #get data from spree_shipments because need to get shipped_at or delivered_at the shipment order
+      @shipments = Spree::Shipment.where('order_id IN (?)', @orders.pluck(:id)).order(params[:sort] == 'shipped' ? 'shipped_at DESC' : 'delivered_at DESC')
+    else
+      @orders = @orders.where(state: :awaiting_approval).order(:state, updated_at: :desc)
+    end
   end
 
   def approve
@@ -37,7 +51,7 @@ class Manage::OrdersController < Spree::BaseController
   end
 
   def set_roles
-    unless spree_current_user.has_spree_role? :manager
+    unless spree_current_user.has_spree_role? :manager or spree_current_user.has_spree_role? :finance
       flash[:error] = 'Authorization Failure'
       redirect_to forbidden_path
     end
