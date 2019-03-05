@@ -18,8 +18,20 @@ Rails.application.routes.draw do
     resources :services
     resources :service_requests
     match '/orders/:id/reorder' => 'orders#reorder', :via => :post, :as => :reorder_order
+    match '/orders/:id/override_purchase_order' => 'orders#override_purchase_order', :via => :post, :as => :override_purchase_order
+    match '/orders/:id/reorder' => 'orders#edit_rejected', :via => :get, :as => :edit_rejected
+    match '/orders/:id/reorder' => 'orders#reorder_rejected', :via => :patch, :as => :reorder_rejected
     resource :account, controller: 'users' do
       get '/password' => 'users#password', as: 'password'
+    end
+    namespace :api, defaults: { format: 'json' } do
+      namespace :v1 do
+        resources :shipments, only: [:create, :update] do
+          member do
+            put :delivery
+          end
+        end
+      end
     end
     namespace :admin, path: Spree.admin_path do
       resources :service_requests
@@ -56,7 +68,7 @@ Rails.application.routes.draw do
     resources :orders, param: :order_id do
       member do
         post :approve, to: 'orders#approve'
-        post :cancel, to: 'orders#cancel'
+        post :reject, to: 'orders#reject'
       end
     end
   end

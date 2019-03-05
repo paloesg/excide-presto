@@ -12,6 +12,7 @@
 //= require form-builder/form-builder.min
 //= require form-builder/form-render.min
 //= require components/form_builder
+//= require spree/backend/shipments_delivered
 
 //= require_tree .
 //= require spree/backend/spree_multi_domain

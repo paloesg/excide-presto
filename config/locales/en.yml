@@ -33,11 +33,16 @@ en:
   hello: "Hello world"
   spree:
     order_state:
+      awaiting_approval: 'Awaiting for Approval'
+      rejected: 'Rejected'
       preview: "Preview Order"
       awaiting_approval: 'Awaiting Approval'
     order_mailer:
       cancel_email:
         subject: "order Rejected"
+      confirm_email:
+        dear_admin: "Dear Admin,"
+        dear_manager: "Dear Manager,"
     admin:
       tab:
         product_sales: "Product Sales"
@@ -46,6 +51,14 @@ en:
         departments: "Departments"
         address: "Address"
         roles: "Roles"
+    shipment_state:
+      backorder: "Backordered"
+      canceled: "Cancelled"
+      partial: "Partial"
+      pending: "Pending"
+      ready: "Ready"
+      shipped: "Shipped"
+      delivered: "Delivered"
     company: "Company"
     company_updated: "Company Updated"
     company_address: "Company Address"
@@ -68,6 +81,8 @@ en:
     service_request: "Service Request"
     new_service_request: "New Service Request"
     service: "Service"
+    delivered_button: "Mark As Delivered"
+    shipped_button: "Mark As Shipped"
   devise:
     mailer:
       new_password_instructions:

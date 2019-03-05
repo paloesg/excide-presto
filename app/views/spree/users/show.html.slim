@@ -13,7 +13,7 @@
     dt= Spree.t(:email)
     dd
       = @user.email
-    br/
+    br
     dt= Spree.t(:credit_balance, scope: [:store_credits])
     dd
       = Spree::Money.new(spree_current_user.total_available_store_credit, currency: Spree::Config[:currency])
@@ -21,17 +21,19 @@
     = link_to Spree.t(:edit), spree.edit_account_path, {class: 'presto-btn btn-primary'}
     '
     = link_to "Change Password", spree.password_account_path, {class: 'presto-btn btn-success'}
-hr/
 .account-my-orders data-hook="account_my_orders"
   h3.my-account-title= Spree.t(:my_orders)
   - if @orders.present?
     table.table.table-striped.order-summary
       thead.active
         tr
-          th.order-number= Spree::Order.human_attribute_name(:number)
-          th.order-date= Spree.t(:date)
-          th.order-status= Spree.t(:status)
-          th.order-total= Spree.t(:total)
+          th.order-number = Spree::Order.human_attribute_name(:number)
+          th.order-date = Spree.t(:date)
+          th.order-status = Spree.t(:status)
+          th.order-total = Spree.t(:total)
+          th = Spree.t(:purchase_order)
+          th = Spree.t(:delivery_order)
+          th = Spree.t(:invoice)
           th
       tbody
         - @orders.each do |order|
@@ -41,7 +43,23 @@ hr/
             td.order-status= Spree.t("order_state.#{order.state}").titleize
             td.lead.text-primary.order-total= order.display_total
             td
-              = button_to 'Reorder', reorder_order_path(id: order.number), method: 'post', remote: true, class: "presto-btn btn-primary" if order.canceled?
+              - if order.purchase_order
+                .btn.presto-btn.btn-link = link_to main_app.url_for(order.purchase_order.attachment), target: :_blank
+                  | View
+                '
+                .override-purchase-order-btn.btn.presto-btn.btn-warning
+                  span.glyphicon.glyphicon-cloud-upload
+                  = file_field_tag :attachment, multipart: true, class: 'attachment', onchange: "overridePurchaseOrder(this);", "order-number": order.number
+            td
+              - if order.delivery_order
+                .btn.presto-btn.btn-link = link_to main_app.url_for(order.delivery_order.attachment), target: :_blank
+                  | View
+            td
+              - if order.invoice
+                .btn.presto-btn.btn-link = link_to main_app.url_for(order.invoice.attachment), target: :_blank
+                  | View
+            td
+              = link_to 'Reorder', edit_rejected_path(id: order.number), class: "presto-btn btn-primary" if order.rejected?
   - else
     .alert.alert-info= Spree.t(:you_have_no_orders_yet)
   br

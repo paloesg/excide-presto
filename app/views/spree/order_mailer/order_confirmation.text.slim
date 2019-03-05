@@ -1,0 +1,11 @@
+p
+  = Spree.t('order_mailer.confirm_email.dear_customer')
+p
+  = Spree.t('order_mailer.confirm_email.instructions')
+= render partial: "table_order_txt_version", handlers: [:slim], formats: [:html], locals: { order: @order }
+p
+  ' Your order has been sent to your managers for approval:
+  - @managers.each do |manager|
+    ' #{manager.email} (#{manager.full_name})
+br
+= render 'footer'
