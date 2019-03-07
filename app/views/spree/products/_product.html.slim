@@ -12,11 +12,11 @@
         br
         - if product.sold_out?
           = render partial: 'spree/products/labels/sold_out'
-        - elsif product.sale
+        - elsif product.sale(request.domain)
           = render partial: 'spree/products/labels/discount', locals: {product: product}
       .presto-panel-footer.inner.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
-          span.price.selling.lead content=("#{(product.price_in(current_currency).amount.nil?)? 0 : product.price_in(current_currency).amount.to_d}") itemprop="price"
+          span.price.selling.lead content=("#{(product.price_in(current_currency, current_store.id).amount.nil?)? 0 : product.price_in(current_currency, current_store.id).amount.to_d}") itemprop="price"
             = display_price(product)
           span content=current_currency itemprop="priceCurrency"
       div id="add_to_cart" class="add_to_cart" style="display:#{quantity_order(product.master.id) == 0 ? 'block' : 'none'};" variant="#{product.master.id}"

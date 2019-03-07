@@ -1,11 +1,11 @@
 = form_for :order, url: populate_orders_path do |f|
   #inside-product-cart-form.row data-hook="inside_product_cart_form" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
-    - if @product.price_in(current_currency) && !@product.price.nil?
+    - if @product.price_in(current_currency, current_store.id) && !@product.price.nil?
       .col-md-12 data-hook="product_price"
         #product-price
           / h6.product-section-title= Spree.t(:price)
           div.text-center
-            span.lead.price.selling content="#{@product.price_in(current_currency).amount.to_d}" itemprop="price"
+            span.lead.price.selling content="#{@product.price_in(current_currency, current_store.id).amount.to_d}" itemprop="price"
               = display_price(@product)
             span content=current_currency itemprop="priceCurrency"
           - if @product.master.can_supply?
@@ -33,7 +33,7 @@
         ul.list-group.list-default
           - @product.variants_and_option_values(current_currency).each_with_index do |variant, index|
             li
-              = radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_in(current_currency).money, 'data-in-stock' => variant.can_supply?
+              = radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_in(current_currency, current_store.id).money, 'data-in-stock' => variant.can_supply?
               = label_tag "variant_id_#{ variant.id }" do
                 span.variant-description
                   = variant_options variant
