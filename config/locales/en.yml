@@ -40,6 +40,9 @@ en:
     order_mailer:
       cancel_email:
         subject: "order Rejected"
+      confirm_email:
+        dear_admin: "Dear Admin,"
+        dear_manager: "Dear Manager,"
     admin:
       tab:
         product_sales: "Product Sales"
@@ -75,6 +78,9 @@ en:
     company_name: "Company name"
     phone: "Phone"
     update_cart: "Update Cart"
+    service_request: "Service Request"
+    new_service_request: "New Service Request"
+    service: "Service"
     delivered_button: "Mark As Delivered"
     shipped_button: "Mark As Shipped"
   devise:

@@ -10,11 +10,15 @@
 //= require spree/frontend
 //= require spree/frontend/show_service
 //= require turbolinks
+//= require form-builder/form-builder.min
+//= require form-builder/form-render.min
 //= require components/select_sort_by
 //= require components/sub_categories_popover
 //= require components/update_quantity_product
 //= require components/update_quantity_cart
 //= require components/set_datetimepicker
+//= require components/frontend/modal_service
+//= require components/frontend/modal_product
 //= require components/override_purchase_order
 //= require moment
 //= require bootstrap-datetimepicker

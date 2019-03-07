@@ -1,0 +1,13 @@
+- content_for :page_title do
+  | #{link_to Spree.t(:service), spree.admin_services_url} / #{Spree.t(:new_service)}
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @service }
+
+.row
+  .col-xs-12.col-md-12
+    = form_for [:admin, @service], html: { multipart:true, class:"new_form_service" } do |f|
+      = render partial: 'form', locals: { f: f }
+      .form-actions data-hook="buttons"
+        = button Spree.t('actions.create'), 'ok', 'button', {class: 'btn-success btn-save-service', data: { disable_with: "#{ Spree.t(:saving) }..." }}
+        span.or= Spree.t(:or)
+        = button_link_to Spree.t('actions.cancel'), collection_url, icon: 'remove'

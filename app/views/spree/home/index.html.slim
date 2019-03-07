@@ -13,61 +13,16 @@
           = link_to(image_tag(main_app.url_for(category.icon.try(:attachment)), class: 'img-responsive'), seo_url(category))
         - else
           = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(category))
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #7FC2BA"
+  - @services.each do |service|
+    .col-md-3.col-xs-6
+      .icon-list.text-center style="background-color: #{service.color}"
         .category-name
-          h4 Catering
-        = link_to(image_tag('services/catering.png', class: 'img-responsive'), "/services/catering")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #D8D8D6"
-        .category-name
-          h4 Cleaning
-        = link_to(image_tag('services/cleaning.png', class: 'img-responsive'), "/services/cleaning")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #F0ADA2"
-        .category-name
-          h4 Event Planning
-        = link_to(image_tag('services/event-planning.png', class: 'img-responsive'), "/services/event-planning")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #FFCC4E"
-        .category-name
-          h4 Health & Wellness
-        = link_to(image_tag('services/health-&-wellness.png', class: 'img-responsive'), "/services/health-&-wellness")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #588DC0"
-        .category-name
-          h4 IT Equipment & Services
-        = link_to(image_tag('services/it-equipment-&-services.png', class: 'img-responsive'), "/services/it-equipment-&-services")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #7FC2BA"
-        .category-name
-          h4 Office Experiences
-        = link_to(image_tag('services/office-experiences.png', class: 'img-responsive'), "/services/office-experiences")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #598EC1"
-        .category-name
-          h4 Office Repair & Maintenance
-        = link_to(image_tag('services/office-repair-&-maintenance.png', class: 'img-responsive'), "/services/office-repair-&-maintenance")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #D8D8D6"
-        .category-name
-          h4 Special Requests
-        = link_to(image_tag('services/special-requests.png', class: 'img-responsive'), "/services/special-requests")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #F6CC6B"
-        .category-name
-          h4 Staff Perks
-        = link_to(image_tag('services/staff-perks.png', class: 'img-responsive'), "/services/staff-perks")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #F9B2A6"
-        .category-name
-          h4 Team Building
-        = link_to(image_tag('services/team-building.png', class: 'img-responsive'), "/services/team-building")
-  .col-md-3.col-xs-6
-    .icon-list.text-center style="background-color: #FFCC4E"
-        .category-name
-          h4 Transport & Logistics
-        = link_to(image_tag('services/transport-&-logistics.png', class: 'img-responsive'), "/services/transport-&-logistics")
+          h4= service.name
+        / Service icon image size 600x480
+        - if service.icon
+          = link_to(image_tag(main_app.url_for(service.icon.try(:attachment)), class: 'img-responsive'), seo_url(service))
+        - else
+          = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(service))
   .col-md-6.col-xs-12
     .contact-icon-list
       = link_to(image_tag('contact-image.jpg', class: 'img-responsive img-rounded'), "tel:+6562850320")
