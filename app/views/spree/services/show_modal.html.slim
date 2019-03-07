@@ -1,5 +1,5 @@
 .row.flex-row data-hook="service_show" itemscope="" itemtype="https://schema.org/Service"
-  .col-md-6.col-sm-5.flex-col
+  .col-md-12.col-sm-12.flex-col
     #service-description.flex-panel data-hook="service_description"
       h2.service-title itemprop="name" = @service.name.capitalize if @service.name
       p.service-description= @service.description
