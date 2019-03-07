@@ -2,7 +2,6 @@ Spree::TaxonsController.class_eval do
   def show
     @taxon = Spree::Taxon.friendly.find(params[:id])
     @services = @taxon.services
-    # @taxon = Spree::Taxon.friendly.find(params[:id])
     return unless @taxon
     @searcher = build_searcher(params.merge(taxon: @taxon.id, include_images: true))
     @products = sort_products(@searcher.retrieve_products, @taxon)
@@ -12,6 +11,7 @@ Spree::TaxonsController.class_eval do
   private
 
   def sort_products(products, taxon)
+    products = Spree::Store.find(current_store.id).products.in_taxons(taxon.id).includes(:taxons)
     if params[:sort] == 'brand_asc'
       Spree::Store.find(params[:current_store_id]).products.in_taxons_by_brands(taxon).order("spree_taxons.name ASC").page(params[:page]).per(12)
     elsif params[:sort] == 'brand_desc'
