@@ -8,9 +8,7 @@
       .form-group
         = f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email)
       .form-group
-        = f.text_field :company_name, :class => 'form-control', :placeholder => Spree.t(:company_name)
-      .form-group
         = f.text_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)
+      .form-group
+        = f.text_field :remarks, :class => 'form-control', :placeholder => 'Company Name'
     p= f.submit Spree.t(:submit), :class => 'presto-btn btn-lg btn-purple btn-block'
-
-
