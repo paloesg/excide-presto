@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require accounting.min
 //= require spree/frontend
+//= require spree/frontend/component_function
 //= require spree/frontend/show_service
 //= require turbolinks
 //= require form-builder/form-builder.min
@@ -17,7 +18,6 @@
 //= require components/update_quantity_product
 //= require components/update_quantity_cart
 //= require components/set_datetimepicker
-//= require components/frontend/modal_service
 //= require components/frontend/modal_product
 //= require components/override_purchase_order
 //= require moment
