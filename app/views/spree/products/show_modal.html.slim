@@ -6,12 +6,12 @@
       #cart-form.flex-footer data-hook="cart_form"
         span.lead.price.selling.modal-price content="#{@product.price_in(current_currency, current_store.id).amount.to_d}" itemprop="price"
           = display_price(@product)
-        - if @product.sale(request.domain)
+        - if @product.sale(current_store.id)
           span.original-price= number_to_currency(@product.price)
           .save-price
             span.lead.price.selling
               | Save
-              = number_to_currency(@product.price - @product.sale(request.domain))
+              = number_to_currency(@product.price - @product.sale(current_store.id))
         span content=current_currency itemprop="priceCurrency"
         div id="add_to_cart" class="add_to_cart" style="display:#{quantity_order(@product.master.id) == 0 ? 'block' : 'none'};" variant="#{@product.master.id}"
           .add-cart style="left:0;"
