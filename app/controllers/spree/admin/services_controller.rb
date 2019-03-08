@@ -1,25 +1,32 @@
 module Spree
   module Admin
     class ServicesController < ResourceController
+      before_action :load_service, only: [:edit, :update]
 
       def index
         @services = Spree::Service.all
       end
 
       def create
-        if params[:taxon_ids].present?
-          params[:taxon_ids] = params[:taxon_ids].split(',')
+        if service_params[:taxon_ids].present?
+          service_params[:taxon_ids] = service_params[:taxon_ids].split(',')
         end
-        if params[:name].present?
-          params[:slug] = params[:name].parameterize
+        if service_params[:name].present?
+          service_params[:slug] = service_params[:name].parameterize
         end
         @service = Service.new(service_params.except(:icon))
-        @service.build_icon(attachment: params[:icon]) if params[:icon]
-        @service.save
+        @service.build_icon(attachment: service_params[:icon]) if service_params[:icon]
         if @service.save
           flash[:success] = flash_message_for(@service, :successfully_created)
+          respond_with(@service) do |format|
+            format.html { redirect_to admin_services_path }
+            format.json { render json: @service.to_json }
+          end
         else
-          flash[:error] = Spree.t(:could_not_create_product_sale)
+          respond_with(@service) do |format|
+            format.html { render :edit }
+            format.json { render json: @service.errors.full_messages.to_sentence, status: 422 }
+          end
         end
       end
 
@@ -27,25 +34,39 @@ module Spree
       end
 
       def update
-        if params[:taxon_ids].present?
-          params[:taxon_ids] = params[:taxon_ids].split(',')
+        successful = @service.transaction do
+          if service_params[:taxon_ids].present?
+            service_params[:taxon_ids] = service_params[:taxon_ids].split(',')
+          end
+          if service_params[:name].present?
+            service_params[:slug] = service_params[:name].parameterize
+          end
+          @service.save!
+          @service.create_icon(attachment: service_params[:icon]) if service_params[:icon]
+          @service.update(service_params.except(:icon))
         end
-        if params[:name].present?
-          params[:slug] = params[:name].parameterize
-        end
-        @service = Service.find(params['id'])
-        @service.create_icon(attachment: service_params[:icon]) if service_params[:icon]
-        if @service.update(service_params.except(:icon))
+        if successful
           flash[:success] = flash_message_for(@service, :successfully_updated)
+          respond_with(@service) do |format|
+            format.html { redirect_to admin_services_path }
+            format.json { render json: @service.to_json }
+          end
         else
-          flash[:error] = Spree.t(:could_not_create_product_sale)
+          respond_with(@service) do |format|
+            format.html { render :edit }
+            format.json { render json: @service.errors.full_messages.to_sentence, status: 422 }
+          end
         end
       end
 
       private
 
       def service_params
-        params.permit(:name, :fields, :description, :slug, :meta_title, :meta_keywords, :meta_description, :icon, taxon_ids: [])
+        params.require(:service).permit(:name, :fields, :description, :slug, :meta_title, :meta_keywords, :meta_description, :icon, taxon_ids: [])
+      end
+
+      def load_service
+        @service = Spree::Service.find(params[:id])
       end
     end
   end

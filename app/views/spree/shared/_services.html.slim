@@ -9,6 +9,10 @@ div data-hook="services_search_results_heading"
     div data-hook="services_search_results_heading_results_found"
       h6.search-results-title Search results for "#{params[:keywords]}"
 - if services.any?
+  - if @taxon.description.present?
+    .taxon-service-description
+      h3.text-purple Description
+      p= @taxon.description
   #services.row data-hook=""
     = render partial: 'spree/services/service', collection: services, locals: { taxon: @taxon }
 - if services.respond_to?(:total_pages)

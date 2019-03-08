@@ -1,6 +1,6 @@
 class Spree::ServicesController < Spree::StoreController
   before_action :load_service, only: :show
-  before_action :load_taxon, only: :index
+  before_action :load_taxon
   before_action :set_taxonomies
 
   def index

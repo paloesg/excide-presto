@@ -9,7 +9,7 @@
         h4= service.name
       / Service icon image size 600x480
       - if service.icon
-        = link_to(image_tag(main_app.url_for(service.icon.try(:attachment)), class: 'img-responsive'), seo_url(service))
+        = link_to(image_tag(main_app.url_for(taxon.icon.try(:attachment))), class: 'img-responsive'), seo_url(service))
       - else
         = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(service))
 = render partial: 'spree/services/modal_content'
