@@ -23,11 +23,6 @@ Spree::Order.class_eval do
   end
 
   # Update order state and rejected by user
-  # def rejected_by(user)
-  #   canceled_by(user)
-  #   update_columns(state: 'rejected', updated_at: Time.current)
-  # end
-
   def rejected_by(user)
     transaction do
       rejected!
