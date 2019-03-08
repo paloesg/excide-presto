@@ -3,6 +3,6 @@
   #service.panel.presto-panel-default.block
     = link_to '', '#', 'data-toggle': 'modal', 'data-target': '#serviceContent', class: 'overlay none-style-links', onclick: "showServiceForm('services-load/#{service.id}', #{service.fields.to_s});"
     .panel-body.text-center.service-body
-      = image_tag(service.icon ? main_app.url_for(service.icon.try(:attachment)) : 'no_icon.png', class: 'img-responsive')
+      = image_tag(main_app.url_for(service.icon ? service.icon.try(:attachment) : @taxon.icon ? @taxon.icon.try(:attachment) : 'no_icon.png'), class: 'img-responsive')
       br
-      = content_tag(:span, truncate(service.name, length: 50), class: 'info presto-services-title', itemprop: "name", title: service.name)
+      = content_tag(:span, truncate(service.name, length: 30), class: 'info presto-services-title', itemprop: "name", title: service.name)
