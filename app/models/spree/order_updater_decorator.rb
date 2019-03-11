@@ -1,6 +1,6 @@
 Spree::OrderUpdater.class_eval do
   def update
-    unless order.shipment_state == 'shipped'
+    if order.state == 'confirm'
       order.select_default_shipping
     end
     update_item_count
