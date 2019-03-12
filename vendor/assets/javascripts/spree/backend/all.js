@@ -13,6 +13,8 @@
 //= require form-builder/form-render.min
 //= require components/form_builder
 //= require spree/backend/shipments_delivered
+//= require spree/backend/admin_decorator
+//= require spree/backend/line_items_decorator
 
 //= require_tree .
 //= require spree/backend/spree_multi_domain
