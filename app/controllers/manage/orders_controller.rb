@@ -17,7 +17,7 @@ class Manage::OrdersController < Spree::BaseController
       Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
     end
     flash.notice = "Order ##{@order.number} has been approved."
-    GeneratePurchaseOrderPdf.perform_later(@order)
+    GeneratePurchaseOrderJob.perform_later(@order)
     redirect_to manage_orders_path
   end
 
