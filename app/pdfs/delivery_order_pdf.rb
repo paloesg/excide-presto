@@ -1,5 +1,8 @@
-class DeliveryOrderPdf < GeneratePdf
+class DeliveryOrderPdf < Prawn::Document
+  include GeneratePdf
+
   def initialize(order)
+    super(top_margin: 70)
     @order = order
     @company = @order.user.company
 
@@ -30,7 +33,7 @@ class DeliveryOrderPdf < GeneratePdf
     footer
   end
 
-  def title
+  def delivery_order
     move_up 20
     text "DELIVERY ORDER", size: 15, align: :right, color: "878787"
   end

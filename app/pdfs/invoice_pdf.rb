@@ -1,5 +1,8 @@
-class InvoicePdf < GeneratePdf
+class InvoicePdf < Prawn::Document
+  include GeneratePdf
+
   def initialize(order)
+    super(top_margin: 70)
     @order = order
     @company = @order.user.company
 
@@ -29,7 +32,7 @@ class InvoicePdf < GeneratePdf
     footer
   end
 
-  def title
+  def invoice
     move_up 20
     text "INVOICE", size: 15, align: :right, color: "878787"
   end

@@ -1,10 +1,4 @@
-class GeneratePdf < Prawn::Document
-  def initialize(order)
-    super(top_margin: 70)
-    @order = order
-    @company = @order.user.company
-  end
-
+module GeneratePdf
   def logo
     text "GOBBLER", size: 25, color: "d9d9d9"
   end

@@ -1,5 +1,8 @@
-class PurchaseOrderPdf < GeneratePdf
+class PurchaseOrderPdf < Prawn::Document
+  include GeneratePdf
+
   def initialize(order)
+    super(top_margin: 70)
     @order = order
     @company = @order.user.company
 
