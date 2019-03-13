@@ -12,7 +12,7 @@
         br
         - if product.sold_out?
           = render partial: 'spree/products/labels/sold_out'
-        - elsif product.sale(current_store.id)
+        - elsif product.sale(current_store.id) && product.sale(current_store.id) < product.price
           = render partial: 'spree/products/labels/discount', locals: {product: product}
       .presto-panel-footer.inner.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"

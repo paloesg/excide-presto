@@ -6,7 +6,7 @@
       #cart-form.flex-footer data-hook="cart_form"
         span.lead.price.selling.modal-price content="#{@product.price_in(current_currency, current_store.id).amount.to_d}" itemprop="price"
           = display_price(@product)
-        - if @product.sale(current_store.id)
+        - if @product.sale(current_store.id) && @product.sale(current_store.id) < @product.price
           span.original-price= number_to_currency(@product.price)
           .save-price
             span.lead.price.selling

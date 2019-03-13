@@ -14,7 +14,7 @@
           = Spree.t(:out_of_stock)
       .lead.text-primary.cart-item-price data-hook="cart_item_price"
         = line_item.single_money.to_html
-        - if (variant.product_sales.present?)
+        - if (variant.product_sales.present?) && line_item.price < variant.product.price
           span.original-price= number_to_currency(variant.product.price)
     td.cart-item-quantity data-hook="cart_item_quantity" valign="center"
       .number-quantity
