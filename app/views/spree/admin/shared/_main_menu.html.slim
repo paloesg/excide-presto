@@ -6,6 +6,12 @@
     li.sidebar-menu-item
       = link_to admin_service_requests_path, class: 'icon-link' do
         span.icon.icon-star
+        span.text Services Request
+- if can? :admin, Spree::Service
+  ul.nav.nav-sidebar
+    li.sidebar-menu-item
+      = link_to admin_services_path do
+        span.icon.icon-star
         span.text Services
 - if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn)
   ul.nav.nav-sidebar

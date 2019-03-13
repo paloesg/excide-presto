@@ -1,0 +1,12 @@
+.row.flex-row data-hook="service_show" itemscope="" itemtype="https://schema.org/Service"
+  .col-md-12.col-sm-12.flex-col
+    #service-description.flex-panel data-hook="service_description"
+      h2.service-title itemprop="name" = @service.name.capitalize if @service.name
+      p.service-description= @service.description
+.row
+  .col-md-12
+    = form_tag service_requests_path, method: 'post', multipart: true do
+      = hidden_field_tag 'service_id', @service.id
+      .form_service
+      .form-group.text-center.service-button-submit
+        = submit_tag 'Submit', class: 'btn presto-btn btn-purple'

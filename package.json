@@ -1,5 +1,12 @@
 {
   "name": "excide-presto",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "formBuilder": "^3.1.3"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hschin/excide-presto.git",
+  "author": "frediansimanjuntak <fredian.pc@gmail.com>",
+  "license": "MIT"
 }

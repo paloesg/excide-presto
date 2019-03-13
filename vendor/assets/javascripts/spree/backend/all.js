@@ -9,6 +9,9 @@
 //= require spree/backend
 //= require components/get_departments_by_company
 //= require components/update_manager_role
+//= require form-builder/form-builder.min
+//= require form-builder/form-render.min
+//= require components/form_builder
 //= require spree/backend/shipments_delivered
 
 //= require_tree .

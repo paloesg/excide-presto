@@ -3,5 +3,6 @@ Spree::HomeController.class_eval do
 
   def set_categories
     @categories = Spree::Taxonomy.find_by_name('Categories').root.children.take(3)
+    @services = Spree::Taxonomy.find_by_name('Services').root.children.all()
   end
 end
