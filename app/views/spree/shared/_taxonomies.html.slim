@@ -2,7 +2,7 @@
 nav#taxonomies.sidebar-item data-hook=""
   - @taxonomies.each do |taxonomy|
     - cache [I18n.locale, taxonomy, max_level, @taxon] do
-      - if taxonomy.root.children.any? and taxonomy.name != 'Brands'
+      - if taxonomy.root.children.any? and taxonomy.name == 'Categories'
         .list-group
           h4.presto-sidebar-title.list-group-item.taxonomy-root
             = taxonomy.name
