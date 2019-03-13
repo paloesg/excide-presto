@@ -21,6 +21,7 @@ class DeliveryOrderPdf < Prawn::Document
 
     # table order line items
     line_items
+    tax
     total_price
 
     # row footer

@@ -61,6 +61,15 @@ module GeneratePdf
     end
   end
 
+  def tax
+    if @order.all_adjustments.tax.exists?
+      @order.all_adjustments.tax.group_by(&:label).each do |label, adjustments|
+        move_down 10
+        text "Tax #{label}: #{Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)}", size: 10, style: :bold, align: :right
+      end
+    end
+  end
+
   def total_price
     move_down 15
     text "Total Price: #{@order.display_total}", size: 12, style: :bold, align: :right
