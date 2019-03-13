@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GeneratePurchaseOrderPdfJobTest < ActiveJob::TestCase
+class GeneratePurchaseOrderJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -37,8 +37,7 @@ Spree::CheckoutController.class_eval do
           @order.update_with_updater!
           Spree::OrderMailer.order_approved(@order.id).deliver_later
           flash.notice = 'Your order has been processed successfully'
-          generate_pdf = PurchaseOrderPdf.new(@order)
-          @order.create_purchase_order(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
+          GeneratePurchaseOrderJob.perform_later(@order)
         else
           send_email_to_managers
           @order.deliver_order_confirmation_email
