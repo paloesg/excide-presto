@@ -1,4 +1,9 @@
 module GeneratePdf
+  def title(title)
+    move_up 20
+    text title, size: 15, align: :right, color: "878787"
+  end
+
   def logo
     text "GOBBLER", size: 25, color: "d9d9d9"
   end

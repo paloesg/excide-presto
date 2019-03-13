@@ -8,7 +8,7 @@ class InvoicePdf < Prawn::Document
 
     # row logo
     logo
-    invoice
+    title("INVOICE")
 
     # row company details
     company_details
@@ -30,11 +30,6 @@ class InvoicePdf < Prawn::Document
     date
     move_down 20
     footer
-  end
-
-  def invoice
-    move_up 20
-    text "INVOICE", size: 15, align: :right, color: "878787"
   end
 
   def authorized_signature

@@ -8,7 +8,7 @@ class PurchaseOrderPdf < Prawn::Document
 
     # row logo
     logo
-    purchase_order
+    title("PURCHASE ORDER")
 
     # row company details
     company_details
@@ -31,11 +31,6 @@ class PurchaseOrderPdf < Prawn::Document
     date
     move_down 20
     footer
-  end
-
-  def purchase_order
-    move_up 20
-    text "PURCHASE ORDER", size: 15, align: :right, color: "878787"
   end
 
   def ship_to

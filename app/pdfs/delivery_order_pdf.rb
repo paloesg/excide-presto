@@ -8,7 +8,7 @@ class DeliveryOrderPdf < Prawn::Document
 
     # row logo
     logo
-    delivery_order
+    title("DELIVERY ORDER")
 
     # row company details
     company_name
@@ -31,11 +31,6 @@ class DeliveryOrderPdf < Prawn::Document
     date
     move_down 25
     footer
-  end
-
-  def delivery_order
-    move_up 20
-    text "DELIVERY ORDER", size: 15, align: :right, color: "878787"
   end
 
   def company_name
