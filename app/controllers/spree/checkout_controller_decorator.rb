@@ -34,6 +34,7 @@ Spree::CheckoutController.class_eval do
         @order.finalize!
         if managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
+          @order.update_with_updater!
           Spree::OrderMailer.order_approved(@order.id).deliver_later
           flash.notice = 'Your order has been processed successfully'
           generate_pdf = PurchaseOrderPdf.new(@order)

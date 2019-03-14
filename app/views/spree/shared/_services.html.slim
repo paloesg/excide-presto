@@ -1,0 +1,20 @@
+- content_for :head do
+  - if services.respond_to?(:total_pages)
+    = rel_next_prev_link_tags services
+div data-hook="services_search_results_heading"
+  - if services.empty?
+    div data-hook="services_search_results_heading_no_results_found"
+      = Spree.t(:no_services_found)
+  - elsif params.key?(:keywords)
+    div data-hook="services_search_results_heading_results_found"
+      h6.search-results-title Search results for "#{params[:keywords]}"
+- if services.any?
+  - if @taxon.description.present?
+    .taxon-service-description
+      h3.text-purple Description
+      p= @taxon.description
+  #services.row data-hook=""
+    = render partial: 'spree/services/service', collection: services, locals: { taxon: @taxon }
+- if services.respond_to?(:total_pages)
+  .text-center
+    = paginate services, theme: 'twitter-bootstrap-3'

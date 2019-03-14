@@ -26,7 +26,7 @@ class Manage::OrdersController < Spree::BaseController
     @order.rejected_by(spree_current_user)
     spree_current_user.department.decrease_budget_used(@order.total)
     @order.update_with_updater!
-    Spree::OrderMailer.cancel_email(@order).deliver_later
+    Spree::OrderMailer.order_rejected(@order).deliver_later
     flash.notice = "Order ##{@order.number} has been rejected."
     redirect_to manage_orders_path
   end

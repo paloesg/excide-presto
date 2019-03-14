@@ -1,0 +1,10 @@
+- content_for :page_title do
+  | #{link_to Spree.t(:service), spree.admin_services_url} / #{Spree.t(:new_service)}
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @service }
+
+.row
+  .col-xs-12.col-md-12
+    = form_for [:admin, @service], html: { multipart:true, class:"new_form_service"} do |f|
+      = render partial: 'form', locals: { f: f }
+      = render partial: 'spree/admin/shared/new_resource_links'

@@ -1,5 +1,5 @@
 .label-discount
   .text-discount
-    = number_to_percentage(100 * (1-(product.sale / product.price)))
-    br  
+    = number_to_percentage(100 * (1-(product.sale(current_store.id) / product.price)))
+    br
     | off

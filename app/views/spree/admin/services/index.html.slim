@@ -1,0 +1,31 @@
+- content_for :page_title do
+  = Spree.t(:services)
+- content_for :page_actions do
+  = button_link_to Spree.t(:new_service), new_object_url, class: 'btn-success', icon: 'add', id: 'admin_new_service_request_link'
+
+= render 'spree/admin/shared/index_table_options', collection: @services
+- if @services.any?
+  table.table
+    thead
+      tr
+        th Name
+        th Taxon
+        th Created at
+        th Action
+    tbody
+      - @services.each do |service|
+        tr
+          td
+            = service.name ? link_to(service.name, edit_admin_service_path(service.id)) : '-'
+          td
+            = service.taxons.map(&:name).join(", ") unless service.taxons.empty?
+          td
+            = service.created_at.strftime("%d-%m-%Y %H:%M")
+          td
+            = link_to_edit service, no_text: true, class: 'edit' if can?(:edit, service)
+            '
+            = link_to_delete service, no_text: true if can?(:delete, service)
+- else
+  | No service found
+= render 'spree/admin/shared/index_table_options', collection: @services, simple: true
+

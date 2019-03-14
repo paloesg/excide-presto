@@ -61,7 +61,7 @@ Spree::Admin::UsersController.class_eval do
 
   def user_params
     params.require(:user).permit(permitted_user_attributes |
-                                  [:approved, :first_name, :last_name, :company_name, :phone,
+                                  [:approved, :first_name, :last_name, :remarks, :phone,
                                   :company_id, :department_id,
                                   :use_billing,
                                   spree_role_ids: [],

@@ -158,7 +158,8 @@ select#sort-by {
   background-color: #5f509b;
   border-color: #5f509b;
   font-family: "AmsiPro-Ultra", sans-serif;
-  color: #ffffff;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .btn-purple:hover {
@@ -168,14 +169,15 @@ select#sort-by {
 }
 
 .btn-purple:focus .btn-green:focus{
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .btn-green {
   background-color: #4da338;
   border-color: #4da338;
   font-family: "AmsiPro-Ultra", sans-serif;
-  color: #ffffff;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .btn-green:hover {
@@ -188,7 +190,8 @@ select#sort-by {
   background-color: #565656;
   border-color: #565656;
   font-family: "AmsiPro-Ultra", sans-serif;
-  color: #ffffff;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .btn-grey:hover {
@@ -690,11 +693,6 @@ input[type=number]::-webkit-outer-spin-button {
   border-color: transparent;
 }
 
-
-.number-quantity input:focus, .number-quantity button:focus {
-  outline: none;
-}
-
 .total-price {
   width: 100%;
   border: 1px solid;
@@ -1018,6 +1016,25 @@ input[type=number]::-webkit-outer-spin-button {
   border: #ffcc4e;
   font-weight: bold;
 }
+
+.service-title {
+  font-family: "AmsiPro-Ultra", sans-serif !important;
+  color: #5f509b !important;
+  padding-bottom: 20px;
+}
+
+.service-description {
+  margin-bottom: 20px;
+}
+
+.service-form {
+  margin-bottom: 20px;
+}
+
+.service-button-submit {
+  margin-top: 40px;
+}
+
 /*custom message*/
 .success-message {
   color:#6b3898;
@@ -1071,10 +1088,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   width: 100%;
 }
 
-.add-cart button:focus {
-  outline: none;
-}
-
 .quantity-input {
   position: relative;
   text-align: center;
@@ -1121,10 +1134,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   font-weight: bold;
   text-align: center;
   border-radius: 10px 10px 10px 10px;
-}
-
-.quantity-input input:focus, .quantity-input button:focus {
-  outline: none;
 }
 
 .content-popover {
@@ -1190,4 +1199,21 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .label-rejected {
   background-color: #a94442;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.taxon-service-description > h3 {
+  color: #5f509b;
+  font-family: "AmsiPro-Ultra", sans-serif;
+}
+
+.taxon-service-description > p {
+  font-size: 16px;
+}
+
+.service-body{
+  height: 245px;
 }

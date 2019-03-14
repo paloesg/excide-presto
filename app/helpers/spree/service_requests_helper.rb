@@ -1,0 +1,2 @@
+module Spree::ServiceRequestsHelper
+end

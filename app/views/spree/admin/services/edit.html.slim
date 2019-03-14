@@ -1,0 +1,13 @@
+- content_for :page_title do
+  | #{link_to Spree.t(:service), spree.admin_services_url} / #{Spree.t(:edit_service)}
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @service }
+
+.row
+  .col-xs-12.col-md-12
+    = form_for [:admin, @service], method: :put, html: { multipart:true, class:"edit_form_service"} do |f|
+      = render partial: 'form', locals: { f: f }
+      .form-group
+        = hidden_field_tag :service_id, @service.id, class: 'id-edit-service'
+        = hidden_field_tag :service_fields, @service.fields, class: "service-fields"
+      = render partial: 'spree/admin/shared/edit_resource_links'

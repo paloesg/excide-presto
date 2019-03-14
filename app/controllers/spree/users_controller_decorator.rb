@@ -29,6 +29,6 @@ Spree::UsersController.class_eval do
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :company_name, :phone, :password, :password_confirmation)
+    params.require(:user).permit(:email, :first_name, :last_name, :remarks, :phone, :password, :password_confirmation)
   end
 end
