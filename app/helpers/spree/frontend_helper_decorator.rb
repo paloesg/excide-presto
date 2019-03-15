@@ -84,7 +84,7 @@ Spree::FrontendHelper.class_eval do
       css_class = 'full'
     end
 
-    link_to text.html_safe, spree.cart_path, class: "cart-info #{css_class}"
+    link_to text.html_safe, spree.cart_path, class: "cart-info #{css_class}", data: {turbolinks: false}
   end
 
   def sort_by
