@@ -45,6 +45,10 @@ Spree::Order.class_eval do
     %w(partial delivered).include?(shipment_state)
   end
 
+  def confirmed?
+    state.eql? 'confirm'
+  end
+
   # Override checkout_steps from spree file, remove "always append complete steps"
   # 3.6.5 spree/core/app/models/spree/order/checkout.rb
   def checkout_steps

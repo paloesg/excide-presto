@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/products-load/:id', to: 'spree/products#show_modal'
   get '/services-load/:id', to: 'spree/services#show_modal'
-  # get '/services-request/*id' => 'pages#show', as: :page, format: false
-  # post '/services-request/*id' => 'pages#create_request', as: :create_request, format: false
 
   Spree::Core::Engine.add_routes do
     resources :services

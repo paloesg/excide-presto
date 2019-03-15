@@ -4,7 +4,7 @@ module Spree
       before_action :load_service, only: [:edit, :update]
 
       def index
-        @services = Spree::Service.all
+        @services = Spree::Service.all.page(params[:page]).per(params[:per_page])
       end
 
       def create

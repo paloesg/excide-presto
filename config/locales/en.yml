@@ -80,7 +80,7 @@ en:
     update_cart: "Update Cart"
     service_request: "Service Request"
     new_service_request: "New Service Request"
-    service: "Service"
+    services: "Services"
     delivered_button: "Mark As Delivered"
     shipped_button: "Mark As Shipped"
   devise:

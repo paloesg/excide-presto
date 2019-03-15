@@ -1,4 +1,5 @@
 class Spree::Service < Spree::Base
+  paginates_per 15
   validates_associated :icon
   has_one :icon, as: :viewable, dependent: :destroy, class_name: 'Spree::ServiceIcon'
   has_many :services_taxons
