@@ -11,19 +11,8 @@ class Spree::Department < Spree::Base
   end
 
   def budget_used
-    department_budget.budget_used.present? ? department_budget.budget_used : 0
-  end
-
-  def increase_budget_used(budget)
-    department_data = Spree::DepartmentBudget.find(department_budget.id)
-    department_data.budget_used = (department_data.budget_used.present? ? department_data.budget_used : 0) + budget
-    department_data.save
-  end
-
-  def decrease_budget_used(budget)
-    department_data = Spree::DepartmentBudget.find(department_budget.id)
-    department_data.budget_used = (department_data.budget_used.present? ? department_data.budget_used : 0) - budget
-    department_data.save
+    budget_used = Spree::Order.includes(:user).where(spree_users: {department_id: self.id}).where('spree_orders.created_at > ? AND spree_orders.created_at < ?', Time.now.beginning_of_month, Time.now.end_of_month).where.not(state: 'rejected').sum(:total)
+    budget_used.present? ? budget_used : 0
   end
 
   def remaining_budget

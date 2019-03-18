@@ -19,7 +19,7 @@
         tr
           td = department_budget.description
           td = department_budget.budget
-          td = department_budget.budget_used.present? ? department_budget.budget_used : 0
+          td = department_budget.department.budget_used
           td
             = button_link_to '', edit_admin_company_department_department_budget_path(id: department_budget.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department_budget'
             '

@@ -184,7 +184,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_030050) do
     t.decimal "budget", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "budget_used", precision: 10, scale: 2
     t.index ["department_id"], name: "index_spree_department_budgets_on_department_id"
   end
 

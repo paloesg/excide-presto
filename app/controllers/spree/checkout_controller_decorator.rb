@@ -30,7 +30,6 @@ Spree::CheckoutController.class_eval do
         redirect_to(checkout_state_path(@order.state)) && return
       end
       if @order.awaiting_approval?
-        spree_current_user.department.increase_budget_used(@order.total)
         @order.finalize!
         if managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
