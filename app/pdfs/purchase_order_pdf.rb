@@ -19,6 +19,7 @@ class PurchaseOrderPdf < Prawn::Document
 
     # table order line items
     line_items
+    tax
     total_price
 
     # row footer
@@ -110,6 +111,15 @@ class PurchaseOrderPdf < Prawn::Document
     [['PRODUCT', 'PRICE', 'QUANTITY', 'TOTAL PRICE']] +
     @order.line_items.map do |item|
       [item.name, item.single_money.to_html, item.quantity, item.display_amount.to_html]
+    end
+  end
+
+  def tax
+    if @order.all_adjustments.tax.exists?
+      @order.all_adjustments.tax.group_by(&:label).each do |label, adjustments|
+        move_down 10
+        text "Tax #{label}: #{Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)}", size: 10, style: :bold, align: :right
+      end
     end
   end
 
