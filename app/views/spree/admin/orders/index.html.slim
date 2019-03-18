@@ -138,7 +138,7 @@
             - if order.purchase_order
               .btn.presto-btn.btn-link = link_to main_app.url_for(order.purchase_order.attachment), target: :_blank
                 | View
-              .override-purchase-order-btn.btn.presto-btn.btn-warning
+              .override-purchase-order-btn.btn.presto-btn.btn-warning.btn-sm
                 span.glyphicon.glyphicon-cloud-upload
                 = file_field_tag :attachment, multipart: true, class: 'attachment', onchange: "overridePurchaseOrder(this);", "order-number": order.number
           td
