@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_072908) do
+ActiveRecord::Schema.define(version: 2019_03_18_030050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -181,12 +181,10 @@ ActiveRecord::Schema.define(version: 2019_03_07_072908) do
   create_table "spree_department_budgets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "description"
     t.uuid "department_id"
-    t.datetime "start_date"
-    t.datetime "end_date"
     t.decimal "budget", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "total_order_price", precision: 10, scale: 2
+    t.decimal "budget_used", precision: 10, scale: 2
     t.index ["department_id"], name: "index_spree_department_budgets_on_department_id"
   end
 

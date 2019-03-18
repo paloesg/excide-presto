@@ -10,18 +10,16 @@
   table.table
     thead
       tr
-        th Period
         th Description
         th Budget
-        th Created At
+        th Budget Used
         th
     tbody
       - @department_budgets.each do |department_budget|
         tr
-          td #{department_budget.start_date.strftime("%d-%b-%Y")} to #{department_budget.end_date.strftime("%d-%b-%Y")}
           td = department_budget.description
           td = department_budget.budget
-          td = department_budget.created_at.strftime("%d-%m-%Y %H:%M")
+          td = department_budget.budget_used.present? ? department_budget.budget_used : 0
           td
             = button_link_to '', edit_admin_company_department_department_budget_path(id: department_budget.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department_budget'
             '
