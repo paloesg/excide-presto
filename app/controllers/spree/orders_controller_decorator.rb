@@ -71,7 +71,7 @@ Spree::OrdersController.class_eval do
     order   = Spree::Order.find_by(number: params[:id])
     respond_to do |format|
       if order.purchase_order.update(attachment: params[:attachment])
-        format.js { render js: 'Turbolinks.visit(location.toString());' }
+        format.js { render js: 'location.reload();' }
       else
         format.js { render js: 'alert("Error update purchase order pdf file!")' }
       end
