@@ -58,7 +58,7 @@ Spree::OrdersController.class_eval do
           error = e.record.errors.full_messages.join(', ')
         end
       else
-        error = 'Sorry, it exceeds the limits of your company budget'
+        error = 'Sorry, it exceeds the limits of your department budget'
       end
     else
       error = Spree.t(:please_enter_reasonable_quantity)
