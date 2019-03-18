@@ -80,7 +80,7 @@ Spree::FrontendHelper.class_eval do
       text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text}"
       css_class = 'empty'
     else
-      text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text} <span class='badge badge-presto'>#{simple_current_order.item_count}</span>"
+      text = "<span class='glyphicon glyphicon-shopping-cart'></span> #{text} <span class='badge badge-presto' id='total-items'>#{simple_current_order.item_count}</span>"
       css_class = 'full'
     end
 

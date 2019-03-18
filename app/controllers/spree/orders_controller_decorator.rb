@@ -1,5 +1,4 @@
 Spree::OrdersController.class_eval do
-  respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
   before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
   def update
@@ -62,7 +61,7 @@ Spree::OrdersController.class_eval do
       redirect_back_or_default(spree.root_path)
     else
       respond_with(@order) do |format|
-        format.html { redirect_to(cart_path(variant_id: variant.id)) }
+        format.html { render js: "fetch_navbar_cart(#{@order.line_items.sum(:quantity)});" }
       end
     end
   end
