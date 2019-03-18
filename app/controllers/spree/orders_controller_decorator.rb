@@ -40,18 +40,25 @@ Spree::OrdersController.class_eval do
     line_item_quantity = line_item.present? ? line_item.quantity.to_i : 0
     last_quantity =  line_item_quantity + quantity
 
+    line_item_price = line_item.price * quantity
+    remaining_budget = spree_current_user.department.budget - (spree_current_user.department.budget_used + line_item_price)
+
     if quantity
-      begin
-        if last_quantity >= 1
-          @order.contents.add(variant, quantity, options)
-        else
-          @order.contents.remove_line_item(line_item, options)
+      if remaining_budget >= 0
+        begin
+          if last_quantity >= 1
+            @order.contents.add(variant, quantity, options)
+          else
+            @order.contents.remove_line_item(line_item, options)
+          end
+          @order.update_line_item_prices!
+          @order.create_tax_charge!
+          @order.update_with_updater!
+        rescue ActiveRecord::RecordInvalid => e
+          error = e.record.errors.full_messages.join(', ')
         end
-        @order.update_line_item_prices!
-        @order.create_tax_charge!
-        @order.update_with_updater!
-      rescue ActiveRecord::RecordInvalid => e
-        error = e.record.errors.full_messages.join(', ')
+      else
+        error = 'Sorry, it exceeds the limits of your company budget'
       end
     else
       error = Spree.t(:please_enter_reasonable_quantity)
