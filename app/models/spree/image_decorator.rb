@@ -5,4 +5,6 @@ Spree::Image.class_eval do
   # Invalid single-table inheritance type: Spree::Image is not a subclass of Spree::Image.
   # The line below prevents the error.
   self.inheritance_column = nil
+
+  # TODO: Remove this file when upgrading to Spree 4.0
 end
