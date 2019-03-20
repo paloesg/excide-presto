@@ -30,7 +30,7 @@ div data-hook="cart_container"
               .col-md-12
                 h5.text-center
                   strong Remaining Department Budget
-                .lead.total-price.text-center = number_to_currency(spree_current_user.department.department_budget.present? ? spree_current_user.department.remaining_budget : 0)
+                .lead.total-price.text-center = number_to_currency(spree_current_user.department.budget.present? ? spree_current_user.department.remaining_budget : 0)
               .col-md-12
                 .col-md-8
                   h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
@@ -62,7 +62,7 @@ div data-hook="cart_container"
                   strong= Spree.t(:total)
                 .lead.total-price.text-center = order_form.object.display_total
             .presto-panel-footer
-              = button_tag class: 'presto-btn btn-purple btn-block', id: 'checkout-link', name: 'checkout', disabled: spree_current_user.department.department_budget.present? && spree_current_user.department.remaining_budget - @order.total >= 0 ? false : true do
+              = button_tag class: 'presto-btn btn-purple btn-block', id: 'checkout-link', name: 'checkout', disabled: spree_current_user.department.budget.present? && spree_current_user.department.remaining_budget - @order.total >= 0 ? false : true do
                 = Spree.t(:checkout)
 javascript:
   Spree.current_order_id = "#{@order.number}"
