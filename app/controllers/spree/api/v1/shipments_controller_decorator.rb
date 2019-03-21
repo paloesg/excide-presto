@@ -6,8 +6,7 @@ Spree::Api::V1::ShipmentsController.class_eval do
     @shipment.order.update_with_updater!
     @shipment.delivered_at = Time.current
     @order = @shipment.order
-    generate_pdf = InvoicePdf.new(@order)
-    @order.create_invoice(attachment: {io: StringIO.new(generate_pdf.render), filename: "invoice-#{@order.number}.pdf"})
+    GenerateInvoiceJob.perform_later(@order)
     @shipment.save
     respond_with(@shipment, default_template: :show)
   end
@@ -16,8 +15,7 @@ Spree::Api::V1::ShipmentsController.class_eval do
   def ship
     @shipment.ship! unless @shipment.shipped?
     @order = @shipment.order
-    generate_pdf = DeliveryOrderPdf.new(@order)
-    @order.create_delivery_order(attachment: {io: StringIO.new(generate_pdf.render), filename: "delivery-order-#{@order.number}.pdf"})
+    GenerateDeliveryOrderJob.perform_later(@order)
     respond_with(@shipment, default_template: :show)
   end
 end
