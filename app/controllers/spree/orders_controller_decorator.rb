@@ -1,5 +1,5 @@
 Spree::OrdersController.class_eval do
-  respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();$("#productContent").modal("hide")' } } }
+  respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();' } } }
   before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
   def update
@@ -71,7 +71,7 @@ Spree::OrdersController.class_eval do
     order   = Spree::Order.find_by(number: params[:id])
     respond_to do |format|
       if order.purchase_order.update(attachment: params[:attachment])
-        format.js { render js: 'Turbolinks.visit(location.toString());' }
+        format.js { render js: 'location.reload();' }
       else
         format.js { render js: 'alert("Error update purchase order pdf file!")' }
       end

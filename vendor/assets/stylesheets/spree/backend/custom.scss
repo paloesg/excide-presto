@@ -63,3 +63,16 @@
 .shipment-actions{
   display: inline;
 }
+
+.override-purchase-order-btn {
+  overflow: hidden;
+  position: relative;
+}
+
+.override-purchase-order-btn > .attachment {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 50px;
+  color: transparent;
+}

@@ -12,8 +12,6 @@
         br
         - if product.sold_out?
           = render partial: 'spree/products/labels/sold_out'
-        - elsif product.sale(current_store.id)
-          = render partial: 'spree/products/labels/discount', locals: {product: product}
       .presto-panel-footer.inner.text-center
         span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
           span.price.selling.lead content=("#{(product.price_in(current_currency, current_store.id).amount.nil?)? 0 : product.price_in(current_currency, current_store.id).amount.to_d}") itemprop="price"

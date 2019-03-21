@@ -16,7 +16,7 @@
   div data-hook="taxon_products"
     = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
   = render partial: 'spree/products/modal_content'
-- else
+- if @taxon.parent.name == "Services"
   div data-hook="taxon_services"
     = render partial: 'spree/shared/services', locals: { services: @services, taxon: @taxon }
   = render partial: 'spree/services/modal_content'

@@ -61,7 +61,7 @@ class DeliveryOrderPdf < Prawn::Document
       text @order.ship_address.phone, size: 10, align: :right
      end
   end
-
+  
   def receiver_signature
     move_up 50
     text "THANK YOU", size: 20
