@@ -733,10 +733,15 @@ input[type=number]::-webkit-outer-spin-button {
   height: 218px;
 }
 
-.icon-list > a > img {
+.icon-welcome > img {
+  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
+
+.icon-list > img {
   margin: 0 auto;
-  padding: 10px;
-  max-height: 90%;
+  padding: 15px 10px 50px 10px;
+  height: 218px;
 }
 
 .contact-icon-list {
