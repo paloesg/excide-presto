@@ -1,5 +1,4 @@
 Spree::OrdersController.class_eval do
-  respond_override populate: { html: { success: lambda { render js: 'Spree.fetch_cart();' } } }
   before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
   def update
