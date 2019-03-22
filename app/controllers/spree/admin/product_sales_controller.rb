@@ -3,8 +3,8 @@ module Spree
     class ProductSalesController < ResourceController
 
       def create
-        variant = Variant.find(params[:variant_id])
-        @product_sale = ProductSale.where(:variant_id => params[:variant_id], :store_id => params[:store_id])
+        variant = Variant.find(sale_params[:variant_id])
+        @product_sale = ProductSale.where(:variant_id => sale_params[:variant_id], :store_id => sale_params[:store_id])
         if @product_sale.empty?
           @product_sale = ProductSale.new(sale_params)
           if @product_sale.save
@@ -33,7 +33,7 @@ module Spree
       end
 
       def sale_params
-        params.permit(:sale_price, :description, :start_date, :end_date, :variant_id, :store_id)
+        params.require(:product_sale).permit(:sale_price, :description, :start_date, :end_date, :variant_id, :store_id)
       end
     end
   end

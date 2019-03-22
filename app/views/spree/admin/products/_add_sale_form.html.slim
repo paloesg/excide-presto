@@ -1,0 +1,32 @@
+.panel-heading
+  h1.panel-title
+    = Spree.t(:add_product_sale)
+.panel-body
+  = form_for ([:admin, Spree::ProductSale.new]), url: admin_sale_index_path, method: "POST" do |f|
+    .row data-hook="admin_product_sale_form_fields"
+      .col-xs-12.col-md-6
+        = f.field_container :sale_price, class: ['form-group'] do
+          = f.label :sale_price, Spree.t(:sale_price)
+          = f.number_field :sale_price, value: number_to_currency(f.object.sale_price.to_f, delimiter: '', unit: ''), step: :any, class: 'form-control', min: 0
+        = f.field_container :start_date, class: ['form-group'] do
+          = f.label :start_date, Spree.t(:start_date)
+          = f.date_field :start_date, class: 'form-control'
+        = f.field_container :end_date, class: ['form-group'] do
+          = f.label :end_date, Spree.t(:end_date)
+          = f.date_field :end_date, class: 'form-control'
+      .col-xs-12.col-md-6
+        = f.field_container :description, class: ['form-group'] do
+          = f.label :description, Spree.t(:description)
+          = f.text_field :description, class: 'form-control'
+        = f.field_container :variants, class: ['form-group'] do
+          = f.label :variant_id, Spree.t(:variant)
+          = f.select :variant_id, @variants.map { |t| [t.sku_and_options_text, t.id] }, { include_blank: true }, class: 'select2 js-filterable'
+        = f.field_container :stores, class: ['form-group'] do
+          = f.label :store_id, Spree.t(:store)
+          = f.select :store_id, @product.stores.map { |t| [t.name, t.id] }, { include_blank: true }, class: 'select2 js-filterable'
+    .form-actions.text-center
+      = button Spree.t(:add_product_sale), 'plus'
+
+
+
+
