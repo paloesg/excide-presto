@@ -1,7 +1,7 @@
 - @body_id = 'home-page'
 .row
   .col-md-6.col-xs-12
-    .icon-list
+    .icon-welcome
       = image_tag 'welcome-image.png', class: 'img-responsive img-rounded'
   - @categories.each do |category|
     .col-md-3.col-xs-6
@@ -16,7 +16,7 @@
             = image_tag('no_icon.png', class: 'img-responsive')
   - @services.each do |service|
     .col-md-3.col-xs-6
-      = link_to "#" do
+      = link_to seo_url(service) do
         .icon-list.text-center style="background-color: #{service.color}"
           .category-name
             h4= service.name
