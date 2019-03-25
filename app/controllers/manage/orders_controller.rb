@@ -6,7 +6,13 @@ class Manage::OrdersController < Spree::BaseController
   layout 'layouts/manage'
 
   def index
-    @orders = current_store.orders.department(spree_current_user).order(created_at: :desc)
+    @orders = current_store.orders.department(spree_current_user)
+
+    if params[:sort] == 'complete' or params[:sort] == 'rejected'
+      @orders = @orders.where(state: params[:sort].to_sym).where.not(shipment_state: ['shipped', 'delivered']).order(:state, updated_at: :desc)
+    else
+      @orders = @orders.where(state: :awaiting_approval).order(:state, updated_at: :desc)
+    end
   end
 
   def approve
