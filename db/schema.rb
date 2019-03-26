@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_072908) do
+ActiveRecord::Schema.define(version: 2019_03_08_073501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2019_03_07_072908) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "address_id"
-    t.decimal "preapproved_limit", precision: 10, scale: 2
     t.index ["address_id"], name: "index_spree_companies_on_address_id"
   end
 
@@ -375,6 +374,8 @@ ActiveRecord::Schema.define(version: 2019_03_07_072908) do
     t.integer "state_lock_version", default: 0, null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.integer "rejector_id"
+    t.datetime "rejected_at"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -383,6 +384,7 @@ ActiveRecord::Schema.define(version: 2019_03_07_072908) do
     t.index ["considered_risky"], name: "index_spree_orders_on_considered_risky"
     t.index ["created_by_id"], name: "index_spree_orders_on_created_by_id"
     t.index ["number"], name: "index_spree_orders_on_number", unique: true
+    t.index ["rejector_id"], name: "index_spree_orders_on_rejector_id"
     t.index ["ship_address_id"], name: "index_spree_orders_on_ship_address_id"
     t.index ["store_id"], name: "index_spree_orders_on_store_id"
     t.index ["token"], name: "index_spree_orders_on_token"
@@ -1168,13 +1170,13 @@ ActiveRecord::Schema.define(version: 2019_03_07_072908) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.uuid "company_id"
+    t.uuid "department_id"
     t.boolean "approved", default: false, null: false
     t.string "first_name"
     t.string "last_name"
     t.string "remarks"
     t.string "phone"
-    t.uuid "company_id"
-    t.uuid "department_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["company_id"], name: "index_spree_users_on_company_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"

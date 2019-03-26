@@ -22,10 +22,27 @@ Spree::Order.class_eval do
     update_columns(state: 'complete', updated_at: Time.current)
   end
 
-  # Update order state and canceled by user
+  # Update order state and rejected by user
   def rejected_by(user)
-    canceled_by(user)
-    update_columns(state: 'rejected', updated_at: Time.current)
+    transaction do
+      rejected!
+      update_columns(
+        rejector_id: user.id,
+        rejected_at: Time.current
+      )
+    end
+  end
+
+  def rejected?
+    !!rejected_at
+  end
+
+  def can_reject?
+    !rejected?
+  end
+
+  def rejected!
+    update_column(:state, 'rejected')
   end
 
   # select all orders where users department same with current user department
