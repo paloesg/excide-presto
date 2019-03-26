@@ -3,19 +3,19 @@ module Spree
     class ProductSalesController < ResourceController
 
       def create
-        variant = Variant.find(sale_params[:variant_id])
+        product = Product.find(params[:product_id])
         @product_sale = ProductSale.where(:variant_id => sale_params[:variant_id], :store_id => sale_params[:store_id])
         if @product_sale.empty?
           @product_sale = ProductSale.new(sale_params)
           if @product_sale.save
             flash[:success] = flash_message_for(@product_sale, :successfully_created)
           else
-            flash[:error] = Spree.t(:could_not_create_product_sale)
+            flash[:error] = "#{Spree.t('product_sale.errors.unable_to_create')}: #{@product_sale.errors.full_messages.join(', ')}"
           end
         else
           flash[:error] = "There is already an existing sale price set for this store. Please remove it to add a new sale price."
         end
-        redirect_back fallback_location: spree.admin_product_sale_url(variant.product)
+        redirect_back fallback_location: spree.admin_product_sale_url(product)
       end
 
       def destroy

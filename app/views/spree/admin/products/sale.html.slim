@@ -7,7 +7,7 @@
   .panel.panel-default
     table#listing_product_stock.table.table-bordered
       thead
-        tr data-hook="admin_product_stock_management_index_headers" 
+        tr data-hook="admin_product_stock_management_index_headers"
           th= Spree.t(:sale_price)
           th= Spree.t(:description)
           th= Spree.t(:sale_start_date)
@@ -27,7 +27,7 @@
             td
               = sale.end_date
             td
-              = sale.variant.sku
+              = sale.variant.sku.present? ? sale.variant.sku : sale.variant.product.name
             td
               = sale.store.name
             td.actions.actions-1.text-center
