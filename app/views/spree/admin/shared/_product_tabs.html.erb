@@ -21,7 +21,7 @@
       <%= link_to_with_icon 'home', Spree.t(:stock), stock_admin_product_url(@product) %>
     <% end if can?(:admin, Spree::Stock) && !@product.deleted? %>
     <%= content_tag :li, class: ('active' if current == :product_sales) do %>
-      <%= link_to_with_icon 'usd', Spree.t(:product_sales), spree.admin_product_sale_url(@product) %>
+      <%= link_to_with_icon 'usd', Spree.t(:product_sales), spree.new_admin_product_product_sale_url(@product) %>
     <% end if can?(:admin, Spree::ProductSale) && !@product.deleted? %>
   </ul>
 <% end %>

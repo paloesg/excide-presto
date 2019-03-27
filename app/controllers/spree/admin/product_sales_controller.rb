@@ -1,32 +1,64 @@
 module Spree
   module Admin
     class ProductSalesController < ResourceController
+      before_action :set_product
+      before_action :set_variants
+      before_action :set_product_sales
+
+      def new
+        @product_sale = ProductSale.new
+      end
 
       def create
-        product = Product.find(params[:product_id])
         @product_sale = ProductSale.where(:variant_id => sale_params[:variant_id], :store_id => sale_params[:store_id])
         if @product_sale.empty?
           @product_sale = ProductSale.new(sale_params)
           if @product_sale.save
             flash[:success] = flash_message_for(@product_sale, :successfully_created)
+            redirect_to spree.new_admin_product_product_sale_path(@product)
           else
-            flash[:error] = "#{Spree.t('product_sale.errors.unable_to_create')}: #{@product_sale.errors.full_messages.join(', ')}"
+            render :new
           end
         else
           flash[:error] = "There is already an existing sale price set for this store. Please remove it to add a new sale price."
+          render :new
         end
-        redirect_back fallback_location: spree.admin_product_sale_url(product)
       end
 
       def destroy
-        product_sale.destroy
+        @product_sale = ProductSale.find(params[:id])
+        # render json: @product_sale.to_json
+        if @product_sale.destroy
+          flash[:success] = Spree.t('notice_messages.product_sale_deleted')
+        else
+          flash[:error] = Spree.t('notice_messages.product_sale_not_deleted', error: @product_sale.errors.full_messages.to_sentence)
+        end
+
         respond_with(@product_sale) do |format|
-          format.html { redirect_back fallback_location: spree.admin_product_sale_url(@product_sale.variant.product) }
-          format.js
+          format.html { redirect_to spree.new_admin_product_product_sale_path(@product) }
+          format.js { render_js_for_destroy }
         end
       end
 
       private
+
+      def set_product
+        @product = Product.friendly.find(params[:product_id])
+      end
+
+      def set_variants
+        @variants = @product.variants.includes(*variant_stock_includes)
+        @variants = [@product.master] if @variants.empty?
+      end
+
+      def set_product_sales
+        variant_ids = @variants.pluck(:id)
+        @product_sales = ProductSale.where(variant_id: variant_ids)
+      end
+
+      def variant_stock_includes
+        [:images, stock_items: :stock_location, option_values: :option_type]
+      end
 
       def product_sale
         @product_sale ||= ProductSale.find(params[:id])
