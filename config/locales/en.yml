@@ -83,6 +83,12 @@ en:
     services: "Services"
     delivered_button: "Mark As Delivered"
     shipped_button: "Mark As Shipped"
+    product_sale:
+      errors:
+        unable_to_create: Unable to create Product sale
+    notice_messages:
+      product_sale_deleted: Product Sale Deleted
+      product_sale_not_deleted: Product Sale Not Deleted
   devise:
     mailer:
       new_password_instructions:

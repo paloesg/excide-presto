@@ -54,10 +54,10 @@ Rails.application.routes.draw do
       get '/pages/*id' => 'pages#show', as: :page, format: false
 
       resources :products do
-        get '/sale', to: 'products#sale', as: 'sale'
+        resources :product_sales
       end
 
-      resources :product_sales, as: 'sale'
+      resources :product_sales
     end
   end
 

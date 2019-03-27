@@ -1,0 +1,17 @@
+= render partial: 'spree/admin/shared/product_tabs', locals: {current: :product_sales}
+
+- content_for :page_title do
+  | / #{Spree.t(:new_product_sale)}
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @product_sale }
+- if can? :create, Spree::ProductSale
+  #add_sale_form.panel.panel-default
+    .panel-heading
+      h1.panel-title
+        = Spree.t(:add_product_sale)
+    .panel-body
+      = form_for ([:admin, @product_sale]), url: spree.admin_product_product_sales_url, method: :post do |f|
+        = render partial: 'form', locals: { f: f, product: @product, variants: @variants }
+- if @product_sales.present?
+  .panel.panel-default
+    = render partial: 'list', locals: { sales: @product_sales }
