@@ -26,15 +26,13 @@ module Spree
       end
 
       def destroy
-        @product_sale = ProductSale.find(params[:id])
-        # render json: @product_sale.to_json
-        if @product_sale.destroy
+        @sale = Spree::ProductSale.find(params[:id])
+        if @sale.destroy
           flash[:success] = Spree.t('notice_messages.product_sale_deleted')
         else
-          flash[:error] = Spree.t('notice_messages.product_sale_not_deleted', error: @product_sale.errors.full_messages.to_sentence)
+          flash[:error] = Spree.t('notice_messages.product_sale_not_deleted', error: @sale.errors.full_messages.to_sentence)
         end
-
-        respond_with(@product_sale) do |format|
+        respond_with(@sale) do |format|
           format.html { redirect_to spree.new_admin_product_product_sale_path(@product) }
           format.js { render_js_for_destroy }
         end

@@ -24,5 +24,4 @@ table#listing_product_stock.table.table-bordered
         td
           = sale.store.name
         td.actions.actions-1.text-center
-          = link_to_delete sale, no_text: true if can?(:delete, sale)
-          / = link_to_with_icon('delete', Spree.t(:remove), spree.admin_product_sale_url(sale.id), method: :delete, class: 'icon_link btn btn-danger btn-sm', data: { action: :remove, confirm: Spree.t(:are_you_sure) }, no_text: true) if can? :destroy, sale
+          = link_to_with_icon('delete', Spree.t(:remove), spree.admin_product_product_sale_path(@product.id, sale.id), method: :delete, class: 'icon_link btn btn-danger btn-sm', data: { action: :remove, confirm: Spree.t(:are_you_sure) }, no_text: true) if can? :destroy, sale
