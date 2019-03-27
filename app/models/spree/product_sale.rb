@@ -6,5 +6,5 @@ class Spree::ProductSale < Spree::Base
     validates :sale_price, :variant_id, :store_id
   end
 
-  validates_uniqueness_of :variant_id, :scope => :store_id, :message => 'is already an existing sale price set for this store. Please remove it to add a new sale price.'
+  validates_uniqueness_of :variant_id, :scope => :store_id, :message => 'already has an existing sale price set for this store'
 end
