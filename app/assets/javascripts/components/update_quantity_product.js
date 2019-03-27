@@ -10,6 +10,8 @@ function update_quantity(cart_items) {
     },
     error:function( result ){ console.log(["error", result]); }
   });
+  // Clear cart items after send
+  cart_items = [];
 }
 
 // Update navbar cart
