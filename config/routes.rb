@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     match '/orders/:id/override_purchase_order' => 'orders#override_purchase_order', :via => :post, :as => :override_purchase_order
     match '/orders/:id/reorder' => 'orders#edit_rejected', :via => :get, :as => :edit_rejected
     match '/orders/:id/reorder' => 'orders#reorder_rejected', :via => :patch, :as => :reorder_rejected
+    match '/orders/update_cart_items' => 'orders#update_cart_items', via: :patch, as: :update_cart_items
     resource :account, controller: 'users' do
       get '/password' => 'users#password', as: 'password'
     end

@@ -1,6 +1,10 @@
 Spree::OrdersController.class_eval do
   before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
+  def update_cart_items
+    render js: "console.log(#{params.to_json});"
+  end
+
   def edit_rejected
   end
 
