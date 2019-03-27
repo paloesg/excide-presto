@@ -10,17 +10,11 @@ module Spree
       end
 
       def create
-        @product_sale = ProductSale.where(:variant_id => sale_params[:variant_id], :store_id => sale_params[:store_id])
-        if @product_sale.empty?
-          @product_sale = ProductSale.new(sale_params)
-          if @product_sale.save
-            flash[:success] = flash_message_for(@product_sale, :successfully_created)
-            redirect_to spree.new_admin_product_product_sale_path(@product)
-          else
-            render :new
-          end
+        @product_sale = ProductSale.new(sale_params)
+        if @product_sale.save
+          flash[:success] = flash_message_for(@product_sale, :successfully_created)
+          redirect_to spree.new_admin_product_product_sale_path(@product)
         else
-          flash[:error] = "There is already an existing sale price set for this store. Please remove it to add a new sale price."
           render :new
         end
       end
