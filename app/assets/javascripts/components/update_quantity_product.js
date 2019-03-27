@@ -1,10 +1,12 @@
-function update_quantity(variant_id, quantity) {
+var cart_items = [];
+function update_quantity(cart_items) {
+  console.log(cart_items)
   $.ajax({
-    url: "/orders/populate",
-    data: "quantity="+quantity+"&variant_id="+variant_id,
-    type:"post",
+    url: "/orders/update_cart_items",
+    data: { items: cart_items },
+    type: "patch",
     success:function( data ) {
-
+      console.log(data)
     },
     error:function( result ){ console.log(["error", result]); }
   });
@@ -42,7 +44,10 @@ $(document).ready(function (){
     update_data = setTimeout(function(){
       var item_text = quantity <= 1 ? "item" : "items";
       var type_text = type=='increase' ? "added" : "removed";
-      update_quantity(variant_id, type=='increase' ? quantity : -(quantity));
+      // update_quantity(variant_id, type=='increase' ? quantity : -(quantity));
+      update_quantity(cart_items);
+      cart_items.push({quantity: quantity, id: variant_id, action: type_text})
+      console.log("console.log update data quantity" + quantity + " id "+ variant_id)
 
       $('.decrease').data("click_count", 0)
       $('.increase').data("click_count", 0)
