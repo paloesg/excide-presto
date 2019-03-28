@@ -4,7 +4,10 @@ function update_quantity(variantId, quantity) {
     quantity,
     {}, // options hash - you can pass additional parameters here, your backend
     function () {
-      Spree.fetch_cart();
+      Spree.fetch_cart().done(function(data) {
+        fetch_navbar_cart(0)
+        return $('#link-to-cart').html(data)
+      });
     },
     function (error) { alert(error) } // failure callback for 422 and 50x errors
   )
