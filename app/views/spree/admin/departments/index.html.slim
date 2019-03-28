@@ -21,7 +21,7 @@
         tr
           td = department.name
           td = department.description
-          td = number_to_currency(department.budget.present? ? department.budget : 0)
+          td = number_to_currency(department.budget || 0)
           td = number_to_currency(department.remaining_budget)
           td.text-center = button_link_to '', admin_company_department_path(id: department.id), class: 'btn-sm btn-info', icon: 'user', id: 'admin_show_department'
           td = button_link_to '', edit_admin_company_department_path(id: department.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department'

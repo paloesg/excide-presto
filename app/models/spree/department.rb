@@ -7,10 +7,10 @@ class Spree::Department < Spree::Base
 
   def budget_used
     budget_used = Spree::Order.includes(:user).where(spree_users: {department_id: self.id}).where('spree_orders.created_at > ? AND spree_orders.created_at < ?', Time.current.beginning_of_month, Time.current.end_of_month).where.not(state: 'rejected').sum(:total)
-    budget_used.present? ? budget_used : 0
+    budget_used || 0
   end
 
   def remaining_budget
-    (self.budget.present? ? self.budget : 0) - budget_used
+    (budget || 0) - budget_used
   end
 end
