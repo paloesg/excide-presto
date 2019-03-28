@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_073501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "address_id"
+    t.decimal "preapproved_limit", precision: 10, scale: 2
     t.index ["address_id"], name: "index_spree_companies_on_address_id"
   end
 
@@ -1170,13 +1171,13 @@ ActiveRecord::Schema.define(version: 2019_03_08_073501) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.uuid "company_id"
-    t.uuid "department_id"
     t.boolean "approved", default: false, null: false
     t.string "first_name"
     t.string "last_name"
     t.string "remarks"
     t.string "phone"
+    t.uuid "company_id"
+    t.uuid "department_id"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["company_id"], name: "index_spree_users_on_company_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
