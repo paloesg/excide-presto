@@ -9,10 +9,10 @@
       = f.error_message_on :sale_price
     = f.field_container :variants, class: ['form-group'] do
       = f.label :variant_id, raw(Spree.t(:variant) + content_tag(:span, ' *', class: "required"))
-      = f.collection_select(:variant_id, variants, :id, :sku_and_options_text.present? ? :sku_and_options_text : product.name, { include_blank: true, selected: f.object.variant_id }, { class: 'select2' })
+      = f.select :variant_id, variants.map {|variant| [variant.sku_and_options_text.empty? ? product.name : variant.sku_and_options_text, variant.id]}, { include_blank: true, selected: product.variants.present? ? f.object.variant_id : product.master.id}, class: 'select2 js-filterable'
     = f.field_container :stores, class: ['form-group'] do
       = f.label :store_id, raw(Spree.t(:store) + content_tag(:span, ' *', class: "required"))
-      = f.collection_select(:store_id, product.stores, :id, :name, { include_blank: true, selected: f.object.store_id }, { class: 'select2' })
+      = f.select :store_id, product.stores.map {|store| [store.name, store.id]}, { include_blank: true, selected: f.object.store_id}, class: 'select2 js-filterable'
   .col-xs-12.col-md-6
     = f.field_container :description, class: ['form-group'] do
       = f.label :description, Spree.t(:description)
