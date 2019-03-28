@@ -31,13 +31,18 @@ Spree::CheckoutController.class_eval do
       end
       if @order.awaiting_approval?
         @order.finalize!
-        if managers.blank? or @order.user.has_spree_role? :manager
+        total_order_price = @order.total
+        company_preapproved_limit = spree_current_user.company.preapproved_limit if spree_current_user.company.present?
+        #set automaticaly approved when company have limit order price and the order price less than the company limit or the user don't have manager or the user as manager
+        if (company_preapproved_limit.present? and company_preapproved_limit >= total_order_price) or managers.blank? or @order.user.has_spree_role? :manager
           @order.completed_by(@order.user)
           @order.update_with_updater!
           Spree::OrderMailer.order_approved(@order.id).deliver_later
+          admins.each do |admin|
+            Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
+          end
           flash.notice = 'Your order has been processed successfully'
-          generate_pdf = PurchaseOrderPdf.new(@order)
-          @order.create_purchase_order(attachment: {io: StringIO.new(generate_pdf.render), filename: "purchase-order-#{@order.number}.pdf"})
+          GeneratePurchaseOrderJob.perform_later(@order)
         else
           send_email_to_managers
           @order.deliver_order_confirmation_email
@@ -58,6 +63,10 @@ Spree::CheckoutController.class_eval do
     managers.each do |manager|
       Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
     end
+  end
+
+  def admins
+    Spree::Role.find_by_name('admin').users
   end
 
   def managers

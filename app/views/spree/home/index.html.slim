@@ -1,28 +1,30 @@
 - @body_id = 'home-page'
 .row
   .col-md-6.col-xs-12
-    .icon-list
+    .icon-welcome.p-b-15
       = image_tag 'welcome-image.png', class: 'img-responsive img-rounded'
   - @categories.each do |category|
     .col-md-3.col-xs-6
-      .icon-list.text-center style="background-color: #{category.color}"
-        .category-name
-          h4= category.name
-        / Category icon image size 600x480
-        - if category.icon
-          = link_to(image_tag(main_app.url_for(category.icon.try(:attachment)), class: 'img-responsive'), seo_url(category))
-        - else
-          = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(category))
+      = link_to seo_url(category) do
+        .icon-list.text-center style="background-color: #{category.color}"
+          .category-name
+            h4= category.name
+          / Category icon image size 600x480
+          - if category.icon
+            = image_tag(main_app.url_for(category.icon.try(:attachment)), class: 'img-responsive')
+          - else
+            = image_tag('no_icon.png', class: 'img-responsive')
   - @services.each do |service|
     .col-md-3.col-xs-6
-      .icon-list.text-center style="background-color: #{service.color}"
-        .category-name
-          h4= service.name
-        / Service icon image size 600x480
-        - if service.icon
-          = link_to(image_tag(main_app.url_for(service.icon.try(:attachment)), class: 'img-responsive'), seo_url(service))
-        - else
-          = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(service))
+      = link_to seo_url(service) do
+        .icon-list.text-center style="background-color: #{service.color}"
+          .category-name
+            h4= service.name
+          / Service icon image size 600x480
+          - if service.icon
+            = image_tag(main_app.url_for(service.icon.try(:attachment)), class: 'img-responsive')
+          - else
+            = image_tag('no_icon.png', class: 'img-responsive')
   .col-md-6.col-xs-12
     .contact-icon-list
       = link_to(image_tag('contact-image.jpg', class: 'img-responsive img-rounded'), "tel:+6562850320")

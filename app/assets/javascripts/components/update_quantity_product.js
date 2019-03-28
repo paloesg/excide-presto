@@ -10,6 +10,19 @@ function update_quantity(variant_id, quantity) {
   });
 }
 
+// Update navbar cart
+function fetch_navbar_cart(line_items_qty) {
+  // If cart items updated, show the popover
+  if ($('#total-items').text() != line_items_qty ) {
+    $('[data-toggle="item-cart"]').popover('show');
+  } else {
+    // Reload the page if not updated
+    Turbolinks.visit(location.toString());
+  }
+  // Change navbar total item in cart when total quantity order is updated
+  $('#total-items').text(line_items_qty);
+}
+
 $(document).on('mouseleave','.popover-content',function(){
   $('[data-toggle="item-cart"]').popover('hide');
 });
@@ -38,7 +51,7 @@ $(document).ready(function (){
       $('[data-toggle="item-cart"]').popover({
         html: true,
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
-      }).popover('show');
+      });
     }, 1000);
   }
 
