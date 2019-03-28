@@ -9,12 +9,14 @@
       tr
         th Name
         th Description
+        th Pre-approved Limit
         th
     tbody
       - @companies.each do |company|
         tr
           td = company.name
           td = company.description
+          td = number_to_currency(company.preapproved_limit)
           td = link_to_edit company, no_text: true, class: 'edit' if can?(:edit, company)
 - else
   .alert.alert-warning
