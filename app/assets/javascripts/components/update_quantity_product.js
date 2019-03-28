@@ -1,13 +1,13 @@
-function update_quantity(variant_id, quantity) {
-  $.ajax({
-    url: "/orders/populate",
-    data: "quantity="+quantity+"&variant_id="+variant_id,
-    type:"post",
-    success:function( data ) {
-
+function update_quantity(variantId, quantity) {
+  SpreeAPI.Storefront.addToCart(
+    variantId,
+    quantity,
+    {}, // options hash - you can pass additional parameters here, your backend
+    function () {
+      Spree.fetch_cart();
     },
-    error:function( result ){ console.log(["error", result]); }
-  });
+    function (error) { alert(error) } // failure callback for 422 and 50x errors
+  )
 }
 
 // Update navbar cart
@@ -52,7 +52,7 @@ $(document).ready(function (){
         html: true,
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
       });
-    }, 1000);
+    }, 500);
   }
 
   function stop_timer_function() {
