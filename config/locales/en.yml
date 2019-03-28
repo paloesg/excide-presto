@@ -86,11 +86,11 @@ en:
     delivered_button: "Mark As Delivered"
     shipped_button: "Mark As Shipped"
     product_sale:
-      errors:
-        unable_to_create: Unable to create Product sale
-    notice_messages:
-      product_sale_deleted: Product Sale Deleted
-      product_sale_not_deleted: Product Sale Not Deleted
+      product_sale_deleted: "Product sale deleted."
+      unable_to_create: "Unable to create product sale."
+      product_sale_not_deleted: "Unable to delete product sale."
+    order:
+      budget_exceeded: "The item you are trying to add to cart will exceed your department budget."
   devise:
     mailer:
       new_password_instructions:

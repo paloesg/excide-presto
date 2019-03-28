@@ -22,9 +22,9 @@ module Spree
       def destroy
         @sale = Spree::ProductSale.find(params[:id])
         if @sale.destroy
-          flash[:success] = Spree.t('notice_messages.product_sale_deleted')
+          flash[:success] = Spree.t('product_sale.product_sale_deleted')
         else
-          flash[:error] = Spree.t('notice_messages.product_sale_not_deleted', error: @sale.errors.full_messages.to_sentence)
+          flash[:error] = Spree.t('product_sale.product_sale_not_deleted', error: @sale.errors.full_messages.to_sentence)
         end
         respond_with(@sale) do |format|
           format.html { redirect_to spree.new_admin_product_product_sale_path(@product) }
