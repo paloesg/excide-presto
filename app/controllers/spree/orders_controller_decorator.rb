@@ -46,7 +46,13 @@ Spree::OrdersController.class_eval do
       else
         begin
           if last_quantity >= 1
-            order.contents.add(variant, quantity, options)
+            result = cart_add_item_service.call(order: order,
+                                        variant: variant,
+                                        quantity: quantity,
+                                        options: options)
+            if result.failure?
+              error = result.value.errors.full_messages.join(', ')
+            end
           else
             order.contents.remove_line_item(line_item, options)
           end
