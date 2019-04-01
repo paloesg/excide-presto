@@ -85,6 +85,12 @@ $(document).ready(function (){
       $('.'+qty.attr('id')).val(current_val + 1)
       $('.increase_decrease[variant='+variant.val()+']').hide();
       $('.add_to_cart[variant='+variant.val()+']').show();
+      add_to_cart_button = $(this).parents().siblings('.add_to_cart').find('.addcart');
+      add_to_cart_button.prop('disabled', true);
+      setTimeout(function(){
+        add_to_cart_button.prop('disabled', false);
+      }, 1000);
+      add_to_cart_button.prop('disabled', true);
     }
   });
 
