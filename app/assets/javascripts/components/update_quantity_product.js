@@ -5,25 +5,13 @@ function update_quantity(variantId, quantity) {
     {}, // options hash - you can pass additional parameters here, your backend
     function () {
       Spree.fetch_cart().done(function(data) {
-        fetch_navbar_cart(0)
+        // update navbar cart, get total items in cart from 'data'
+        $('[data-toggle="item-cart"]').popover('show');
         return $('#link-to-cart').html(data)
       });
     },
     function (error) { alert(error) } // failure callback for 422 and 50x errors
   )
-}
-
-// Update navbar cart
-function fetch_navbar_cart(line_items_qty) {
-  // If cart items updated, show the popover
-  if ($('#total-items').text() != line_items_qty ) {
-    $('[data-toggle="item-cart"]').popover('show');
-  } else {
-    // Reload the page if not updated
-    Turbolinks.visit(location.toString());
-  }
-  // Change navbar total item in cart when total quantity order is updated
-  $('#total-items').text(line_items_qty);
 }
 
 $(document).on('mouseleave','.popover-content',function(){
