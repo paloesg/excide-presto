@@ -29,7 +29,6 @@ Spree::CheckoutController.class_eval do
         flash[:error] = @order.errors.full_messages.join("\n")
         redirect_to(checkout_state_path(@order.state)) && return
       end
-
       if @order.awaiting_approval?
         @order.finalize!
         total_order_price = @order.total

@@ -6,7 +6,7 @@ function update_quantity(variant_id, quantity) {
     success:function( data ) {
 
     },
-    error:function( result ){ console.log(["error", result]); }
+    error:function( result ){ console.log({'error': result.responseText}); }
   });
 }
 
