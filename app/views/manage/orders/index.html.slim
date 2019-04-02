@@ -1,30 +1,34 @@
 - if can? :manager, Spree::Order
-  .col-md-12
-    h1 Order Awaiting Approval
-    .panel.panel-default
-      .panel-heading Order Listing
-      .panel-body
-        - if @orders.any?
-          .table-responsive
-            table.table.table-striped
-              thead
-                tr
-                  th Number
-                  th Email
-                  th Status
-                  th Total
-                  th Created At
-              tbody
-                - @orders.each do |o|
+  .row
+    - content_for :page_title
+      | Order List
+  .row
+    .col-xs-8.col-md-9
+      .panel.panel-default
+        .panel-heading Order Listing
+        .panel-body
+          - if @orders.any?
+            .table-responsive
+              table.table.table-striped
+                thead
                   tr
-                    td = link_to o.number, edit_manage_order_path(o.number)
-                    td #{o.user.email}
-                    td
-                      span class=("label label-#{o.state.downcase}") = Spree.t("order_state.#{o.state.titleize}")
-                      span.icon.icon-filter.filterable.js-add-filter data-ransack-field="q_state_eq" data-ransack-value="#{o.state}"
-                    td #{o.display_total.to_html}
-                    td #{o.created_at.strftime('%F %H:%M')}
-        - else
-          .alert.alert-info
-            ' No Orders found,
-            = link_to 'Add One!', spree_path
+                    th Number
+                    th Email
+                    th Status
+                    th Total
+                    th Updated At
+                tbody
+                  - @orders.each do |o|
+                    tr
+                      td = link_to o.number, edit_manage_order_path(o.number)
+                      td #{o.user.email}
+                      td
+                        span class=("label label-#{o.state.downcase}") = Spree.t("order_state.#{((o.state.eql? 'complete') ? 'approved' : o.state).titleize}")
+                        span.icon.icon-filter.filterable.js-add-filter data-ransack-field="q_state_eq" data-ransack-value="#{o.state}"
+                      td #{o.display_total.to_html}
+                      td #{o.updated_at.strftime('%F %H:%M')}
+          - else
+            .alert.alert-info
+              ' No Orders found
+    .col-xs-4.col-md-3
+      = render partial: 'manage/orders/sidebar'

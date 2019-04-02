@@ -7,7 +7,7 @@ function update_quantity_cart(variant_id, quantity, order_number = null) {
     success:function( data ) {
       location.reload();
     },
-    error:function( result ){ console.log(["error", result]); }
+    error:function( result ){ console.log({'error': result.responseText}); }
   });
 }
 

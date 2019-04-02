@@ -32,8 +32,14 @@ Rails.application.routes.draw do
       end
     end
     namespace :admin, path: Spree.admin_path do
+      resources :products do
+        resources :product_sales
+      end
+      resources :product_sales
+
       resources :service_requests
       resources :services
+
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
         #departments in company
@@ -45,19 +51,12 @@ Rails.application.routes.draw do
           match '/addresses' => 'companies#addresses', via: [:get, :put]
         end
       end
+      resources :departments
 
       resources :users do
         put '/update/role', to: 'users#update_role', as: 'update_roles'
       end
-
-      resources :departments
       get '/pages/*id' => 'pages#show', as: :page, format: false
-
-      resources :products do
-        get '/sale', to: 'products#sale', as: 'sale'
-      end
-
-      resources :product_sales, as: 'sale'
     end
   end
 

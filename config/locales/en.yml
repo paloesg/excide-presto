@@ -64,6 +64,8 @@ en:
     company_address: "Company Address"
     department: "Department"
     department_updated: "Department Updated"
+    department_budget_updated: "Department Budget Updated"
+    department_budget_deleted: "Department Budget Deleted"
     role_updated: "Role Updated"
     product_sales: "Product Sales"
     new_product_sale: "New Product Sales"
@@ -83,6 +85,12 @@ en:
     services: "Services"
     delivered_button: "Mark As Delivered"
     shipped_button: "Mark As Shipped"
+    product_sale:
+      product_sale_deleted: "Product sale deleted."
+      unable_to_create: "Unable to create product sale."
+      product_sale_not_deleted: "Unable to delete product sale."
+    order:
+      budget_exceeded: "The item you are trying to add to cart will exceed your department budget."
   devise:
     mailer:
       new_password_instructions:

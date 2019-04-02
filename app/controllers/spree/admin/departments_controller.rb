@@ -37,7 +37,7 @@ module Spree
       private
 
       def department_params
-        params.require(:department).permit(:name, :company_id, :description)
+        params.require(:department).permit(:name, :company_id, :description, :budget)
       end
 
       def set_company
