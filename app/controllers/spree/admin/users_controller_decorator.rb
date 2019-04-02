@@ -1,29 +1,27 @@
 Spree::Admin::UsersController.class_eval do
-
-  def new
-    @companies = Spree::Company.all
-  end
-
-  def edit
-    @companies = Spree::Company.all
-    @departments = Spree::Department.where(company_id: @user.company_id)
-    @roles = Spree::Role.where(company_id: @user.company_id)
-  end
+  before_action :set_companies, only: [:new, :edit, :create, :update]
+  before_action :set_departments, only: [:new, :edit, :create, :update]
+  before_action :set_roles, only: [:new, :edit, :create, :update]
 
   def update
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-    end
+    if validate_company_department?()
+      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
 
-    if params[:user][:approved] == "1" && @user.password_salt.blank?
-      @user.send_new_password_instructions(spree_current_user.email)
-    end
+      if params[:user][:approved] == "1" && @user.password_salt.blank?
+        @user.send_new_password_instructions(spree_current_user.email)
+      end
 
-    if @user.update_attributes(user_params)
-      flash[:success] = Spree.t(:account_updated)
-      redirect_to edit_admin_user_path(@user)
+      if @user.update_attributes(user_params)
+        flash[:success] = Spree.t(:account_updated)
+        redirect_to edit_admin_user_path(@user)
+      else
+        render :edit
+      end
     else
+      flash[:error] = "Company and Department can't be blank"
       render :edit
     end
   end
@@ -59,6 +57,8 @@ Spree::Admin::UsersController.class_eval do
     end
   end
 
+  private
+
   def user_params
     params.require(:user).permit(permitted_user_attributes |
                                   [:approved, :first_name, :last_name, :remarks, :phone,
@@ -69,4 +69,27 @@ Spree::Admin::UsersController.class_eval do
                                   bill_address_attributes: permitted_address_attributes])
   end
 
+  def set_companies
+    @companies = Spree::Company.all
+  end
+
+  def set_departments
+    @departments = Spree::Department.where(company_id: @user.company_id)
+  end
+
+  def set_roles
+    @roles = Spree::Role.where(company_id: @user.company_id)
+  end
+
+  def validate_company_department?
+    if spree_current_user.admin?
+      if params[:user][:company_id].blank? && params[:user][:department_id].blank?
+        return false
+      else
+        return true
+      end
+    else
+      return true
+    end
+  end
 end
