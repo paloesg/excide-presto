@@ -3,8 +3,23 @@ Spree::Admin::UsersController.class_eval do
   before_action :set_departments, only: [:new, :edit, :create, :update]
   before_action :set_roles, only: [:new, :edit, :create, :update]
 
+  def create
+    if validate_company_department?
+      @user = Spree::User.new(user_params)
+      if @user.save
+        flash[:success] = flash_message_for(@department, :successfully_created)
+        redirect_to spree.admin_company_departments_path(@department.company)
+      else
+        render :new
+      end
+    else
+      flash[:error] = "Company and Department can't be blank"
+      render :new
+    end
+  end
+
   def update
-    if validate_company_department?()
+    if validate_company_department?
       if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
