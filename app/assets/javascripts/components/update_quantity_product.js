@@ -10,7 +10,10 @@ function update_quantity(variantId, quantity) {
         return $('#link-to-cart').html(data)
       });
     },
-    function (error) { alert(error) } // failure callback for 422 and 50x errors
+    function (error) {
+      alert(error);
+      location.reload();
+    } // failure callback for 422 and 50x errors
   )
 }
 
