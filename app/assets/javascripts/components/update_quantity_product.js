@@ -1,26 +1,20 @@
-function update_quantity(variant_id, quantity) {
-  $.ajax({
-    url: "/orders/populate",
-    data: "quantity="+quantity+"&variant_id="+variant_id,
-    type:"post",
-    success:function( data ) {
-
+function update_quantity(variantId, quantity) {
+  SpreeAPI.Storefront.addToCart(
+    variantId,
+    quantity,
+    {}, // options hash - you can pass additional parameters here, your backend
+    function () {
+      Spree.fetch_cart().done(function(data) {
+        // update navbar cart, get total items in cart from 'data'
+        $('[data-toggle="item-cart"]').popover('show');
+        return $('#link-to-cart').html(data)
+      });
     },
-    error:function( result ){ console.log({'error': result.responseText}); }
-  });
-}
-
-// Update navbar cart
-function fetch_navbar_cart(line_items_qty) {
-  // If cart items updated, show the popover
-  if ($('#total-items').text() != line_items_qty ) {
-    $('[data-toggle="item-cart"]').popover('show');
-  } else {
-    // Reload the page if not updated
-    Turbolinks.visit(location.toString());
-  }
-  // Change navbar total item in cart when total quantity order is updated
-  $('#total-items').text(line_items_qty);
+    function (error) {
+      alert(error);
+      location.reload();
+    } // failure callback for 422 and 50x errors
+  )
 }
 
 $(document).on('mouseleave','.popover-content',function(){
@@ -52,7 +46,7 @@ $(document).ready(function (){
         html: true,
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
       });
-    }, 1000);
+    }, 500);
   }
 
   function stop_timer_function() {
@@ -82,6 +76,12 @@ $(document).ready(function (){
       $('.'+qty.attr('id')).val(current_val + 1)
       $('.increase_decrease[variant='+variant.val()+']').hide();
       $('.add_to_cart[variant='+variant.val()+']').show();
+      add_to_cart_button = $(this).parents().siblings('.add_to_cart').find('.addcart');
+      add_to_cart_button.prop('disabled', true);
+      setTimeout(function(){
+        add_to_cart_button.prop('disabled', false);
+      }, 1000);
+      add_to_cart_button.prop('disabled', true);
     }
   });
 

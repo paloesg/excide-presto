@@ -1,24 +1,6 @@
 Spree::OrdersController.class_eval do
   before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
 
-  def update
-    @variant = Spree::Variant.find(params[:variant_id]) if params[:variant_id]
-    if @order.contents.update_cart(order_params)
-      respond_with(@order) do |format|
-        format.html do
-          if params.key?(:checkout)
-            @order.next if @order.cart?
-            redirect_to checkout_state_path(@order.checkout_steps.first)
-          else
-            redirect_to cart_path
-          end
-        end
-      end
-    else
-      respond_with(@order)
-    end
-  end
-
   def edit_rejected
   end
 
