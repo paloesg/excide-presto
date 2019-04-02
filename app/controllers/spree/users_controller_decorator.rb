@@ -28,6 +28,13 @@ Spree::UsersController.class_eval do
     end
   end
 
+  def user_company_address
+    company_address = spree_current_user.company.company_address
+    respond_to do |format|
+      format.js { render json: company_address }
+    end
+  end
+
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :remarks, :phone, :password, :password_confirmation)
   end

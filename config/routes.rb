@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     match '/orders/:id/reorder' => 'orders#reorder_rejected', :via => :patch, :as => :reorder_rejected
     resource :account, controller: 'users' do
       get '/password' => 'users#password', as: 'password'
+      get '/company_address' => 'users#user_company_address', as: 'user_company_address'
     end
     namespace :api, defaults: { format: 'json' } do
       namespace :v1 do

@@ -24,6 +24,9 @@ Spree::CheckoutController.class_eval do
 
   def update
     if @order.update_from_params(params, permitted_checkout_attributes, request.headers.env)
+      if params[:order][:use_company_address] == "1"
+        @order.clone_company_address
+      end
       @order.temporary_address = !params[:save_user_address]
       unless @order.next
         flash[:error] = @order.errors.full_messages.join("\n")

@@ -25,3 +25,4 @@
 
 //= require_tree .
 //= require spree/frontend/spree_auth
+//= require spree/frontend/checkout/address_by_company
