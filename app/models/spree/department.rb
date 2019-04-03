@@ -6,7 +6,7 @@ class Spree::Department < Spree::Base
   validates :description, presence: true
 
   def budget_used
-    budget_used = Spree::Order.includes(:user).where(spree_users: {department_id: self.id}).where('spree_orders.created_at > ? AND spree_orders.created_at < ?', Time.current.beginning_of_month, Time.current.end_of_month).where.not(state: 'rejected').sum(:total)
+    budget_used = Spree::Order.includes(:user).where(spree_users: {department_id: self.id}).where('spree_orders.created_at > ? AND spree_orders.created_at < ?', Time.current.beginning_of_month, Time.current.end_of_month).where(state: 'complete').sum(:total)
     budget_used || 0
   end
 
