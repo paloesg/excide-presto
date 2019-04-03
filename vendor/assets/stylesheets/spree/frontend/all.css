@@ -7,5 +7,6 @@
 
  *= require_self
  *= require_tree .
+ *= require_tree ../../foundry
  *= require bootstrap-datetimepicker
 */

@@ -22,6 +22,7 @@
 //= require components/override_purchase_order
 //= require moment
 //= require bootstrap-datetimepicker
+//= require_tree ../../foundry
 
 //= require_tree .
 //= require spree/frontend/spree_auth
