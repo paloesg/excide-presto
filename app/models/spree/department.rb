@@ -13,4 +13,13 @@ class Spree::Department < Spree::Base
   def remaining_budget
     (budget || 0) - budget_used
   end
+
+  def temp_budget_used(order_id)
+    temp_budget_used = Spree::Order.find(order_id).total
+    temp_budget_used || 0
+  end
+
+  def temp_remaining_budget(order_id)
+    remaining_budget - temp_budget_used(order_id)
+  end
 end

@@ -285,14 +285,9 @@ $sides: (top, bottom, left, right); // Leave this variable alone
 
 .sort-by-panel {
   padding: 10px 0px 20px;
-  margin-left: 22px;
+  margin-left: 20px;
 }
 
-@media (max-width : 1200px) {
-  .sort-by-panel {
-    margin-left: 20px;
-  }
-}
 @media (max-width : 991px) {
   .sort-by-panel {
     margin-left: 0px;
