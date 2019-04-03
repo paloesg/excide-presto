@@ -7,13 +7,6 @@ Spree::Cart::AddItem.class_eval do
 
     line_item = Spree::Dependencies.line_item_by_variant_finder.constantize.new.execute(order: order, variant: variant, options: options)
 
-    line_item_quantity = line_item&.quantity&.to_i || 0
-    line_item_price = (line_item&.price || variant.product.price) * quantity
-
-    #return error when budget is exceed
-    line_item.errors.add(:base, Spree.t('order.budget_exceeded')) if exceed_budget?(order, line_item_price)
-    return failure(line_item) if exceed_budget?(order, line_item_price)
-
     line_item_created = line_item.nil?
     if line_item.nil?
       opts = ::Spree::PermittedAttributes.line_item_attributes.flatten.each_with_object({}) do |attribute, result|
@@ -26,6 +19,13 @@ Spree::Cart::AddItem.class_eval do
     else
       line_item.quantity += quantity.to_i
     end
+
+    line_item_quantity = line_item&.quantity&.to_i || 0
+    line_item_price = (line_item&.price || variant.product.price) * quantity
+
+    #return error when budget is exceed
+    line_item.errors.add(:base, Spree.t('order.budget_exceeded')) if exceed_budget?(order, line_item_price)
+    return failure(line_item) if exceed_budget?(order, line_item_price)
 
     line_item.target_shipment = options[:shipment] if options.key? :shipment
     return failure(line_item) unless line_item.save
