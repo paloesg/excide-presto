@@ -3,8 +3,8 @@
     .nav-bar
       .module.left
         a href="/"
-          img.logo.logo-light alt="Foundry" src="img/logo-light.png" /
-          img.logo.logo-dark alt="Foundry" src="img/logo-dark.png" /
+          = image_tag 'img/logo-light.png', class: 'logo logo-light', alt: 'Foundry'
+          = image_tag 'img/logo-dark.png', class: 'logo logo-dark', alt: 'Foundry'
       - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
         / Hidden search bar
         .module.widget-handle.search-widget-handle.left.hidden
