@@ -42,7 +42,7 @@ Spree::Cart::AddItem.class_eval do
 
     if department&.budget.nil?
       return false
-    elsif (department&.temp_remaining_budget(order.id) - line_item_price) < 0
+    elsif (department&.temp_remaining_budget(order) - line_item_price) < 0
       return true
     else
       return false
