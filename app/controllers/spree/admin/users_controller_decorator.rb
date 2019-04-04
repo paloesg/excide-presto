@@ -3,40 +3,20 @@ Spree::Admin::UsersController.class_eval do
   before_action :set_departments, only: [:new, :edit, :create, :update]
   before_action :set_roles, only: [:new, :edit, :create, :update]
 
-  def create
-    if validate_company_department?
-      @user = Spree::User.new(user_params)
-      if @user.save
-        flash[:success] = flash_message_for(@department, :successfully_created)
-        redirect_to spree.admin_company_departments_path(@department.company)
-      else
-        render :new
-      end
-    else
-      flash[:error] = "Company and Department can't be blank"
-      render :new
-    end
-  end
-
   def update
-    if validate_company_department?
-      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-        params[:user].delete(:password)
-        params[:user].delete(:password_confirmation)
-      end
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
 
-      if params[:user][:approved] == "1" && @user.password_salt.blank?
-        @user.send_new_password_instructions(spree_current_user.email)
-      end
+    if params[:user][:approved] == "1" && @user.password_salt.blank?
+      @user.send_new_password_instructions(spree_current_user.email)
+    end
 
-      if @user.update_attributes(user_params)
-        flash[:success] = Spree.t(:account_updated)
-        redirect_to edit_admin_user_path(@user)
-      else
-        render :edit
-      end
+    if @user.update_attributes(user_params)
+      flash[:success] = Spree.t(:account_updated)
+      redirect_to edit_admin_user_path(@user)
     else
-      flash[:error] = "Company and Department can't be blank"
       render :edit
     end
   end
