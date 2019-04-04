@@ -19,7 +19,7 @@ class Spree::Department < Spree::Base
     temp_budget_used || 0
   end
 
-  def temp_remaining_budget(order_id)
-    remaining_budget - temp_budget_used(order_id)
+  def temp_remaining_budget(order = nil)
+    remaining_budget - (order.present? ? temp_budget_used(order.id) : 0)
   end
 end
