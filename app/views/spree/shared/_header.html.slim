@@ -1,17 +1,17 @@
-#presto-header
-  div class="#{params[:controller] == 'spree/user_sessions' ? "navbar-login" : (params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations') ? "navbar-purple" : "navbar-inverse"} "
-    - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
-      .navbar-header
-        button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        #logo.navbar-brand
-          = logo
-      #navbar.navbar-collapse.collapse
-        = render partial: 'spree/shared/nav_search'
-        ul.nav.navbar-nav.navbar-right
+#presto-header.nav-container
+  nav
+    .nav-bar
+      .module.left
+        a href="/"
+          img.logo.logo-light alt="Foundry" src="img/logo-light.png" /
+          img.logo.logo-dark alt="Foundry" src="img/logo-dark.png" /
+      - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
+        / Hidden search bar
+        .module.widget-handle.search-widget-handle.left.hidden
+          = render partial: 'spree/shared/nav_search'
+        .module.widget-handle.mobile-toggle.right.visible-sm.visible-xs
+          i.ti-menu
+        .module-group.right
           = render partial: 'spree/shared/main_nav_bar'
-    - else
-      = render partial: 'spree/user_sessions/header'
+      - else
+        = render partial: 'spree/user_sessions/header'
