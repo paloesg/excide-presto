@@ -75,16 +75,4 @@ Spree::Admin::UsersController.class_eval do
   def set_roles
     @roles = Spree::Role.where(company_id: @user.company_id)
   end
-
-  def validate_company_department?
-    if spree_current_user.admin?
-      if params[:user][:company_id].blank? && params[:user][:department_id].blank?
-        return false
-      else
-        return true
-      end
-    else
-      return true
-    end
-  end
 end
