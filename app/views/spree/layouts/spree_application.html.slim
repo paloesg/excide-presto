@@ -10,14 +10,15 @@ html lang="#{I18n.locale}"
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
 
     = render partial: 'spree/shared/head'
-  body class="scroll-assist #{body_class} #{'bg-login' if @body_id=='login'}" data-hook="body" id=("#{@body_id || 'default'}") style="background-image: url(#{asset_path('login-page.jpg') if @body_id=='login'});"
-    = render partial: 'spree/shared/header'
-    = yield :hero_image
-    section.container.main-container
-      .row data-hook=""
-        = render partial: 'spree/shared/sidebar' if content_for? :sidebar
-        #content class=("#{!content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9"}") data-hook=""
-          = flash_messages
-          = yield
-        = yield :templates
+  body class=body_class data-hook="body" id=("#{@body_id || 'default'}")
+    div class="content #{'bg-login' if @body_id=='login'}" style="background-image: url(#{asset_path('login-page.jpg') if @body_id=='login'});"
+      = render partial: 'spree/shared/header'
+      = yield :hero_image
+      .container.main-container
+        .row data-hook=""
+          = render partial: 'spree/shared/sidebar' if content_for? :sidebar
+          #content class=("#{!content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9"}") data-hook=""
+            = flash_messages
+            = yield
+          = yield :templates
     = render partial: 'spree/shared/footer'
