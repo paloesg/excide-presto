@@ -1,6 +1,5 @@
 Spree::Admin::UsersController.class_eval do
   before_action :set_companies, only: [:new, :edit, :create, :update]
-  before_action :set_departments, only: [:new, :edit, :create, :update]
   before_action :set_roles, only: [:new, :edit, :create, :update]
 
   def update
@@ -66,10 +65,6 @@ Spree::Admin::UsersController.class_eval do
 
   def set_companies
     @companies = Spree::Company.all
-  end
-
-  def set_departments
-    @departments = Spree::Department.where(company_id: @user.company_id)
   end
 
   def set_roles
