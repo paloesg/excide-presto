@@ -35,7 +35,7 @@
       = f.error_message_on :company_id
     = f.field_container :department, class: ['form-group'] do
       = f.label :department_id, Spree.t(:department)
-      = f.select :department_id, @departments.map {|department| [department.name, department.id]}, { include_blank: Spree.t('match_choices.none'), selected: f.object.department_id}, class: 'select2 js-filterable'
+      = f.select :department_id, f.object.company.departments.map {|department| [department.name, department.id]}, { include_blank: Spree.t('match_choices.none'), selected: f.object.department_id}, class: 'select2 js-filterable'
       = f.error_message_on :department_id
     = f.field_container :password, class: ['form-group'] do
       = f.label :password, Spree.t(:password)
