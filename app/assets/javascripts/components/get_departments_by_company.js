@@ -11,6 +11,7 @@ function getDepartments(company){
       $("#user_department_id").select2({
         include_blank: "None"
       });
+      $("#user_department_id").append($("<option></option>", {"text":"None"}));
       $.each(departments, function(index,department){
         $("#user_department_id").append($("<option></option>", {"value":department.id, "text":department.name}));
       })
