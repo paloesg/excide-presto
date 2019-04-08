@@ -6,7 +6,7 @@ section.p-t-5.p-b-5
       = image_tag 'welcome-image.png', class: 'img-responsive img-rounded'
   - @categories.each do |category|
     .col-md-3.col-xs-6
-      = link_to seo_url(category) do
+      = link_to seo_url(category), title: category.name do
         .icon-list.text-center style="background-color: #{category.color}"
           .category-name
             h4= category.name
@@ -17,7 +17,7 @@ section.p-t-5.p-b-5
             = image_tag('no_icon.png', class: 'img-responsive')
   - @services.each do |service|
     .col-md-3.col-xs-6
-      = link_to seo_url(service) do
+      = link_to seo_url(service), title: service.name do
         .icon-list.text-center style="background-color: #{service.color}"
           .category-name
             h4= service.name
