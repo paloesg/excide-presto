@@ -30,7 +30,6 @@ Spree::FrontendHelper.class_eval do
     content_tag('ul', raw(items.join("\n")), class: 'progress-steps nav nav-pills nav-justified flex-column flex-md-row', id: "checkout-step-#{@order.state}")
   end
 
-
   def spree_breadcrumbs(taxon, separator = '&nbsp;')
     return '' if current_page?('/') || taxon.nil?
     separator = raw(separator)
@@ -43,7 +42,7 @@ Spree::FrontendHelper.class_eval do
       crumbs << content_tag(:li, content_tag(:span, Spree.t(:products), itemprop: 'item'), class: 'active', itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
     end
     crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb hero-breadcrumbs', itemscope: 'itemscope', itemtype: 'https://schema.org/BreadcrumbList')
-    content_tag(:nav, crumb_list, id: 'breadcrumbs', class: '')
+    content_tag(:nav, crumb_list, id: 'breadcrumbs', class: 'breadcrumb breadcrumb-2')
   end
 
   def taxons_tree(root_taxon, current_taxon, max_level = 1)
