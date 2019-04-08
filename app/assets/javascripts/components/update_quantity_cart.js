@@ -5,9 +5,10 @@ function update_quantity_cart(variant_id, quantity, order_number = null) {
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
+      $('[data-toggle="item-cart"]').popover('show');
     },
-    error:function( result ){
-      console.log({'error': result.responseText});
+    error:function( err ){
+      alert(err.responseText);
     },
     complete:function() {
       location.reload();
@@ -31,6 +32,11 @@ $(document).ready(function (){
 
       $('.decrease-quantity').data("click_count", 0)
       $('.increase-quantity').data("click_count", 0)
+
+      $('[data-toggle="item-cart"]').popover({
+        html: true,
+        content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
+      });
 
     }, 1000);
   }

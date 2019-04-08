@@ -40,7 +40,9 @@ Spree::OrdersController.class_eval do
 
     if error
       flash[:error] = error
-      redirect_back_or_default(spree.root_path)
+      respond_to do |format|
+        format.html { render json: error, status: :unprocessable_entity }
+      end
     else
       respond_with(order) do |format|
         format.html { render js: "Spree.fetch_cart();" }
