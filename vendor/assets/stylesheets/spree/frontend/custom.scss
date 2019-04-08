@@ -147,7 +147,7 @@ select#sort-by {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
-  border-radius: 10px;
+  // border-radius: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -157,7 +157,6 @@ select#sort-by {
 .btn-purple {
   background-color: #5f509b;
   border-color: #5f509b;
-  font-family: "AmsiPro-Ultra", sans-serif;
   color: #ffffff !important;
   text-decoration: none !important;
 }
@@ -166,6 +165,19 @@ select#sort-by {
   background-color: #ffcc4e;
   border-color: #ffcc4e;
   color: #5f509b;
+}
+
+.btn-orange {
+  background-color: #c3502e;
+  border-color: #c3502e;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.btn-orange:hover {
+  background-color: #ffcc4e;
+  border-color: #ffcc4e;
+  color: #fff;
 }
 
 .btn-purple:focus .btn-green:focus{
@@ -1124,7 +1136,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   background-color: transparent;
   color: #fff;
   border-color: transparent;
-  border-radius: 10px 0px 0px 10px;
+  // border-radius: 10px 0px 0px 10px;
   height: 33px;
   position: absolute;
   top: 1px;
@@ -1138,14 +1150,14 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   font-family: sans-serif;
   width: 85%;
   padding: .5rem;
-  border: solid #5f509b;
-  background-color: #5f509b;
+  border: solid #c3502e;
+  background-color: #c3502e;
   color: #ffffff;
   font-size: 17px;
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 10px 10px 10px 10px;
+  // border-radius: 10px 10px 10px 10px;
 }
 
 .content-popover {
