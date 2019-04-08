@@ -43,7 +43,7 @@ Spree::OrdersController.class_eval do
       redirect_back_or_default(spree.root_path)
     else
       respond_with(order) do |format|
-        format.html { redirect_to(cart_path(variant_id: variant.id)) }
+        format.html { render js: "Spree.fetch_cart();" }
       end
     end
   end
