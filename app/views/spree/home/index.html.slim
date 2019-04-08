@@ -8,7 +8,7 @@ section.p-t-5.p-b-5
     .col-md-3.col-xs-6
       = link_to seo_url(category), title: category.name do
         .icon-list.text-center style="background-color: #{category.color}"
-          .category-name
+          .category-name.uppercase
             h4= category.name
           / Category icon image size 600x480
           - if category.icon
@@ -19,7 +19,7 @@ section.p-t-5.p-b-5
     .col-md-3.col-xs-6
       = link_to seo_url(service), title: service.name do
         .icon-list.text-center style="background-color: #{service.color}"
-          .category-name
+          .category-name.uppercase
             h4= service.name
           / Service icon image size 600x480
           - if service.icon
