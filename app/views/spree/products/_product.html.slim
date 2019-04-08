@@ -23,7 +23,7 @@
           = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
       div id="increase_decrease" class="increase_decrease" style="display:#{quantity_order(product.master.id) == 0 ? 'none' : 'block'};" variant="#{product.master.id}"
         .quantity-input id="#{product.master.id}"
-          = button_tag "-", type: "button", id: "btn_decrease#{product.master.id}", class: "decrease p-l-5"
+          = button_tag "-", type: "button", id: "btn_decrease#{product.master.id}", class: "decrease p-l-10"
           = number_field_tag :quantity, quantity_order(product.master.id) , min: 0, class: "quantity quantity#{product.master.id}", id: "quantity#{product.master.id}", readonly: true
           = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
-          = button_tag "+", type: "button", id: "btn_increase#{product.master.id}", class: "increase p-r-5"
+          = button_tag "+", type: "button", id: "btn_increase#{product.master.id}", class: "increase p-r-10"
