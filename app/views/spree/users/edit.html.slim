@@ -10,7 +10,7 @@
       li
         span
           = link_to 'Edit', spree.edit_account_path
-  h1.my-account-title Edit My Account
+  h1 Edit My Account
 .container
   = render :partial => 'spree/shared/error_messages', :locals => { :target => @user }
   = form_for Spree::User.new, :as => @user, :url => spree.user_path(@user), :method => :put do |f|

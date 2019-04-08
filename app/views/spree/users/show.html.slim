@@ -1,5 +1,5 @@
 .container
-  nav#breadcrumbs
+  nav#breadcrumbs.breadcrumb.breadcrumb-2
     ol.breadcrumb
       li
         span
@@ -7,7 +7,7 @@
       li
         span
           = link_to 'My Account', spree.account_path
-  h1.my-account-title= accurate_title
+  h1= accurate_title
 .account-summary.well data-hook="account_summary"
   dl#user-info
     dt= Spree.t(:email)
@@ -22,7 +22,7 @@
     '
     = link_to "Change Password", spree.password_account_path, {class: 'presto-btn btn-success'}
 .account-my-orders data-hook="account_my_orders"
-  h3.my-account-title= Spree.t(:my_orders)
+  h3= Spree.t(:my_orders)
   - if @orders.present?
     table.table.table-striped.order-summary
       thead.active

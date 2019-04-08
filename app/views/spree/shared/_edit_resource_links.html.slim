@@ -1,4 +1,3 @@
 .form-actions data-hook="buttons"
   = button Spree.t('actions.update'), 'refresh', 'submit', {class: 'btn-success', data: { disable_with: "#{ Spree.t(:saving) }..." }}
-  span.or= Spree.t(:or)
   = button_link_to Spree.t('actions.cancel'), collection_url, icon: 'delete'
