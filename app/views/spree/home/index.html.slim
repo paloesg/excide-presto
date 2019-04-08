@@ -3,7 +3,7 @@ section.p-t-5.p-b-5
 .row
   .col-md-6.col-xs-12
     .icon-welcome.p-b-15
-      = image_tag 'welcome-image.png', class: 'img-responsive img-rounded'
+      = image_tag 'welcome-image.png', class: 'img-responsive'
   - @categories.each do |category|
     .col-md-3.col-xs-6
       = link_to seo_url(category), title: category.name do
@@ -28,5 +28,5 @@ section.p-t-5.p-b-5
             = image_tag('no_icon.png', class: 'img-responsive')
   .col-md-6.col-xs-12
     .contact-icon-list
-      = link_to(image_tag('contact-image.jpg', class: 'img-responsive img-rounded'), "tel:+6562850320")
+      = link_to(image_tag('contact-image.jpg', class: 'img-responsive'), "tel:+6562850320")
       / = image_tag 'contact-image.jpg', class: 'img-responsive img-rounded'

@@ -710,14 +710,16 @@ input[type=number]::-webkit-outer-spin-button {
 .category-name > h4 {
   color: #5f509b;
   position: absolute;
-  top: 180px;
+  top: 150px;
   right: 0;
-  bottom: 0;
+  bottom: 7px;
   left: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   height: 50px;
+  font-size: 18px;
+  margin-top: 26px;
 }
 
 @media (max-width: 768px) {
@@ -729,17 +731,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .icon-list {
   margin: 0px 0px 16px 0px;
-  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
+  // border-radius: 10px;
 }
 
 .col-md-3 > .icon-list {
   height: 218px;
 }
 
-.icon-welcome > img {
+.icon-welcome > img, .icon-list {
   box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
 }
 
 .icon-list > img {
