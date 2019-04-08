@@ -49,7 +49,7 @@ body {
 .bg-login {
 
   /* Full height */
-  height: 200% !important;
+  // height: 200% !important;
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -75,7 +75,7 @@ h4.product-section-title {
 }
 
 body#login {
-  background:#5f509b;
+  background:#c3502e;
 }
 
 body:not(#default) > #presto-header {
@@ -1240,4 +1240,74 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .service-body{
   height: 245px;
+}
+
+//color
+.color-white {
+  color: #fefefe;
+}
+
+//container
+.fullscreen{
+  height: 100% !important;
+}
+
+.feature {
+  margin: 0px 10px 24px 10px
+}
+
+//form
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  background: #f5f5f5;
+  border: none;
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  border-radius: 0;
+}
+
+input[type="submit"],
+button[type="submit"] {
+  border: 2px solid #c3502e !important;
+  background: #c3502e !important;
+}
+
+.bg-primary input[type="submit"],
+.bg-primary button[type="submit"] {
+  background: #fff;
+  color: #c3502e !important;
+}
+
+.checkbox-option,
+.radio-option {
+  border: 1px solid #c3502e !important;
+}
+
+.checkbox-option .inner,
+.radio-option .inner {
+  border: 1px solid #c3502e !important;
+}
+.checkbox-option.checked .inner {
+  background: #c3502e !important;
+}
+
+//alert
+.alert-warning {
+  border: 1px solid #d88519 !important;
+  color: #d88519 !important;
+}
+.alert-success {
+  border: 1px solid #60b963 !important;
+  background: rgba(34, 34, 34, 0.4) !important;
+  color: #60b963 !important;
+}
+.alert-danger, .alert-error {
+  border: 1px solid #c64444 !important;
+  color: #c64444 !important;
 }

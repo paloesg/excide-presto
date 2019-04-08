@@ -1,23 +1,17 @@
 - @body_id = 'login'
-.col-md-6.col-md-offset-3
-  .presto-h2 ALL OF YOUR OFFICE NEEDS
-  .presto-h1 IN ONE PLACE
-div class=("col-md-3 #{request.path == spree.login_path ? "col-md-offset-3" : ""}")
-  .panel.presto-panel-default
-    .panel-heading
-      h3.login-panel-title New User
-      ' Hello! Please register below and we'll get back to you shortly.
-    #new-customer.panel-body data-hook="registration"
-      = render :partial => 'spree/shared/user_form'
-      .text-center
-      div data-hook="login_extras"
-.col-md-3
-  .panel.presto-panel-default
-    .panel-heading
-      h3.login-panel-title Existing User
-      ' Welcome back! Please login to your user account here.
-    #existing-customer.panel-body data-hook="login"
-      = render :partial => 'spree/shared/login'
-      .text-center
-        | #{link_to Spree.t(:forgot_password), spree.recover_password_path}
-      div data-hook="login_extras"
+section.cover.fullscreen.image-bg.overlay
+  .container
+    div class=("col-md-3 #{request.path == spree.login_path ? "col-md-offset-3" : ""}")
+      .row
+        .feature.boxed
+          h4.uppercase New User
+          h6 Hello! Please register below and we'll get back to you shortly.
+          = render :partial => 'spree/shared/user_form'
+    .col-md-3
+      .row
+        .feature.boxed
+          h4.uppercase Existing User
+          h6 Welcome back! Please login to your user account here.
+          = render :partial => 'spree/shared/login'
+          .text-center
+            | #{link_to Spree.t(:forgot_password), spree.recover_password_path}
