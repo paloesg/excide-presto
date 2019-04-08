@@ -213,7 +213,6 @@ select#sort-by {
 }
 
 .presto-sidebar-title {
-  font-family: "AmsiPro-Ultra", sans-serif;
   background: #e8e8e6;
   color: #676767;
 }
@@ -223,6 +222,10 @@ select#sort-by {
   color: #fff;
   background-color: #676767;
   border-color: #676767;
+}
+
+.list-group-item, .popover.sub-categories > .popover-content > li > a {
+  font-weight: 400;
 }
 
 .hero-breadcrumbs {
@@ -280,7 +283,7 @@ span.badge.badge-presto {
 }
 
 /* Margin & Padding Helper */
-$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 65, 75, 100); // Adjust this to include the pixel amounts you need.
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 65, 75, 100); // Adjust this to include the pixel amounts you need.
 $sides: (top, bottom, left, right); // Leave this variable alone
 
 @each $space in $spaceamounts {
