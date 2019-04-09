@@ -37,7 +37,7 @@ $(document).ready(function (){
 
   $(document).on('click', '.delete_line_item', function() {
     var variant = $(this).closest('tr').find('.variant').val();
-    var quantity = $(this).closest('tr').find('.line_item_quantity');
+    var quantity = $(this).closest('tr').find('.line-item-quantity');
     var order_number = $('#order_number').val();
     update_quantity_cart(variant, -(quantity.val()), order_number);
     quantity.val(0);
@@ -50,16 +50,16 @@ $(document).ready(function (){
     $btn.data("click_count", count);
 
     var $variant = $(this).closest('.number-quantity').find('.variant');
-    var qty = $(this).closest('.number-quantity').find('.line_item_quantity'),
-      current_val = parseInt(qty.val()),
+    var qty = $(this).closest('.number-quantity').find('.line-item-quantity'),
+      current_val = parseInt(qty.text()),
       is_add = $(this).hasClass('increase-quantity');
     if(is_add){
-      qty.val(current_val + 1);
+      qty.text(current_val + 1);
       start_timer_function('increase', $variant.val(), count);
     }
     else {
       if (current_val - 1 != -1) {
-        qty.val(current_val - 1);
+        qty.text(current_val - 1);
       }
       else {
         $(this).closest('.number-quantity').find('decrease-quantity').prop('disabled', true);
