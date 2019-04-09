@@ -252,6 +252,10 @@ select#sort-by {
   color: #ffffff;
 }
 
+.breadcrumb > li > span > a > span {
+  font-weight: bold;
+}
+
 h1.hero-title {
   color: #ffffff;
 }
