@@ -5,8 +5,6 @@
  *
  *= require spree/frontend
 
- *= require_self
- *= require_tree .
  *= require ../../foundry/themify-icons.css
  *= require ../../foundry/flexslider.css
  *= require ../../foundry/lightbox.min.css
@@ -14,4 +12,8 @@
  *= require ../../foundry/theme.css
  *= require ../../foundry/custom.css
  *= require bootstrap-datetimepicker
+
+ *= require_self
+ *= require_tree .
+
 */
