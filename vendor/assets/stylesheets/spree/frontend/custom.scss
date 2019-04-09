@@ -136,7 +136,7 @@ select#sort-by {
 .presto-btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: bold;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -200,7 +200,6 @@ select#sort-by {
 .btn-grey {
   background-color: #565656;
   border-color: #565656;
-  font-family: "AmsiPro-Ultra", sans-serif;
   color: #ffffff !important;
   text-decoration: none !important;
 }
