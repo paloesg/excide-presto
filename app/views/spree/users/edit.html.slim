@@ -13,7 +13,7 @@
   h1 Edit My Account
 .container
   = render :partial => 'spree/shared/error_messages', :locals => { :target => @user }
-  = form_for Spree::User.new, :as => @user, :url => spree.user_path(@user), :method => :put do |f|
+  = form_for @user, :url => spree.user_path(@user), :method => :put do |f|
     fieldset#password-credentials
       .row.col-md-12.form-group
         .col-md-4
