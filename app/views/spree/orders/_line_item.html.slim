@@ -1,26 +1,21 @@
 - variant = line_item.variant
 = order_form.fields_for :line_items, line_item do |item_form|
-  tr.line-item
-    td.cart-item-image data-hook="cart_item_image"
+  tr
+    th scope="row"
+      = link_to content_tag(:i, '', class: 'ti-close'), '#', class: 'delete_line_item remove-item', id: "delete_#{dom_id(line_item)}", data: {turbolinks: false}
+    td.item-image data-hook="cart_item_image"
       - if variant.images.length == 0
         = link_to small_image(variant.product), variant.product
       - else
         = link_to image_tag(main_app.url_for(variant.images.first.url(:small))), variant.product
-    td.cart-item-description data-hook="cart_item_description"
-      h4= link_to line_item.name, product_path(variant.product)
-      = variant.options_text
-      - if line_item.insufficient_stock?
-        span.out-of-stock
-          = Spree.t(:out_of_stock)
-      .lead.text-primary.cart-item-price data-hook="cart_item_price"
-        = line_item.single_money.to_html
-    td.cart-item-quantity data-hook="cart_item_quantity" valign="center"
+    td.item-description data-hook="cart_item_description"
+      span= link_to line_item.name, product_path(variant.product)
+    td.item-quantity data-hook="cart_item_quantity" valign="center"
       .number-quantity
-        input.decrease-quantity type="button" value="-"
-        = item_form.number_field :quantity, min: 0, class: "line_item_quantity form-control", size: 5, readonly: true
+        = link_to content_tag(:i, '', class: 'ti-minus'), '#', class: 'decrease-quantity btn-quantity'
+        span.line-item-quantity
+          = line_item.quantity
         = hidden_field_tag :variant_id, variant.product.id, id:"variant#{variant.product.id}", class: "variant"
-        input.increase-quantity type="button" value="+"
-    td.lead.text-primary.cart-item-total data-hook="cart_item_total"
+        = link_to content_tag(:i, '', class: 'ti-plus'), '#', class: 'increase-quantity btn-quantity'
+    td.item-total data-hook="cart_item_total"
       = line_item.display_amount.to_html unless line_item.quantity.nil?
-    td.cart-item-delete data-hook="cart_item_delete"
-      = link_to content_tag(:span, '', class: 'glyphicon glyphicon-remove-sign'), '#', class: 'delete_line_item', id: "delete_#{dom_id(line_item)}", data: {turbolinks: false}

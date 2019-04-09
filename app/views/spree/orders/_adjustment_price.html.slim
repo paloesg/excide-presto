@@ -1,9 +1,15 @@
 - if adjustments.sum(&:amount) != 0
-  .adjustment.col-md-12
-    .col-md-8
-      h5
-        = type
-        | : #{label}
-    .col-md-4
-      h5
-        strong= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
+  tr
+    th scope="row"
+      = type
+      | : #{label}
+    td
+      strong= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
+  / .adjustment.col-md-12
+  /   .col-md-8
+  /     h5
+  /       = type
+  /       | : #{label}
+  /   .col-md-4
+  /     h5
+  /       strong= Spree::Money.new(adjustments.sum(&:amount), currency: @order.currency)
