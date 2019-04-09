@@ -1302,9 +1302,8 @@ button[type="submit"] {
   border: 1px solid #d88519 !important;
   color: #d88519 !important;
 }
-.alert-success {
+.alert-success, .alert-notice {
   border: 1px solid #60b963 !important;
-  background: rgba(34, 34, 34, 0.4) !important;
   color: #60b963 !important;
 }
 .alert-danger, .alert-error {
