@@ -578,8 +578,13 @@ span.price.selling.lead {
 .product-list-item > .presto-panel-default:hover {
   background: #fff;
 }
+
 .image-tile img {
   padding: 20px;
+}
+
+.inner-title .title {
+  bottom: 0;
 }
 
 ul#product-thumbnails {
