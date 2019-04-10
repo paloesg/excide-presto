@@ -243,7 +243,7 @@ select#sort-by {
 }
 
 .hero-breadcrumbs > li + li:before {
-  content: "❯ ";
+  content: "/\00a0";
   padding: 0 5px;
   color: #ffffff;
 }
