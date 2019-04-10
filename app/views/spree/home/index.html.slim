@@ -15,13 +15,3 @@ section.p-t-5.p-b-5
             = image_tag('no_icon.png', class: 'img-responsive')
           .title
             h4.uppercase= category.name
-  - @services.each do |service|
-    .col-md-3.col-xs-6.masonry-item.project.fadeIn
-      = link_to seo_url(service), title: service.name do
-        .inner-title.hover-reveal.image-tile.text-center style="background-color: #{service.color}"
-          - if service.icon
-            = image_tag(main_app.url_for(service.icon.try(:attachment)), class: 'img-responsive')
-          - else
-            = image_tag('no_icon.png', class: 'img-responsive')
-          .title
-            h4.uppercase= service.name
