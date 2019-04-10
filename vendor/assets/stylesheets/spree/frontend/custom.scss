@@ -1310,3 +1310,18 @@ button[type="submit"] {
   border: 1px solid #c64444;
   color: #c64444;
 }
+
+//tab
+.button-tabs .tab-title {
+  background: #2d2d2d;
+}
+.button-tabs .active .tab-title {
+  background: #c3502e;
+  color: #fff;
+}
+.button-tabs .tab-title:hover {
+  background: #888;
+}
+.button-tabs .active .tab-title:hover {
+  background: #d85b35;
+}
