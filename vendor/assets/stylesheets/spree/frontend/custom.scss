@@ -30,7 +30,7 @@ html, body {
 }
 
 body {
-  background-color: #f8f8f8;
+  background-color: #ffffff;
 }
 
 body {
@@ -533,14 +533,14 @@ ul.social-media-list i:hover {
 /* Products */
 
 .presto-panel-default {
-  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
   border-radius: 0;
 }
 
 #product.presto-panel-default {
-  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 0;
+  -webkit-box-shadow: 0 0 0 transparent;
+  box-shadow: 0 0 0 transparent;
   height: 270px;
+  background-color: transparent;
 }
 
 .presto-panel-footer {

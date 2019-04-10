@@ -9,7 +9,7 @@ div data-hook="products_search_results_heading"
     div data-hook="products_search_results_heading_results_found"
       h6.search-results-title Search results for "#{params[:keywords]}"
 - if products.any?
-  #products.row data-hook=""
+  #products.row.masonry.fadeIn data-hook=""
     = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon }
 - if products.respond_to?(:total_pages)
   .text-center
