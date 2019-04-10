@@ -58,6 +58,8 @@ Rails.application.routes.draw do
       end
       get '/pages/*id' => 'pages#show', as: :page, format: false
     end
+
+    get "/cart_partial" => 'orders#form_partial', as: 'cart_partial'
   end
 
   namespace :manage do

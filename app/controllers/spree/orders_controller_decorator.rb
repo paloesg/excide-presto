@@ -50,7 +50,6 @@ Spree::OrdersController.class_eval do
     end
   end
 
-
   def override_purchase_order
     order   = Spree::Order.find_by(number: params[:id])
     respond_to do |format|
@@ -59,6 +58,13 @@ Spree::OrdersController.class_eval do
       else
         format.js { render js: 'alert("Error update purchase order pdf file!")' }
       end
+    end
+  end
+
+  def form_partial
+    @order = Spree::Order.find(current_order.id)
+    respond_to do |format|
+        format.js
     end
   end
 
