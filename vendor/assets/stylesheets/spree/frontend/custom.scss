@@ -30,7 +30,7 @@ html, body {
 }
 
 body {
-  background-color: #f8f8f8;
+  background-color: #ffffff;
 }
 
 body {
@@ -136,7 +136,7 @@ select#sort-by {
 .presto-btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: bold;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -200,7 +200,6 @@ select#sort-by {
 .btn-grey {
   background-color: #565656;
   border-color: #565656;
-  font-family: "AmsiPro-Ultra", sans-serif;
   color: #ffffff !important;
   text-decoration: none !important;
 }
@@ -225,6 +224,17 @@ select#sort-by {
 
 .list-group-item, .popover.sub-categories > .popover-content > li > a {
   font-weight: 400;
+  border: 1px solid transparent;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.list-group-item:last-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .hero-breadcrumbs {
@@ -233,13 +243,17 @@ select#sort-by {
 }
 
 .hero-breadcrumbs > li + li:before {
-  content: "❯ ";
+  content: "/\00a0";
   padding: 0 5px;
   color: #ffffff;
 }
 
 .hero-breadcrumbs > li > span > a {
   color: #ffffff;
+}
+
+.breadcrumb > li > span > a > span {
+  font-weight: bold;
 }
 
 h1.hero-title {
@@ -519,16 +533,14 @@ ul.social-media-list i:hover {
 /* Products */
 
 .presto-panel-default {
-  border-color: #ddd;
-  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
+  border-radius: 0;
 }
 
 #product.presto-panel-default {
-  border-color: #ddd;
-  box-shadow: 5px 5px 5px -2px rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
+  -webkit-box-shadow: 0 0 0 transparent;
+  box-shadow: 0 0 0 transparent;
   height: 270px;
+  background-color: transparent;
 }
 
 .presto-panel-footer {
@@ -565,6 +577,14 @@ span.price.selling.lead {
 
 .product-list-item > .presto-panel-default:hover {
   background: #fff;
+}
+
+.image-tile img {
+  padding: 20px;
+}
+
+.inner-title .title {
+  bottom: 0;
 }
 
 ul#product-thumbnails {
@@ -814,7 +834,6 @@ ul#product-thumbnails {
 }
 
 .flex-panel > h2.product-name {
-  font-family: 'AmsiPro-Regular', sans-serif;
   margin: 0;
 }
 
