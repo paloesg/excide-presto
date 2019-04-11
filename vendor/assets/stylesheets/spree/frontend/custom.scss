@@ -948,7 +948,7 @@ ul#product-thumbnails {
   text-align: center;
   background: #fd6f6f;
   position: absolute;
-  top: 15px;
+  top: -19em;
   right: 15px;
 }
 
@@ -962,7 +962,7 @@ ul#product-thumbnails {
   text-align: center;
   background: #7fc2ba;
   position: absolute;
-  top: 15px;
+  top: -19em;
   right: 15px;
 }
 
@@ -1112,11 +1112,11 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   background-color: transparent;
   color: #fff;
   border-color: transparent;
-  border-radius: 0px 10px 10px 0px;
   height: 33px;
   position: absolute;
   top: 1px;
   right: 25px;
+  padding: 5px 20px;
 }
 
 .quantity-input .decrease {
@@ -1124,11 +1124,11 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   background-color: transparent;
   color: #fff;
   border-color: transparent;
-  // border-radius: 10px 0px 0px 10px;
   height: 33px;
   position: absolute;
   top: 1px;
   left: 25px;
+  padding: 5px 20px;
 }
 
 .quantity-input .increase:hover, .quantity-input .decrease:hover {
