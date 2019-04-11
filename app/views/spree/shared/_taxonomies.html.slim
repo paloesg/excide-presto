@@ -3,7 +3,7 @@ nav#taxonomies.sidebar-item.widget data-hook=""
   - @taxonomies.each do |taxonomy|
     - cache [I18n.locale, taxonomy, max_level, @taxon] do
       - if taxonomy.root.children.any? and taxonomy.name == 'Categories'
-        .list-group
+        .link-list
           h5.presto-sidebar-title.list-group-item.taxonomy-root.uppercase.m-r-0
             = taxonomy.name
             i.ti-arrow-circle-down.pull-right

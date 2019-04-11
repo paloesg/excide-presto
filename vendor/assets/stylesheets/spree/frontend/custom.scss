@@ -222,8 +222,11 @@ select#sort-by {
 }
 
 .list-group-item, .popover.sub-categories > .popover-content > li > a {
-  font-weight: 400;
   border: 1px solid transparent;
+}
+
+a.list-group-item {
+  color: #47b475;
 }
 
 .list-group-item:first-child {
