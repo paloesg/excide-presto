@@ -34,7 +34,7 @@ body {
 }
 
 body {
-  &:not(#taxon_page):not(#cart):not(#login):not(#service) {
+  &:not(#taxon_page):not(#cart):not(#login):not(#service):not(#my_account) {
     #presto-header {
       padding: 0px 0px 30px 0px;
     }

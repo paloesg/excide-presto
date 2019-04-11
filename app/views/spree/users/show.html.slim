@@ -1,13 +1,16 @@
-.container
-  nav#breadcrumbs.breadcrumb.breadcrumb-2
-    ol.breadcrumb
-      li
-        span
-          = link_to Spree.t(:home), spree.root_path
-      li
-        span
-          = link_to 'My Account', spree.account_path
-  h1= accurate_title
+- @body_id = 'my_account'
+- content_for :hero_image do
+  section.page-title.page-title-4.bg-secondary
+    .container
+      .row
+        .col-md-6
+          h3.uppercase.mb0= accurate_title
+        .col-md-6.text-right
+          ol.breadcrumb.breadcrumb-2
+            li
+              = link_to Spree.t(:home), spree.root_path
+            li.active
+              = link_to 'My Account', spree.account_path
 .account-summary.well data-hook="account_summary"
   dl#user-info
     dt= Spree.t(:email)
