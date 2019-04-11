@@ -5,7 +5,7 @@
       - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do
         .panel-body.text-center.product-body
           = product_image(product, itemprop: "image", class: 'product-thumb')
-          .title
+          .title.presto-panel-footer.inner.text-center
             h5
               = content_tag(:span, truncate(product.brand, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
               .truncated-text= product.name
@@ -15,3 +15,14 @@
                 span.display-block.mb16 content=("#{(product.price_in(current_currency, current_store.id).amount.nil?)? 0 : product.price_in(current_currency, current_store.id).amount.to_d}") itemprop="price"
                   = display_price(product)
                 span content=current_currency itemprop="priceCurrency"
+    .quantity-btn-group
+      div id="add_to_cart" class="add_to_cart" style="display:#{quantity_order(product.master.id) == 0 ? 'block' : 'none'};" variant="#{product.master.id}"
+        .add-cart id="#{product.master.id}"
+          = button_tag Spree.t(:add_to_cart), type: "button", id: "add_to_cart#{product.master.id}", class: "addcart presto-btn #{product.sold_out? ? 'btn-grey' : 'btn-purple'} btn-block", disabled: product.sold_out? ? true : false
+          = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
+      div id="increase_decrease" class="increase_decrease" style="display:#{quantity_order(product.master.id) == 0 ? 'none' : 'block'};" variant="#{product.master.id}"
+        .quantity-input id="#{product.master.id}"
+          = button_tag "-", type: "button", id: "btn_decrease#{product.master.id}", class: "decrease"
+          = number_field_tag :quantity, quantity_order(product.master.id) , min: 0, class: "quantity quantity#{product.master.id}", id: "quantity#{product.master.id}", readonly: true
+          = hidden_field_tag :variant_id, product.master.id, id:"variant#{product.master.id}", class: "variant"
+          = button_tag "+", type: "button", id: "btn_increase#{product.master.id}", class: "increase"
