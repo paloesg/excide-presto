@@ -4,7 +4,8 @@ nav#taxonomies.sidebar-item.widget data-hook=""
     - cache [I18n.locale, taxonomy, max_level, @taxon] do
       - if taxonomy.root.children.any? and taxonomy.name == 'Categories'
         .link-list
-          h5.presto-sidebar-title.list-group-item.taxonomy-root.uppercase.m-r-0
+          h5.title
             = taxonomy.name
             i.ti-arrow-circle-down.pull-right
+          hr
           = taxons_tree(taxonomy.root, @taxon, max_level)
