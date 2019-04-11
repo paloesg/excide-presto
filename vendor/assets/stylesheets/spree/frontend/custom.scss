@@ -1229,8 +1229,9 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="number"] {
-  background: #fefefe;
+input[type="number"],
+input[type="tel"] {
+  background: #f5f5f5;
   color: #333333;
   border: none;
   width: 100%;
