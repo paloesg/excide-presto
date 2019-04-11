@@ -1146,7 +1146,9 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 40px;
   font-weight: bold;
   text-align: center;
-  // border-radius: 10px 10px 10px 10px;
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
 }
 
 .content-popover {
