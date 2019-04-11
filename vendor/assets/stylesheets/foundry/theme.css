@@ -1805,8 +1805,7 @@ input.transparent:-ms-input-placeholder,
 button.transparent:-ms-input-placeholder {
   color: #fff;
 }
-input[type="submit"],
-button[type="submit"] {
+input[type="submit"] {
   height: 50px;
   line-height: 48px;
   border: 2px solid #47b475;
@@ -1819,17 +1818,14 @@ button[type="submit"] {
   letter-spacing: 1px;
   border-radius: 0 !important;
 }
-.bg-primary input[type="submit"],
-.bg-primary button[type="submit"] {
+.bg-primary input[type="submit"] {
   background: #fff;
   color: #47b475;
 }
-input[type="submit"]:focus,
-button[type="submit"]:focus {
+input[type="submit"]:focus{
   outline: none;
 }
-input[type="submit"].hollow,
-button[type="submit"].hollow {
+input[type="submit"].hollow {
   background: none;
   border: 2px solid #47b475;
   color: #47b475;
@@ -1837,8 +1833,7 @@ button[type="submit"].hollow {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
 }
-input[type="submit"].hollow:hover,
-button[type="submit"].hollow:hover {
+input[type="submit"].hollow:hover {
   background: #47b475;
   color: #fff;
 }

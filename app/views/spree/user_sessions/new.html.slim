@@ -1,17 +1,26 @@
 - @body_id = 'login'
 section.cover.fullscreen.image-bg.overlay
   .container
-    div class=("col-md-3 #{request.path == spree.login_path ? "col-md-offset-3" : ""}")
-      .row
-        .feature.boxed
-          h4.uppercase New User
-          h6 Hello! Please register below and we'll get back to you shortly.
-          = render :partial => 'spree/shared/user_form'
-    .col-md-3
-      .row
-        .feature.boxed
-          h4.uppercase Existing User
-          h6 Welcome back! Please login to your user account here.
-          = render :partial => 'spree/shared/login'
-          .text-center
-            | #{link_to Spree.t(:forgot_password), spree.recover_password_path}
+    div class=("col-md-6 #{request.path == spree.login_path ? "col-md-offset-3" : ""}")
+      .tabbed-content.button-tabs
+        ul.tabs
+          li.active
+            .tab-title
+              span New User
+            .tab-content
+              .row
+                .feature.boxed
+                  h4.uppercase New User
+                  h6 Hello! Please register below and we'll get back to you shortly.
+                  = render :partial => 'spree/shared/user_form'
+          li
+            .tab-title
+              span Existing User
+            .tab-content
+              .row
+                .feature.boxed
+                  h4.uppercase Existing User
+                  h6 Welcome back! Please login to your user account here.
+                  = render :partial => 'spree/shared/login'
+                  .text-center
+                    | #{link_to Spree.t(:forgot_password), spree.recover_password_path}
