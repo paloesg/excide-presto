@@ -12,4 +12,3 @@
         = link_to(image_tag(main_app.url_for(taxon.icon.try(:attachment))), class: 'img-responsive'), seo_url(service))
       - else
         = link_to(image_tag('no_icon.png', class: 'img-responsive'), seo_url(service))
-= render partial: 'spree/services/modal_content'
