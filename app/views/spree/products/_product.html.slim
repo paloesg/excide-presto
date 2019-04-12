@@ -5,12 +5,12 @@
       - cache(taxon.present? ? [I18n.locale, current_currency, taxon, product] : cache_key_for_product(product)) do
         .panel-body.text-center.product-body
           = product_image(product, itemprop: "image", class: 'product-thumb')
+          - if product.sold_out?
+            = render partial: 'spree/products/labels/sold_out'
           .title.presto-panel-footer.inner.text-center
             h5
               = content_tag(:span, truncate(product.brand, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
               .truncated-text= product.name
-              - if product.sold_out?
-                = render partial: 'spree/products/labels/sold_out'
               span itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"
                 span.display-block.mb16 content=("#{(product.price_in(current_currency, current_store.id).amount.nil?)? 0 : product.price_in(current_currency, current_store.id).amount.to_d}") itemprop="price"
                   = display_price(product)
