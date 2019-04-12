@@ -10,7 +10,7 @@
       hr
 - content_for :hero_image do
   section.page-title.page-title-2.image-bg.overlay style="background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
-    .background-image-holder.fadeIn style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}');"
+    .background-image-holder.fadeIn style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}');background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'};"
       = image_tag(main_app.url_for(@taxon.hero.try(:attachment)), class: 'background-image', style: 'display: none;') if @taxon.hero
     .container.m-t-0
       .row
