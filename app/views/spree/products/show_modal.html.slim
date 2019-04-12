@@ -4,11 +4,11 @@
       .row.mb24.mb-xs-48
         .col-md-5.col-sm-6
           .image-slider.slider-thumb-controls.controls-inside
-            #product-images.col-md-9 data-hook="product_images"
+            #product-images.col-md-12 data-hook="product_images"
               #main-image.panel-default data-hook=""
                 .panel-body.text-center
                   = product_image(@product, itemprop: "image")
-            #thumbnails data-hook=""
+            #thumbnails.p-l-10.p-r-10 data-hook=""
               = render partial: 'thumbnails'
           /! end of image slider
         .col-sm-6
