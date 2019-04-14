@@ -2,6 +2,8 @@ Spree::User.class_eval do
   belongs_to  :company
   belongs_to  :department
 
+  validates_presence_of :company, :department, if: :approved?
+
   def active_for_authentication?
     super && approved?
   end
