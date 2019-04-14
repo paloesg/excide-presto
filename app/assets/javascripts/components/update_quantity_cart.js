@@ -5,9 +5,13 @@ function update_quantity_cart(variant_id, quantity, order_number = null) {
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
-      location.reload();
     },
-    error:function( result ){ console.log({'error': result.responseText}); }
+    error:function( result ){
+      console.log({'error': result.responseText});
+    },
+    complete:function() {
+      location.reload();
+    }
   });
 }
 

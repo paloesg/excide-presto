@@ -54,7 +54,7 @@ Spree::OrdersController.class_eval do
       redirect_back_or_default(spree.root_path)
     else
       respond_with(order) do |format|
-        format.html { render js: "fetch_navbar_cart(#{order.line_items.sum(:quantity)});" }
+        format.html { render js: "Spree.fetch_cart();" }
       end
     end
   end
