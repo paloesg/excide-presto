@@ -1,0 +1,42 @@
+.row
+  .col-md-12
+    .product-single
+      .row.mb24.mb-xs-48
+        .col-md-5.col-sm-6
+          .image-slider.slider-thumb-controls.controls-inside
+            #product-images.col-md-12 data-hook="product_images"
+              #main-image.panel-default data-hook=""
+                .panel-body.text-center
+                  = product_image(@product, itemprop: "image")
+            #thumbnails.p-l-10.p-r-10 data-hook=""
+              = render partial: 'thumbnails'
+          /! end of image slider
+        .col-sm-6
+          .description
+            h1.product-section-title itemprop="name" = @product.brand if @product.brand
+            h2.product-name = @product.name
+            .mb32.mb-xs-24
+              span.number.price = display_price(@product)
+            p
+              = product_description(@product)
+          hr.mb48.mb-xs-24/
+          form.add-to-cart
+            div id="add_to_cart" class="add_to_cart" style="display:#{quantity_order(@product.master.id) == 0 ? 'block' : 'none'};" variant="#{@product.master.id}"
+              .add-cart style="left:0;"
+                = button_tag Spree.t(:add_to_cart), type: "button", id: "add_to_cart#{@product.master.id}", class: "addcart addcart-modal presto-btn #{@product.sold_out? ? 'btn-grey' : 'btn-filled'} btn-block", disabled: @product.sold_out? ? true : false
+                = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
+            div id="increase_decrease" class="increase_decrease" style="display:#{quantity_order(@product.master.id) == 0 ? 'none' : 'block'};" variant="#{@product.master.id}"
+              .quantity-input.quantity-input-modal style="text-align:left;"
+                = button_tag "-", type: "button", id: "btn_decrease#{@product.master.id}", class: "decrease"
+                = number_field_tag :quantity, quantity_order(@product.master.id) , min: 0, class: "quantity quantity#{@product.master.id}", id: "quantity#{@product.master.id}", readonly: true
+                = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
+                = button_tag "+", type: "button", id: "btn_increase#{@product.master.id}", class: "increase", style:"right:65px"
+.row
+  .col-md-12.col-sm-7 data-hook="product_right_part"
+    div data-hook="product_right_part_wrap"
+      div data-hook="product_properties"
+        = render partial: 'properties'
+      #taxon-crumbs.five data-hook="product_taxons"
+        = render partial: 'taxons'
+      div data-hook="promotions"
+        = render partial: 'promotions'
