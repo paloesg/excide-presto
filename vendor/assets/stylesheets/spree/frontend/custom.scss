@@ -1270,7 +1270,7 @@ input[type="password"],
 input[type="email"],
 input[type="number"],
 input[type="tel"],
-input[type="file"],
+input[type="file"]:not(.attachment),
 input[type="date"] {
   background: #f5f5f5;
   color: #333333;
