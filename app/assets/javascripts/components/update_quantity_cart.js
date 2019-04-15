@@ -15,12 +15,12 @@ function update_quantity_cart(variant_id, quantity, order_number = null, item_te
       $('[data-toggle="item-cart"]').popover('show');
     },
     complete:function(){
-      refreshPartial();
+      refresh_cart_partial();
     }
   });
 }
 
-function refreshPartial() {
+function refresh_cart_partial() {
   $.ajax({
     url: "/cart_partial"
   })
