@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     end
 
     get "/cart_partial" => 'orders#form_partial', as: 'cart_partial'
+    get "/remaining_budget_partial" => 'products#remaining_budget_partial', as: 'remaining_budget_partial'
   end
 
   namespace :manage do

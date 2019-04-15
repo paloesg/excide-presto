@@ -9,12 +9,19 @@ function update_quantity(variantId, quantity) {
         $('[data-toggle="item-cart"]').popover('show');
         return $('#link-to-cart').html(data)
       });
+      refresh_remaining_budget_partial();
     },
     function (error) {
       alert(error);
       location.reload();
     } // failure callback for 422 and 50x errors
   )
+}
+
+function refresh_remaining_budget_partial() {
+  $.ajax({
+    url: "/remaining_budget_partial"
+  })
 }
 
 $(document).on('mouseleave','.popover-content',function(){
