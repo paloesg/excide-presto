@@ -1,10 +1,8 @@
 - @body_id = 'taxon_page'
 - if @taxon.parent.name == "Categories"
   .col-md-offset-4
-    .input-group.col-md-5.sort-by-panel
-      span.input-group-addon
-        | Remaining Budget
-      = text_field_tag :department_budget, number_to_currency(spree_current_user.department.temp_remaining_budget(current_order) || 0), class: 'form-control department-budget', readonly: true
+    .input-group.col-md-5.sort-by-panel.remaining-budget
+      = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
     .input-group.col-md-6.sort-by-panel
       span.input-group-addon
         | Sort By
