@@ -12,10 +12,6 @@ function update_quantity_cart(variant_id, quantity, order_number = null) {
   });
 }
 
-$(document).on('mouseleave','.popover-content',function(){
-  $('[data-toggle="item-cart"]').popover('hide');
-});
-
 $(document).ready(function (){
   var update_data;
   var order_number = $('#order_number').val();
