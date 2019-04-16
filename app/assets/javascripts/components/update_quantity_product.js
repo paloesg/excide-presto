@@ -44,7 +44,14 @@ $(document).ready(function (){
 
       $('[data-toggle="item-cart"]').popover({
         html: true,
+        delay: { "show": 500, "hide": 100 },
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
+      }).on('shown.bs.popover', function() {
+        var this_popover = $($($(this).data("bs.popover").$tip).first());
+        var currentLeft = parseInt(this_popover.css('left'));
+        $('.popover').css({
+          left: (currentLeft - 54) + 'px',
+        });
       });
     }, 500);
   }

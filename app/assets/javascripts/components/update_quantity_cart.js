@@ -1,4 +1,3 @@
-
 // If the order number is null it will update the order in cart
 function update_quantity_cart(variant_id, quantity, order_number = null) {
   $.ajax({

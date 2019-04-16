@@ -1175,6 +1175,23 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   margin-bottom: 10px;
 }
 
+// Custom Popover
+[data-toggle=item-cart] + .popover {
+  border-radius: 0;
+}
+
+[data-toggle=item-cart] + .popover.bottom > .arrow {
+  top: 0;
+  left: 0;
+  margin-left: 0;
+  border-top-width: 0;
+  border-style: none;
+}
+
+[data-toggle=item-cart] + .popover.bottom {
+  margin-top: 0;
+}
+
 .coupon-form {
   margin-top: 20px;
   margin-bottom: 30px;
