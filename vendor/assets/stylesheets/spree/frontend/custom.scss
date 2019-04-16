@@ -1168,16 +1168,17 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 40px;
   border-radius: 50%;
   font-size: 20px;
-  color: #ffcc4e;
+  color: #ffffff;
   line-height: 40px;
   text-align: center;
-  background: #5f509b;
+  background: #dd715e;
   margin-bottom: 10px;
 }
 
 // Custom Popover
 [data-toggle=item-cart] + .popover {
   border-radius: 0;
+  padding: 5px;
 }
 
 [data-toggle=item-cart] + .popover.bottom > .arrow {
