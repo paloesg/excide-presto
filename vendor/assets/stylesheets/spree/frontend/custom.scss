@@ -41,6 +41,10 @@ body {
   }
 }
 
+a {
+  color: #37647f;
+}
+
 .content {
   min-height: 95%;
   // margin: 0 auto -80px;
@@ -166,6 +170,11 @@ select#sort-by {
   color: #5f509b;
 }
 
+.btn-filled {
+  background: #dd715e;
+  color: #fff;
+}
+
 .btn-orange {
   background-color: #c3502e;
   border-color: #c3502e;
@@ -226,7 +235,7 @@ select#sort-by {
 }
 
 a.list-group-item {
-  color: #47b475;
+  color: #37647f;
   padding: 2px 0;
 }
 
@@ -606,9 +615,9 @@ li.tmb-all, .vtmb {
 
 /* Pagination */
 
-.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
-  background-color: #5f509b;
-  border-color: #5f509b;
+.pagination li a:hover, .pagination li.active a, .pagination li.active:hover a {
+  background: #37647f;
+  border-color: #37647f;
 }
 
 .pagination > li > a, .pagination > li > span {
@@ -947,6 +956,10 @@ li.tmb-all, .vtmb {
 }
 
 /* Label */
+.widget-handle .cart .label {
+  background: #dd715e;
+}
+
 .label-sold-out {
   width: 50px;
   height: 50px;
