@@ -49,7 +49,7 @@ Spree::FrontendHelper.class_eval do
     return '' if max_level < 1 || root_taxon.leaf?
     taxons = root_taxon.children.map do |taxon|
       css_class = current_taxon && current_taxon.self_and_ancestors.include?(taxon) ? 'list-group-item active' : 'list-group-item'
-      sub_taxon_arrow = '<i class="ti-arrow-circle-right pull-right"></i>' if taxon.children.length != 0
+      sub_taxon_arrow = '<i class="ti-arrow-right"></i>' if taxon.children.length != 0
       sub_taxons = safe_join(taxon.children.map { |t| '<li class="col-md-6">' + link_to(t.name, seo_url(t)) + '</li>' })
       link_to seo_url(taxon), class: css_class, 'data-toggle': "#{'sub-categories' if taxon.children.length != 0}", 'data-content': sub_taxons, title: taxon.name do
         "#{taxon.name} #{sub_taxon_arrow}".html_safe
@@ -59,7 +59,7 @@ Spree::FrontendHelper.class_eval do
     if services.present?
       static_pages = services.map do |service|
         css_class = current_taxon && current_taxon.self_and_ancestors.include?(service) ? 'list-group-item active' : 'list-group-item'
-        sub_taxon_arrow = '<i class="ti-arrow-circle-right pull-right"></i>' if service.children.length != 0
+        sub_taxon_arrow = '<i class="ti-arrow-right"></i>' if service.children.length != 0
         sub_taxons = safe_join(service.children.map { |t| '<li class="col-md-6">' + link_to(t.name, seo_url(t)) + '</li>' })
         link_to seo_url(service), class: css_class, 'data-toggle': "#{'sub-categories' if service.children.length != 0}", 'data-content': sub_taxons, title: service.name do
           "#{service.name} #{sub_taxon_arrow}".html_safe

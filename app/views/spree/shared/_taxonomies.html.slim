@@ -6,6 +6,5 @@ nav#taxonomies.sidebar-item.widget data-hook=""
         .link-list
           h5.title
             = taxonomy.name
-            i.ti-arrow-circle-down.pull-right
           hr
           = taxons_tree(taxonomy.root, @taxon, max_level)
