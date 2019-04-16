@@ -170,8 +170,19 @@ select#sort-by {
   color: #5f509b;
 }
 
-.btn-filled {
+.btn-primary {
+  background: #37647f;
+  color: #fff;
+}
+
+.btn-filled, .btn-success {
   background: #dd715e;
+  color: #fff;
+}
+
+.btn-filled:hover, .btn-success:hover {
+  background: #c3502e;
+  border: 1px solid #c3502e;
   color: #fff;
 }
 
