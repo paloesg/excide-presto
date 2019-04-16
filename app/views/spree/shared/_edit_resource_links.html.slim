@@ -1,4 +1,4 @@
 .form-actions data-hook="buttons"
-  = button Spree.t('actions.update'), 'refresh', 'submit', {class: 'presto-btn btn-success', data: { disable_with: "#{ Spree.t(:saving) }..." }}
+  = button Spree.t('actions.update'), 'refresh', 'submit', {class: 'presto-btn m-r-5', data: { disable_with: "#{ Spree.t(:saving) }..." }}
   '
   = link_to Spree.t('actions.cancel'), collection_url, icon: 'delete', class: 'presto-btn btn btn-danger cancel'
