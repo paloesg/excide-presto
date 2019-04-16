@@ -1,8 +1,12 @@
 - @body_id = 'product_index'
-.input-group.col-md-4.col-md-offset-8.sort-by-panel
-  span.input-group-addon
-    | Sort By
-  = sort_by
+
+.col-md-offset-4
+  .input-group.col-md-5.sort-by-panel.remaining-budget
+    = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
+  .input-group.col-md-6.sort-by-panel
+    span.input-group-addon
+      | Sort By
+    = sort_by
 
 - if "spree/products" == params[:controller] && @taxon || @taxonomies.present?
   - content_for :sidebar do

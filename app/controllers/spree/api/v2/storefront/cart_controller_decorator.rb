@@ -1,5 +1,16 @@
 Spree::Api::V2::Storefront::CartController.class_eval do
+  before_action :ensure_order, except: [:create, :add_item]
+
   def add_item
+    order_params = {
+      user: spree_current_user,
+      store: spree_current_store,
+      currency: current_currency
+    }
+
+    order   = spree_current_order if spree_current_order.present?
+    order ||= create_service.call(order_params).value
+
     variant = Spree::Variant.find(params[:variant_id])
 
     spree_authorize! :update, spree_current_order, order_token
@@ -12,10 +23,6 @@ Spree::Api::V2::Storefront::CartController.class_eval do
       options: params[:options]
     )
 
-    line_item = result.value
-    # remove line item if quantity = 0
-    remove_line_item_service.call(order: spree_current_order, line_item: line_item) if line_item.quantity == 0
-
-    render_order(result)
+  render_order(result)
   end
 end

@@ -11,6 +11,12 @@ Spree::ProductsController.class_eval do
     @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
+  def remaining_budget_partial
+    respond_to do |format|
+        format.js
+    end
+  end
+
   private
 
   def sort_products(products)

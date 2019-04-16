@@ -1,9 +1,12 @@
 - @body_id = 'taxon_page'
 - if @taxon.parent.name == "Categories"
-  .input-group.col-md-4.col-md-offset-8.sort-by-panel
-    span.input-group-addon
-      | Sort By
-    = sort_by
+  .col-md-offset-4
+    .input-group.col-md-5.sort-by-panel.remaining-budget
+      = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
+    .input-group.col-md-6.sort-by-panel
+      span.input-group-addon
+        | Sort By
+      = sort_by
 - content_for :hero_image do
   .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
     .container.category-container

@@ -1,18 +1,29 @@
 // If the order number is null it will update the order in cart
-function update_quantity_cart(variant_id, quantity, order_number = null) {
+function update_quantity_cart(variant_id, quantity, order_number = null, item_text = null, type_text = null) {
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
+      if (item_text && type_text) {
+        $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>');
+        $('[data-toggle="item-cart"]').popover('show');
+      }
     },
-    error:function( result ){
-      console.log({'error': result.responseText});
+    error:function( err ){
+      $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover">Error adding to cart</div>');
+      $('[data-toggle="item-cart"]').popover('show');
     },
-    complete:function() {
-      location.reload();
+    complete:function(){
+      refresh_cart_partial();
     }
   });
+}
+
+function refresh_cart_partial() {
+  $.ajax({
+    url: "/cart_partial"
+  })
 }
 
 $(document).on('mouseleave','.popover-content',function(){
@@ -27,10 +38,16 @@ $(document).ready(function (){
     update_data = setTimeout(function(){
       var item_text = quantity <= 1 ? "item" : "items";
       var type_text = type=='increase' ? "added" : "removed";
-      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number);
+      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number, item_text, type_text);
 
       $('.decrease-quantity').data("click_count", 0)
       $('.increase-quantity').data("click_count", 0)
+
+
+      $('[data-toggle="item-cart"]').popover({
+        html: true,
+        content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
+      });
 
     }, 1000);
   }
