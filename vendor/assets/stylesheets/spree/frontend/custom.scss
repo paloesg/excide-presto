@@ -41,7 +41,7 @@ body {
   }
 }
 
-a {
+a, a:hover {
   color: #37647f;
 }
 
@@ -227,6 +227,11 @@ select#sort-by {
   background-color: #808080;
   border-color: #808080;
   color: #ffffff;
+}
+
+.btn-link:hover, .btn-link:focus {
+  color: #37647f;
+  background-color: transparent;
 }
 
 .presto-sidebar-title {
