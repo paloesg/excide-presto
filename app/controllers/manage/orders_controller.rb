@@ -16,15 +16,20 @@ class Manage::OrdersController < Spree::BaseController
   end
 
   def approve
-    @order.completed_by(spree_current_user)
-    @order.update_with_updater!
-    Spree::OrderMailer.order_approved(@order).deliver_later
-    admins.each do |admin|
-      Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
+    if @order.can_approved?
+      @order.completed_by(spree_current_user)
+      @order.update_with_updater!
+      Spree::OrderMailer.order_approved(@order).deliver_later
+      admins.each do |admin|
+        Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
+      end
+      flash.notice = "Order ##{@order.number} has been approved."
+      GeneratePurchaseOrderJob.perform_later(@order)
+      redirect_to manage_orders_path
+    else
+      flash[:error] = Spree.t('manager.order.budget_exceeded')
+      render :edit
     end
-    flash.notice = "Order ##{@order.number} has been approved."
-    GeneratePurchaseOrderJob.perform_later(@order)
-    redirect_to manage_orders_path
   end
 
   def reject

@@ -66,6 +66,14 @@ Spree::Order.class_eval do
     state.eql? 'confirm'
   end
 
+  def can_approved?
+    budget = self.user.department.budget
+    budget_used = self.user.department.budget_used
+    current_total = self.total
+
+    return true if budget - (current_total + budget_used) >= 0
+  end
+
   # Override checkout_steps from spree file, remove "always append complete steps"
   # 3.6.5 spree/core/app/models/spree/order/checkout.rb
   def checkout_steps

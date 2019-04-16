@@ -51,6 +51,9 @@ en:
         departments: "Departments"
         address: "Address"
         roles: "Roles"
+    manager:
+      order:
+        budget_exceeded: "The order you are trying to approve will exceed your department budget."
     shipment_state:
       backorder: "Backordered"
       canceled: "Cancelled"
