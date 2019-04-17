@@ -11,21 +11,21 @@ Spree::TaxonsController.class_eval do
   private
 
   def sort_products(products, taxon)
-    products = Spree::Store.find(current_store.id).products.in_taxons(taxon.id).includes(:taxons)
+    products = params[:sort] == 'brand_asc' || params[:sort] == 'brand_desc' ? Spree::Store.find(params[:current_store_id]).products.in_taxons_by_brands(taxon) : Spree::Store.find(current_store.id).products.in_taxons(taxon.id).includes(:taxons)
+
     if params[:sort] == 'brand_asc'
-      Spree::Store.find(params[:current_store_id]).products.in_taxons_by_brands(taxon).order("spree_taxons.name ASC").page(params[:page]).per(12)
+      products = products.order("spree_taxons.name ASC")
     elsif params[:sort] == 'brand_desc'
-      Spree::Store.find(params[:current_store_id]).products.in_taxons_by_brands(taxon).order("spree_taxons.name DESC").page(params[:page]).per(12)
+      products = products.order("spree_taxons.name DESC")
     elsif params[:sort] == 'price_asc'
-      products.reorder('').send(:ascend_by_master_price)
+      products = products.reorder('').send(:ascend_by_master_price)
     elsif params[:sort] == 'price_desc'
-      products.reorder('').send(:descend_by_master_price)
+      products = products.reorder('').send(:descend_by_master_price)
     elsif params[:sort] == 'name_asc'
-      products.reorder('').send(:ascend_by_name)
+      products = products.reorder('').send(:ascend_by_name)
     elsif params[:sort] == 'name_desc'
-      products.reorder('').send(:descend_by_name)
-    else
-      products
+      products = products.reorder('').send(:descend_by_name)
     end
+    products.page(params[:page]).per(12)
   end
 end
