@@ -41,7 +41,7 @@ Spree::Cart::AddItem.class_eval do
     department = order.user&.department
 
     if department&.budget.nil?
-      return false
+      return true
     elsif (department&.temp_remaining_budget(order) - line_item_price) < 0
       return true
     else
