@@ -23,6 +23,10 @@ Spree::User.class_eval do
     token
   end
 
+  def temp_remaining_department_budget(order)
+    self.company.present? && self.department.present? ? self.department.temp_remaining_budget(order) : 0
+  end
+
   def send_new_password_instructions_notification(from_address, token)
     UserMailer.new_password_instructions(from_address, self, token, {}).deliver_later
   end
