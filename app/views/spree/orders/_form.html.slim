@@ -19,7 +19,7 @@
             .col-md-12
               h5.text-center
                 strong Remaining Department Budget
-              .lead.total-price.text-center = number_to_currency(spree_current_user.department.temp_remaining_budget(@order) || 0)
+              .lead.total-price.text-center = number_to_currency(spree_current_user.temp_remaining_department_budget(@order))
             .col-md-12
               .col-md-8
                 h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))

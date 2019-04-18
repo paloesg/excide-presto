@@ -30,4 +30,8 @@ Spree::User.class_eval do
   def full_name
     first_name + ' ' + last_name
   end
+
+  def temp_remaining_department_budget(order)
+    self.company.present? && self.department.present? ? self.department.temp_remaining_budget(order) : 0
+  end
 end
