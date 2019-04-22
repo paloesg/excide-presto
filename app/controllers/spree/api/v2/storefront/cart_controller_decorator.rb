@@ -30,10 +30,10 @@ Spree::Api::V2::Storefront::CartController.class_eval do
   end
 
   def render_error_user_department_company
-    render json: { error: 'Status user department and company undefined' }, status: 422
+    render json: { error: 'Sorry, you need to have a company and department to add items to cart.' }, status: 422
   end
 
   def render_error_default_currency
-    render json: { error: 'Status currency undefined' }, status: 422
+    render json: { error: 'Sorry, unable to add to cart as store currency is not set.' }, status: 422
   end
 end
