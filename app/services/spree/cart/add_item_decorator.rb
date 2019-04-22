@@ -40,7 +40,7 @@ Spree::Cart::AddItem.class_eval do
   def exceed_budget?(order, line_item_price)
     department = order.user&.department
 
-    if department&.budget.nil? && (department&.temp_remaining_budget(order) - line_item_price) < 0
+    if department&.budget.nil? || (department&.temp_remaining_budget(order) - line_item_price) < 0
       return true
     else
       return false
