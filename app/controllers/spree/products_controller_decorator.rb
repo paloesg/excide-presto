@@ -33,7 +33,7 @@ Spree::ProductsController.class_eval do
     elsif params[:sort] == 'name_desc'
       products.reorder('').send(:descend_by_name)
     else
-      products
+      products.distinct
     end
   end
 end
