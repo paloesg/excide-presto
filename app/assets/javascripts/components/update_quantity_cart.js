@@ -1,21 +1,28 @@
 // If the order number is null it will update the order in cart
-function update_quantity_cart(variant_id, quantity, order_number = null, item_text = null, type_text = null) {
+function update_quantity_cart(variant_id, quantity, order_number = null, order_id = null, body_id, item_text = null, type_text = null) {
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
-      if (item_text && type_text) {
-        $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>');
-        $('[data-toggle="item-cart"]').popover('show');
+      if (body_id == 'cart'){
+        if (item_text && type_text) {
+          popover_content('<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>')
+        }
+        refresh_cart_partial();
+      }
+      else {
+        refresh_reorder_partial(data.order.id, order_number);
       }
     },
     error:function( err ){
-      $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover">Error adding to cart</div>');
-      $('[data-toggle="item-cart"]').popover('show');
-    },
-    complete:function(){
-      refresh_cart_partial();
+      if (body_id == 'cart'){
+        popover_content('<div class="content-popover">Error adding to cart</div>');
+        refresh_cart_partial();
+      }
+      else {
+        refresh_reorder_partial(order_id, order_number);
+      }
     }
   });
 }
@@ -26,23 +33,59 @@ function refresh_cart_partial() {
   })
 }
 
+function refresh_reorder_partial(order_id, order_number) {
+  $.ajax({
+    url: "/reorder_partial/"+order_id+"/"+order_number
+  })
+}
+
+function popover_content(content){
+  $('[data-toggle="item-cart"]').popover({
+    html: true,
+    content: content
+  });
+  $('[data-toggle="item-cart"]').popover('show')
+  setTimeout(function () {
+    if (!$(".popover:hover").length) {
+        $('[data-toggle="item-cart"]').popover('hide');
+        $('[data-toggle="item-cart"]').popover('destroy');
+    }
+  }, 5000);
+}
+
 $(document).on('mouseleave','.popover-content',function(){
-  $('[data-toggle="item-cart"]').popover('hide');
+  setTimeout(function () {
+    if (!$(".popover:hover").length) {
+        $('[data-toggle="item-cart"]').popover('hide');
+        $('[data-toggle="item-cart"]').popover('destroy');
+    }
+  }, 1000);
+});
+
+$(document).on('click', function(e) {
+  $('[data-toggle="item-cart"]').each(function() {
+    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+      $(this).popover('hide');
+      $(this).popover('destroy');
+    }
+  });
 });
 
 $(document).ready(function (){
   var update_data;
   var order_number = $('#order_number').val();
+  var order_id = $('#order_id').val();
+  var body_id = $('#body_id').val();
+
   function start_timer_function(type, variant_id, quantity) {
     $('[data-toggle="item-cart"]').popover('destroy');
     update_data = setTimeout(function(){
       var item_text = quantity <= 1 ? "item" : "items";
       var type_text = type=='increase' ? "added" : "removed";
-      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number, item_text, type_text);
+      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number, order_id, body_id, item_text, type_text);
 
       $('.decrease-quantity').data("click_count", 0)
       $('.increase-quantity').data("click_count", 0)
-
 
       $('[data-toggle="item-cart"]').popover({
         html: true,
@@ -59,8 +102,7 @@ $(document).ready(function (){
   $(document).on('click', '.delete_line_item', function() {
     var variant = $(this).closest('tr').find('.variant').val();
     var quantity = $(this).closest('tr').find('.line_item_quantity');
-    var order_number = $('#order_number').val();
-    update_quantity_cart(variant, -(quantity.val()), order_number);
+    update_quantity_cart(variant, -(quantity.val()), order_number, order_id, body_id);
     quantity.val(0);
   })
 
