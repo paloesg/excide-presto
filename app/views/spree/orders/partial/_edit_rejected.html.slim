@@ -1,0 +1,10 @@
+div data-hook="outside_cart_form"
+  = form_for @order, url: reorder_rejected_path, html: { id: 'update-cart' } do |order_form|
+    = hidden_field_tag :order_id, order.id
+    = hidden_field_tag :order_number, order.number
+    = hidden_field_tag :body_id, @body_id
+    .col-md-9 data-hook="inside_cart_form"
+      .table-responsive data-hook="cart_items"
+        = render partial: 'form', locals: { order_form: order_form }
+    .col-md-3
+      = render partial: 'spree/orders/sidebar_reorder', collection: order_form.object.line_items, locals: { order_form: order_form }

@@ -1,0 +1,30 @@
+.panel.presto-panel-default
+  .panel-body
+    .col-md-12
+      .col-md-8
+        h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
+      .col-md-4
+        h5
+          strong= order_form.object.display_item_total
+    - if @order.line_item_adjustments.exists?
+      - @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
+        = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:promotion)
+    - @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments|
+      = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:tax)
+    - @order.shipments.each do |shipment|
+      .col-md-8
+        h5
+          = Spree.t(:shipping)
+          | : #{shipment.shipping_method.name}
+      .col-md-4
+        h5
+          strong= shipment.display_discounted_cost
+    - @order.adjustments.eligible.group_by(&:label).each do |label, adjustments|
+      = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
+    .col-md-12
+      h5.text-center
+        strong= Spree.t(:total)
+      .lead.total-price.text-center = order_form.object.display_total
+  .presto-panel-footer
+    = button_tag class: 'presto-btn btn-purple btn-block', id: 'checkout-link', name: 'checkout' do
+      = Spree.t(:reorder)
