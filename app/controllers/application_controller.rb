@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_user_company_store
+    # Check user company domain and domain is match with current site domain
     if spree_current_user&.company&.store&.url && spree_current_user&.company&.store&.url != request.host
       redirect_to "http://#{spree_current_user.company.store.url}"
     end
