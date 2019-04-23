@@ -25,6 +25,8 @@ Spree::TaxonsController.class_eval do
       products = products.reorder('').send(:ascend_by_name)
     elsif params[:sort] == 'name_desc'
       products = products.reorder('').send(:descend_by_name)
+    else
+      products = products.distinct
     end
     products.page(params[:page]).per(12)
   end

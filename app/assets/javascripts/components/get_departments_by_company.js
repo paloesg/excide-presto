@@ -22,7 +22,7 @@ function getDepartments(company){
 
 $(document).ready(function(){
   departments = $('#user_department_id').html()
-  company_id = $("#company_id").val()
+  company_id = $("#user_company_id").val()
   if(company_id){
     $(".checkbox_input[company="+company_id+"]").show()
   }
@@ -31,7 +31,6 @@ $(document).ready(function(){
   }
   $("#user_company_id").on('change', function () {
     var val = this.value;
-    var user_id = $("#user_id").val();
     if (val){
       getDepartments(val);
       $("#role").show();
