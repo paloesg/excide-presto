@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    unless logged_in?
-      redirect_to spree_login_path
-    end
+    redirect_to spree_login_path unless logged_in?
   end
 end
