@@ -7,7 +7,14 @@ class ApplicationController < ActionController::Base
     spree_current_user != nil
   end
 
+  def redirect_to_user_company_store
+    if spree_current_user&.company&.store&.url && spree_current_user&.company&.store&.url != request.host
+      redirect_to "http://#{spree_current_user.company.store.url}"
+    end
+  end
+
   def require_login
     redirect_to spree_login_path unless logged_in?
+    redirect_to_user_company_store
   end
 end
