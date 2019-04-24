@@ -3,7 +3,6 @@ function update_quantity_cart(body_id, variant_id, quantity, item_text = null, t
 
   var order_number = $('#order_number').val();
   var order_id = $('#order_id').val();
-  console.log(order_number, order_id, body_id)
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
