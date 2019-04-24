@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       unless spree_current_user.has_spree_role?('admin') && params[:controller].include?('spree/admin')
         redirect_to "http://#{spree_current_user.company&.store&.url}:3000"
       end
-    elsif spree_current_user&.company.nil? && default_store.url.lines.first != request.host
+    elsif spree_current_user&.company.nil? && default_store.url.lines.first.chomp != request.host
       redirect_to "http://#{default_store.url.lines.first}:3000"
     end
   end
