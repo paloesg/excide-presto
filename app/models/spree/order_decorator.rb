@@ -16,6 +16,12 @@ Spree::Order.class_eval do
     remove_transition from: :delivery, to: :confirm
   end
 
+  if Spree.user_class
+    belongs_to :rejector, class_name: Spree.user_class.to_s, optional: true
+  else
+    belongs_to :rejector, optional: true
+  end
+
   # Update order state and approved by user
   def completed_by(user)
     approved_by(user)
