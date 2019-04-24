@@ -13,12 +13,12 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_user_company_store
     # Check user company domain and domain is match with current site domain
-    if spree_current_user&.company&.store&.url && spree_current_user&.company&.store&.url != request.host
+    if spree_current_user&.company&.store&.url && spree_current_user&.company&.store != current_store
       unless spree_current_user.has_spree_role?('admin') && params[:controller].include?('spree/admin')
-        redirect_to "http://#{spree_current_user.company&.store&.url}"
+        redirect_to "http://#{spree_current_user.company&.store&.url}:3000"
       end
-    elsif spree_current_user&.company.nil? && default_store.url.lines.first.chomp != request.host
-      redirect_to "http://#{default_store.url.lines.first}"
+    elsif spree_current_user&.company.nil? && default_store != current_store
+      redirect_to "http://#{default_store.url.lines.first}:3000"
     end
   end
 
