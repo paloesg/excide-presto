@@ -5,24 +5,15 @@ function update_quantity_cart(variant_id, quantity, order_number = null, order_i
     data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
     type:"post",
     success:function( data ) {
-      if (body_id == 'cart'){
-        if (item_text && type_text) {
-          popover_content('<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>')
-        }
-        refresh_cart_partial();
-      }
-      else {
-        refresh_reorder_partial(data.order.id, order_number);
+      if (item_text && type_text) {
+        popover_content('<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>')
       }
     },
     error:function( err ){
-      if (body_id == 'cart'){
-        popover_content('<div class="content-popover">Error adding to cart</div>');
-        refresh_cart_partial();
-      }
-      else {
-        refresh_reorder_partial(order_id, order_number);
-      }
+      popover_content('<div class="content-popover">Error adding to cart</div>');
+    },
+    complete:function(){
+      refresh_cart_partial();
     }
   });
 }
@@ -30,12 +21,6 @@ function update_quantity_cart(variant_id, quantity, order_number = null, order_i
 function refresh_cart_partial() {
   $.ajax({
     url: "/cart_partial"
-  })
-}
-
-function refresh_reorder_partial(order_id, order_number) {
-  $.ajax({
-    url: "/reorder_partial/"+order_id+"/"+order_number
   })
 }
 
@@ -92,7 +77,7 @@ $(document).ready(function (){
         content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
       });
 
-    }, 1000);
+    }, 500);
   }
 
   function stop_timer_function() {
