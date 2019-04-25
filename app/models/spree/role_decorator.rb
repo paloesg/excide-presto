@@ -1,5 +1,6 @@
 Spree::Role.class_eval do
   belongs_to :company
+  belongs_to :department
   _validators.delete(:name)
 
   _validate_callbacks.each do |callback|

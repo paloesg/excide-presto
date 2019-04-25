@@ -40,7 +40,7 @@ Spree::Admin::RolesController.class_eval do
   private
 
     def role_params
-      params.require(:role).permit(:name, :company_id)
+      params.require(:role).permit(:name, :company_id, :department_id)
     end
 
     def set_companies
