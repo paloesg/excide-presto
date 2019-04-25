@@ -6,14 +6,14 @@ function refreshCartPartial() {
 
 // If the order number is null it will update the order in cart
 function updateQuantityCart(variantId, quantity, itemText = null, typeText = null) {
-  var orderNumber = $('#order_number').val();
+  var orderNumber = $("#order_number").val();
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variantId+"&order_number="+orderNumber,
     type: "post",
     success: ( data ) => {
       if (itemText && typeText) {
-        popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>")
+        popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       }
       refreshCartPartial();
     },
@@ -25,16 +25,16 @@ function updateQuantityCart(variantId, quantity, itemText = null, typeText = nul
 }
 
 $(document).ready(function (){
-  var update_data;
+  var updateData;
   function startTimerFunction(type, variantId, quantity) {
     $("[data-toggle='item-cart']").popover("destroy");
-    update_data = setTimeout(function(){
+    updateData = setTimeout(function(){
       var itemText = quantity <= 1 ? "item" : "items";
       var typeText = type === "increase" ? "added" : "removed";
       updateQuantityCart(variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
 
-      $(".decrease-quantity").data("click_count", 0)
-      $(".increase-quantity").data("click_count", 0)
+      $(".decrease-quantity").data("click_count", 0);
+      $(".increase-quantity").data("click_count", 0);
 
       $("[data-toggle='item-cart']").popover({
         html: true,
@@ -43,8 +43,8 @@ $(document).ready(function (){
     }, 500);
   }
 
-  function stop_timer_function() {
-    clearTimeout(update_data);
+  function stopTimerFunction() {
+    clearTimeout(updateData);
   }
 
   $(document).on("click", ".delete_line_item", function() {
@@ -52,10 +52,10 @@ $(document).ready(function (){
     var quantity = $(this).closest("tr").find(".line_item_quantity");
     updateQuantityCart(variant, -(quantity.val()));
     quantity.val(0);
-  })
+  });
 
   $(document).on("click", ".decrease-quantity,.increase-quantity", function() {
-    stop_timer_function();
+    stopTimerFunction();
     var btn = $(this);
     var count = (btn.data("click_count") || 0) + 1;
     btn.data("click_count", count);

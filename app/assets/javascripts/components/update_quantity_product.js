@@ -12,9 +12,8 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
     function () {
       Spree.fetch_cart().done(function(data) {
         // update navbar cart, get total items in cart from 'data'
-        return $("#link-to-cart").html(data)
+        return $("#link-to-cart").html(data);
       });
-
       popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
@@ -26,7 +25,6 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
 }
 
 $(document).ready(function (){
-  $("[data-toggle='item-cart']").popover("hide");
   var updateData;
   function startTimerFunction(type, variantId, quantity) {
     $("[data-toggle='item-cart']").popover("destroy");
@@ -56,16 +54,15 @@ $(document).ready(function (){
       currentValue = parseInt(qty.val()),
       isAdd = $(this).hasClass("increase");
     if(isAdd){
-      $('.'+qty.attr("id")).val(currentValue + 1)
+      $("."+qty.attr("id")).val(currentValue + 1);
       startTimerFunction("increase", variant.val(), count);
     }
     else {
-      $('.'+qty.attr("id")).val(currentValue - 1)
+      $("."+qty.attr("id")).val(currentValue - 1);
       startTimerFunction("decrease", variant.val(), count);
     }
-
-    if(qty.val() == 0){
-      $("."+qty.attr("id")).val(currentValue + 1)
+    if(qty.val() === "0"){
+      $("."+qty.attr("id")).val(currentValue + 1);
       $(".increase_decrease[variant="+variant.val()+"]").hide();
       $(".add_to_cart[variant="+variant.val()+"]").show();
       addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
@@ -86,7 +83,7 @@ $(document).ready(function (){
     startTimerFunction("increase", variant.val(), count);
 
     var qty = $(".quantity-input[id="+variant.val()+"]").find(".quantity");
-    $("."+qty.attr("id")).val(1)
+    $("."+qty.attr("id")).val(1);
     $(".add_to_cart[variant="+variant.val()+"]").hide();
     $(".increase_decrease[variant="+variant.val()+"]").show();
   });

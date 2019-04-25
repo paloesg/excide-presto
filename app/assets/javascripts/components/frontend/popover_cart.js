@@ -3,7 +3,7 @@ function popoverContent(content){
     html: true,
     content: content
   });
-  $("[data-toggle='item-cart']").popover("show")
+  $("[data-toggle='item-cart']").popover("show");
   setTimeout(function () {
     if (!$(".popover:hover").length) {
         $("[data-toggle='item-cart']").popover("hide");
