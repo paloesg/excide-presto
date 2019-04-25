@@ -17,12 +17,12 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variantId+"&order_number="+orderNumber,
-    type:"post",
-    success:function( data ) {
+    type: "post",
+    success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+itemText +' '+typeText+'</div></div>');
-          $('[data-toggle="item-cart"]').popover('show');
+          $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          $("[data-toggle='item-cart']").popover("show");
         }
         refreshCartPartial();
       }
@@ -30,10 +30,10 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
         refreshReorderPartial(orderId, orderNumber);
       }
     },
-    error:function( err ){
+    error: ( err ) => {
       if (bodyId === "cart"){
-        $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover">Error adding to cart</div>');
-        $('[data-toggle="item-cart"]').popover('show');
+        $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'>Error adding to cart</div>");
+        $("[data-toggle='item-cart']").popover("show");
         refreshCartPartial();
       }
       else {
@@ -43,28 +43,27 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
   });
 }
 
-$(document).on('mouseleave','.popover-content',function(){
-  $('[data-toggle="item-cart"]').popover('hide');
+$(document).on("mouseleave",".popover-content",function(){
+  $("[data-toggle='item-cart']").popover("hide");
 });
 
 $(document).ready(function (){
   var updateData;
   function startTimerFunction(type, variantId, quantity) {
-    $('[data-toggle="item-cart"]').popover('destroy');
+    $("[data-toggle='item-cart']").popover("destroy");
     updateData = setTimeout(function(){
       var itemText = quantity <= 1 ? "item" : "items";
       var typeText = type === "increase" ? "added" : "removed";
-      var bodyId = $('#body_id').val();
+      var bodyId = $("#body_id").val();
       updateQuantityCart(bodyId, variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
 
-      $('.decrease-quantity').data("click_count", 0)
-      $('.increase-quantity').data("click_count", 0)
+      $(".decrease-quantity").data("click_count", 0);
+      $(".increase-quantity").data("click_count", 0);
 
-      $('[data-toggle="item-cart"]').popover({
+      $("[data-toggle='item-cart']").popover({
         html: true,
-        content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+itemText +' '+typeText+'</div></div>',
+        content: "<div class='content-popover'><div class='quantity col-md-2'>"+quantity+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>",
       });
-
     }, 1000);
   }
 
@@ -72,34 +71,34 @@ $(document).ready(function (){
     clearTimeout(updateData);
   }
 
-  $(document).on('click', '.delete_line_item', function() {
-    var variant = $(this).closest('tr').find('.variant').val();
-    var quantity = $(this).closest('tr').find('.line_item_quantity');
-    var bodyId = $('#body_id').val();
+  $(document).on("click", ".delete_line_item", function() {
+    var variant = $(this).closest("tr").find(".variant").val();
+    var quantity = $(this).closest("tr").find(".line_item_quantity");
+    var bodyId = $("#body_id").val();
     updateQuantityCart(bodyId, variant, -(quantity.val()));
     quantity.val(0);
-  })
+  });
 
-  $(document).on('click', '.decrease-quantity,.increase-quantity', function() {
+  $(document).on("click", ".decrease-quantity,.increase-quantity", function() {
     stopTimerFunction();
     var btn = $(this);
     var count = (btn.data("click_count") || 0) + 1;
     btn.data("click_count", count);
 
-    var variant = $(this).closest('.number-quantity').find('.variant');
-    var qty = $(this).closest('.number-quantity').find('.line_item_quantity'),
-      current_val = parseInt(qty.val()),
-      is_add = $(this).hasClass('increase-quantity');
-    if(is_add){
-      qty.val(current_val + 1);
+    var variant = $(this).closest(".number-quantity").find(".variant");
+    var qty = $(this).closest(".number-quantity").find(".line_item_quantity"),
+      currentValue = parseInt(qty.val()),
+      isAdd = $(this).hasClass("increase-quantity");
+    if(isAdd){
+      qty.val(currentValue + 1);
       startTimerFunction("increase", variant.val(), count);
     }
     else {
-      if (current_val - 1 !== -1) {
-        qty.val(current_val - 1);
+      if (currentValue - 1 !== -1) {
+        qty.val(currentValue - 1);
       }
       else {
-        $(this).closest('.number-quantity').find('decrease-quantity').prop('disabled', true);
+        $(this).closest(".number-quantity").find("decrease-quantity").prop("disabled", true);
       }
       startTimerFunction("decrease", variant.val(), count);
     }
