@@ -1,5 +1,4 @@
 Spree::Admin::OrdersController.class_eval do
-  after_action :generate_purchase_order, only: :update
 
   # Override index method of spree/backend/app/controllers/spree/admin/orders_controller.rb
   def index
@@ -41,9 +40,5 @@ Spree::Admin::OrdersController.class_eval do
     # Restore dates
     params[:q][:created_at_gt] = created_at_gt
     params[:q][:created_at_lt] = created_at_lt
-  end
-
-  def generate_purchase_order
-    GeneratePurchaseOrderJob.perform_later(@order)
   end
 end
