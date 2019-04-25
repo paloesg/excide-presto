@@ -1,0 +1,20 @@
+- @body_id = 'cart'
+= render partial: 'spree/shared/error_messages', locals: { target: @order }
+- if @order.line_items.empty?
+  div data-hook="empty_cart"
+    .alert.alert-info= Spree.t(:your_cart_is_empty)
+    p= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default'
+- else
+  div data-hook="outside_cart_form"
+    = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
+      = hidden_field_tag :order_id, order.id
+      = hidden_field_tag :body_id, @body_id
+      .col-md-9 data-hook="inside_cart_form"
+        .table-responsive data-hook="cart_items"
+          table#cart-detail.table.presto-table data-hook=""
+            tbody#line_items data-hook=""
+              = render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form }
+          .col-md-6
+            = link_to Spree.t(:continue_shopping), products_path, class: 'continue presto-btn btn-success'
+      .col-md-3
+        = render partial: 'spree/orders/sidebar_cart', locals: { order_form: order_form }
