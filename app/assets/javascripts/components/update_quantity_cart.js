@@ -1,91 +1,106 @@
-// If the order number is null it will update the order in cart
-function update_quantity_cart(variant_id, quantity, order_number = null, item_text = null, type_text = null) {
-  $.ajax({
-    url: "/orders/populate",
-    data: "quantity="+quantity+"&variant_id="+variant_id+"&order_number="+order_number,
-    type:"post",
-    success:function( data ) {
-      if (item_text && type_text) {
-        $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover"><div class="quantity col-md-2">'+Math.abs(quantity)+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>');
-        $('[data-toggle="item-cart"]').popover('show');
-      }
-    },
-    error:function( err ){
-      $('[data-toggle="item-cart"]').attr('data-content', '<div class="content-popover">Error adding to cart</div>');
-      $('[data-toggle="item-cart"]').popover('show');
-    },
-    complete:function(){
-      refresh_cart_partial();
-    }
-  });
-}
-
-function refresh_cart_partial() {
+function refreshCartPartial() {
   $.ajax({
     url: "/cart_partial"
   })
 }
 
-$(document).on('mouseleave','.popover-content',function(){
-  $('[data-toggle="item-cart"]').popover('hide');
+function refreshReorderPartial(orderId, orderNumber) {
+  $.ajax({
+    url: "/reorder_partial/"+orderId+"/"+orderNumber
+  })
+}
+
+// If the order number is null it will update the order in cart
+function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeText = null) {
+  var orderNumber = $("#order_number").val();
+  var orderId = $("#order_id").val();
+  $.ajax({
+    url: "/orders/populate",
+    data: "quantity="+quantity+"&variant_id="+variantId+"&order_number="+orderNumber,
+    type: "post",
+    success: ( data ) => {
+      if (bodyId === "cart") {
+        if (itemText && typeText) {
+          $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          $("[data-toggle='item-cart']").popover("show");
+        }
+        refreshCartPartial();
+      }
+      else {
+        refreshReorderPartial(orderId, orderNumber);
+      }
+    },
+    error: ( err ) => {
+      if (bodyId === "cart"){
+        $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'>Error adding to cart</div>");
+        $("[data-toggle='item-cart']").popover("show");
+        refreshCartPartial();
+      }
+      else {
+        refreshReorderPartial(orderId, orderNumber);
+      }
+    }
+  });
+}
+
+$(document).on("mouseleave",".popover-content",function(){
+  $("[data-toggle='item-cart']").popover("hide");
 });
 
 $(document).ready(function (){
-  var update_data;
-  var order_number = $('#order_number').val();
-  function start_timer_function(type, variant_id, quantity) {
-    $('[data-toggle="item-cart"]').popover('destroy');
-    update_data = setTimeout(function(){
-      var item_text = quantity <= 1 ? "item" : "items";
-      var type_text = type=='increase' ? "added" : "removed";
-      update_quantity_cart(variant_id, type=='increase' ? quantity : -(quantity), order_number, item_text, type_text);
+  var updateData;
+  function startTimerFunction(type, variantId, quantity) {
+    $("[data-toggle='item-cart']").popover("destroy");
+    updateData = setTimeout(function(){
+      var itemText = quantity <= 1 ? "item" : "items";
+      var typeText = type === "increase" ? "added" : "removed";
+      var bodyId = $("#body_id").val();
+      updateQuantityCart(bodyId, variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
 
-      $('.decrease-quantity').data("click_count", 0)
-      $('.increase-quantity').data("click_count", 0)
+      $(".decrease-quantity").data("click_count", 0);
+      $(".increase-quantity").data("click_count", 0);
 
-
-      $('[data-toggle="item-cart"]').popover({
+      $("[data-toggle='item-cart']").popover({
         html: true,
-        content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
+        content: "<div class='content-popover'><div class='quantity col-md-2'>"+quantity+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>",
       });
-
     }, 1000);
   }
 
-  function stop_timer_function() {
-    clearTimeout(update_data);
+  function stopTimerFunction() {
+    clearTimeout(updateData);
   }
 
-  $(document).on('click', '.delete_line_item', function() {
-    var variant = $(this).closest('tr').find('.variant').val();
-    var quantity = $(this).closest('tr').find('.line_item_quantity');
-    var order_number = $('#order_number').val();
-    update_quantity_cart(variant, -(quantity.val()), order_number);
+  $(document).on("click", ".delete_line_item", function() {
+    var variant = $(this).closest("tr").find(".variant").val();
+    var quantity = $(this).closest("tr").find(".line_item_quantity");
+    var bodyId = $("#body_id").val();
+    updateQuantityCart(bodyId, variant, -(quantity.val()));
     quantity.val(0);
-  })
+  });
 
-  $(document).on('click', '.decrease-quantity,.increase-quantity', function() {
-    stop_timer_function();
-    var $btn = $(this);
-    var count = ($btn.data("click_count") || 0) + 1;
-    $btn.data("click_count", count);
+  $(document).on("click", ".decrease-quantity,.increase-quantity", function() {
+    stopTimerFunction();
+    var btn = $(this);
+    var count = (btn.data("click_count") || 0) + 1;
+    btn.data("click_count", count);
 
-    var $variant = $(this).closest('.number-quantity').find('.variant');
-    var qty = $(this).closest('.number-quantity').find('.line_item_quantity'),
-      current_val = parseInt(qty.val()),
-      is_add = $(this).hasClass('increase-quantity');
-    if(is_add){
-      qty.val(current_val + 1);
-      start_timer_function('increase', $variant.val(), count);
+    var variant = $(this).closest(".number-quantity").find(".variant");
+    var qty = $(this).closest(".number-quantity").find(".line_item_quantity"),
+      currentValue = parseInt(qty.val()),
+      isAdd = $(this).hasClass("increase-quantity");
+    if(isAdd){
+      qty.val(currentValue + 1);
+      startTimerFunction("increase", variant.val(), count);
     }
     else {
-      if (current_val - 1 != -1) {
-        qty.val(current_val - 1);
+      if (currentValue - 1 !== -1) {
+        qty.val(currentValue - 1);
       }
       else {
-        $(this).closest('.number-quantity').find('decrease-quantity').prop('disabled', true);
+        $(this).closest(".number-quantity").find("decrease-quantity").prop("disabled", true);
       }
-      start_timer_function('decrease', $variant.val(), count);
+      startTimerFunction("decrease", variant.val(), count);
     }
   });
 });

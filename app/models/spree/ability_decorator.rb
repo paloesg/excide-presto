@@ -16,8 +16,6 @@ Spree::Ability.class_eval do
     if user.respond_to?(:has_spree_role?)
       if user.has_spree_role?('admin') || user.has_spree_role?('superadmin')
         can :manage, :all
-      elsif user.has_spree_role?('manager')
-        can :manage, Spree::Order
       else
         can :display, Spree::Country
         can :display, Spree::OptionType
@@ -41,6 +39,7 @@ Spree::Ability.class_eval do
         can :display, Spree::Zone
       end
       can [:read, :update, :destroy, :password], Spree.user_class, id: user.id unless user.admin? or user.has_spree_role?('superadmin')
+      can :manage, Spree::Order if user.has_spree_role?('manager')
     end
   end
 end

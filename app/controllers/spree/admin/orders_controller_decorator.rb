@@ -1,4 +1,5 @@
 Spree::Admin::OrdersController.class_eval do
+
   # Override index method of spree/backend/app/controllers/spree/admin/orders_controller.rb
   def index
     params[:q] ||= {}
