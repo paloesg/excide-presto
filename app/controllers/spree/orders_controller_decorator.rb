@@ -45,7 +45,7 @@ Spree::OrdersController.class_eval do
       end
     else
       respond_with(order) do |format|
-        format.html { render json: {order: order} }
+        format.html { render js: "Spree.fetch_cart();"}
       end
     end
   end
