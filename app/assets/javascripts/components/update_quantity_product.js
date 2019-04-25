@@ -1,4 +1,10 @@
-function update_quantity(variantId, quantity) {
+function refreshRemainingBudgetPartial() {
+  $.ajax({
+    url: "/remaining_budget_partial"
+  })
+}
+
+function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
   SpreeAPI.Storefront.addToCart(
     variantId,
     quantity,
@@ -6,10 +12,11 @@ function update_quantity(variantId, quantity) {
     function () {
       Spree.fetch_cart().done(function(data) {
         // update navbar cart, get total items in cart from 'data'
-        $('[data-toggle="item-cart"]').popover('show');
-        return $('#link-to-cart').html(data)
+        return $("#link-to-cart").html(data)
       });
-      refresh_remaining_budget_partial();
+
+      popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+      refreshRemainingBudgetPartial();
     },
     function (error) {
       alert(error);
@@ -18,104 +25,69 @@ function update_quantity(variantId, quantity) {
   )
 }
 
-function refresh_remaining_budget_partial() {
-  $.ajax({
-    url: "/remaining_budget_partial"
-  })
-}
-
-$(document).on('mouseleave','.popover-content',function(){
-  setTimeout(function () {
-    if (!$(".popover:hover").length) {
-        $('[data-toggle="item-cart"]').popover('hide');
-        $('[data-toggle="item-cart"]').popover('destroy');
-    }
-  }, 1000);
-});
-
-$(document).on('click', function(e) {
-  $('[data-toggle="item-cart"]').each(function() {
-    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-      $(this).popover('hide');
-      $(this).popover('destroy');
-    }
-  });
-});
-
 $(document).ready(function (){
-  $('[data-toggle="item-cart"]').popover('hide');
-  var update_data;
-  function start_timer_function(type, variant_id, quantity) {
-    $('[data-toggle="item-cart"]').popover('destroy');
-    update_data = setTimeout(function(){
-      var item_text = quantity <= 1 ? "item" : "items";
-      var type_text = type=='increase' ? "added" : "removed";
-      update_quantity(variant_id, type=='increase' ? quantity : -(quantity));
+  $("[data-toggle='item-cart']").popover("hide");
+  var updateData;
+  function startTimerFunction(type, variantId, quantity) {
+    $("[data-toggle='item-cart']").popover("destroy");
+    updateData = setTimeout(function(){
+      var itemText = quantity <= 1 ? "item" : "items";
+      var typeText = type === "increase" ? "added" : "removed";
+      updateQuantity(variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
 
-      $('.decrease').data("click_count", 0)
-      $('.increase').data("click_count", 0)
-      $('.addcart').data("click_add", 0)
-
-      $('[data-toggle="item-cart"]').popover({
-        html: true,
-        content: '<div class="content-popover"><div class="quantity col-md-2">'+quantity+'</div><div class="col-md-6">'+item_text +' '+type_text+'</div></div>',
-      });
-      setTimeout(function () {
-        if (!$(".popover:hover").length) {
-            $('[data-toggle="item-cart"]').popover('hide');
-            $('[data-toggle="item-cart"]').popover('destroy');
-        }
-      }, 5000);
+      $(".decrease").data("click_count", 0);
+      $(".increase").data("click_count", 0);
+      $(".addcart").data("click_add", 0);
     }, 500);
   }
 
-  function stop_timer_function() {
-    clearTimeout(update_data);
+  function stopTimerFunction() {
+    clearTimeout(updateData);
   }
 
-  $(document).on('click', '.decrease,.increase', function() {
-    stop_timer_function();
+  $(document).on("click", ".decrease,.increase", function() {
+    stopTimerFunction();
     var btn = $(this);
     var count = (btn.data("click_count") || 0) + 1;
     btn.data("click_count", count);
 
-    var variant = $(this).closest('.quantity-input').find('.variant');
-    var qty = $(this).closest('.quantity-input').find('.quantity'),
-      current_val = parseInt(qty.val()),
-      is_add = $(this).hasClass('increase');
-    if(is_add){
-      $('.'+qty.attr('id')).val(current_val + 1)
-      start_timer_function('increase', variant.val(), count);
+    var variant = $(this).closest(".quantity-input").find(".variant");
+    var qty = $(this).closest(".quantity-input").find(".quantity"),
+      currentValue = parseInt(qty.val()),
+      isAdd = $(this).hasClass("increase");
+    if(isAdd){
+      $('.'+qty.attr("id")).val(currentValue + 1)
+      startTimerFunction("increase", variant.val(), count);
     }
     else {
-      $('.'+qty.attr('id')).val(current_val - 1)
-      start_timer_function('decrease', variant.val(), count);
+      $('.'+qty.attr("id")).val(currentValue - 1)
+      startTimerFunction("decrease", variant.val(), count);
     }
 
     if(qty.val() == 0){
-      $('.'+qty.attr('id')).val(current_val + 1)
-      $('.increase_decrease[variant='+variant.val()+']').hide();
-      $('.add_to_cart[variant='+variant.val()+']').show();
-      add_to_cart_button = $(this).parents().siblings('.add_to_cart').find('.addcart');
-      add_to_cart_button.prop('disabled', true);
+      $("."+qty.attr("id")).val(currentValue + 1)
+      $(".increase_decrease[variant="+variant.val()+"]").hide();
+      $(".add_to_cart[variant="+variant.val()+"]").show();
+      addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
+      addToCartButton.prop("disabled", true);
       setTimeout(function(){
-        add_to_cart_button.prop('disabled', false);
+        addToCartButton.prop("disabled", false);
       }, 1000);
-      add_to_cart_button.prop('disabled', true);
+      addToCartButton.prop("disabled", true);
     }
   });
 
-  $(document).on('click', '.addcart', function() {
-    stop_timer_function();
-    var variant = $(this).closest('.add-cart').find('.variant');
+  $(document).on("click", ".addcart", function() {
+    stopTimerFunction();
+    var variant = $(this).closest(".add-cart").find(".variant");
     var btn = $(this);
     var count = (btn.data("click_add") || 0) + 1;
     btn.data("click_add", count);
-    start_timer_function('increase', variant.val(), count);
+    startTimerFunction("increase", variant.val(), count);
 
-    var qty = $('.quantity-input[id='+variant.val()+']').find('.quantity');
-    $('.'+qty.attr('id')).val(1)
-    $('.add_to_cart[variant='+variant.val()+']').hide();
-    $('.increase_decrease[variant='+variant.val()+']').show();
+    var qty = $(".quantity-input[id="+variant.val()+"]").find(".quantity");
+    $("."+qty.attr("id")).val(1)
+    $(".add_to_cart[variant="+variant.val()+"]").hide();
+    $(".increase_decrease[variant="+variant.val()+"]").show();
   });
 })
