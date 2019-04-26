@@ -1,7 +1,7 @@
 function popoverContent(content){
   $("[data-toggle='item-cart']").popover({
     html: true,
-    content: content
+    content
   });
   $("[data-toggle='item-cart']").popover("show");
   setTimeout(function () {

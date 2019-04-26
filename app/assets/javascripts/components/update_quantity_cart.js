@@ -21,20 +21,17 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
-          $("[data-toggle='item-cart']").popover("show");
+          popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
         }
         refreshCartPartial();
       }
       else {
         refreshReorderPartial(orderId, orderNumber);
       }
-      refreshCartPartial();
     },
     error: ( err ) => {
       if (bodyId === "cart"){
-        $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'>Error adding to cart</div>");
-        $("[data-toggle='item-cart']").popover("show");
+        popoverContent("<div class='content-popover'>Error adding to cart</div>");
         refreshCartPartial();
       }
       else {
