@@ -1,0 +1,8 @@
+p
+  = Spree.t('order_mailer.confirm_email.dear_manager')
+p
+  = Spree.t('order_mailer.confirm_email.instructions')
+p
+  = render partial: "table_order_txt_version", handlers: [:slim], formats: [:html], locals: { order: @order }
+p
+  = Spree.t('order_mailer.confirm_email.thanks')
