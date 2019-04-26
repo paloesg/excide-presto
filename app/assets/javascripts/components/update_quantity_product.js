@@ -1,7 +1,10 @@
+/*global PopoverContent*/
+/*eslint no-undef: "error"*/
+
 function refreshRemainingBudgetPartial() {
   $.ajax({
     url: "/remaining_budget_partial"
-  })
+  });
 }
 
 function updateQuantity(variantId, quantity, itemText = null, typeText = null) {

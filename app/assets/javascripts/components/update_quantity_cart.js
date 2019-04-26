@@ -1,3 +1,6 @@
+/*global PopoverContent*/
+/*eslint no-undef: "error"*/
+
 function refreshCartPartial() {
   $.ajax({
     url: "/cart_partial"
