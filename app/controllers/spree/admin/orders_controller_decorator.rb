@@ -58,6 +58,6 @@ Spree::Admin::OrdersController.class_eval do
   end
 
   def managers
-    managers = Spree::Role.get_manager_by_department(@order.user)
+    Spree::Role.get_manager_by_department(@order.user)
   end
 end
