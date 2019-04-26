@@ -4,22 +4,42 @@ function refreshCartPartial() {
   })
 }
 
+function refreshReorderPartial(orderId, orderNumber) {
+  $.ajax({
+    url: "/reorder_partial/"+orderId+"/"+orderNumber
+  })
+}
+
 // If the order number is null it will update the order in cart
-function updateQuantityCart(variantId, quantity, itemText = null, typeText = null) {
+function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeText = null) {
   var orderNumber = $("#order_number").val();
+  var orderId = $("#order_id").val();
   $.ajax({
     url: "/orders/populate",
     data: "quantity="+quantity+"&variant_id="+variantId+"&order_number="+orderNumber,
     type: "post",
     success: ( data ) => {
-      if (itemText && typeText) {
-        new popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+      if (bodyId === "cart") {
+        if (itemText && typeText) {
+          $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          $("[data-toggle='item-cart']").popover("show");
+        }
+        refreshCartPartial();
+      }
+      else {
+        refreshReorderPartial(orderId, orderNumber);
       }
       refreshCartPartial();
     },
     error: ( err ) => {
-      new popoverContent("<div class='content-popover'>Error adding to cart</div>");
-      refreshCartPartial();
+      if (bodyId === "cart"){
+        $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'>Error adding to cart</div>");
+        $("[data-toggle='item-cart']").popover("show");
+        refreshCartPartial();
+      }
+      else {
+        refreshReorderPartial(orderId, orderNumber);
+      }
     }
   });
 }
@@ -31,7 +51,8 @@ $(document).ready(function (){
     updateData = setTimeout(function(){
       var itemText = quantity <= 1 ? "item" : "items";
       var typeText = type === "increase" ? "added" : "removed";
-      updateQuantityCart(variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
+      var bodyId = $("#body_id").val();
+      updateQuantityCart(bodyId, variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
 
       $(".decrease-quantity").data("click_count", 0);
       $(".increase-quantity").data("click_count", 0);
@@ -50,7 +71,8 @@ $(document).ready(function (){
   $(document).on("click", ".delete_line_item", function() {
     var variant = $(this).closest("tr").find(".variant").val();
     var quantity = $(this).closest("tr").find(".line_item_quantity");
-    updateQuantityCart(variant, -(quantity.val()));
+    var bodyId = $("#body_id").val();
+    updateQuantityCart(bodyId, variant, -(quantity.val()));
     quantity.val(0);
   });
 

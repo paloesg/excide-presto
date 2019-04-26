@@ -12,8 +12,9 @@
               = link_to 'Cart', spree.cart_path
       h1.shopping-cart-title= Spree.t(:shopping_cart)
 div data-hook="cart_container"
-  .form-partial
-    = render partial: 'form', locals: { order: @order }
+  .edit-partial
+    = render partial: 'spree/orders/partial/edit', locals: { order: @order }
+
 javascript:
   Spree.current_order_id = "#{@order.number}"
   Spree.current_order_token = "#{@order.guest_token}"

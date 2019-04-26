@@ -45,7 +45,7 @@ Spree::OrdersController.class_eval do
       end
     else
       respond_with(order) do |format|
-        format.html { render js: "Spree.fetch_cart();" }
+        format.html { render js: "Spree.fetch_cart();"}
       end
     end
   end
@@ -61,8 +61,15 @@ Spree::OrdersController.class_eval do
     end
   end
 
-  def form_partial
+  def cart_partial
     @order = Spree::Order.find(current_order.id)
+    respond_to do |format|
+        format.js
+    end
+  end
+
+  def reorder_partial
+    @order = Spree::Order.find_by(number: params[:order_number])
     respond_to do |format|
         format.js
     end
