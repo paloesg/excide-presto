@@ -21,7 +21,8 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          var popover = new popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          popover();
         }
         refreshCartPartial();
       }
@@ -31,7 +32,8 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     },
     error: ( err ) => {
       if (bodyId === "cart"){
-        popoverContent("<div class='content-popover'>Error adding to cart</div>");
+        var popover = new popoverContent("<div class='content-popover'>Error adding to cart</div>");
+        popover();
         refreshCartPartial();
       }
       else {
@@ -54,10 +56,6 @@ $(document).ready(function (){
       $(".decrease-quantity").data("click_count", 0);
       $(".increase-quantity").data("click_count", 0);
 
-      $("[data-toggle='item-cart']").popover({
-        html: true,
-        content: "<div class='content-popover'><div class='quantity col-md-2'>"+quantity+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>",
-      });
     }, 500);
   }
 
