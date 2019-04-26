@@ -14,7 +14,7 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      var popover = new popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+      var popover = new PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       popover();
       refreshRemainingBudgetPartial();
     },
@@ -22,7 +22,7 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
       alert(error);
       location.reload();
     } // failure callback for 422 and 50x errors
-  )
+  );
 }
 
 $(document).ready(function (){
@@ -88,4 +88,4 @@ $(document).ready(function (){
     $(".add_to_cart[variant="+variant.val()+"]").hide();
     $(".increase_decrease[variant="+variant.val()+"]").show();
   });
-})
+});

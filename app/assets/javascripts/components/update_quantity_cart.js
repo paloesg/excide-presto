@@ -1,13 +1,13 @@
 function refreshCartPartial() {
   $.ajax({
     url: "/cart_partial"
-  })
+  });
 }
 
 function refreshReorderPartial(orderId, orderNumber) {
   $.ajax({
     url: "/reorder_partial/"+orderId+"/"+orderNumber
-  })
+  });
 }
 
 // If the order number is null it will update the order in cart
@@ -21,7 +21,7 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          var popover = new popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          var popover = new PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
           popover();
         }
         refreshCartPartial();
@@ -32,7 +32,7 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     },
     error: ( err ) => {
       if (bodyId === "cart"){
-        var popover = new popoverContent("<div class='content-popover'>Error adding to cart</div>");
+        var popover = new PopoverContent("<div class='content-popover'>Error adding to cart</div>");
         popover();
         refreshCartPartial();
       }
