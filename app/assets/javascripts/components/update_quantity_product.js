@@ -14,7 +14,7 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+      new popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
     function (error) {
@@ -65,7 +65,7 @@ $(document).ready(function (){
       $("."+qty.attr("id")).val(currentValue + 1);
       $(".increase_decrease[variant="+variant.val()+"]").hide();
       $(".add_to_cart[variant="+variant.val()+"]").show();
-      addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
+      var addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
       addToCartButton.prop("disabled", true);
       setTimeout(function(){
         addToCartButton.prop("disabled", false);

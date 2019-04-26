@@ -13,12 +13,12 @@ function updateQuantityCart(variantId, quantity, itemText = null, typeText = nul
     type: "post",
     success: ( data ) => {
       if (itemText && typeText) {
-        popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+        new popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       }
       refreshCartPartial();
     },
     error: ( err ) => {
-      popoverContent("<div class='content-popover'>Error adding to cart</div>");
+      new popoverContent("<div class='content-popover'>Error adding to cart</div>");
       refreshCartPartial();
     }
   });
