@@ -1,4 +1,14 @@
 Spree::Cart::AddItem.class_eval do
+  prepend Spree::ServiceModule::Base
+
+  def call(order:, variant:, quantity: nil, options: {})
+    ApplicationRecord.transaction do
+      run :add_to_line_item
+      run Spree::Dependencies.cart_recalculate_service.constantize
+    end
+    check_duplicate_line_items(order, variant)
+  end
+
   private
 
   def add_to_line_item(order:, variant:, quantity: nil, options: {})
@@ -47,7 +57,22 @@ Spree::Cart::AddItem.class_eval do
     end
   end
 
+  def check_duplicate_line_items(order, variant)
+    current_line_items = Spree::LineItem.where(order_id: order.id, variant_id: variant.id)
+    quantity = current_line_items.sum(:quantity)
+    if current_line_items.length > 1
+      current_line_items.each do |duplicate_line_item|
+        duplicate_line_item.destroy! unless duplicate_line_item == current_line_items.last
+        set_line_item_quantity_service.call(order: order, line_item: duplicate_line_item, quantity: quantity) if duplicate_line_item == current_line_items.last
+      end
+    end
+  end
+
   def remove_line_item_service
     Spree::Api::Dependencies.storefront_cart_remove_line_item_service.constantize
+  end
+
+  def set_line_item_quantity_service
+    Spree::Api::Dependencies.storefront_cart_set_item_quantity_service.constantize
   end
 end
