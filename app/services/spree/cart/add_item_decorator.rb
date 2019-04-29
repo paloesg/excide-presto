@@ -62,17 +62,13 @@ Spree::Cart::AddItem.class_eval do
     quantity = current_line_items.sum(:quantity)
     if current_line_items.length > 1
       current_line_items.each do |duplicate_line_item|
-        duplicate_line_item.destroy! unless duplicate_line_item == current_line_items.last
-        set_line_item_quantity_service.call(order: order, line_item: duplicate_line_item, quantity: quantity) if duplicate_line_item == current_line_items.last
+        duplicate_line_item.destroy! unless duplicate_line_item == current_line_items.first
+        duplicate_line_item.update(quantity: quantity) if duplicate_line_item == current_line_items.first
       end
     end
   end
 
   def remove_line_item_service
     Spree::Api::Dependencies.storefront_cart_remove_line_item_service.constantize
-  end
-
-  def set_line_item_quantity_service
-    Spree::Api::Dependencies.storefront_cart_set_item_quantity_service.constantize
   end
 end
