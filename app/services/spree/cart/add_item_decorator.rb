@@ -42,7 +42,7 @@ Spree::Cart::AddItem.class_eval do
     ::Spree::TaxRate.adjust(order, [line_item.reload]) if line_item_created
 
     #remove item if quantity is 0
-    remove_line_item_service.call(order: order, line_item: line_item) if line_item.quantity == 0
+    line_item.destroy! if line_item.quantity == 0
     success(order: order, line_item: line_item, line_item_created: line_item_created, options: options)
 
   end
@@ -66,9 +66,5 @@ Spree::Cart::AddItem.class_eval do
         duplicate_line_item.update(quantity: quantity) if duplicate_line_item == current_line_items.first
       end
     end
-  end
-
-  def remove_line_item_service
-    Spree::Api::Dependencies.storefront_cart_remove_line_item_service.constantize
   end
 end
