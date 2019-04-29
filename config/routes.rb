@@ -62,6 +62,8 @@ Rails.application.routes.draw do
     get "/cart_partial" => 'orders#cart_partial', as: 'cart_partial'
     get "/reorder_partial/:id/:order_number" => 'orders#reorder_partial', as: 'reorder_partial'
     get "/remaining_budget_partial" => 'products#remaining_budget_partial', as: 'remaining_budget_partial'
+    get "/product_partial" => 'products#product_partial', as: 'product_partial'
+    get "/taxon_product_partial" => 'taxons#taxon_product_partial', as: 'taxon_product_partial'
   end
 
   namespace :manage do

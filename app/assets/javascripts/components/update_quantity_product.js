@@ -7,7 +7,45 @@ function refreshRemainingBudgetPartial() {
   });
 }
 
+function refreshProductPartial() {
+  var sort = getUrlParameter('sort');
+  var page = getUrlParameter('page');
+  $.ajax({
+    url: "/product_partial?sort="+sort+"&page="+page,
+    error: ( err ) => {
+      console.log(err);
+    }
+  })
+}
+
+function refreshTaxonProductPartial(taxonId) {
+  var sort = getUrlParameter('sort');
+  var page = getUrlParameter('page');
+  $.ajax({
+    url: "/taxon_product_partial?id="+taxonId+"&sort="+sort+"&page="+page,
+    error: ( err ) => {
+      console.log(err);
+    }
+  })
+}
+
+var getUrlParameter = function getUrlParameter(sParam) {
+  var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+
+      if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+      }
+  }
+};
+
 function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
+  var taxonId = $(".taxon-id").val();
   SpreeAPI.Storefront.addToCart(
     variantId,
     quantity,
@@ -17,13 +55,14 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      var popover = new PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
-      popover();
+      PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
     function (error) {
-      alert(error);
-      location.reload();
+      refreshProductPartial();
+      refreshTaxonProductPartial(taxonId);
+      $('#productContent').modal('hide');
+      PopoverContent("<div class='content-popover'>Error adding to cart</div>");
     } // failure callback for 422 and 50x errors
   );
 }
