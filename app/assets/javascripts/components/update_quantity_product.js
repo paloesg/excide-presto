@@ -66,7 +66,6 @@ $(document).ready(function (){
       startTimerFunction("decrease", variant.val(), count);
     }
     if(qty.val() === "0"){
-      $("."+qty.attr("id")).val(currentValue + 1);
       $(".increase_decrease[variant="+variant.val()+"]").hide();
       $(".add_to_cart[variant="+variant.val()+"]").show();
       var addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
