@@ -57,6 +57,8 @@ Spree::Cart::AddItem.class_eval do
     end
   end
 
+  # Check duplicate line items, if line items created with the same variants into order
+  # delete other duplicate, keep first line item and update the quantity
   def check_duplicate_line_items(order, variant)
     current_line_items = Spree::LineItem.where(order_id: order.id, variant_id: variant.id)
     quantity = current_line_items.sum(:quantity)
