@@ -1,6 +1,21 @@
 /*global PopoverContent*/
 /*eslint no-undef: "error"*/
 
+var getUrlParameter = function getUrlParameter(sParam) {
+  var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+
+      if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+      }
+  }
+};
+
 function refreshRemainingBudgetPartial() {
   $.ajax({
     url: "/remaining_budget_partial"
@@ -29,21 +44,6 @@ function refreshTaxonProductPartial(taxonId) {
   })
 }
 
-var getUrlParameter = function getUrlParameter(sParam) {
-  var sPageURL = window.location.search.substring(1),
-      sURLVariables = sPageURL.split('&'),
-      sParameterName,
-      i;
-
-  for (i = 0; i < sURLVariables.length; i++) {
-      sParameterName = sURLVariables[i].split('=');
-
-      if (sParameterName[0] === sParam) {
-          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-      }
-  }
-};
-
 function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
   var taxonId = $(".taxon-id").val();
   SpreeAPI.Storefront.addToCart(
@@ -55,14 +55,14 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+      PopoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
     function (error) {
       refreshProductPartial();
       refreshTaxonProductPartial(taxonId);
       $('#productContent').modal('hide');
-      PopoverContent("<div class='content-popover'>Error adding to cart</div>");
+      PopoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 error-text'>Error adding to cart</div></div>");
     } // failure callback for 422 and 50x errors
   );
 }

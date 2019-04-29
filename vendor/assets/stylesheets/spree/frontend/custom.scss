@@ -781,6 +781,10 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0px 0px 60px 0px;
 }
 
+.popover-content {
+  padding: 10px 0px 50px 0px;
+}
+
 .popover.sub-categories {
   margin: 0 !important;
   border-radius: 0 !important;
@@ -1161,16 +1165,32 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   color: #000000;
 }
 
-.content-popover .quantity {
+.content-popover .quantity-badge {
+  border-radius: 50%;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  font-size: 20px;
-  color: #ffcc4e;
-  line-height: 40px;
-  text-align: center;
+  /* padding: 8px; */
   background: #5f509b;
-  margin-bottom: 10px;
+  color: #ffcc4e;
+  text-align: center;
+  font: 18px Arial, sans-serif;
+  line-height: 39px;
+}
+
+.content-popover .error-badge {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  /* padding: 8px; */
+  background: #b33030;
+  color: #ffcc4e;
+  text-align: center;
+  font: 18px Arial, sans-serif;
+  line-height: 39px;
+}
+
+.content-popover .error-text {
+  line-height: 39px
 }
 
 .coupon-form {
