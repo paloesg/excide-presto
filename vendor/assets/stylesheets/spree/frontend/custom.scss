@@ -541,7 +541,7 @@ ul.social-media-list i:hover {
 }
 
 .presto-panel-footer {
-  padding: 23px 15px 3px;
+  padding: 10px 15px;
 }
 
 .presto-products-title {
@@ -1077,6 +1077,7 @@ $lines-to-show: 2;
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
   margin: 0 auto;
   font-size: $font-size;
   line-height: $line-height;
@@ -1084,8 +1085,6 @@ $lines-to-show: 2;
   text-overflow: ellipsis;
   -webkit-line-clamp: $lines-to-show;
   -webkit-box-orient: vertical;
-  -o-text-overflow: ellipsis;
-  -ms-text-overflow: ellipsis;
 }
 
 .account-summary {
@@ -1126,13 +1125,13 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: transparent;
+  background-color: #5f509b;
   color: #fff;
-  border-color: transparent;
-  border-radius: 0px 10px 10px 0px;
+  border-color: #5f509b;
+  border-radius: 0px 20px 20px 0px !important;
   height: 33px;
   position: absolute;
-  top: 1px;
+  top: 0px;
   right: 14px;
 }
 
@@ -1162,7 +1161,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 20px 0px 0px 20px !important;
 }
 
 .content-popover {
