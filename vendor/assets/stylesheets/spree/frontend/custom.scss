@@ -33,6 +33,13 @@ body {
   background-color: #f2f2f1;
 }
 
+body#product-details {
+  background-color: #ffffff;
+  .container {
+    padding: 50px 0;
+  }
+}
+
 body {
   &:not(#taxon_page):not(#cart):not(#login):not(#service) {
     #presto-header {
