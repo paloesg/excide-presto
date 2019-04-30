@@ -1078,6 +1078,11 @@ $lines-to-show: 1;
   text-overflow: ellipsis;
   -webkit-line-clamp: $lines-to-show;
   -webkit-box-orient: vertical;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -moz-binding: url('ellipsis.xml#ellipsis');
+  white-space: nowrap;
+  display: block;
 }
 
 .account-summary {
