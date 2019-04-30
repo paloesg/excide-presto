@@ -1,4 +1,4 @@
-/*global popoverContent*/
+/*global popoverContent SpreeAPI*/
 /*eslint no-undef: "error"*/
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -26,10 +26,7 @@ function refreshProductPartial() {
   var sort = getUrlParameter("sort");
   var page = getUrlParameter("page");
   $.ajax({
-    url: "/product_partial?sort="+sort+"&page="+page,
-    error: ( err ) => {
-      console.log(err);
-    }
+    url: "/product_partial?sort="+sort+"&page="+page
   });
 }
 
@@ -37,10 +34,7 @@ function refreshTaxonProductPartial(taxonId) {
   var sort = getUrlParameter("sort");
   var page = getUrlParameter("page");
   $.ajax({
-    url: "/taxon_product_partial?id="+taxonId+"&sort="+sort+"&page="+page,
-    error: ( err ) => {
-      console.log(err);
-    }
+    url: "/taxon_product_partial?id="+taxonId+"&sort="+sort+"&page="+page
   });
 }
 
