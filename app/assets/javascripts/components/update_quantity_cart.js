@@ -1,4 +1,4 @@
-/*global PopoverContent*/
+/*global popoverContent*/
 /*eslint no-undef: "error"*/
 
 function refreshCartPartial() {
@@ -24,7 +24,7 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          PopoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+          popoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
         }
         refreshCartPartial();
       }
@@ -34,7 +34,7 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     },
     error: ( err ) => {
       if (bodyId === "cart"){
-        PopoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 error-text'>Error adding to cart</div></div>");
+        popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 error-text'>Error adding to cart</div></div>");
         refreshCartPartial();
       }
       else {

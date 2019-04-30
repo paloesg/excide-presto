@@ -1,17 +1,17 @@
-/*global PopoverContent*/
+/*global popoverContent*/
 /*eslint no-undef: "error"*/
 
 var getUrlParameter = function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
-      sURLVariables = sPageURL.split('&'),
+      sURLVariables = sPageURL.split("&"),
       sParameterName,
       i;
 
   for (i = 0; i < sURLVariables.length; i++) {
-      sParameterName = sURLVariables[i].split('=');
+      sParameterName = sURLVariables[i].split("=");
 
       if (sParameterName[0] === sParam) {
-          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+          return sParameterName[1] === "undefined" ? true : decodeURIComponent(sParameterName[1]);
       }
   }
 };
@@ -23,25 +23,25 @@ function refreshRemainingBudgetPartial() {
 }
 
 function refreshProductPartial() {
-  var sort = getUrlParameter('sort');
-  var page = getUrlParameter('page');
+  var sort = getUrlParameter("sort");
+  var page = getUrlParameter("page");
   $.ajax({
     url: "/product_partial?sort="+sort+"&page="+page,
     error: ( err ) => {
       console.log(err);
     }
-  })
+  });
 }
 
 function refreshTaxonProductPartial(taxonId) {
-  var sort = getUrlParameter('sort');
-  var page = getUrlParameter('page');
+  var sort = getUrlParameter("sort");
+  var page = getUrlParameter("page");
   $.ajax({
     url: "/taxon_product_partial?id="+taxonId+"&sort="+sort+"&page="+page,
     error: ( err ) => {
       console.log(err);
     }
-  })
+  });
 }
 
 function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
@@ -55,14 +55,14 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      PopoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+      popoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
     function (error) {
       refreshProductPartial();
       refreshTaxonProductPartial(taxonId);
-      $('#productContent').modal('hide');
-      PopoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 error-text'>Error adding to cart</div></div>");
+      $("#productContent").modal("hide");
+      popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 error-text'>Error adding to cart</div></div>");
     } // failure callback for 422 and 50x errors
   );
 }
