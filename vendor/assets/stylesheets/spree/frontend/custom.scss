@@ -534,7 +534,7 @@ ul.social-media-list i:hover {
 }
 
 .presto-panel-footer {
-  padding: 10px 15px;
+  padding: 23px 15px 3px;
 }
 
 .presto-products-title {
@@ -1064,13 +1064,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 $font-size: 14px;
 $line-height: 1.4;
-$lines-to-show: 1;
+$lines-to-show: 2;
 
 .truncated-text {
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
-  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
   margin: 0 auto;
   font-size: $font-size;
   line-height: $line-height;
@@ -1080,8 +1079,6 @@ $lines-to-show: 1;
   -webkit-box-orient: vertical;
   -o-text-overflow: ellipsis;
   -ms-text-overflow: ellipsis;
-  white-space: nowrap;
-  display: block;
 }
 
 .account-summary {
