@@ -25,7 +25,7 @@
     tbody
       - @roles.each do |role|
         tr data-hook="admin_roles_index_rows" id=("#{spree_dom_id role}")
-          td= role.name
+          td #{role.department&.name} #{role.name}
           td= role.company.name if role.company
           td.actions.text-right
             - if params[:company_id].present?
