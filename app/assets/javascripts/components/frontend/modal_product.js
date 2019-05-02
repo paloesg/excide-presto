@@ -1,3 +1,6 @@
+/*global Spree*/
+/*eslint no-undef: "error"*/
+
 function showProduct(url) {
   // Load Product Content
   $("#modalContent").load(window.location.origin +'/'+ url, function(response, status, xhr) {
