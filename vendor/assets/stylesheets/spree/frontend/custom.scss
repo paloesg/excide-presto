@@ -1161,7 +1161,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 20px 20px 20px 20px;
+  border-radius: 10px;
 }
 
 #product-details .quantity-input .increase {
@@ -1170,7 +1170,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 #product-details .quantity-input input[type=number]{
   width: 85%;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 10px 0px 0px 10px;
 }
 
 #modalContent .quantity-input input[type=number] {
