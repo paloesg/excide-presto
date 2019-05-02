@@ -1,20 +1,16 @@
-/*global popoverContent SpreeAPI*/
+/*global popoverContent SpreeAPI Spree*/
 /*eslint no-undef: "error"*/
 
-var getUrlParameter = function getUrlParameter(sParam) {
-  var sPageURL = window.location.search.substring(1),
-      sURLVariables = sPageURL.split("&"),
-      sParameterName,
-      i;
+var getUrlParameter = (paramName) => {
+  let sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split("&");
 
-  for (i = 0; i < sURLVariables.length; i++) {
-      sParameterName = sURLVariables[i].split("=");
+  let param = sURLVariables.map(q => q.split('=')).filter(q => q[0] === paramName)[0];
 
-      if (sParameterName[0] === sParam) {
-          return sParameterName[1] === "undefined" ? true : decodeURIComponent(sParameterName[1]);
-      }
-  }
-};
+  if (!param) return undefined;
+  if (param && !param[1]) return true;
+  else return decodeURIComponent(param[1]);
+}
 
 function refreshRemainingBudgetPartial() {
   $.ajax({
@@ -23,16 +19,16 @@ function refreshRemainingBudgetPartial() {
 }
 
 function refreshProductPartial() {
-  var sort = getUrlParameter("sort");
-  var page = getUrlParameter("page");
+  let sort = getUrlParameter("sort");
+  let page = getUrlParameter("page");
   $.ajax({
     url: "/product_partial?sort="+sort+"&page="+page
   });
 }
 
 function refreshTaxonProductPartial(taxonId) {
-  var sort = getUrlParameter("sort");
-  var page = getUrlParameter("page");
+  let sort = getUrlParameter("sort");
+  let page = getUrlParameter("page");
   $.ajax({
     url: "/taxon_product_partial?id="+taxonId+"&sort="+sort+"&page="+page
   });
