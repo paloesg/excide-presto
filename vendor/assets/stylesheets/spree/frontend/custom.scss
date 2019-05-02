@@ -1125,14 +1125,14 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: transparent;
+  background-color: #5f509b;
   color: #fff;
-  border-color: transparent;
-  border-radius: 0px 10px 10px 0px;
+  border-color: #5f509b;
+  border-radius: 0px 20px 20px 0px !important;
   height: 33px;
   position: absolute;
-  top: 1px;
-  right: 14px;
+  top: 0px;
+  right: 18px;
 }
 
 .quantity-input .decrease {
@@ -1152,7 +1152,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 85%;
+  width: 80%;
   padding: .5rem;
   border: solid #5f509b;
   background-color: #5f509b;
@@ -1161,7 +1161,20 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
+}
+
+#product-details .quantity-input .increase {
+  right: 70px;
+}
+
+#product-details .quantity-input input[type=number]{
+  width: 85%;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#modalContent .quantity-input input[type=number] {
+  width: 93%;
 }
 
 .content-popover {
