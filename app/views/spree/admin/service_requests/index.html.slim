@@ -20,7 +20,7 @@ h1 Service Requests Listing
               = link_to(request.service_name, admin_service_request_path(request.id))
             - else
               | -
-          td= request.status
+          td= request.status.capitalize
           td
             = request.created_at.strftime("%d-%m-%Y %H:%M")
 - else

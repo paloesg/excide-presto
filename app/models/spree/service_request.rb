@@ -4,7 +4,7 @@ class Spree::ServiceRequest < Spree::Base
   belongs_to :user
 
   enum status: {
-    newest: "newest",
+    unread: "unread",
     processing: "processing",
     completed: "completed",
     rejected: "rejected"
