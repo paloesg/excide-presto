@@ -16,7 +16,7 @@
             = button_tag "-", type: "button", id: "btn_decrease#{@product.master.id}", class: "decrease"
             = number_field_tag :quantity, quantity_order(@product.master.id) , min: 0, class: "quantity quantity#{@product.master.id}", id: "quantity#{@product.master.id}", readonly: true
             = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
-            = button_tag "+", type: "button", id: "btn_increase#{@product.master.id}", class: "increase", style:"right:65px"
+            = button_tag "+", type: "button", id: "btn_increase#{@product.master.id}", class: "increase"
   .col-md-6.col-sm-5.flex-col data-hook="product_left_part"
     div data-hook="product_left_part_wrap"
       #product-images.col-md-9 data-hook="product_images"
