@@ -94,6 +94,11 @@ en:
       product_sale_not_deleted: "Unable to delete product sale."
     order:
       budget_exceeded: "The item you are trying to add to cart will exceed your department budget."
+    service_request_sure_want_to: "Are you sure you want to %{event} this service request?"
+    service_request_processing: "Service request processing"
+    service_request_completed: "Service request completed"
+    service_request_rejected: "Service request rejected"
+    processing: "Processing"
   devise:
     mailer:
       new_password_instructions:

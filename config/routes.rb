@@ -37,7 +37,13 @@ Rails.application.routes.draw do
       end
       resources :product_sales
 
-      resources :service_requests
+      resources :service_requests do
+        member do
+          put :processing
+          put :complete
+          put :reject
+        end
+      end
       resources :services
 
       resources :companies do

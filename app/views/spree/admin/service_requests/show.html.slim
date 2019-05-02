@@ -1,4 +1,7 @@
-h1 Service request
+= render 'service_request_actions', service_request: @service_request, events: @service_request_events
+- content_for :page_title do
+  | Service request
+/ h1 Service request
 
 .panel.panel-default
   table.table.table-bordered

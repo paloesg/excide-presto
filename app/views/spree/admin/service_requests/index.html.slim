@@ -8,6 +8,7 @@ h1 Service Requests Listing
       tr
         th User
         th Service
+        th Status
         th Created at
     tbody
       - @service_requests.each do |request|
@@ -19,6 +20,7 @@ h1 Service Requests Listing
               = link_to(request.service_name, admin_service_request_path(request.id))
             - else
               | -
+          td= request.status
           td
             = request.created_at.strftime("%d-%m-%Y %H:%M")
 - else
