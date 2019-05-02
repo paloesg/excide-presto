@@ -18,8 +18,8 @@
             = hidden_field_tag :variant_id, @product.master.id, id:"variant#{@product.master.id}", class: "variant"
             = button_tag "+", type: "button", id: "btn_increase#{@product.master.id}", class: "increase", style:"right:65px"
   .col-md-6.col-sm-5.flex-col data-hook="product_left_part"
-    div data-hook="product_left_part_wrap"
-      #product-images.col-md-9 data-hook="product_images"
+    div#product-images data-hook="product_left_part_wrap"
+      .col-md-9 data-hook="product_images"
         #main-image.panel-default data-hook=""
           .panel-body.text-center
             = product_image(@product, itemprop: "image")
