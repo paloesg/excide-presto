@@ -5,12 +5,18 @@ var getUrlParameter = (paramName) => {
   let sPageURL = window.location.search.substring(1),
       sURLVariables = sPageURL.split("&");
 
-  let param = sURLVariables.map(q => q.split('=')).filter(q => q[0] === paramName)[0];
+  let param = sURLVariables.map((q) => q.split("=")).filter((q) => q[0] === paramName)[0];
 
-  if (!param) return undefined;
-  if (param && !param[1]) return true;
-  else return decodeURIComponent(param[1]);
-}
+  if (!param) {
+    return undefined;
+  }
+  if (param && !param[1]) {
+     return true;
+  }
+  else {
+    return decodeURIComponent(param[1]);
+  };
+};
 
 function refreshRemainingBudgetPartial() {
   $.ajax({
