@@ -6,7 +6,7 @@ module Spree::Admin::ServiceRequestsHelper
 
       label = Spree.t(event, scope: 'admin.service_request.events', default: Spree.t(event))
       links << button_link_to(
-        label.capitalize,
+        "Mark as #{label.capitalize}",
         [event, :admin, service_request],
         method: :put,
         icon: event.to_s,
