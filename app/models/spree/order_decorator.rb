@@ -54,7 +54,8 @@ Spree::Order.class_eval do
 
   # select all orders where users department same with current user department
   def self.department(current_user)
-    self.joins(:user).where('spree_users.department_id': current_user.department_id)
+    department_ids = Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
+    self.joins(:user).where('spree_users.department_id': department_ids)
   end
 
   def awaiting_approval?

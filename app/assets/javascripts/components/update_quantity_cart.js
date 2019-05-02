@@ -1,13 +1,16 @@
+/*global PopoverContent*/
+/*eslint no-undef: "error"*/
+
 function refreshCartPartial() {
   $.ajax({
     url: "/cart_partial"
-  })
+  });
 }
 
 function refreshReorderPartial(orderId, orderNumber) {
   $.ajax({
     url: "/reorder_partial/"+orderId+"/"+orderNumber
-  })
+  });
 }
 
 // If the order number is null it will update the order in cart
@@ -21,8 +24,8 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
-          $("[data-toggle='item-cart']").popover("show");
+          var popover = new PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          popover();
         }
         refreshCartPartial();
       }
@@ -32,8 +35,8 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     },
     error: ( err ) => {
       if (bodyId === "cart"){
-        $("[data-toggle='item-cart']").attr("data-content", "<div class='content-popover'>Error adding to cart</div>");
-        $("[data-toggle='item-cart']").popover("show");
+        var popover = new PopoverContent("<div class='content-popover'>Error adding to cart</div>");
+        popover();
         refreshCartPartial();
       }
       else {
@@ -42,10 +45,6 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     }
   });
 }
-
-$(document).on("mouseleave",".popover-content",function(){
-  $("[data-toggle='item-cart']").popover("hide");
-});
 
 $(document).ready(function (){
   var updateData;
@@ -60,11 +59,7 @@ $(document).ready(function (){
       $(".decrease-quantity").data("click_count", 0);
       $(".increase-quantity").data("click_count", 0);
 
-      $("[data-toggle='item-cart']").popover({
-        html: true,
-        content: "<div class='content-popover'><div class='quantity col-md-2'>"+quantity+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>",
-      });
-    }, 1000);
+    }, 500);
   }
 
   function stopTimerFunction() {

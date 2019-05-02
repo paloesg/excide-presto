@@ -4,7 +4,7 @@
     = link_to '', '#', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'overlay none-style-links', onclick: "showProduct('products-load/#{product.slug}');"
     .panel-body.text-center.product-body
       .product-image
-        = small_image(product, itemprop: "image")
+        = link_to small_image(product, itemprop: "image"), '#', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'overlay none-style-links', onclick: "showProduct('products-load/#{product.slug}');"
       = content_tag(:span, truncate(product.brand, length: 50), class: 'info presto-products-title', itemprop: "name", title: product.name)
       .truncated-text= product.name
       br
