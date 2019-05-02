@@ -8,14 +8,14 @@ var getUrlParameter = (paramName) => {
   let param = sURLVariables.map((q) => q.split("=")).filter((q) => q[0] === paramName)[0];
 
   if (!param) {
-    return undefined;
+    return "undefined";
   }
   if (param && !param[1]) {
      return true;
   }
   else {
     return decodeURIComponent(param[1]);
-  };
+  }
 };
 
 function refreshRemainingBudgetPartial() {
