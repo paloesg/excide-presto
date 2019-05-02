@@ -1127,12 +1127,12 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   font-size: 20px;
   background-color: #5f509b;
   color: #fff;
-  border-color: #5f509b;
   border-radius: 0px 20px 20px 0px !important;
   height: 33px;
   position: absolute;
   top: 0px;
-  right: 18px;
+  right: 19px;
+  border: solid #5f509b;
 }
 
 .quantity-input .decrease {
