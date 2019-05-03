@@ -1,0 +1,21 @@
+= render partial: 'spree/admin/companies/sidebar', locals: { current: :department }
+
+- content_for :page_title do
+  | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{Spree.t(:department)} / #{@department.name} / Managers
+
+= render partial: 'spree/admin/shared/error_messages', locals: { target: @company }
+
+- if @managers.any?
+  table.table
+    thead
+      tr
+        th Email
+        th Action
+    tbody
+      - @managers.each do |user|
+        tr
+          td = user.email
+          td = button_link_to '', edit_admin_user_path(id: user.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department'
+- else
+  .alert.alert-warning
+    | No managers in this department.

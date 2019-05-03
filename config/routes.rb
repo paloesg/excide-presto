@@ -43,7 +43,11 @@ Rails.application.routes.draw do
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
         #departments in company
-        resources :departments
+        resources :departments do
+          member do
+            get 'managers' => 'departments#managers'
+          end
+        end
         #roles in company
         resources :roles
         get '/roles/:id/users', to: 'roles#users', as: 'users_role'
