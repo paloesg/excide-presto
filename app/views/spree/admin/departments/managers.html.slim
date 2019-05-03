@@ -1,7 +1,7 @@
 = render partial: 'spree/admin/companies/sidebar', locals: { current: :department }
 
 - content_for :page_title do
-  | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{Spree.t(:department)} / #{@department.name} / Managers
+  | #{link_to @company.name.capitalize, spree.edit_admin_company_url(@company)} / #{link_to Spree.t(:departments), spree.admin_company_departments_path(@company)} / #{@department.name} / Managers
 
 = render partial: 'spree/admin/shared/error_messages', locals: { target: @company }
 
