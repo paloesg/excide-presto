@@ -1,10 +1,11 @@
 Spree::OrderMailer.class_eval do
-  def confirm_email_to_manager(order, manager, resend = false)
+  # Send email to user or manager to confirm they order
+  def confirm_email(order, resend = false, manager = nil)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
-    @manager = manager
+    @manager = manager if manager.present?
     subject = (resend ? "[#{Spree.t(:resend).upcase}] " : '')
     subject += "#{Spree::Store.current.name} #{Spree.t('order_mailer.confirm_email.subject')} ##{@order.number}"
-    mail(to: @manager.email, from: from_address, subject: subject)
+    mail(to: @manager.nil? ? @order.email : @manager.email, from: from_address, subject: subject)
   end
 
   # Send email to user who placed the order with the details of order.

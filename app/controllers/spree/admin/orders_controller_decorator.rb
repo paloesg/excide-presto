@@ -53,7 +53,7 @@ Spree::Admin::OrdersController.class_eval do
   private
   def confirm_email_to_managers
     managers.each do |manager|
-      Spree::OrderMailer.confirm_email_to_manager(@order, manager, true).deliver_later
+      Spree::OrderMailer.confirm_email(@order, true, manager).deliver_later
     end
   end
 
