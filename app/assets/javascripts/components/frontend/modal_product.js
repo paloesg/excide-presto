@@ -1,9 +1,13 @@
+/*global Spree*/
+/*eslint no-undef: "error"*/
+
 function showProduct(url) {
   // Load Product Content
   $("#modalContent").load(window.location.origin +'/'+ url, function(response, status, xhr) {
     if (status == "success") {
       $('.loader').hide();
       $('.modal-content').show();
+      Spree.addImageHandlers();
     }
     // Load Js for switching the product main image by hovering the thumbnails
     var thumbnails = $("#product-images").next();
