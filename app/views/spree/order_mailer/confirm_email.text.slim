@@ -1,0 +1,11 @@
+p
+  - if @manager.present?
+    = Spree.t('order_mailer.confirm_email.dear_manager')
+  - else
+    = Spree.t('order_mailer.confirm_email.dear_customer')
+p
+  = Spree.t('order_mailer.confirm_email.instructions')
+p
+  = render partial: "table_order_txt_version", handlers: [:slim], formats: [:html], locals: { order: @order }
+p
+  = Spree.t('order_mailer.confirm_email.thanks')
