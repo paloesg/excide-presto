@@ -541,7 +541,7 @@ ul.social-media-list i:hover {
 }
 
 .presto-panel-footer {
-  padding: 10px 15px;
+  padding: 24px 14px 2px;
 }
 
 .presto-products-title {
@@ -1073,10 +1073,9 @@ input[type=number]::-webkit-outer-spin-button {
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
-  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  height: 39.2px; /* Fallback for non-webkit */
   margin: 0 auto;
   font-size: 14px;
-  height: 40px;
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
