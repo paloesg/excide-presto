@@ -1,12 +1,19 @@
 - @body_id = 'taxon_page'
 - if @taxon.parent.name != "Services"
-  .col-md-offset-4
-    .input-group.col-md-5.sort-by-panel.remaining-budget
-      = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
-    .input-group.col-md-6.sort-by-panel
-      span.input-group-addon
-        | Sort By
-      = sort_by
+  .row
+    .col-md-4.col-sm-4.masonry-item.col-xs-12
+      .remaining-budget
+        = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
+    .col-md-4.col-sm-4.masonry-item.col-xs-12
+      .select-option
+        i.ti-angle-down
+        = sort_by
+    .col-md-4.text-right
+      .input-lh
+        = page_entries_info @products
+  .row
+    .col-sm-12
+      hr
 - content_for :hero_image do
   section.page-title.page-title-2.image-bg.overlay style="background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
     .background-image-holder.fadeIn style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}');background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'};"
