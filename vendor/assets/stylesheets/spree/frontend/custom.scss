@@ -671,8 +671,14 @@ li.tmb-all, .vtmb {
   font-weight: bold;
   color: #5f509b !important;
 }
-.presto-table > tbody > tr > td {
-  border-top: 0 !important;
+
+.presto-table > thead > tr > th, .presto-table > thead > tr > td, .presto-table > tbody > tr > th, .presto-table > tbody > tr > td, .presto-table > tfoot > tr > th, .presto-table > tfoot > tr > td {
+  padding: 30px;
+  border-top: 1px solid #ddd;
+}
+
+.table-cart{
+  margin-bottom: 50px;
 }
 
 .quantity-btn-group {

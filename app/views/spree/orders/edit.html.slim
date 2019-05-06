@@ -19,7 +19,7 @@ div data-hook="cart_container"
   - else
     div data-hook="outside_cart_form"
       = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
-        .col-md-9.col-md-offset-0.col-sm-10.col-sm-offset-1 data-hook="inside_cart_form"
+        .col-md-9.col-md-offset-0.col-sm-10.col-sm-offset-1.table-cart data-hook="inside_cart_form"
           .table-responsive data-hook="cart_items"
             = render partial: 'form', locals: { order_form: order_form }
             .col-md-6
