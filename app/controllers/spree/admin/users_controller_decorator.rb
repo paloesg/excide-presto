@@ -22,7 +22,7 @@ Spree::Admin::UsersController.class_eval do
 
   def update_role
     user = Spree::User.find(params[:user_id])
-    manager_in_company = Spree::Role.find_by(company_id: params[:company_id], name: "manager")
+    manager_in_company = Spree::Role.find_by(company_id: params[:company_id], name: "manager", department_id: params[:department_id])
     if manager_in_company.present?
       if(params[:type_manager] == "set_manager")
         new_manager = Spree::RoleUser.new(role_id: manager_in_company.id, user_id: params[:user_id])
@@ -36,9 +36,9 @@ Spree::Admin::UsersController.class_eval do
         user_manager.destroy
       end
     else
-      new_role = Spree::Role.new(name: "manager", company_id: params[:company_id])
+      new_role = Spree::Role.new(name: "manager", company_id: params[:company_id], department_id: params[:department_id])
       if new_role.save
-        role_id = role.id
+        role_id = new_role.id
         new_manager = Spree::RoleUser.new(role_id: role_id, user_id: params[:user_id])
         if new_manager.save
           render json: {"success": "true"}.to_json

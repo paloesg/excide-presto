@@ -1,7 +1,7 @@
-function update_role(user_id, company_id, is_manager) {
+function update_role(userId, companyId, departmentId, isManager) {
   $.ajax({
-    url: "/admin/users/"+user_id+"/update/role",
-    data: "company_id="+company_id+"&type_manager="+is_manager,
+    url: "/admin/users/"+userId+"/update/role",
+    data: "company_id="+companyId+"&department_id="+departmentId+"&type_manager="+isManager,
     type:"put",
     success:function( data ) {
 
@@ -12,12 +12,13 @@ function update_role(user_id, company_id, is_manager) {
 
 $(document).ready(function(){
   $('.role-check').on("change", function() {
-    var $user_id = $(this).closest('.role-form').find('.user-id');
-    var $company_id = $(this).closest('.role-form').find('.company-id');
+    var $userId = $(this).closest(".role-form").find(".user-id");
+    var $companyId = $(this).closest(".role-form").find(".company-id");
+    var $departmentId = $(this).closest(".role-form").find(".department-id");
     if($(this).is(":checked")) {
-      update_role($user_id.val(), $company_id.val(), "set_manager");
+      update_role($userId.val(), $companyId.val(), $departmentId.val(), "set_manager");
     } else {
-      update_role($user_id.val(), $company_id.val(), "unset_manager");
+      update_role($userId.val(), $companyId.val(), $departmentId.val(), "unset_manager");
     }
   })
 })
