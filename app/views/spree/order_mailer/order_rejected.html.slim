@@ -8,6 +8,6 @@ br
 = render 'table_order', order: @order
 br
 p
-  ' Rejected by: #{@order.canceler.email}
-  = "(#{@order.canceler.full_name})" if @order.canceler.first_name.present?
+  ' Rejected by: #{@order.rejector.email}
+  = "(#{@order.rejector.full_name})" if @order.rejector.first_name.present?
 = render 'footer'

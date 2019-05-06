@@ -11,6 +11,12 @@ Spree::ProductsController.class_eval do
     @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
+  def remaining_budget_partial
+    respond_to do |format|
+        format.js
+    end
+  end
+
   private
 
   def sort_products(products)
@@ -27,7 +33,7 @@ Spree::ProductsController.class_eval do
     elsif params[:sort] == 'name_desc'
       products.reorder('').send(:descend_by_name)
     else
-      products
+      products.distinct
     end
   end
 end

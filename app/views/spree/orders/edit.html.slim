@@ -12,58 +12,9 @@
             li.active
               = link_to 'Cart', spree.cart_path
 div data-hook="cart_container"
-  - if @order.line_items.empty?
-    div data-hook="empty_cart"
-      .alert.alert-info= Spree.t(:your_cart_is_empty)
-      p= link_to Spree.t(:continue_shopping), products_path, class: 'btn presto-btn btn-orange'
-  - else
-    div data-hook="outside_cart_form"
-      = form_for @order, url: update_cart_path, html: { id: 'update-cart' } do |order_form|
-        .col-md-9.col-md-offset-0.col-sm-10.col-sm-offset-1.table-cart data-hook="inside_cart_form"
-          .table-responsive data-hook="cart_items"
-            = render partial: 'form', locals: { order_form: order_form }
-            .col-md-6
-              = link_to Spree.t(:continue_shopping), products_path, class: 'continue presto-btn btn-success'
-        .col-md-3.col-md-offset-0.col-sm-10.col-sm-offset-1
-          .mb24
-            h5.uppercase Remaining Budget
-            .lead.total-price.text-center = number_to_currency(spree_current_user.department.remaining_budget || 0)
-          .mb24
-            h5.uppercase Your Order Total
-            table.table
-              tbody
-                tr
-                  th scope="row"
-                    = Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
-                  td
-                    strong= order_form.object.display_item_total
-                - if @order.line_item_adjustments.exists?
-                  - @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
-                    = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:promotion)
-                - @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments|
-                  = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:tax)
-                - @order.shipments.each do |shipment|
-                  - if shipment.shipping_method.present?
-                  tr
-                    th scope="row"
-                      = Spree.t(:shipping)
-                      | : #{shipment.shipping_method.name}
-                    td
-                      strong= shipment.display_discounted_cost
-                - @order.adjustments.eligible.group_by(&:label).each do |label, adjustments|
-                  = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
-          .mb24
-            - if Spree::Frontend::Config[:coupon_codes_enabled]
-              .col-md-12.coupon-form data-hook="coupon_code"
-                = order_form.text_field :coupon_code, placeholder: 'Enter Coupon Code', class: 'coupon text-center'
-                = button_tag Spree.t(:coupon_code_apply), class: 'submit'
-          .mb24
-            h5.text-center
-              strong= Spree.t(:total)
-            .lead.total-price.text-center = order_form.object.display_total
-          .mb24
-            = button_tag id: 'checkout-link', name: 'checkout', class: 'submit', disabled: (spree_current_user.department.budget.nil? || spree_current_user.department.remaining_budget < 0) do
-              = Spree.t(:checkout)
+  .edit-partial
+    = render partial: 'spree/orders/partial/edit', locals: { order: @order }
+
 javascript:
   Spree.current_order_id = "#{@order.number}"
   Spree.current_order_token = "#{@order.guest_token}"

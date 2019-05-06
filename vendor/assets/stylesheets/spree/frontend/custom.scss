@@ -33,6 +33,13 @@ body {
   background-color: #ffffff;
 }
 
+body#product-details {
+  background-color: #ffffff;
+  .container {
+    padding: 50px 0;
+  }
+}
+
 body {
   &:not(#taxon_page):not(#cart):not(#login):not(#service):not(#my_account) {
     #presto-header {
@@ -73,8 +80,22 @@ h4.product-section-title {
   margin-bottom: 5px !important;
 }
 
+<<<<<<< HEAD
 .product-body > img {
   min-height: 100px;
+=======
+.product-body .product-image {
+  height: 8.5em;
+  position: relative;
+}
+
+.product-image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+>>>>>>> master
 }
 
 body#login {
@@ -353,8 +374,16 @@ $sides: (top, bottom, left, right); // Leave this variable alone
 }
 
 .sort-by-panel {
-  padding: 10px 0px 15px;
+  padding: 10px 0px 20px;
+  margin-left: 20px;
 }
+
+@media (max-width : 991px) {
+  .sort-by-panel {
+    margin-left: 0px;
+  }
+}
+
 /* link block */
 
 .block {
@@ -1106,21 +1135,18 @@ li.tmb-all, .vtmb {
   font-size: 12px;
 }
 
-$font-size: 14px;
-$line-height: 1.4;
-$lines-to-show: 2;
-
 .truncated-text {
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
   height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
   margin: 0 auto;
-  font-size: $font-size;
-  line-height: $line-height;
+  font-size: 14px;
+  height: 40px;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: $lines-to-show;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -1162,6 +1188,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input .increase {
   font-size: 20px;
+<<<<<<< HEAD
   background-color: #c3502e;
   color: #fff;
   border-color: transparent;
@@ -1169,6 +1196,16 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   position: absolute;
   right: 25px;
   padding: 5px 20px;
+=======
+  background-color: #5f509b;
+  color: #fff;
+  border-radius: 0px 20px 20px 0px !important;
+  height: 33px;
+  position: absolute;
+  top: 0px;
+  right: 19px;
+  border: solid #5f509b;
+>>>>>>> master
 }
 
 .quantity-input .decrease {
@@ -1189,7 +1226,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 85%;
+  width: 80%;
   padding: .5rem;
   border: solid #c3502e;
   background-color: #c3502e;
@@ -1198,9 +1235,26 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 40px;
   font-weight: bold;
   text-align: center;
+<<<<<<< HEAD
   -webkit-appearance: none;
   margin: 0;
   -moz-appearance: textfield;
+=======
+  border-radius: 10px;
+}
+
+#product-details .quantity-input .increase {
+  right: 70px;
+}
+
+#product-details .quantity-input input[type=number]{
+  width: 85%;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#modalContent .quantity-input input[type=number] {
+  width: 93%;
+>>>>>>> master
 }
 
 .content-popover {
@@ -1303,6 +1357,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 245px;
 }
 
+<<<<<<< HEAD
 //color
 .color-white {
   color: #fefefe;
@@ -1422,4 +1477,10 @@ input[type="submit"]{
 }
 .button-tabs .active .tab-title:hover {
   background: #d85b35;
+=======
+.input-group {
+  position: relative;
+  display: inline-table;
+  border-collapse: separate;
+>>>>>>> master
 }

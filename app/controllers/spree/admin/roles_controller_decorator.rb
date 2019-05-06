@@ -40,7 +40,7 @@ Spree::Admin::RolesController.class_eval do
   private
 
     def role_params
-      params.require(:role).permit(:name, :company_id)
+      params.require(:role).permit(:name, :company_id, :department_id)
     end
 
     def set_companies
@@ -59,7 +59,7 @@ Spree::Admin::RolesController.class_eval do
 
     def set_roles
       if params[:company_id].present?
-        @roles = Spree::Role.where(company_id: params[:company_id])
+        @roles = Spree::Role.where(company_id: params[:company_id]).where.not(department_id: nil)
       else
         @roles = Spree::Role.all
       end

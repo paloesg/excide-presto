@@ -1,14 +1,6 @@
 Spree::Admin::UsersController.class_eval do
-
-  def new
-    @companies = Spree::Company.all
-  end
-
-  def edit
-    @companies = Spree::Company.all
-    @departments = Spree::Department.where(company_id: @user.company_id)
-    @roles = Spree::Role.where(company_id: @user.company_id)
-  end
+  before_action :set_companies, only: [:new, :edit, :create, :update]
+  before_action :set_roles, only: [:new, :edit, :create, :update]
 
   def update
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
@@ -59,6 +51,8 @@ Spree::Admin::UsersController.class_eval do
     end
   end
 
+  private
+
   def user_params
     params.require(:user).permit(permitted_user_attributes |
                                   [:approved, :first_name, :last_name, :remarks, :phone,
@@ -69,4 +63,11 @@ Spree::Admin::UsersController.class_eval do
                                   bill_address_attributes: permitted_address_attributes])
   end
 
+  def set_companies
+    @companies = Spree::Company.all
+  end
+
+  def set_roles
+    @roles = Spree::Role.where(company_id: @user.company_id)
+  end
 end

@@ -11,6 +11,15 @@ section.p-t-5.p-b-5
 .row
   .col-sm-12
     hr
+
+.col-md-offset-4
+  .input-group.col-md-5.sort-by-panel.remaining-budget
+    = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
+  .input-group.col-md-6.sort-by-panel
+    span.input-group-addon
+      | Sort By
+    = sort_by
+
 - if "spree/products" == params[:controller] && @taxon || @taxonomies.present?
   - content_for :sidebar do
     div data-hook="homepage_sidebar_navigation"
@@ -26,6 +35,5 @@ section.p-t-5.p-b-5
       = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
 - else
   div data-hook="homepage_products"
-    - cache(cache_key_for_products) do
-      = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
+    = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
 = render partial: 'spree/products/modal_content'

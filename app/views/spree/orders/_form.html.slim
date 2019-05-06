@@ -1,12 +1,3 @@
-= render partial: 'spree/shared/error_messages', locals: { target: @order }
-table#cart-detail.table.presto-table.cart data-hook=""
-  thead
-    tr
-      th
-      th Product
-      th Description
-      th Quantity
-      th Price
+table#cart-detail.table.presto-table data-hook=""
   tbody#line_items data-hook=""
     = render partial: 'spree/orders/line_item', collection: order_form.object.line_items, locals: { order_form: order_form }
-  - if @order.adjustments.nonzero.exists? || @order.line_item_adjustments.nonzero.exists? || @order.shipment_adjustments.nonzero.exists? || @order.shipments.any?

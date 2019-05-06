@@ -16,6 +16,13 @@ Spree::Order.class_eval do
     remove_transition from: :delivery, to: :confirm
   end
 
+  # With method user_class, it can still use another extension or already-established User classes
+  if Spree.user_class
+    belongs_to :rejector, class_name: Spree.user_class.to_s, optional: true
+  else
+    belongs_to :rejector, optional: true
+  end
+
   # Update order state and approved by user
   def completed_by(user)
     approved_by(user)
@@ -47,7 +54,8 @@ Spree::Order.class_eval do
 
   # select all orders where users department same with current user department
   def self.department(current_user)
-    self.joins(:user).where('spree_users.department_id': current_user.department_id)
+    department_ids = Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
+    self.joins(:user).where('spree_users.department_id': department_ids)
   end
 
   def awaiting_approval?
@@ -64,6 +72,14 @@ Spree::Order.class_eval do
 
   def confirmed?
     state.eql? 'confirm'
+  end
+
+  def can_approved?
+    budget = self.user.department.budget
+    budget_used = self.user.department.budget_used
+    current_total = self.total
+
+    return true if budget - (current_total + budget_used) >= 0
   end
 
   # Override checkout_steps from spree file, remove "always append complete steps"

@@ -7,12 +7,13 @@ function getDepartments(company){
       if ( typeof(data) == "string"){ // but if string
         departments = JSON.parse( data );
       }
-      $("#user_department_id").empty();
-      $("#user_department_id").select2({
-        include_blank: false
+      $("select[department]").empty();
+      $("select[department]").select2({
+        include_blank: "None"
       });
-      $.each(departments, function(index,department){
-        $("#user_department_id").append($("<option></option>", {"value":department.id, "text":department.name}));
+      $("select[department]").append($("<option></option>", {"text": "None"}));
+      $.each(departments, function(index, department){
+        $("select[department]").append($("<option></option>", {"value": department.id, "text": department.name}));
       })
     },
     error:function( result ){ console.log(["error", result]); }
@@ -20,17 +21,16 @@ function getDepartments(company){
 }
 
 $(document).ready(function(){
-  departments = $('#user_department_id').html()
-  company_id = $("#company_id").val()
+  departments = $("select[department]").html()
+  company_id = $("select[company]").val()
   if(company_id){
     $(".checkbox_input[company="+company_id+"]").show()
   }
   else {
     $("#role").hide();
   }
-  $("#user_company_id").on('change', function () {
+  $("select[company]").on('change', function () {
     var val = this.value;
-    var user_id = $("#user_id").val();
     if (val){
       getDepartments(val);
       $("#role").show();
@@ -38,8 +38,8 @@ $(document).ready(function(){
       $(".checkbox_input:not([company="+val+"])").hide()
     }
     else {
-      $('#user_department_id').empty();
-      $("#user_department_id").select2({
+      $("select[department]").empty();
+      $("select[department]").select2({
         include_blank: false
       });
     }
