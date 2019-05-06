@@ -1,5 +1,5 @@
 - url = spree.product_path(product, taxon_id: taxon.try(:id))
-.col-md-3.col-sm-6.col-xs-6.product-list-item data-hook="products_list_item" id="product_#{product.id}" itemscope="" itemtype="https://schema.org/Product"
+.col-md-4.col-sm-4.masonry-item.col-xs-12.product-list-item data-hook="products_list_item" id="product_#{product.id}" itemscope="" itemtype="https://schema.org/Product"
   #product.panel.presto-panel-default.block
     = link_to '', '#', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'overlay none-style-links', onclick: "showProduct('products-load/#{product.slug}');"
     .panel-body.text-center.product-body
