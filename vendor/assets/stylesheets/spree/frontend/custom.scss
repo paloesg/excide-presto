@@ -80,22 +80,18 @@ h4.product-section-title {
   margin-bottom: 5px !important;
 }
 
-<<<<<<< HEAD
-.product-body > img {
-  min-height: 100px;
-=======
 .product-body .product-image {
   height: 8.5em;
   position: relative;
 }
 
 .product-image img {
+  min-height: 100px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
->>>>>>> master
 }
 
 body#login {
@@ -1188,7 +1184,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input .increase {
   font-size: 20px;
-<<<<<<< HEAD
   background-color: #c3502e;
   color: #fff;
   border-color: transparent;
@@ -1196,16 +1191,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   position: absolute;
   right: 25px;
   padding: 5px 20px;
-=======
-  background-color: #5f509b;
-  color: #fff;
-  border-radius: 0px 20px 20px 0px !important;
-  height: 33px;
-  position: absolute;
-  top: 0px;
-  right: 19px;
-  border: solid #5f509b;
->>>>>>> master
 }
 
 .quantity-input .decrease {
@@ -1235,11 +1220,9 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 40px;
   font-weight: bold;
   text-align: center;
-<<<<<<< HEAD
   -webkit-appearance: none;
   margin: 0;
   -moz-appearance: textfield;
-=======
   border-radius: 10px;
 }
 
@@ -1254,7 +1237,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 #modalContent .quantity-input input[type=number] {
   width: 93%;
->>>>>>> master
 }
 
 .content-popover {
@@ -1357,7 +1339,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 245px;
 }
 
-<<<<<<< HEAD
 //color
 .color-white {
   color: #fefefe;
@@ -1477,10 +1458,10 @@ input[type="submit"]{
 }
 .button-tabs .active .tab-title:hover {
   background: #d85b35;
-=======
+}
+
 .input-group {
   position: relative;
   display: inline-table;
   border-collapse: separate;
->>>>>>> master
 }
