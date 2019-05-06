@@ -14,6 +14,7 @@
                   tr
                     th Number
                     th Email
+                    th Department
                     th Status
                     th Total
                     th Updated At
@@ -22,6 +23,7 @@
                     tr
                       td = link_to o.number, edit_manage_order_path(o.number)
                       td #{o.user.email}
+                      td #{o.user.department&.name}
                       td
                         span class=("label label-#{o.state.downcase}") = Spree.t("order_state.#{((o.state.eql? 'complete') ? 'approved' : o.state).titleize}")
                         span.icon.icon-filter.filterable.js-add-filter data-ransack-field="q_state_eq" data-ransack-value="#{o.state}"

@@ -8,14 +8,5 @@ class Spree::Company < Spree::Base
   validates :name, presence: true
   validates :description, presence: true
 
-  after_create :create_manager
-
   accepts_nested_attributes_for :company_address
-
-  private
-
-  def create_manager
-    role = Spree::Role.new(name: 'manager', company_id: self.id)
-    role.save
-  end
 end

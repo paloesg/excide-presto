@@ -66,7 +66,6 @@ $(document).ready(function (){
       startTimerFunction("decrease", variant.val(), count);
     }
     if(qty.val() === "0"){
-      $("."+qty.attr("id")).val(currentValue + 1);
       $(".increase_decrease[variant="+variant.val()+"]").hide();
       $(".add_to_cart[variant="+variant.val()+"]").show();
       var addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
@@ -79,16 +78,9 @@ $(document).ready(function (){
   });
 
   $(document).on("click", ".addcart", function() {
-    stopTimerFunction();
-    var variant = $(this).closest(".add-cart").find(".variant");
-    var btn = $(this);
-    var count = (btn.data("click_add") || 0) + 1;
-    btn.data("click_add", count);
-    startTimerFunction("increase", variant.val(), count);
-
-    var qty = $(".quantity-input[id="+variant.val()+"]").find(".quantity");
-    $("."+qty.attr("id")).val(1);
+    $(this).parents(".add_to_cart").siblings(".increase_decrease").find(".increase").click();
+    var variant = $(this).closest(".add-cart").find(".variant")
     $(".add_to_cart[variant="+variant.val()+"]").hide();
-    $(".increase_decrease[variant="+variant.val()+"]").show();
+    $(".increase_decrease[variant="+variant.val()+"]").show()
   });
 });
