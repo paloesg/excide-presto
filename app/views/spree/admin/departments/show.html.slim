@@ -21,6 +21,7 @@
             = label_tag 'manager', for: "user_spree_role_#{user.id}", class:'checkbox_input'
               = hidden_field_tag 'user_id', user.id, class:'user-id'
               = hidden_field_tag 'company_id', @company.id, class:'company-id'
+              = hidden_field_tag 'department_id', @department.id, class:'department-id'
               = check_box_tag 'manager', 'yes', role_manager.present? ? true : false, id: "user_spree_role_#{user.id}", class:'role-check'
           td = button_link_to '', edit_admin_user_path(id: user.id), class: 'btn-sm btn-primary', icon: 'pencil', id: 'admin_edit_department'
 - else
