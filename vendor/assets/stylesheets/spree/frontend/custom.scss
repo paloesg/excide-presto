@@ -33,6 +33,13 @@ body {
   background-color: #f2f2f1;
 }
 
+body#product-details {
+  background-color: #ffffff;
+  .container {
+    padding: 50px 0;
+  }
+}
+
 body {
   &:not(#taxon_page):not(#cart):not(#login):not(#service) {
     #presto-header {
@@ -534,7 +541,7 @@ ul.social-media-list i:hover {
 }
 
 .presto-panel-footer {
-  padding: 10px 15px;
+  padding: 24px 14px 2px;
 }
 
 .presto-products-title {
@@ -1062,21 +1069,17 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 12px;
 }
 
-$font-size: 14px;
-$line-height: 1.4;
-$lines-to-show: 2;
-
 .truncated-text {
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
-  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  height: 39.2px; /* Fallback for non-webkit */
   margin: 0 auto;
-  font-size: $font-size;
-  line-height: $line-height;
+  font-size: 14px;
+  line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: $lines-to-show;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -1118,14 +1121,14 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: transparent;
+  background-color: #5f509b;
   color: #fff;
-  border-color: transparent;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 20px 20px 0px !important;
   height: 33px;
   position: absolute;
-  top: 1px;
-  right: 14px;
+  top: 0px;
+  right: 19px;
+  border: solid #5f509b;
 }
 
 .quantity-input .decrease {
@@ -1145,7 +1148,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 85%;
+  width: 80%;
   padding: .5rem;
   border: solid #5f509b;
   background-color: #5f509b;
@@ -1154,7 +1157,20 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 34px;
   font-weight: bold;
   text-align: center;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
+}
+
+#product-details .quantity-input .increase {
+  right: 70px;
+}
+
+#product-details .quantity-input input[type=number]{
+  width: 85%;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#modalContent .quantity-input input[type=number] {
+  width: 93%;
 }
 
 .content-popover {
