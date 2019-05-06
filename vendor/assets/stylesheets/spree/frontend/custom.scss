@@ -1141,12 +1141,11 @@ $lines-to-show: 2;
   max-width: 400px;
   height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
   margin: 0 auto;
-  font-size: 14px;
-  height: 40px;
-  line-height: 1.4;
+  font-size: $font-size;
+  line-height: $line-height;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: $lines-to-show;
   -webkit-box-orient: vertical;
 }
 
