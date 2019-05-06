@@ -5,7 +5,7 @@
 
 = render partial: 'spree/admin/shared/error_messages', locals: { target: @company }
 
-- if @managers.any?
+- if @managers&.any?
   table.table
     thead
       tr
