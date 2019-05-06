@@ -1131,11 +1131,15 @@ li.tmb-all, .vtmb {
   font-size: 12px;
 }
 
+$font-size: 14px;
+$line-height: 1.4;
+$lines-to-show: 2;
+
 .truncated-text {
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
-  // height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
   margin: 0 auto;
   font-size: 14px;
   height: 40px;
@@ -1211,7 +1215,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input input[type=number] {
   font-family: sans-serif;
-  width: 80%;
+  width: 85%;
   padding: .5rem;
   border: solid #c3502e;
   background-color: #c3502e;
@@ -1223,7 +1227,6 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   -webkit-appearance: none;
   margin: 0;
   -moz-appearance: textfield;
-  border-radius: 10px;
 }
 
 #product-details .quantity-input .increase {
