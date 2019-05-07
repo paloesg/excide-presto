@@ -1189,8 +1189,16 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   line-height: 39px;
 }
 
+.content-popover .content-error {
+  height: 40px;
+}
+
 .content-popover .error-text {
-  line-height: 39px
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .coupon-form {

@@ -93,7 +93,7 @@ en:
       unable_to_create: "Unable to create product sale."
       product_sale_not_deleted: "Unable to delete product sale."
     order:
-      budget_exceeded: "The item you are trying to add to cart will exceed your department budget."
+      budget_exceeded: "Department budget is exceeded."
   devise:
     mailer:
       new_password_instructions:

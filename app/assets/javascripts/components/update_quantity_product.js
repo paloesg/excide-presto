@@ -58,8 +58,13 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
       refreshProductPartial();
       refreshTaxonProductPartial(taxonId);
       $("#productContent").modal("hide");
-      popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 error-text'>Error adding to cart</div></div>");
-    } // failure callback for 422 and 50x errors
+      if (error === "Department budget is exceeded.") {
+        popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 content-error'><div class='error-text'>"+ error +"</div></div></div>");
+      }
+      else {
+        popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 content-error'><div class='error-text'>Error adding to cart</div></div></div>");
+      }
+    }
   );
 }
 
