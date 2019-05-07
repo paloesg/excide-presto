@@ -1,4 +1,4 @@
-function set_datetimepicker_format(){
+function setDatetimepickerFormat(){
   $('.datetime-picker').datetimepicker( {
     format: 'DD-MM-YYYY HH:mm',
     minDate: moment()

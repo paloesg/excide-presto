@@ -1,6 +1,9 @@
+/*global setDatetimepickerFormat*/
+/*eslint no-undef: "error"*/
+
 function showServiceForm(url, fields) {
   //Render form
-  formData = fields;
+  var formData = fields;
   //Change field name
   for (var i in formData) {
     if (formData[i].type == "file") {
@@ -12,11 +15,11 @@ function showServiceForm(url, fields) {
   }
 
   addLineBreaks = html => html.replace(new RegExp("><", "g"), ">\n<");
-  markup = $("<div/>");
+  var markup = $("<div/>");
   markup.formRender({ formData });
-  form_service = markup.formRender("html");
+  var form_service = markup.formRender("html");
 
   $( ".form-service" ).empty();
   $( ".form-service" ).append( form_service );
-  set_datetimepicker_format();
+  setDatetimepickerFormat();
 }
