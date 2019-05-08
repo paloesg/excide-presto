@@ -13,7 +13,17 @@ Spree::ProductsController.class_eval do
 
   def remaining_budget_partial
     respond_to do |format|
-        format.js
+      format.js
+    end
+  end
+
+  def product_partial
+    @searcher = build_searcher(params.merge(include_images: true))
+    @products = sort_products(@searcher.retrieve_products)
+    @products = @products.includes(:possible_promotions) if @products.respond_to?(:includes)
+    @taxonomies = Spree::Taxonomy.includes(root: :children)
+    respond_to do |format|
+      format.js
     end
   end
 

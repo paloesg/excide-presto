@@ -8,6 +8,18 @@ Spree::TaxonsController.class_eval do
     @taxonomies = Spree::Taxonomy.includes(root: :children)
   end
 
+  def taxon_product_partial
+    @taxon = Spree::Taxon.friendly.find(params[:id])
+    return unless @taxon
+
+    @searcher = build_searcher(params.merge(taxon: @taxon.id, include_images: true))
+    @products = sort_products(@searcher.retrieve_products, @taxon)
+    @taxonomies = Spree::Taxonomy.includes(root: :children)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def sort_products(products, taxon)
