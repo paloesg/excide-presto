@@ -20,22 +20,22 @@ $(document).on('turbolinks:load', function(){
     });
   }).on('show.bs.popover', function () {
     // Close all others popover before current popover show
-    // $('.popover').popover('hide');
+    $('.popover').popover('hide');
     // Clear timeout to prevent delay on mouseleave from closing new popover
     if (typeof closeOnLeave !== 'undefined') {
-      // clearTimeout(closeOnLeave)
+      clearTimeout(closeOnLeave)
     }
   }).on("mouseenter", function () {
     // Show current popover
     $(this).popover("show");
     $('.popover').on('mouseleave', function() {
-      // $(this).popover("hide");
+      $(this).popover("hide");
     })
   }).on("mouseleave", function () {
     // Close popover if not mouse hovering the trigger (Categories) or popover after delay
     closeOnLeave = setTimeout(function () {
       if (!$(".popover:hover").length) {
-        // $('.popover').popover("hide");
+        $('.popover').popover("hide");
       }
     }, 500)
   })
