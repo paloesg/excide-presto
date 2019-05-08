@@ -849,12 +849,24 @@ li.tmb-all, .vtmb {
   padding: 0px 0px 60px 0px;
 }
 
+.popover > .title {
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
 .popover.sub-categories {
   margin: 0 !important;
   border-radius: 0 !important;
   border: 0 !important;
   background-clip: unset;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 15px;
 }
 
 .popover.sub-categories > .popover-content {
@@ -862,7 +874,7 @@ li.tmb-all, .vtmb {
 }
 
 .popover.sub-categories > .popover-content > li > a {
-  color:#555 !important;
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {
