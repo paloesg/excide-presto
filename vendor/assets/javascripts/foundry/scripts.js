@@ -11,6 +11,21 @@ var mr_firstSectionHeight,
 $(document).on('turbolinks:load', function() {
     "use strict";
 
+    // After image is loaded run `initialize masonry`
+    var $img = $("img.icon-images"),
+        totalImg = $img.length;
+
+    var waitImgDone = function() {
+        totalImg--;
+        if (!totalImg) initializeMasonry();
+    };
+
+    $("img.icon-images").each(function() {
+        $(this)
+            .load(waitImgDone)
+            .error(waitImgDone);
+    });
+
     // Smooth scroll to inner links
         var innerLinks = $('a.inner-link');
 
