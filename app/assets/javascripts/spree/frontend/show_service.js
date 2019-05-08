@@ -17,9 +17,9 @@ function showServiceForm(url, fields) {
   addLineBreaks = html => html.replace(new RegExp("><", "g"), ">\n<");
   var markup = $("<div/>");
   markup.formRender({ formData });
-  var form_service = markup.formRender("html");
+  var formService = markup.formRender("html");
 
   $( ".form-service" ).empty();
-  $( ".form-service" ).append( form_service );
+  $( ".form-service" ).append( formService );
   setDatetimepickerFormat();
 }

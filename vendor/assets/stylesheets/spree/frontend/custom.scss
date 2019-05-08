@@ -1135,9 +1135,9 @@ li.tmb-all, .vtmb {
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 400px;
+  height: 39.2px; /* Fallback for non-webkit */
   margin: 0 auto;
   font-size: 14px;
-  height: 40px;
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1174,6 +1174,14 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   width: 100%;
 }
 
+.add-cart-modal {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}
+
 .quantity-input {
   position: relative;
   text-align: center;
@@ -1183,7 +1191,7 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
 
 .quantity-input .increase {
   font-size: 20px;
-  background-color: #c3502e;
+  background-color: transparent;
   color: #fff;
   border-color: transparent;
   height: 33px;
@@ -1200,8 +1208,19 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   height: 33px;
   position: absolute;
   top: 1px;
-  left: 25px;
   padding: 5px 20px;
+}
+
+.quantity-input-modal {
+  text-align: left;
+}
+
+.quantity-input-modal input[type=number] {
+  width: 100% !important;
+}
+
+.quantity-input-modal .increase {
+  right: 0;
 }
 
 .quantity-input .increase:hover, .quantity-input .decrease:hover {
