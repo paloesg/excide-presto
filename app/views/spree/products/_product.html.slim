@@ -3,7 +3,7 @@
   #product.panel.presto-panel-default.block.outer-title.text-center
     = link_to '', 'data-toggle': 'modal', 'data-target': '#productContent', class: 'overlay none-style-links', onclick: "showProduct('products-load/#{product.slug}');" do
       .panel-body.text-center.product-body
-        = product_image(product, itemprop: "image", class: 'product-thumb')
+        = small_image(product, itemprop: "image", class: 'product-thumb')
         - if product.sold_out?
           = render partial: 'spree/products/labels/sold_out'
         .title.presto-panel-footer.inner.text-center
