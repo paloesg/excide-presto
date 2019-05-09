@@ -5,7 +5,7 @@ module GeneratePdf
   end
 
   def logo
-    text "GOBBLER", size: 25, color: "d9d9d9"
+    text "EXCIDE", size: 25, color: "d9d9d9"
   end
 
   def company_details
@@ -77,8 +77,8 @@ module GeneratePdf
 
   def footer
     text "For questions concerning this invoice, please contact", align: :center, size: 10
-    text "+65 6285 0320, customercare@gobblerco.com", align: :center, size: 10
-    text "<u><link href='https://gobblerco.com'>gobblerco.com</link></u>", align: :center, size: 11, inline_format: true
+    text "+65 6352 2843, info@excide.co", align: :center, size: 10
+    text "<u><link href='https://presto.excide.co'>presto.excide.co</link></u>", align: :center, size: 11, inline_format: true
   end
 
   def horizontal_line_left

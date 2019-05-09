@@ -6,12 +6,9 @@
         a href="/"
           = image_tag 'excide-logo.png', class: 'logo', alt: 'Excide'
       - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
-        / Hidden search bar
-        .module.widget-handle.search-widget-handle.left.hidden
-          = render partial: 'spree/shared/nav_search'
-        .module.widget-handle.mobile-toggle.right.visible-sm.visible-xs
-          i.ti-menu
         .module-group.right
           = render partial: 'spree/shared/main_nav_bar'
+        .module.widget-handle.search-widget-handle.right.toggle-widget-handle
+          = render partial: 'spree/shared/nav_search'
       - else
         = render partial: 'spree/user_sessions/header'

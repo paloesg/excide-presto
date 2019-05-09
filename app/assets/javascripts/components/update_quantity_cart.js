@@ -67,7 +67,7 @@ $(document).ready(function (){
   $(document).on("click", ".delete_line_item", function() {
     var variant = $(this).closest("tr").find(".variant").val();
     var quantity = $(this).closest("tr").find(".line-item-quantity");
-    var value = parseInt(quantity.text())
+    var value = parseInt(quantity.text());
     var bodyId = $("#body_id").val();
     updateQuantityCart(bodyId, variant, -(value));
     quantity.text(0);
