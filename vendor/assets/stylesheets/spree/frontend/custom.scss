@@ -869,6 +869,10 @@ li.tmb-all, .vtmb {
   padding: 15px;
 }
 
+.popover.sub-categories > h3 {
+  border-bottom: 1px solid #ccc;
+}
+
 .popover.sub-categories > .popover-content {
   list-style-type:none;
 }
