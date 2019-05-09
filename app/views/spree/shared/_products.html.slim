@@ -10,7 +10,8 @@ div data-hook="products_search_results_heading"
       h6.search-results-title Search results for "#{params[:keywords]}"
 - if products.any?
   #products.row.masonry.fadeIn data-hook=""
-    = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon }
+    div class="#{@body_id == 'taxon_page' ? 'product-taxon-partial' : 'product-partial'} "
+      = render partial: 'spree/products/product', collection: products, locals: { taxon: @taxon }
 - if products.respond_to?(:total_pages)
   .text-center
     = paginate products, params: {current_store_id: nil}, theme: 'twitter-bootstrap-3'

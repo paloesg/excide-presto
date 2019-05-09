@@ -42,7 +42,11 @@ Rails.application.routes.draw do
       resources :companies do
         get '/get_departments', to: 'companies#get_departments', as: 'get_departments'
         #departments in company
-        resources :departments
+        resources :departments do
+          member do
+            get 'managers' => 'departments#managers'
+          end
+        end
         #roles in company
         resources :roles
         get '/roles/:id/users', to: 'roles#users', as: 'users_role'
@@ -61,6 +65,8 @@ Rails.application.routes.draw do
     get "/cart_partial" => 'orders#cart_partial', as: 'cart_partial'
     get "/reorder_partial/:id/:order_number" => 'orders#reorder_partial', as: 'reorder_partial'
     get "/remaining_budget_partial" => 'products#remaining_budget_partial', as: 'remaining_budget_partial'
+    get "/product_partial" => 'products#product_partial', as: 'product_partial'
+    get "/taxon_product_partial" => 'taxons#taxon_product_partial', as: 'taxon_product_partial'
   end
 
   namespace :manage do

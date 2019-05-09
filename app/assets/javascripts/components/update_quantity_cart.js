@@ -24,7 +24,7 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
     success: ( data ) => {
       if (bodyId === "cart") {
         if (itemText && typeText) {
-          popoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText +" "+typeText+"</div></div>");
+          popoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
         }
         refreshCartPartial();
       }
@@ -32,9 +32,14 @@ function updateQuantityCart(bodyId, variantId, quantity, itemText = null, typeTe
         refreshReorderPartial(orderId, orderNumber);
       }
     },
-    error: ( err ) => {
+    error: ( error ) => {
       if (bodyId === "cart"){
-        popoverContent("<div class='content-popover'>Error adding to cart</div>");
+        if (error.responseText === "Department budget is exceeded.") {
+          popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 content-error'><div class='error-text'>"+ error.responseText +"</div></div></div>");
+        }
+        else {
+          popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 content-error'><div class='error-text'>Error adding to cart</div></div></div>");
+        }
         refreshCartPartial();
       }
       else {

@@ -31,6 +31,7 @@
   div data-hook="taxon_services"
     = render partial: 'spree/shared/services', locals: { services: @services, taxon: @taxon }
 - else
+  = hidden_field_tag 'id', params[:id], class:"taxon-id"
   div data-hook="taxon_products"
     = render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon }
   = render partial: 'spree/products/modal_content'

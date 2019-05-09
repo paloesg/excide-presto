@@ -610,7 +610,7 @@ ul.social-media-list i:hover {
 }
 
 .presto-panel-footer {
-  padding: 10px 15px;
+  padding: 24px 14px 2px;
 }
 
 .presto-products-title {
@@ -858,6 +858,10 @@ li.tmb-all, .vtmb {
   letter-spacing: 2px;
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+.popover-content {
+  padding: 10px 0px 50px 0px;
 }
 
 .popover.sub-categories {
@@ -1267,9 +1271,19 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   color: #000000;
 }
 
-.content-popover .quantity {
+.content-popover .quantity-badge {
+  border-radius: 50%;
   width: 40px;
   height: 40px;
+  /* padding: 8px; */
+  background: #5f509b;
+  color: #ffcc4e;
+  text-align: center;
+  font: 18px Arial, sans-serif;
+  line-height: 39px;
+}
+
+.content-popover .error-badge {
   border-radius: 50%;
   font-size: 20px;
   color: #ffffff;
@@ -1277,6 +1291,26 @@ button.addcart-modal, .quantity-input-modal, .quantity-input-modal input[type=nu
   text-align: center;
   background: #dd715e;
   margin-bottom: 10px;
+  width: 40px;
+  height: 40px;
+  /* padding: 8px; */
+  background: #b33030;
+  color: #ffcc4e;
+  text-align: center;
+  font: 18px Arial, sans-serif;
+  line-height: 39px;
+}
+
+.content-popover .content-error {
+  height: 40px;
+}
+
+.content-popover .error-text {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 // Custom Popover
