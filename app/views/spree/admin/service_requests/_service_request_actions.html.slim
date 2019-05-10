@@ -1,0 +1,3 @@
+- content_for :page_actions do
+  - if can?(:fire, service_request)
+    = event_service_request_links(service_request, events)
