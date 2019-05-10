@@ -93,6 +93,8 @@ group :development do
 
   # Testing framework
   gem 'rspec-rails', '~> 3.8'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 end
 
 
