@@ -98,6 +98,11 @@ en:
     service_request_processing: "Service request processing"
     service_request_completed: "Service request completed"
     service_request_rejected: "Service request rejected"
+    service_request_status:
+      unread: "Unread"
+      completed: "Completed"
+      processing: "Processing"
+      rejected: "Rejected"
     processing: "Processing"
   devise:
     mailer:
