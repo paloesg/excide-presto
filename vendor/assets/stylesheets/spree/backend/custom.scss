@@ -48,6 +48,10 @@
   border-color: #e0e0e0;
 }
 
+.label-unread {
+  background-color: #808080;
+}
+
 .label-processing, .label-pending, .label-awaiting_return, .label-returned, .label-credit_owed, .label-balance_due, .label-backorder, .label-checkout, .label-cart, .label-address, .label-delivery, .label-payment, .label-confirm, .label-canceled, .label-void, .label-inactive, .label-notice, .label-partial, .label-awaiting_approval {
   background-color: #F8D053;
 }
