@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_032404) do
+ActiveRecord::Schema.define(version: 2019_05_09_090028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -776,6 +776,8 @@ ActiveRecord::Schema.define(version: 2019_05_02_032404) do
     t.string "service_name"
     t.string "status", default: "unread"
     t.integer "updated_by"
+    t.bigint "processed_by_id"
+    t.index ["processed_by_id"], name: "index_spree_service_requests_on_processed_by_id"
     t.index ["spree_user_id"], name: "index_spree_service_requests_on_spree_user_id"
   end
 
@@ -1244,4 +1246,5 @@ ActiveRecord::Schema.define(version: 2019_05_02_032404) do
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_service_requests", "spree_users"
+  add_foreign_key "spree_service_requests", "spree_users", column: "processed_by_id"
 end
