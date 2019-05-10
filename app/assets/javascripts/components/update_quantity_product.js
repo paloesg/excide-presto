@@ -1,5 +1,22 @@
-/*global PopoverContent*/
+/*global popoverContent SpreeAPI Spree*/
 /*eslint no-undef: "error"*/
+
+var getUrlParameter = (paramName) => {
+  let sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split("&");
+
+  let param = sURLVariables.map((q) => q.split("=")).filter((q) => q[0] === paramName)[0];
+
+  if (!param) {
+    return "undefined";
+  }
+  if (param && !param[1]) {
+     return true;
+  }
+  else {
+    return decodeURIComponent(param[1]);
+  }
+};
 
 function refreshRemainingBudgetPartial() {
   $.ajax({
@@ -7,7 +24,24 @@ function refreshRemainingBudgetPartial() {
   });
 }
 
+function refreshProductPartial() {
+  let sort = getUrlParameter("sort");
+  let page = getUrlParameter("page");
+  $.ajax({
+    url: "/product_partial?sort="+sort+"&page="+page
+  });
+}
+
+function refreshTaxonProductPartial(taxonId) {
+  let sort = getUrlParameter("sort");
+  let page = getUrlParameter("page");
+  $.ajax({
+    url: "/taxon_product_partial?id="+taxonId+"&sort="+sort+"&page="+page
+  });
+}
+
 function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
+  var taxonId = $(".taxon-id").val();
   SpreeAPI.Storefront.addToCart(
     variantId,
     quantity,
@@ -17,14 +51,20 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      var popover = new PopoverContent("<div class='content-popover'><div class='quantity col-md-2'>"+Math.abs(quantity)+"</div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
-      popover();
+      popoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
     function (error) {
-      alert(error);
-      location.reload();
-    } // failure callback for 422 and 50x errors
+      refreshProductPartial();
+      refreshTaxonProductPartial(taxonId);
+      $("#productContent").modal("hide");
+      if (error === "Department budget is exceeded.") {
+        popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 content-error'><div class='error-text'>"+ error +"</div></div></div>");
+      }
+      else {
+        popoverContent("<div class='content-popover'><div class='col-md-3'><div class='error-badge'>!</div></div><div class='col-md-9 content-error'><div class='error-text'>Error adding to cart</div></div></div>");
+      }
+    }
   );
 }
 
@@ -66,7 +106,6 @@ $(document).ready(function (){
       startTimerFunction("decrease", variant.val(), count);
     }
     if(qty.val() === "0"){
-      $("."+qty.attr("id")).val(currentValue + 1);
       $(".increase_decrease[variant="+variant.val()+"]").hide();
       $(".add_to_cart[variant="+variant.val()+"]").show();
       var addToCartButton = $(this).parents().siblings(".add_to_cart").find(".addcart");
@@ -79,16 +118,9 @@ $(document).ready(function (){
   });
 
   $(document).on("click", ".addcart", function() {
-    stopTimerFunction();
-    var variant = $(this).closest(".add-cart").find(".variant");
-    var btn = $(this);
-    var count = (btn.data("click_add") || 0) + 1;
-    btn.data("click_add", count);
-    startTimerFunction("increase", variant.val(), count);
-
-    var qty = $(".quantity-input[id="+variant.val()+"]").find(".quantity");
-    $("."+qty.attr("id")).val(1);
+    $(this).parents(".add_to_cart").siblings(".increase_decrease").find(".increase").click();
+    var variant = $(this).closest(".add-cart").find(".variant")
     $(".add_to_cart[variant="+variant.val()+"]").hide();
-    $(".increase_decrease[variant="+variant.val()+"]").show();
+    $(".increase_decrease[variant="+variant.val()+"]").show()
   });
 });

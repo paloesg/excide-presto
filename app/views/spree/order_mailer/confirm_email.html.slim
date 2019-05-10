@@ -1,0 +1,14 @@
+table.row.header
+  tr
+    td
+      p.lede
+        - if @manager.present?
+          = Spree.t('order_mailer.confirm_email.dear_manager')
+        - else
+          = Spree.t('order_mailer.confirm_email.dear_customer')
+      p
+        = Spree.t('order_mailer.confirm_email.instructions')
+      = render 'table_order', order: @order
+      p
+        = Spree.t('order_mailer.confirm_email.thanks')
+    td.expander

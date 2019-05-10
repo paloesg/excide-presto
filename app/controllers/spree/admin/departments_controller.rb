@@ -1,8 +1,8 @@
 module Spree
   module Admin
     class DepartmentsController < ResourceController
-      before_action :set_department, only: [:edit, :update, :show]
-      before_action :set_company, only: [:index, :new, :edit, :show]
+      before_action :set_department, only: [:edit, :update, :show, :managers]
+      before_action :set_company, only: [:index, :new, :edit, :show, :managers]
       before_action :set_departments, only: [:index]
 
       def index
@@ -32,6 +32,10 @@ module Spree
         else
           render :edit
         end
+      end
+
+      def managers
+        @managers = @department.roles.find_by(name: 'manager')&.users
       end
 
       private

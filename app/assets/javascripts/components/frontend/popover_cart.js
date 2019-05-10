@@ -1,4 +1,4 @@
-function PopoverContent(content){
+function popoverContent(content){
   $("[data-toggle='item-cart']").popover({
     html: true,
     content
