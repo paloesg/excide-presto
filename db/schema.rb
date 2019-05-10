@@ -775,7 +775,6 @@ ActiveRecord::Schema.define(version: 2019_05_09_090028) do
     t.datetime "updated_at", null: false
     t.string "service_name"
     t.string "status", default: "unread"
-    t.integer "updated_by"
     t.bigint "processed_by_id"
     t.index ["processed_by_id"], name: "index_spree_service_requests_on_processed_by_id"
     t.index ["spree_user_id"], name: "index_spree_service_requests_on_spree_user_id"

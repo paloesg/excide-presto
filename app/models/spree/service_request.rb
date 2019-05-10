@@ -27,10 +27,6 @@ class Spree::ServiceRequest < Spree::Base
     !processing? && !completed? && !rejected?
   end
 
-  def updated_by(user)
-    update_column(:updated_by, user.id)
-  end
-
   def process_by(user)
     update_column(:processed_by_id, user.id)
   end
