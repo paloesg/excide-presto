@@ -12,6 +12,10 @@
       tr
         th Created by
         td = Spree::User.find(@service_request.spree_user_id).email
+      - if @service_request.processed_by.present?
+        tr
+          th Processed by
+          td = @service_request.processed_by&.email
       - if @service_request.fields['text']
         - @service_request.fields['text'].each do |label, field|
           tr
