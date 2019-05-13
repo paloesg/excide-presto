@@ -1,39 +1,39 @@
-.panel.presto-panel-default
-  .panel-body
-    .col-md-12
-      h5.text-center
-        strong Remaining Department Budget
-      .lead.total-price.text-center = number_to_currency(spree_current_user.department&.temp_remaining_budget(@order) || 0)
-    .col-md-12
-      .col-md-8
-        h5= Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
-      .col-md-4
-        h5
+.mb24
+  h5.uppercase Remaining Budget
+  .lead.total-price.text-center = number_to_currency(spree_current_user.department&.temp_remaining_budget(@order) || 0)
+.mb24
+  h5.uppercase Your Order Total
+  table.table
+    tbody
+      tr
+        th scope="row"
+          = Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))
+        td
           strong= order_form.object.display_item_total
-    - if @order.line_item_adjustments.exists?
-      - @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
-        = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:promotion)
-    - @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments|
-      = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:tax)
-    - @order.shipments.each do |shipment|
-      - if shipment.shipping_method.present?
-        .col-md-8
-          h5
+      - if @order.line_item_adjustments.exists?
+        - @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments|
+          = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:promotion)
+      - @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments|
+        = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:tax)
+      - @order.shipments.each do |shipment|
+        - if shipment.shipping_method.present?
+        tr
+          th scope="row"
             = Spree.t(:shipping)
             | : #{shipment.shipping_method.name}
-        .col-md-4
-          h5
+          td
             strong= shipment.display_discounted_cost
-    - @order.adjustments.eligible.group_by(&:label).each do |label, adjustments|
-      = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
-    .col-md-12
-      - if Spree::Frontend::Config[:coupon_codes_enabled]
-        .col-md-12.coupon-form data-hook="coupon_code"
-          = order_form.text_field :coupon_code, placeholder: 'Enter Coupon Code'
-          = button_tag Spree.t(:coupon_code_apply), class: 'presto-btn btn-purple form-control'
-      h5.text-center
-        strong= Spree.t(:total)
-      .lead.total-price.text-center = order_form.object.display_total
-  .presto-panel-footer
-    = button_tag class: 'presto-btn btn-purple btn-block', id: 'checkout-link', name: 'checkout', disabled: (spree_current_user.department.budget.nil? || spree_current_user.department.remaining_budget < 0) do
-      = Spree.t(:checkout)
+      - @order.adjustments.eligible.group_by(&:label).each do |label, adjustments|
+        = render "spree/orders/adjustment_price", label: label, adjustments: adjustments, type: Spree.t(:adjustment)
+.mb24
+  - if Spree::Frontend::Config[:coupon_codes_enabled]
+    .col-md-12.coupon-form data-hook="coupon_code"
+      = order_form.text_field :coupon_code, placeholder: 'Enter Coupon Code', class: 'coupon text-center'
+      = button_tag Spree.t(:coupon_code_apply), class: 'submit'
+.mb24
+  h5.text-center
+    strong= Spree.t(:total)
+  .lead.total-price.text-center = order_form.object.display_total
+.mb24
+  = button_tag id: 'checkout-link', name: 'checkout', class: 'submit', disabled: (spree_current_user.department.budget.nil? || spree_current_user.department.remaining_budget < 0) do
+    = Spree.t(:checkout)

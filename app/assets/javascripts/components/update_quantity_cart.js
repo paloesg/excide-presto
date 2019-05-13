@@ -71,10 +71,11 @@ $(document).ready(function (){
 
   $(document).on("click", ".delete_line_item", function() {
     var variant = $(this).closest("tr").find(".variant").val();
-    var quantity = $(this).closest("tr").find(".line_item_quantity");
+    var quantity = $(this).closest("tr").find(".line-item-quantity");
+    var value = parseInt(quantity.text());
     var bodyId = $("#body_id").val();
-    updateQuantityCart(bodyId, variant, -(quantity.val()));
-    quantity.val(0);
+    updateQuantityCart(bodyId, variant, -(value));
+    quantity.text(0);
   });
 
   $(document).on("click", ".decrease-quantity,.increase-quantity", function() {
@@ -84,16 +85,16 @@ $(document).ready(function (){
     btn.data("click_count", count);
 
     var variant = $(this).closest(".number-quantity").find(".variant");
-    var qty = $(this).closest(".number-quantity").find(".line_item_quantity"),
-      currentValue = parseInt(qty.val()),
+    var qty = $(this).closest(".number-quantity").find(".line-item-quantity"),
+      currentValue = parseInt(qty.text()),
       isAdd = $(this).hasClass("increase-quantity");
     if(isAdd){
-      qty.val(currentValue + 1);
+      qty.text(currentValue + 1);
       startTimerFunction("increase", variant.val(), count);
     }
     else {
       if (currentValue - 1 !== -1) {
-        qty.val(currentValue - 1);
+        qty.text(currentValue - 1);
       }
       else {
         $(this).closest(".number-quantity").find("decrease-quantity").prop("disabled", true);

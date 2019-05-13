@@ -119,8 +119,8 @@ $(document).ready(function (){
 
   $(document).on("click", ".addcart", function() {
     $(this).parents(".add_to_cart").siblings(".increase_decrease").find(".increase").click();
-    var variant = $(this).closest(".add-cart").find(".variant")
+    var variant = $(this).closest(".add-cart").find(".variant");
     $(".add_to_cart[variant="+variant.val()+"]").hide();
-    $(".increase_decrease[variant="+variant.val()+"]").show()
+    $(".increase_decrease[variant="+variant.val()+"]").show();
   });
 });

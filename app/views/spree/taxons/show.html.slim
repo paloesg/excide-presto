@@ -1,24 +1,35 @@
 - @body_id = 'taxon_page'
 - if @taxon.parent.name != "Services"
-  .col-md-offset-4
-    .input-group.col-md-5.sort-by-panel.remaining-budget
-      = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
-    .input-group.col-md-6.sort-by-panel
-      span.input-group-addon
-        | Sort By
-      = sort_by
+  .row
+    .col-md-4.col-sm-4.masonry-item.col-xs-12
+      .remaining-budget
+        = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
+    .col-md-4.col-sm-4.masonry-item.col-xs-12
+      .select-option
+        i.ti-angle-down
+        = sort_by
+    .col-md-4.text-right
+      .input-lh
+        = page_entries_info @products
+  .row
+    .col-sm-12
+      hr
 - content_for :hero_image do
-  .jumbotron.jumbotron-fluid.hero-image style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}'); background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
-    .container.category-container
-      = spree_breadcrumbs(@taxon)
-      h1.hero-title= @taxon.name.html_safe
+  section.page-title.page-title-2.image-bg.overlay style="background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'}"
+    .background-image-holder.fadeIn style="background-image: url('#{main_app.url_for(@taxon.hero.try(:attachment)) if @taxon.hero}');background-color: #{@taxon.color ? @taxon.color : '#ffcc4e'};"
+      = image_tag(main_app.url_for(@taxon.hero.try(:attachment)), class: 'background-image', style: 'display: none;') if @taxon.hero
+    .container.m-t-0
+      .row
+        .col-md-6
+          h2.uppercase.mb8= @taxon.name.html_safe
+        .col-md-6.text-right
+          = spree_breadcrumbs(@taxon)
 - content_for :sidebar do
   div data-hook="taxon_sidebar_navigation"
     = render partial: 'spree/shared/taxonomies'
 - if @taxon.parent.name == "Services"
   div data-hook="taxon_services"
     = render partial: 'spree/shared/services', locals: { services: @services, taxon: @taxon }
-  = render partial: 'spree/services/modal_content'
 - else
   = hidden_field_tag 'id', params[:id], class:"taxon-id"
   div data-hook="taxon_products"

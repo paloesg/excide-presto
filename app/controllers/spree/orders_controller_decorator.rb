@@ -64,14 +64,14 @@ Spree::OrdersController.class_eval do
   def cart_partial
     @order = Spree::Order.find(current_order.id)
     respond_to do |format|
-        format.js
+      format.js
     end
   end
 
   def reorder_partial
     @order = Spree::Order.find_by(number: params[:order_number])
     respond_to do |format|
-        format.js
+      format.js
     end
   end
 

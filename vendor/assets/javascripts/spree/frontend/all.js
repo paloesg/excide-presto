@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_tree ../../foundry
 //= require accounting.min
 //= require spree/frontend
 //= require spree/frontend/component_function
