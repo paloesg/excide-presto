@@ -94,6 +94,19 @@ h4.product-section-title {
   transform: translate(-50%, -50%);
 }
 
+.taxon-image {
+  height: 280px;
+}
+
+.taxon-image img {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 body#login {
   background:#c3502e;
 }
@@ -807,6 +820,10 @@ li.tmb-all, .vtmb {
     top: 172px;
     font-size: 15px;
   }
+}
+
+.icon {
+  font-size: 14px !important;
 }
 
 .icon-list {
