@@ -4,15 +4,9 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *
  *= require spree/frontend
-
- *= require foundry/themify-icons.css
- *= require foundry/flexslider.css
- *= require foundry/lightbox.min.css
- *= require foundry/ytplayer.css
- *= require foundry/theme.css
- *= require foundry/custom.css
+ *= require spree/custom-frontend
  *= require bootstrap-datetimepicker
 
- *= require_self
  *= require_tree .
+ *= require_self
 */

@@ -7,15 +7,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require spree/backend
-//= require components/get_departments_by_company
-//= require components/update_manager_role
+//= require spree/custom-backend
+
+
 //= require form-builder/form-builder.min
 //= require form-builder/form-render.min
+
+//= require components/get_departments_by_company
+//= require components/update_manager_role
 //= require components/form_builder
 //= require components/override_purchase_order
-//= require spree/backend/shipments_delivered
-//= require spree/backend/admin_decorator
-//= require spree/backend/line_items_decorator
+
 
 //= require_tree .
 //= require spree/backend/spree_multi_domain
