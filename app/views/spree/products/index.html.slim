@@ -1,12 +1,19 @@
 - @body_id = 'product_index'
-
-.col-md-offset-4
-  .input-group.col-md-5.sort-by-panel.remaining-budget
-    = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
-  .input-group.col-md-6.sort-by-panel
-    span.input-group-addon
-      | Sort By
-    = sort_by
+section.p-t-5.p-b-5
+.row
+  .col-md-4.col-sm-4.masonry-item.col-xs-12
+    .remaining-budget
+      = render partial: 'spree/products/remaining_budget', locals: { current_order: current_order }
+  .col-md-4.col-sm-4.masonry-item.col-xs-12
+    .select-option
+      i.ti-angle-down
+      = sort_by
+  .col-md-4.text-right
+    .input-lh
+      = page_entries_info @products
+.row
+  .col-sm-12
+    hr
 
 - if "spree/products" == params[:controller] && @taxon || @taxonomies.present?
   - content_for :sidebar do

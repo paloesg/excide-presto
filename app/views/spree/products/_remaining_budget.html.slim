@@ -1,3 +1,5 @@
-span.input-group-addon
-  | Remaining Budget
-= text_field_tag :department_budget, number_to_currency(spree_current_user.department&.temp_remaining_budget(current_order) || 0), class: 'form-control department-budget', readonly: true
+.remaining-budget-row
+  .col-md-8
+    | Remaining Budget
+  .col-md-4.text-right
+    = number_to_currency(spree_current_user.department&.temp_remaining_budget(current_order) || 0)

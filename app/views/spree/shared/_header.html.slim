@@ -1,17 +1,14 @@
-#presto-header
-  div class="#{params[:controller] == 'spree/user_sessions' ? "navbar-login" : (params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations') ? "navbar-purple" : "navbar-inverse"} "
-    - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
-      .navbar-header
-        button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        #logo.navbar-brand
-          = logo
-      #navbar.navbar-collapse.collapse
-        = render partial: 'spree/shared/nav_search'
-        ul.nav.navbar-nav.navbar-right
+#presto-header.nav-container
+  a#top
+  nav data-fixed-at="50px"
+    .nav-bar
+      .module.left
+        a href="/"
+          = image_tag 'excide-logo.png', class: 'logo', alt: 'Excide'
+      - unless params[:controller] == 'spree/user_sessions' or params[:controller] == 'spree/user_passwords' or params[:controller] == 'spree/user_registrations'
+        .module-group.right
           = render partial: 'spree/shared/main_nav_bar'
-    - else
-      = render partial: 'spree/user_sessions/header'
+        .module.widget-handle.search-widget-handle.right.toggle-widget-handle
+          = render partial: 'spree/shared/nav_search'
+      - else
+        = render partial: 'spree/user_sessions/header'

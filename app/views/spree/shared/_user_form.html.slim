@@ -1,14 +1,9 @@
 = form_for Spree::User.new, :as => :spree_user, :url => spree.registration_path do |f|
   div data-hook="signup_inside_form"
     fieldset
-      .form-group
-        = f.text_field :first_name, :class => 'form-control', :placeholder => Spree.t(:first_name)
-      .form-group
-        = f.text_field :last_name, :class => 'form-control', :placeholder => Spree.t(:last_name)
-      .form-group
-        = f.email_field :email, :class => 'form-control', :placeholder => Spree.t(:email)
-      .form-group
-        = f.text_field :phone, :class => 'form-control', :placeholder => Spree.t(:phone)
-      .form-group
-        = f.text_field :remarks, :class => 'form-control', :placeholder => 'Company Name'
-    p= f.submit Spree.t(:submit), :class => 'presto-btn btn-lg btn-purple btn-block'
+      = f.text_field :first_name, :placeholder => Spree.t(:first_name)
+      = f.text_field :last_name, :placeholder => Spree.t(:last_name)
+      = f.email_field :email, :placeholder => Spree.t(:email)
+      = f.text_field :phone, :placeholder => Spree.t(:phone)
+      = f.text_field :remarks, :placeholder => 'Company Name'
+    p= f.submit Spree.t(:submit)

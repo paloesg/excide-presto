@@ -1,0 +1,19 @@
+meta charset="utf-8"
+meta content="IE=edge" http-equiv="X-UA-Compatible"
+meta content="width=device-width, initial-scale=1" name="viewport"
+= favicon_link_tag 'favicon.ico'
+= csrf_meta_tags
+title
+  - if content_for? :title
+    = yield :title
+  - else
+    = "Spree #{Spree.t('administration')}: "
+    = Spree.t(controller.controller_name, default: controller.controller_name.titleize)
+= stylesheet_link_tag 'spree/backend/all', media: :all
+= render 'spree/shared/paths'
+= javascript_include_tag 'spree/backend/all'
+= render "spree/admin/shared/translations"
+= javascript_tag do
+  == "var AUTH_TOKEN = #{form_authenticity_token.inspect};"
+  == "Spree.api_key = '#{try_spree_current_user.spree_api_key}';" if try_spree_current_user
+= yield :head

@@ -1,6 +1,5 @@
 - content_for :page_title do
   = Spree.t(:service_request)
-h1 Service Requests Listing
 
 - if @service_requests.any?
   table.table
@@ -8,6 +7,8 @@ h1 Service Requests Listing
       tr
         th User
         th Service
+        th Status
+        th Processed by
         th Created at
     tbody
       - @service_requests.each do |request|
@@ -19,6 +20,11 @@ h1 Service Requests Listing
               = link_to(request.service_name, admin_service_request_path(request.id))
             - else
               | -
+          td
+            - if request.status.present?
+              span class="label label-#{request.status}"
+                = Spree.t("service_request_status.#{request.status}")
+          td= request.processed_by&.email || "-"
           td
             = request.created_at.strftime("%d-%m-%Y %H:%M")
 - else
