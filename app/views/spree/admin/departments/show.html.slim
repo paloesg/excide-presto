@@ -14,7 +14,7 @@
         th Action
     tbody
       - @department.users.each do |user|
-        - role_manager = user.spree_roles.find_by(company_id: @company.id, name: "manager")
+        - role_manager = user.spree_roles.find_by(department_id: @department.id, company_id: @company.id, name: "manager")
         tr
           td = user.email
           td.role-form
