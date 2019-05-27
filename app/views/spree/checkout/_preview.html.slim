@@ -4,6 +4,6 @@
   .panel-body
     = render partial: 'spree/shared/order_details', locals: { order: @order }
 .well.text-right.form-buttons data-hook="buttons"
-  = submit_tag Spree.t(:confirm), class: 'presto-btn btn-lg btn-success primary'
+  = submit_tag Spree.t(:confirm)
   javascript:
     Spree.disableSaveOnClick();

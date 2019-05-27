@@ -14,7 +14,7 @@ html lang="#{I18n.locale}"
     div class="content #{'bg-login' if @body_id=='login'}" style="background-image: url(#{asset_path('login-page.jpg') if @body_id=='login'});"
       = render partial: 'spree/shared/header'
       = yield :hero_image
-      .container
+      .container.main-container
         .row data-hook=""
           = render partial: 'spree/shared/sidebar' if content_for? :sidebar
           #content class=("#{!content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9"}") data-hook=""

@@ -18,7 +18,7 @@
               = Spree.t(:use_billing_address)
           = render partial: 'spree/address/form', locals: { form: ship_form, address_type: 'shipping', address: @order.ship_address }
 .well.text-right.form-buttons data-hook="buttons"
-  = submit_tag Spree.t(:save_and_continue), class: 'presto-btn btn-lg btn-success'
+  = submit_tag Spree.t(:save_and_continue)
   '
   - if try_spree_current_user
     span.save-user-address-wrapper data-hook="save_user_address"

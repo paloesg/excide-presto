@@ -1,8 +1,17 @@
 - url = spree.service_path(service, taxon_id: taxon.try(:id))
 .col-md-3.col-sm-6.col-xs-6.service-list-item data-hook="services_list_item" id="service_#{service.id}" itemscope="" itemtype="https://schema.org/Service"
-  #service.panel.presto-panel-default.block
-    = link_to '', '#', 'data-toggle': 'modal', 'data-target': '#serviceContent', class: 'overlay none-style-links', onclick: "showServiceForm('services-load/#{service.id}', #{service.fields.to_s});"
-    .panel-body.text-center.service-body
-      = image_tag(main_app.url_for(service.icon ? service.icon.try(:attachment) : @taxon.icon ? @taxon.icon.try(:attachment) : 'no_icon.png'), class: 'img-responsive')
-      br
-      = content_tag(:span, truncate(service.name, length: 30), class: 'info presto-services-title', itemprop: "name", title: service.name)
+  .modal-container
+    = link_to '#', class:'btn-modal', onclick: "showServiceForm('services-load/#{service.id}', #{service.fields.to_s});"
+      .panel-body.text-center.service-body
+        = image_tag(main_app.url_for(service.icon ? service.icon.try(:attachment) : @taxon.icon ? @taxon.icon.try(:attachment) : 'no_icon.png'), class: 'img-responsive')
+        br
+        = content_tag(:span, truncate(service.name, length: 30), class: 'info presto-services-title', itemprop: "name", title: service.name)
+    .foundry_modal
+      h2= service.name
+      hr/
+      p.service-description= service.description
+      = form_tag service_requests_path, method: 'post', multipart: true do
+        = hidden_field_tag 'service_id', service.id
+        .form-service
+        .form-group.text-center.service-button-submit
+          = submit_tag 'Submit', class: 'submit'

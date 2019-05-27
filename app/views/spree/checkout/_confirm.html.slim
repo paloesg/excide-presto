@@ -7,7 +7,7 @@
   - if @order.using_store_credit?
     = button_tag Spree.t('store_credit.remove'), name: 'remove_store_credit', class: 'continue presto-btn'
   '
-  = submit_tag Spree.t(:place_order), class: 'presto-btn btn-lg btn-success'
+  = submit_tag Spree.t(:place_order)
   javascript:
     Spree.disableSaveOnClick();
 
