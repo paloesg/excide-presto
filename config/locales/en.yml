@@ -104,6 +104,7 @@ en:
       processing: "Processing"
       rejected: "Rejected"
     processing: "Processing"
+    quotation: "Quotation"
   devise:
     mailer:
       new_password_instructions:

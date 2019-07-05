@@ -77,6 +77,19 @@ Spree::OrdersController.class_eval do
 
   private
 
+  def accurate_title
+    if @order.present?
+      if @order.completed?
+        #i use string order and cannot use Spree.t(:order) because it will return another object
+        "Order #{@order.number}"
+      elsif @order.awaiting_approval?
+        "#{Spree.t(:quotation)} #{@order.number}"
+      else
+        Spree.t(:shopping_cart)
+      end
+    end
+  end
+
   def send_email_to_managers
     managers.each do |manager|
       Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later

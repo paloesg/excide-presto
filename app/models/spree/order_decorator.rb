@@ -74,6 +74,10 @@ Spree::Order.class_eval do
     state.eql? 'confirm'
   end
 
+  def completed?
+    state.eql? 'complete'
+  end
+
   def can_approved?
     budget = self.user.department.budget
     budget_used = self.user.department.budget_used
