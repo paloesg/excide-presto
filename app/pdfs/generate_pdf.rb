@@ -61,6 +61,11 @@ module GeneratePdf
     end
   end
 
+  def sub_total
+    move_down 10
+    text "#{Spree.t(:cart_subtotal, count: @order.line_items.sum(:quantity))}: #{@order.display_item_total}", size: 10, style: :bold, align: :right
+  end
+
   def tax
     if @order.all_adjustments.tax.exists?
       @order.all_adjustments.tax.group_by(&:label).each do |label, adjustments|
