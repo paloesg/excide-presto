@@ -8,4 +8,4 @@ p
   ' Approved by: #{@order.approver.email}
   = "(#{@order.approver.full_name})" if @order.approver.full_name.present?
 br
-= render 'footer'
+= render 'footer', order: @order
