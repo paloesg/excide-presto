@@ -126,4 +126,8 @@ Spree::Order.class_eval do
     Spree::OrderMailer.order_confirmation(id).deliver_later
     update_column(:confirmation_delivered, true)
   end
+
+  def order_or_quotation_text
+    self.completed? ? "Order" : "Quotation"
+  end
 end

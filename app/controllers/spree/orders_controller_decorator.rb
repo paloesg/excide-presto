@@ -8,7 +8,7 @@ Spree::OrdersController.class_eval do
     @order.update_columns(state: 'awaiting_approval', updated_at: Time.current)
     @order.deliver_order_confirmation_email
     send_email_to_managers
-    flash.notice = "Your order with order number #{@order.number}, is awaiting for approval."
+    flash.notice = "Your #{@order.order_or_quotation_text} with #{@order.order_or_quotation_text} number #{@order.number}, is awaiting for approval."
     redirect_to account_path
   end
 
@@ -80,10 +80,9 @@ Spree::OrdersController.class_eval do
   def accurate_title
     if @order.present?
       if @order.completed?
-        #i use string order and cannot use Spree.t(:order) because it will return another object
-        "Order #{@order.number}"
+        Spree.t(:order_number, number: @order.number)
       elsif @order.awaiting_approval?
-        "#{Spree.t(:quotation)} #{@order.number}"
+        Spree.t(:quotation_number, number: @order.number)
       else
         Spree.t(:shopping_cart)
       end
