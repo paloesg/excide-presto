@@ -46,7 +46,7 @@ Spree::CheckoutController.class_eval do
         else
           send_email_to_managers
           @order.deliver_order_confirmation_email
-          flash.notice = 'Your order is awaiting approval from your manager'
+          flash.notice = 'Your quotation is awaiting approval from your manager'
         end
         redirect_to completion_route
       else
