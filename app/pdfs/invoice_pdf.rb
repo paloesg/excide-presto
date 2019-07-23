@@ -20,6 +20,7 @@ class InvoicePdf < Prawn::Document
 
     # table order line items
     line_items
+    sub_total
     tax
     total_price
 
