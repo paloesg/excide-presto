@@ -35,14 +35,18 @@ en:
     order_state:
       awaiting_approval: 'Awaiting for Approval'
       rejected: 'Rejected'
-      preview: "Preview Order"
+      preview: "Preview Quotation"
       awaiting_approval: 'Awaiting Approval'
     order_mailer:
+      quotation_total: ! 'Quotation Total:'
       cancel_email:
-        subject: "order Rejected"
+        subject: "Quotation Rejected"
       confirm_email:
         dear_admin: "Dear Admin,"
         dear_manager: "Dear Manager,"
+        instructions: Please review and retain the following quotation information for your records.
+        quotation_summary: Quotation %{number} Summary
+        subject: Quotation Confirmation
     admin:
       tab:
         product_sales: "Product Sales"
@@ -104,6 +108,9 @@ en:
       processing: "Processing"
       rejected: "Rejected"
     processing: "Processing"
+    quotation_number: "Quotation %{number}"
+    quotation_summary: "Quotation Summary"
+    quotation_total: "Quotation Total"
   devise:
     mailer:
       new_password_instructions:

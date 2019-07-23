@@ -61,7 +61,7 @@ table#line-items.table data-hook="order_details"
     tr.warning.total
       td align="right" colspan="4"
         b
-          = Spree.t(:order_total)
+          = order.completed? ? Spree.t(:order_total) : Spree.t(:quotation_total)
           | :
       td.total
         span#order_total.lead.text-primary= order.display_total.to_html

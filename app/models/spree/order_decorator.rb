@@ -74,6 +74,10 @@ Spree::Order.class_eval do
     state.eql? 'confirm'
   end
 
+  def completed?
+    state.eql? 'complete'
+  end
+
   def can_approved?
     budget = self.user.department.budget
     budget_used = self.user.department.budget_used
@@ -121,5 +125,9 @@ Spree::Order.class_eval do
   def deliver_order_confirmation_email
     Spree::OrderMailer.order_confirmation(id).deliver_later
     update_column(:confirmation_delivered, true)
+  end
+
+  def order_or_quotation_text
+    self.completed? ? "Order" : "Quotation"
   end
 end
