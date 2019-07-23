@@ -13,7 +13,7 @@ Spree::OrderMailer.class_eval do
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
     @managers = Spree::Role.get_manager_by_department(@order.user)
     subject = (resend ? "[#{Spree.t(:resend).upcase}] " : '')
-    subject += "#{Spree::Store.current.name} | Your order ##{@order.number} is pending approval"
+    subject += "#{Spree::Store.current.name} | Your quotation ##{@order.number} is pending approval"
 
     mail(to: @order.email, from: from_address, subject: subject)
   end
@@ -22,7 +22,7 @@ Spree::OrderMailer.class_eval do
   def order_request_approval_manager(order, manager)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
     @manager = manager
-    subject = "#{Spree::Store.current.name} | Order ##{@order.number} requires your approval"
+    subject = "#{Spree::Store.current.name} | Quotation ##{@order.number} requires your approval"
 
     mail(to: @manager.email, from: from_address, subject: subject)
   end
@@ -40,7 +40,7 @@ Spree::OrderMailer.class_eval do
   def order_rejected(order, resend = false)
     @order = order.respond_to?(:id) ? order : Spree::Order.find(order)
     subject = (resend ? "[#{Spree.t(:resend).upcase}] " : '')
-    subject += "#{Spree::Store.current.name} | Your order ##{@order.number} has been rejected"
+    subject += "#{Spree::Store.current.name} | Your quotation ##{@order.number} has been rejected"
 
     mail(to: @order.email, from: from_address, subject: subject)
   end

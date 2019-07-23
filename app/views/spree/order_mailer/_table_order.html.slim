@@ -1,5 +1,5 @@
 p
-  = Spree.t('order_mailer.confirm_email.order_summary', number: @order.number)
+  = @order.completed? ? Spree.t('order_mailer.confirm_email.order_summary', number: @order.number) : Spree.t('order_mailer.confirm_email.quotation_summary', number: @order.number)
 table.container
   tr
     td.wrapper.last

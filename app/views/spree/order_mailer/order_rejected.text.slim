@@ -1,6 +1,6 @@
 p
   = Spree.t('order_mailer.confirm_email.dear_customer')
-p Order ##{@order.number} has been rejected.
+p Quotation ##{@order.number} has been rejected.
 p
   ' You can edit your order and submit it again:
   = link_to "Edit #{@order.number}", edit_rejected_url(@order.number)
@@ -9,4 +9,4 @@ p
   ' Rejected by : #{@order.rejector.email}
   = "(#{@order.rejector.full_name})" if @order.rejector.first_name.present?
 br
-= render 'footer'
+= render 'footer', order: @order
