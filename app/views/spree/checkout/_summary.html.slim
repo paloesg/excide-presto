@@ -1,10 +1,10 @@
 h3= Spree.t(:order_summary)
 table.table data-hook="order_summary"
   tbody
-    tr data-hook="item_total"
+    tr data-hook="subtotal"
       td
         strong
-          = Spree.t(:item_total)
+          = Spree.t(:subtotal)
           | :
       td
         strong= order.display_item_total.to_html
