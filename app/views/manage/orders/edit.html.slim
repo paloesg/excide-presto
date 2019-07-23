@@ -1,7 +1,7 @@
 .col-md-12
-  h1 Review order
+  h1 Review #{@order.order_or_quotation_text}
   .panel.panel-default
-    .panel-heading Order ##{@order.number} ― #{Spree.t("order_state.#{@order.state}").titleize}
+    .panel-heading #{@order.order_or_quotation_text} ##{@order.number} ― #{Spree.t("order_state.#{@order.state}").titleize}
     .panel-body
       .col-md-12
         .table-responsive
@@ -22,8 +22,8 @@
                   td = line_item.quantity
                   td = line_item.display_amount.to_html
     .panel-footer
-      ' Order Total:
+      ' #{@order.order_or_quotation_text} Total:
       strong #{@order.display_total}
   - if @order.state.eql? 'awaiting_approval'
-    = link_to 'Reject Order', reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-danger'
-    = link_to 'Approve Order', approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-success pull-right'
+    = link_to "Reject #{@order.order_or_quotation_text}", reject_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-danger'
+    = link_to "Approve #{@order.order_or_quotation_text}", approve_manage_order_path(order_id: @order.number), method: :post, class: 'btn btn-success pull-right'
