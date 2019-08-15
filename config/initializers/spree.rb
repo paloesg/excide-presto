@@ -14,7 +14,7 @@ Spree.config do |config|
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
   config.admin_interface_logo = "gobbler-logo-white.png"
-  config.logo = "gobbler-logo-white.png"
+  config.logo = "gobbler-logo-purple.png"
 end
 
 Spree.user_class = "Spree::User"

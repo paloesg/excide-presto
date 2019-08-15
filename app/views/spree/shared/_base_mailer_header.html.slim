@@ -1,0 +1,16 @@
+table.row.header
+  tr
+    td.center align="center" 
+      center
+        table.container
+          tr
+            td.wrapper.last
+              table.twelve.columns
+                tr
+                  td.twelve.sub-columns.last
+                    - if frontend_available?
+                      = link_to spree.root_url, class: 'template-label' do
+                        = image_tag "#{spree.root_url}#{Spree::Config.logo}", class: 'logo', alt: Spree::Store.current.name, title: Spree::Store.current.name
+                    - else
+                      = image_tag "#{spree.root_url}#{Spree::Config.logo}", class: 'logo', alt: Spree::Store.current.name, title: Spree::Store.current.name
+                  td.expander
