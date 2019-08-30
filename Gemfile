@@ -81,6 +81,11 @@ group :development, :test do
 
   # Manage env variables during development and testing
   gem 'dotenv-rails'
+
+  # Testing framework
+  gem 'rspec-rails', '~> 3.8'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 end
 
 group :development do
