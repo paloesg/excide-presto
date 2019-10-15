@@ -23,7 +23,6 @@ class Manage::OrdersController < Spree::BaseController
         Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
       end
       flash.notice = "Order ##{@order.number} has been approved."
-      GeneratePurchaseOrderJob.perform_later(@order)
       redirect_to manage_orders_path
     else
       flash[:error] = Spree.t('manager.order.budget_exceeded')

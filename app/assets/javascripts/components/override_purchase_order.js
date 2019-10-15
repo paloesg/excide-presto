@@ -1,6 +1,6 @@
 function overridePurchaseOrder(this_element){
   console.log($(this_element)[0].files[0]);
-  if (confirm('Are you sure you want to overwrite this purchase order file?')) {
+  if (confirm('Are you sure you want to upload this purchase order file?')) {
     var formData = new FormData();
     formData.append('attachment', $(this_element)[0].files[0]); 
     console.log("formData", formData)

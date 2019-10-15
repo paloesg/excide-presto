@@ -42,7 +42,6 @@ Spree::CheckoutController.class_eval do
             Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
           end
           flash.notice = 'Your order has been processed successfully'
-          GeneratePurchaseOrderJob.perform_later(@order)
         else
           send_email_to_managers
           @order.deliver_order_confirmation_email

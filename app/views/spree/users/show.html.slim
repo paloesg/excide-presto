@@ -47,9 +47,9 @@
                 .btn.presto-btn.btn-link = link_to main_app.url_for(order.purchase_order.attachment), target: :_blank
                   | View
                 '
-                .override-purchase-order-btn.btn.presto-btn.btn-warning
-                  span.glyphicon.glyphicon-cloud-upload
-                  = file_field_tag :attachment, multipart: true, class: 'attachment', onchange: "overridePurchaseOrder(this);", "order-number": order.number
+              .override-purchase-order-btn.btn.presto-btn.btn-warning
+                span.glyphicon.glyphicon-cloud-upload
+                = file_field_tag :attachment, multipart: true, class: 'attachment', onchange: "overridePurchaseOrder(this);", "order-number": order.number
             td
               - if order.delivery_order
                 .btn.presto-btn.btn-link = link_to main_app.url_for(order.delivery_order.attachment), target: :_blank
