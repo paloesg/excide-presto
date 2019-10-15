@@ -53,8 +53,14 @@ Spree::OrdersController.class_eval do
   def override_purchase_order
     order   = Spree::Order.find_by(number: params[:id])
     respond_to do |format|
-      if order.purchase_order.update(attachment: params[:attachment])
+      if order.purchase_order.present? and order.purchase_order.update(attachment: params[:attachment])
         format.js { render js: 'location.reload();' }
+      elsif order.purchase_order.blank?
+        if order.create_purchase_order(attachment: params[:attachment])
+          format.js { render js: 'location.reload();' }
+        else
+          format.js { render js: 'alert("Error create purchase order pdf file!")' }
+        end
       else
         format.js { render js: 'alert("Error update purchase order pdf file!")' }
       end
