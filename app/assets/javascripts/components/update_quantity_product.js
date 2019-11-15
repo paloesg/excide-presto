@@ -51,7 +51,6 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
         // update navbar cart, get total items in cart from 'data'
         return $("#link-to-cart").html(data);
       });
-      popoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
       refreshRemainingBudgetPartial();
     },
     function (error) {
@@ -68,19 +67,37 @@ function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
   );
 }
 
+function showPopoverCart(quantity){
+  var typeText = quantity > 0 ? "added" : "removed";
+  var itemText = Math.abs(quantity) <= 1 ? "item" : "items";
+  popoverContent("<div class='content-popover'><div class='col-md-4 col-md-offset-1'><div class='quantity-badge'>"+Math.abs(quantity)+"</div></div><div class='col-md-6'>"+itemText+" "+typeText+"</div></div>");
+}
+
 $(document).ready(function (){
+  var line_items = [];
   var updateData;
-  function startTimerFunction(type, variantId, quantity) {
+  function startTimerFunction(items) {
     $("[data-toggle='item-cart']").popover("destroy");
     updateData = setTimeout(function(){
-      var itemText = quantity <= 1 ? "item" : "items";
-      var typeText = type === "increase" ? "added" : "removed";
-      updateQuantity(variantId, type === "increase" ? quantity : -(quantity), itemText, typeText);
+      var time = 0;
+      var quantity_update = 0;
+      // Add delay every add to cart
+      $.each(items, function(index, item) {
+        setTimeout( function(){ updateQuantity(item.variant, item.quantity); }, time);
+        quantity_update += item.quantity;
+        time += 3000;        
+      })
+      // Show popover cart
+      if (quantity_update != 0) {
+        setTimeout( function(){ showPopoverCart(quantity_update); }, 3000);
+      }
+
+      line_items = [];
 
       $(".decrease").data("click_count", 0);
       $(".increase").data("click_count", 0);
       $(".addcart").data("click_add", 0);
-    }, 500);
+    }, 2000);
   }
 
   function stopTimerFunction() {
@@ -97,14 +114,37 @@ $(document).ready(function (){
     var qty = $(this).closest(".quantity-input").find(".quantity"),
       currentValue = parseInt(qty.val()),
       isAdd = $(this).hasClass("increase");
+    
+    var data = {};
+
     if(isAdd){
       $("."+qty.attr("id")).val(currentValue + 1);
-      startTimerFunction("increase", variant.val(), count);
+      data.variant = variant.val();
+      data.quantity = 1;      
     }
     else {
       $("."+qty.attr("id")).val(currentValue - 1);
-      startTimerFunction("decrease", variant.val(), count);
+      data.variant = variant.val();
+      data.quantity = - 1;      
     }
+
+    //update line items array
+    if (line_items.length > 0) {
+      var added = false;
+      $.map(line_items, function(line_item) {
+        if (line_item.variant == data.variant) {
+          line_item.quantity = line_item.quantity + data.quantity;
+          added = true;
+        }
+      })
+      if (!added) {
+        line_items.push(data);
+      } 
+    } else {
+      line_items.push(data);
+    }    
+    
+    startTimerFunction(line_items);
     if(qty.val() === "0"){
       $(".increase_decrease[variant="+variant.val()+"]").hide();
       $(".add_to_cart[variant="+variant.val()+"]").show();
