@@ -40,7 +40,7 @@ function refreshTaxonProductPartial(taxonId) {
   });
 }
 
-function updateQuantity(variantId, quantity, itemText = null, typeText = null) {
+function updateQuantity(variantId, quantity) {
   var taxonId = $(".taxon-id").val();
   SpreeAPI.Storefront.addToCart(
     variantId,
