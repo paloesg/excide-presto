@@ -30,7 +30,7 @@ Spree::Cart::AddItem.class_eval do
       line_item.quantity += quantity.to_i
     end
 
-    line_item_quantity = line_item&.quantity&.to_i || 0
+    line_item_quantity = line_item&.quantity.to_i || 0
     line_item_price = (line_item&.price || variant.product.price) * quantity
 
     #return error when budget is exceed
@@ -38,11 +38,16 @@ Spree::Cart::AddItem.class_eval do
     return failure(line_item) if exceed_budget?(order, line_item_price)
 
     line_item.target_shipment = options[:shipment] if options.key? :shipment
+
     return failure(line_item) unless line_item.save
+
+    line_item.reload.update_price
+
     ::Spree::TaxRate.adjust(order, [line_item.reload]) if line_item_created
 
     #remove item if quantity is 0
     line_item.destroy! if line_item.quantity == 0
+
     success(order: order, line_item: line_item, line_item_created: line_item_created, options: options)
 
   end
