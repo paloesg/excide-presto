@@ -40,7 +40,7 @@ function refreshTaxonProductPartial(taxonId) {
   });
 }
 
-function updateQuantity(variantId, quantity) {
+function updateQuantity(variantId, quantity) {  
   var taxonId = $(".taxon-id").val();
   SpreeAPI.Storefront.addToCart(
     variantId,
@@ -49,6 +49,14 @@ function updateQuantity(variantId, quantity) {
     function () {
       Spree.fetch_cart().done(function(data) {
         // update navbar cart, get total items in cart from 'data'
+        
+        setTimeout( function(){ 
+          // Enabled button when process update cart finish 
+          $('.decrease').prop("disabled", false);
+          $('.increase').prop("disabled", false);
+          $('.addcart').prop("disabled", false);
+        }, 5000);
+        
         return $("#link-to-cart").html(data);
       });
       refreshRemainingBudgetPartial();
@@ -78,26 +86,30 @@ $(document).ready(function (){
   var updateData;
   function startTimerFunction(items) {
     $("[data-toggle='item-cart']").popover("destroy");
-    updateData = setTimeout(function(){
+    updateData = setTimeout(function(){     
       var time = 0;
       var quantity_update = 0;
       // Add delay every add to cart
-      $.each(items, function(index, item) {
-        setTimeout( function(){ updateQuantity(item.variant, item.quantity); }, time);
+      $.each(items, function(index, item) {   
+        setTimeout( function(){    
+          // Disabled button when process update cart run          
+          $('.decrease').prop("disabled", true);
+          $('.increase').prop("disabled", true);
+          $('.addcart').prop("disabled", true); 
+          updateQuantity(item.variant, item.quantity);
+        }, time);        
         quantity_update += item.quantity;
-        time += 3000;        
+        time += 5000;    
       })
       // Show popover cart
       if (quantity_update != 0) {
         setTimeout( function(){ showPopoverCart(quantity_update); }, 3000);
       }
-
       line_items = [];
-
       $(".decrease").data("click_count", 0);
       $(".increase").data("click_count", 0);
       $(".addcart").data("click_add", 0);
-    }, 2000);
+    }, 5000);
   }
 
   function stopTimerFunction() {
