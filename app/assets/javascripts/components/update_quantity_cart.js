@@ -23,6 +23,10 @@ function updateQuantityCart(bodyId, variantId, quantity) {
     type: "post",
     success: ( data ) => {
       if (bodyId === "cart") {
+        // Enabled button when process update cart finish
+        $('.decrease-quantity').prop("disabled", false);
+        $('.increase-quantity').prop("disabled", false);
+        $('.delete_line_item').prop("disabled", false); 
         refreshCartPartial();
       }
       else {
@@ -53,6 +57,7 @@ function showPopoverCart(quantity){
 }
 
 $(document).ready(function (){
+  $('.loader').hide();
   var line_items = [];
   var updateData;
 
@@ -64,9 +69,15 @@ $(document).ready(function (){
       // Add delay every add to cart
       $.each(items, function(index, item) {
         var bodyId = $("#body_id").val();
-        setTimeout( function(){ updateQuantityCart(bodyId, item.variant, item.quantity); }, time);
+        setTimeout( function(){ 
+          // Disabled button when process update cart run          
+          $('.decrease-quantity').prop("disabled", true);
+          $('.increase-quantity').prop("disabled", true);
+          $('.delete_line_item').prop("disabled", true); 
+          updateQuantityCart(bodyId, item.variant, item.quantity);
+        }, time);
         quantity_update += item.quantity;
-        time += 3000;        
+        time += 5000;        
       })
       // Show popover cart
       if (quantity_update != 0) {
@@ -78,7 +89,7 @@ $(document).ready(function (){
       $(".decrease").data("click_count", 0);
       $(".increase").data("click_count", 0);
       $(".addcart").data("click_add", 0);
-    }, 2000);
+    }, 5000);
   }
 
   function stopTimerFunction() {
@@ -89,8 +100,9 @@ $(document).ready(function (){
     var variant = $(this).closest("tr").find(".variant").val();
     var quantity = $(this).closest("tr").find(".line_item_quantity");
     var bodyId = $("#body_id").val();
-    updateQuantityCart(bodyId, variant, -(quantity.val()));
-    setTimeout( function(){ showPopoverCart(-(quantity.val())); }, 3000);
+    var quantity_value = quantity.val();
+    setTimeout( function(){ showPopoverCart(-(quantity_value)); }, 3000);
+    updateQuantityCart(bodyId, variant, -(quantity_value));
     quantity.val(0);
   });
 
