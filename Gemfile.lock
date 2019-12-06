@@ -243,7 +243,7 @@ GEM
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
     public_suffix (3.0.3)
-    puma (3.12.1)
+    puma (3.12.2)
     rabl (0.13.1)
       activesupport (>= 2.3.14)
     rack (2.0.7)
@@ -479,7 +479,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   prawn
   prawn-table
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-attack
   rails (= 5.2.2)
   rollbar
