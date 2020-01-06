@@ -64,7 +64,7 @@ gem 'spree', '~> 4.0'
 gem 'spree_auth_devise', '~> 4.0'
 gem 'spree_gateway', '~> 3.6'
 gem 'spree_analytics_trackers'
-gem 'spree_multi_domain'
+gem 'spree_multi_domain', git: 'git@github.com:narch/spree-multi-domain.git'
 
 # Static pages
 gem 'high_voltage', '~> 3.1'
