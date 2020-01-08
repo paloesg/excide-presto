@@ -18,8 +18,8 @@ module Presto
         end
 
         # With method user_class, it can still use another extension or already-established User classes
-        if Spree.user_class
-          base.belongs_to :rejector, class_name: Spree.user_class.to_s, optional: true
+        if ::Spree.user_class
+          base.belongs_to :rejector, class_name: ::Spree.user_class.to_s, optional: true
         else
           base.belongs_to :rejector, optional: true
         end
@@ -58,7 +58,7 @@ module Presto
 
       # select all orders where users department same with current user department
       def self.department(current_user)
-        department_ids = Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
+        department_ids = ::Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
         self.joins(:user).where('spree_users.department_id': department_ids)
       end
 
@@ -123,9 +123,11 @@ module Presto
       end
 
       def deliver_order_confirmation_email
-        Spree::OrderMailer.order_confirmation(id).deliver_later
+        ::Spree::OrderMailer.order_confirmation(id).deliver_later
         update_column(:confirmation_delivered, true)
       end
     end
   end
 end
+
+::Spree::Order.prepend Presto::Spree::OrderDecorator

@@ -9,3 +9,5 @@ module Presto
     end
   end
 end
+
+::Spree::Store.prepend Presto::Spree::StoreDecorator

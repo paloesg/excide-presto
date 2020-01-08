@@ -67,7 +67,7 @@ module Presto
         return 'pending' if inventory_units.any? &:backordered?
         return 'shipped' if shipped?
         return 'delivered' if delivered?
-        order.paid? || Spree::Config[:auto_capture_on_dispatch] ? 'ready' : 'pending'
+        order.paid? || ::Spree::Config[:auto_capture_on_dispatch] ? 'ready' : 'pending'
       end
 
       def update!(order)
@@ -87,3 +87,5 @@ module Presto
     end
   end
 end
+
+::Spree::Shipment.prepend Presto::Spree::ShipmentDecorator

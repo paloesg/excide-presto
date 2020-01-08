@@ -9,3 +9,5 @@ module Presto
     end
   end
 end
+
+::Spree::Taxon.prepend Presto::Spree::TaxonDecorator

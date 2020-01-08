@@ -6,7 +6,7 @@ module Presto
       end
 
       def self.in_taxons_by_brands(taxon)
-        self.in_taxons(taxon.id).includes(:taxons).where(spree_taxons: {taxonomy_id: Spree::Taxonomy.find_by(name: 'Brands').id})
+        self.in_taxons(taxon.id).includes(:taxons).where(spree_taxons: {taxonomy_id: ::Spree::Taxonomy.find_by(name: 'Brands').id})
       end
 
       def sold_out?
@@ -14,7 +14,7 @@ module Presto
       end
 
       def sale(store_id = nil)
-        current_store_id = store_id ? store_id : Spree::Store.current.id
+        current_store_id = store_id ? store_id : ::Spree::Store.current.id
         product_sale = self.master.product_sales.find_by(store_id: current_store_id)
         product_sale.sale_price if product_sale
       end
@@ -22,3 +22,5 @@ module Presto
     end
   end
 end
+
+::Spree::Product.prepend Presto.Spree.ProductDecorator

@@ -32,3 +32,5 @@ module Presto
     end
   end
 end
+
+::Spree::OrderUpdater.prepend Presto::Spree::OrderUpdaterDecorator

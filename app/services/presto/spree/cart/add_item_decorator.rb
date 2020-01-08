@@ -3,13 +3,13 @@ module Presto
     module Cart
       module AddItemDecorator
         def self.prepended(base)
-          prepend Spree::ServiceModule::Base
+          prepend ::Spree::ServiceModule::Base
         end
 
         def call(order:, variant:, quantity: nil, options: {})
           ApplicationRecord.transaction do
             run :add_to_line_item
-            run Spree::Dependencies.cart_recalculate_service.constantize
+            run ::Spree::Dependencies.cart_recalculate_service.constantize
           end
           check_duplicate_line_items(order, variant)
         end
@@ -20,7 +20,7 @@ module Presto
           options ||= {}
           quantity ||= 1
 
-          line_item = Spree::Dependencies.line_item_by_variant_finder.constantize.new.execute(order: order, variant: variant, options: options)
+          line_item = ::Spree::Dependencies.line_item_by_variant_finder.constantize.new.execute(order: order, variant: variant, options: options)
 
           line_item_created = line_item.nil?
           if line_item.nil?
@@ -39,7 +39,7 @@ module Presto
           line_item_price = (line_item&.price || variant.product.price) * quantity
 
           #return error when budget is exceed
-          line_item.errors.add(:base, Spree.t('order.budget_exceeded')) if exceed_budget?(order, line_item_price)
+          line_item.errors.add(:base, ::Spree.t('order.budget_exceeded')) if exceed_budget?(order, line_item_price)
           return failure(line_item) if exceed_budget?(order, line_item_price)
 
           line_item.target_shipment = options[:shipment] if options.key? :shipment
@@ -65,7 +65,7 @@ module Presto
         # Check duplicate line items, if line items created with the same variants into order
         # delete other duplicate, keep first line item and update the quantity
         def check_duplicate_line_items(order, variant)
-          current_line_items = Spree::LineItem.where(order_id: order.id, variant_id: variant.id)
+          current_line_items = ::Spree::LineItem.where(order_id: order.id, variant_id: variant.id)
           quantity = current_line_items.sum(:quantity)
           if current_line_items.length > 1
             current_line_items.each do |duplicate_line_item|
@@ -78,3 +78,5 @@ module Presto
     end
   end
 end
+
+::Spree::Cart::AddItem.prepend Presto::Spree::Cart::AddItemDecorator
