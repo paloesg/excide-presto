@@ -1,7 +1,7 @@
 module Presto
   module Spree
     module Admin
-      module TaxonsController
+      module TaxonsControllerDecorator
         def update
           successful = @taxon.transaction do
             parent_id = params[:taxon][:parent_id]
@@ -48,3 +48,5 @@ module Presto
     end
   end
 end
+
+::Spree::Admin::TaxonsController.prepend Presto::Spree::Admin::TaxonsControllerDecorator

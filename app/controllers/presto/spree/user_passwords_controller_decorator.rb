@@ -1,8 +1,8 @@
 module Presto
   module Spree
-    module UserPasswordsController
+    module UserPasswordsControllerDecorator
       def self.prepended(base)
-        skip_before_action :require_login
+        base.skip_before_action :require_login
       end
 
       def create
@@ -19,3 +19,5 @@ module Presto
     end
   end
 end
+
+::Spree::UserPasswordsController.prepend Presto::Spree::UserPasswordsControllerDecorator

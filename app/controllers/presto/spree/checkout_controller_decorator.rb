@@ -1,11 +1,11 @@
 module Presto
   module Spree
-    module CheckoutController
+    module CheckoutControllerDecorator
       def before_delivery
         return if params[:order].present?
 
         packages = @order.shipments.map(&:to_package)
-        @differentiator = Spree::Stock::Differentiator.new(@order, packages)
+        @differentiator = ::Spree::Stock::Differentiator.new(@order, packages)
 
         #we select the shipping for the user
         @order.select_default_shipping
@@ -14,7 +14,7 @@ module Presto
         #default logic for finalizing unless he can't select payment_method
         if @order.completed?
           session[:order_id] = nil
-          flash.notice = Spree.t(:order_processed_successfully)
+          flash.notice = ::Spree.t(:order_processed_successfully)
           flash[:commerce_tracking] = "nothing special"
 
           return redirect_to completion_route
@@ -39,9 +39,9 @@ module Presto
             if (company_preapproved_limit.present? and company_preapproved_limit >= total_order_price) or managers.blank? or @order.user.has_spree_role? :manager
               @order.completed_by(@order.user)
               @order.update_with_updater!
-              Spree::OrderMailer.order_approved(@order.id).deliver_later
+              ::Spree::OrderMailer.order_approved(@order.id).deliver_later
               admins.each do |admin|
-                Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
+                ::Spree::OrderMailer.order_notify_admin(@order, admin).deliver_later
               end
               flash.notice = 'Your order has been processed successfully'
               GeneratePurchaseOrderJob.perform_later(@order)
@@ -63,16 +63,16 @@ module Presto
 
       def send_email_to_managers
         managers.each do |manager|
-          Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
+          ::Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
         end
       end
 
       def admins
-        Spree::Role.find_by_name('admin').users
+        ::Spree::Role.find_by_name('admin').users
       end
 
       def managers
-        managers = Spree::Role.get_manager_by_department(@order.user)
+        managers = ::Spree::Role.get_manager_by_department(@order.user)
       end
 
       def set_order
@@ -81,3 +81,5 @@ module Presto
     end
   end
 end
+
+::Spree::CheckoutController.prepend Presto::Spree::CheckoutControllerDecorator

@@ -1,10 +1,10 @@
 module Presto
   module Spree
     module Admin
-      module UsersController
+      module UsersControllerDecorator
         def self.prepended(base)
-          before_action :set_companies, only: [:new, :edit, :create, :update]
-          before_action :set_roles, only: [:new, :edit, :create, :update]
+          base.before_action :set_companies, only: [:new, :edit, :create, :update]
+          base.before_action :set_roles, only: [:new, :edit, :create, :update]
         end
 
         def update
@@ -18,7 +18,7 @@ module Presto
           end
 
           if @user.update_attributes(user_params)
-            flash[:success] = Spree.t(:account_updated)
+            flash[:success] = ::Spree.t(:account_updated)
             redirect_to edit_admin_user_path(@user)
           else
             render :edit
@@ -26,25 +26,25 @@ module Presto
         end
 
         def update_role
-          user = Spree::User.find(params[:user_id])
-          manager_in_company = Spree::Role.find_by(company_id: params[:company_id], name: "manager", department_id: params[:department_id])
+          user = ::Spree::User.find(params[:user_id])
+          manager_in_company = ::Spree::Role.find_by(company_id: params[:company_id], name: "manager", department_id: params[:department_id])
           if manager_in_company.present?
             if(params[:type_manager] == "set_manager")
-              new_manager = Spree::RoleUser.new(role_id: manager_in_company.id, user_id: params[:user_id])
+              new_manager = ::Spree::RoleUser.new(role_id: manager_in_company.id, user_id: params[:user_id])
               if new_manager.save
                 render json: {"success": "true"}.to_json
               else
                 render json: {"error": "true"}.to_json
               end
             else
-              user_manager = Spree::RoleUser.find_by(role_id: manager_in_company.id, user_id:params[:user_id])
+              user_manager = ::Spree::RoleUser.find_by(role_id: manager_in_company.id, user_id:params[:user_id])
               user_manager.destroy
             end
           else
-            new_role = Spree::Role.new(name: "manager", company_id: params[:company_id], department_id: params[:department_id])
+            new_role = ::Spree::Role.new(name: "manager", company_id: params[:company_id], department_id: params[:department_id])
             if new_role.save
               role_id = new_role.id
-              new_manager = Spree::RoleUser.new(role_id: role_id, user_id: params[:user_id])
+              new_manager = ::Spree::RoleUser.new(role_id: role_id, user_id: params[:user_id])
               if new_manager.save
                 render json: {"success": "true"}.to_json
               else
@@ -69,13 +69,15 @@ module Presto
         end
 
         def set_companies
-          @companies = Spree::Company.all
+          @companies = ::Spree::Company.all
         end
 
         def set_roles
-          @roles = Spree::Role.where(company_id: @user.company_id)
+          @roles = ::Spree::Role.where(company_id: @user.company_id)
         end
       end
     end
   end
 end
+
+::Spree::Admin::UsersController.prepend Presto::Spree::Admin::UsersControllerDecorator

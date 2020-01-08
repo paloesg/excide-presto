@@ -1,21 +1,21 @@
 module Presto
   module Spree
-    module UsersController
+    module UsersControllerDecorator
       def self.prepended(base)
-        prepend_before_action :load_object, only: [:show, :edit, :update, :password]
+        base.prepend_before_action :load_object, only: [:show, :edit, :update, :password]
       end
 
       def update
         if params[:user][:password].present?
           if params[:user][:password] == params[:user][:password_confirmation]
             if @user.update_attributes(user_params)
-              Spree::User.reset_password_by_token(params[:user])
-              if Spree::Auth::Config[:signout_after_password_change]
+              ::Spree::User.reset_password_by_token(params[:user])
+              if ::Spree::Auth::Config[:signout_after_password_change]
                 sign_in(@user, event: :authentication)
               else
                 bypass_sign_in(@user)
               end
-              redirect_to spree.account_url, notice: Spree.t(:account_updated)
+              redirect_to spree.account_url, notice: ::Spree.t(:account_updated)
             else
               render :edit
             end
@@ -25,7 +25,7 @@ module Presto
           end
         else
           if @user.update_attributes(user_params)
-            redirect_to spree.account_url, notice: Spree.t(:account_updated)
+            redirect_to spree.account_url, notice: ::Spree.t(:account_updated)
           else
             render :edit
           end
@@ -38,3 +38,5 @@ module Presto
     end
   end
 end
+
+::Spree::UsersController.prepend Presto::Spree::UsersControllerDecorator

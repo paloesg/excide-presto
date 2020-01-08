@@ -1,8 +1,8 @@
 module Presto
   module Spree
-    module OrdersController
+    module OrdersControllerDecorator
       def self.prepended(base)
-        before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
+        base.before_action :rejected_order, only: [:edit_rejected, :reorder_rejected]
       end
 
       def edit_rejected
@@ -17,8 +17,8 @@ module Presto
       end
 
       def populate
-        order = Spree::Order.find_by(number: params[:order_number]) || current_order(create_order_if_necessary: true)
-        variant  = Spree::Variant.find(params[:variant_id])
+        order = ::Spree::Order.find_by(number: params[:order_number]) || current_order(create_order_if_necessary: true)
+        variant  = ::Spree::Variant.find(params[:variant_id])
         quantity = params[:quantity].to_i
         options  = params[:options] || {}
 
@@ -39,7 +39,7 @@ module Presto
             error = e.record.errors.full_messages.join(', ')
           end
         else
-          error = Spree.t(:please_enter_reasonable_quantity)
+          error = ::Spree.t(:please_enter_reasonable_quantity)
         end
 
         if error
@@ -55,7 +55,7 @@ module Presto
       end
 
       def override_purchase_order
-        order   = Spree::Order.find_by(number: params[:id])
+        order   = ::Spree::Order.find_by(number: params[:id])
         respond_to do |format|
           if order.purchase_order.update(attachment: params[:attachment])
             format.js { render js: 'location.reload();' }
@@ -66,14 +66,14 @@ module Presto
       end
 
       def cart_partial
-        @order = Spree::Order.find(current_order.id)
+        @order = ::Spree::Order.find(current_order.id)
         respond_to do |format|
           format.js
         end
       end
 
       def reorder_partial
-        @order = Spree::Order.find_by(number: params[:order_number])
+        @order = ::Spree::Order.find_by(number: params[:order_number])
         respond_to do |format|
           format.js
         end
@@ -83,18 +83,20 @@ module Presto
 
       def send_email_to_managers
         managers.each do |manager|
-          Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
+          ::Spree::OrderMailer.order_request_approval_manager(@order, manager).deliver_later
         end
       end
 
       def managers
-        managers = Spree::Role.get_manager_by_department(@order.user)
+        managers = ::Spree::Role.get_manager_by_department(@order.user)
       end
 
       def rejected_order
-        @order = Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
+        @order = ::Spree::Order.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])
       end
 
     end
   end
 end
+
+::Spree::OrdersController.prepend Presto::Spree::OrdersControllerDecorator

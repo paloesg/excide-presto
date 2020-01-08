@@ -2,9 +2,9 @@ module Presto
   module Spree
     module Api
       module V1
-        module ShipmentsController
+        module ShipmentsControllerDecorator
           def self.prepended(base)
-            before_action :find_and_update_shipment, only: [:ship, :delivery, :ready, :add, :remove]
+            base.before_action :find_and_update_shipment, only: [:ship, :delivery, :ready, :add, :remove]
           end
 
           def delivery
@@ -29,3 +29,5 @@ module Presto
     end
   end
 end
+
+::Spree::Api::V1::ShipmentsController.prepend Presto::Spree::Api::V1::ShipmentsControllerDecorator

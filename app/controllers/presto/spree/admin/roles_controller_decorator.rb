@@ -1,16 +1,16 @@
 module Presto
   module Spree
     module Admin
-      module RolesController
+      module RolesControllerDecorator
         def self.prepended(base)
-          before_action :set_companies, only: [:index, :new, :edit]
-          before_action :set_company, only: [:index, :new, :edit, :users]
-          before_action :set_roles, only: [:index]
-          before_action :set_role, only: [:edit, :show, :users]
+          base.before_action :set_companies, only: [:index, :new, :edit]
+          base.before_action :set_company, only: [:index, :new, :edit, :users]
+          base.before_action :set_roles, only: [:index]
+          base.before_action :set_role, only: [:edit, :show, :users]
         end
 
         def create
-          @role = Spree::Role.new(role_params)
+          @role = ::Spree::Role.new(role_params)
           if @role.save
             flash[:success] = flash_message_for(@role, :successfully_created)
             if params[:role][:company_id].present?
@@ -26,7 +26,7 @@ module Presto
 
         def update
           if @role.update_attributes(role_params)
-            flash[:success] = Spree.t(:role_updated)
+            flash[:success] = ::Spree.t(:role_updated)
             if params[:role][:company_id].present?
               redirect_to spree.admin_company_roles_path(@role.company)
             else
@@ -50,30 +50,32 @@ module Presto
 
           def set_companies
             if params[:company_id].present?
-              @companies = Spree::Company.where(company_id: params[:company_id])
+              @companies = ::Spree::Company.where(company_id: params[:company_id])
             else
-              @companies = Spree::Company.all
+              @companies = ::Spree::Company.all
             end
           end
 
           def set_company
             if params[:company_id].present?
-              @company = Spree::Company.find(params[:company_id])
+              @company = ::Spree::Company.find(params[:company_id])
             end
           end
 
           def set_roles
             if params[:company_id].present?
-              @roles = Spree::Role.where(company_id: params[:company_id]).where.not(department_id: nil)
+              @roles = ::Spree::Role.where(company_id: params[:company_id]).where.not(department_id: nil)
             else
-              @roles = Spree::Role.all
+              @roles = ::Spree::Role.all
             end
           end
 
           def set_role
-            @role = Spree::Role.find(params[:id])
+            @role = ::Spree::Role.find(params[:id])
           end
       end
     end
   end
 end
+
+::Spree::Admin::RolesController.prepend Presto::Spree::Admin::RolesControllerDecorator

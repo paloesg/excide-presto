@@ -1,9 +1,9 @@
 module Presto
   module Spree
     module Admin
-      module StoresController
+      module StoresControllerDecorator
         def self.prepended(base)
-          before_action :set_companies
+          base.before_action :set_companies
         end
 
         def new
@@ -14,10 +14,12 @@ module Presto
 
         private
         def set_companies
-          @companies = Spree::Company.all
+          @companies = ::Spree::Company.all
         end
 
       end
     end
   end
 end
+
+::Spree::Admin::StoresController.prepend Presto::Spree::Admin::StoresControllerDecorator

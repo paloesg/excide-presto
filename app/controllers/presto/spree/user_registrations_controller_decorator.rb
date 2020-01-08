@@ -1,8 +1,8 @@
 module Presto
   module Spree
-    module UserRegistrationsController
+    module UserRegistrationsControllerDecorator
       def self.prepended(base)
-        skip_before_action :require_login
+        base.skip_before_action :require_login
       end
 
       def create
@@ -11,7 +11,7 @@ module Presto
 
         yield resource if block_given?
         if resource_saved
-          admin_users = Spree::Role.find_by_name('admin').users
+          admin_users = ::Spree::Role.find_by_name('admin').users
           admin_users.each do |admin|
             UserMailer.registration_email(admin, @user).deliver_later
           end
@@ -38,3 +38,5 @@ module Presto
     end
   end
 end
+
+::Spree::UserRegistrationsController.prepend Presto::Spree::UserRegistrationsControllerDecorator

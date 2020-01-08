@@ -1,9 +1,11 @@
 module Presto
   module Spree
-    module UserSessionsController
+    module UserSessionsControllerDecorator
       def self.prepended(base)
-        skip_before_action :require_login
+        base.skip_before_action :require_login
       end
     end
   end
 end
+
+::Spree::UserSessionsController.prepend Presto::Spree::UserSessionsControllerDecorator

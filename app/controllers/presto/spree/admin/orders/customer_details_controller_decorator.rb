@@ -2,9 +2,9 @@ module Presto
   module Spree
     module Admin
       module Orders
-        module CustomerDetailsController
+        module CustomerDetailsControllerDecorator
           def self.prepended(base)
-            after_action :generate_purchase_order, only: :update
+            base.after_action :generate_purchase_order, only: :update
           end
 
           def generate_purchase_order
@@ -15,3 +15,5 @@ module Presto
     end
   end
 end
+
+::Spree::Admin::Orders::CustomerDetailsController Presto::Spree::Admin:::Orders::CustomerDetailsControllerDecorator

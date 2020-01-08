@@ -3,9 +3,9 @@ module Presto
     module Api
       module V2
         module Storefront
-          module CartController
+          module CartControllerDecorator
             def self.prepended(base)
-              before_action :ensure_order, except: [:create, :add_item]
+              base.before_action :ensure_order, except: [:create, :add_item]
             end
 
             def add_item
@@ -21,7 +21,7 @@ module Presto
               order   = spree_current_order if spree_current_order.present?
               order ||= create_service.call(order_params).value
 
-              variant = Spree::Variant.find(params[:variant_id])
+              variant = ::Spree::Variant.find(params[:variant_id])
 
               spree_authorize! :update, spree_current_order, order_token
               spree_authorize! :show, variant
@@ -49,3 +49,5 @@ module Presto
     end
   end
 end
+
+::Spree::Api::V2::Storefront::CartController.prepend Presto::Spree::Api::V2::Storefront::CartControllerDecorator
