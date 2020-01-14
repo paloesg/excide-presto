@@ -7,14 +7,14 @@ module Presto
         base.has_one :invoice, as: :viewable, dependent: :destroy, class_name: 'Spree::Invoice'
 
         base.checkout_flow do
-          base.go_to_state :address
-          base.go_to_state :delivery
-          base.go_to_state :preview
-          base.go_to_state :confirm, if: ->(order) { order.confirmation_required? }
-          base.go_to_state :awaiting_approval
-          base.go_to_state :rejected
-          base.go_to_state :complete
-          base.remove_transition from: :delivery, to: :confirm
+          go_to_state :address
+          go_to_state :delivery
+          go_to_state :preview
+          go_to_state :confirm, if: ->(order) { order.confirmation_required? }
+          go_to_state :awaiting_approval
+          go_to_state :rejected
+          go_to_state :complete
+          remove_transition from: :delivery, to: :confirm
         end
 
         # With method user_class, it can still use another extension or already-established User classes
@@ -58,7 +58,7 @@ module Presto
 
       # select all orders where users department same with current user department
       def self.department(current_user)
-        department_ids = ::Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
+        department_ids = Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
         self.joins(:user).where('spree_users.department_id': department_ids)
       end
 
@@ -123,11 +123,9 @@ module Presto
       end
 
       def deliver_order_confirmation_email
-        ::Spree::OrderMailer.order_confirmation(id).deliver_later
+        Spree::OrderMailer.order_confirmation(id).deliver_later
         update_column(:confirmation_delivered, true)
       end
     end
   end
 end
-
-::Spree::Order.prepend Presto::Spree::OrderDecorator

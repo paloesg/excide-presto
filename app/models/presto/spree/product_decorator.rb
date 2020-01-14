@@ -23,4 +23,4 @@ module Presto
   end
 end
 
-::Spree::Product.prepend Presto.Spree.ProductDecorator
+::Spree::Product.prepend Presto::Spree::ProductDecorator

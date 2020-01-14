@@ -13,40 +13,40 @@ module Presto
 
         # shipment state machine (see http://github.com/pluginaweek/state_machine/tree/master for details)
         base.state_machine initial: :pending, use_transactions: false do
-          base.event :ready do
-            base.transition from: :pending, to: :ready, if: lambda { |shipment|
+          event :ready do
+            transition from: :pending, to: :ready, if: lambda { |shipment|
               # Fix for #2040
               shipment.determine_state(shipment.order) == 'ready'
             }
           end
 
-          base.event :pend do
+          event :pend do
             transition from: :ready, to: :pending
           end
 
-          base.event :ship do
+          event :ship do
             transition from: %i(ready canceled), to: :shipped
           end
 
-          base.event :delivery do
+          event :delivery do
             transition from: :shipped, to: :delivered
           end
           # after_transition to: :delivered, do: :after_ship
 
-          base.event :cancel do
+          event :cancel do
             transition to: :canceled, from: %i(pending ready)
           end
-          base.after_transition to: :canceled, do: :after_cancel
+          after_transition to: :canceled, do: :after_cancel
 
-          base.event :resume do
+          event :resume do
             transition from: :canceled, to: :ready, if: lambda { |shipment|
               shipment.determine_state(shipment.order) == 'ready'
             }
             transition from: :canceled, to: :pending
           end
-          base.after_transition from: :canceled, to: %i(pending ready shipped delivered), do: :after_resume
+          after_transition from: :canceled, to: %i(pending ready shipped delivered), do: :after_resume
 
-          base.after_transition do |shipment, transition|
+          after_transition do |shipment, transition|
             shipment.state_changes.create!(
               previous_state: transition.from,
               next_state:     transition.to,

@@ -16,4 +16,4 @@ module Presto
   end
 end
 
-::Spree::Admin::Orders::CustomerDetailsController Presto::Spree::Admin:::Orders::CustomerDetailsControllerDecorator
+::Spree::Admin::Orders::CustomerDetailsController.prepend Presto::Spree::Admin::Orders::CustomerDetailsControllerDecorator

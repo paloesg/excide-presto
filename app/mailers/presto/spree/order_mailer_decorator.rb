@@ -12,7 +12,7 @@ module Presto
 
       # Send email to user who placed the order with the details of order.
       def order_confirmation(order, resend = false)
-        @order = order.respond_to?(:id) ? order :: ::Spree::Order.find(order)
+        @order = order.respond_to?(:id) ? order : ::Spree::Order.find(order)
         @managers = ::Spree::Role.get_manager_by_department(@order.user)
         subject = (resend ? "[#{::Spree.t(:resend).upcase}] " : '')
         subject += "#{::Spree::Store.current.name} | Your order ##{@order.number} is pending approval"
