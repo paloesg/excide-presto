@@ -1,10 +1,6 @@
 module Presto
   module Spree
     module UserRegistrationsControllerDecorator
-      def self.prepended(base)
-        base.skip_before_action :require_login
-      end
-
       def create
         @user = build_resource(spree_user_params)
         resource_saved = resource.save

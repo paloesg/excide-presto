@@ -1,10 +1,6 @@
 module Presto
   module Spree
     module UserPasswordsControllerDecorator
-      def self.prepended(base)
-        base.skip_before_action :require_login
-      end
-
       def create
         self.resource = resource_class.send_reset_password_instructions(params[resource_name])
 
