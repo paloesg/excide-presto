@@ -129,3 +129,5 @@ module Presto
     end
   end
 end
+
+::Spree::Order.prepend Presto::Spree::OrderDecorator
