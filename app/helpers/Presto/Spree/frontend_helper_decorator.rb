@@ -6,7 +6,7 @@ module Presto
         items = states.each_with_index.map do |state, i|
           #remove unused tab in checkout page
           next if state == 'delivery' || state == 'rejected' || state == 'complete'
-          text = Spree.t("order_state.#{state}").titleize
+          text = ::Spree.t("order_state.#{state}").titleize
           text.prepend("#{i.succ}. ") if numbers
 
           css_classes = ['nav-item']
@@ -35,13 +35,13 @@ module Presto
       def spree_breadcrumbs(taxon, separator = '&nbsp;')
         return '' if current_page?('/') || taxon.nil?
         separator = raw(separator)
-        crumbs = [content_tag(:li, content_tag(:span, link_to(content_tag(:span, Spree.t(:home), itemprop: 'name'), spree.root_path, itemprop: 'url') + separator, itemprop: 'item'), itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')]
+        crumbs = [content_tag(:li, content_tag(:span, link_to(content_tag(:span, ::Spree.t(:home), itemprop: 'name'), spree.root_path, itemprop: 'url') + separator, itemprop: 'item'), itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')]
         if taxon
-          crumbs << content_tag(:li, content_tag(:span, link_to(content_tag(:span, Spree.t(:products), itemprop: 'name'), spree.products_path, itemprop: 'url') + separator, itemprop: 'item'), itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
+          crumbs << content_tag(:li, content_tag(:span, link_to(content_tag(:span, ::Spree.t(:products), itemprop: 'name'), spree.products_path, itemprop: 'url') + separator, itemprop: 'item'), itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
           crumbs << taxon.ancestors.collect { |ancestor| content_tag(:li, content_tag(:span, link_to(content_tag(:span, ancestor.name, itemprop: 'name'), seo_url(ancestor), itemprop: 'url') + separator, itemprop: 'item'), itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement') } unless taxon.ancestors.empty?
           crumbs << content_tag(:li, content_tag(:span, link_to(content_tag(:span, taxon.name, itemprop: 'name'), seo_url(taxon), itemprop: 'url'), itemprop: 'item'), class: 'active', itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
         else
-          crumbs << content_tag(:li, content_tag(:span, Spree.t(:products), itemprop: 'item'), class: 'active', itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
+          crumbs << content_tag(:li, content_tag(:span, ::Spree.t(:products), itemprop: 'item'), class: 'active', itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
         end
         crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb hero-breadcrumbs', itemscope: 'itemscope', itemtype: 'https://schema.org/BreadcrumbList')
         content_tag(:nav, crumb_list, id: 'breadcrumbs', class: 'breadcrumb breadcrumb-2')
@@ -57,7 +57,7 @@ module Presto
             "#{taxon.name} #{sub_taxon_arrow}".html_safe
           end
         end
-        services = Spree::Taxonomy.find_by_name('Services').root.children.all()
+        services = ::Spree::Taxonomy.find_by_name('Services').root.children.all()
         if services.present?
           static_pages = services.map do |service|
             css_class = current_taxon && current_taxon.self_and_ancestors.include?(service) ? 'list-group-item active' : 'list-group-item'
@@ -74,7 +74,7 @@ module Presto
       end
 
       def link_to_cart(text = nil)
-        text = text ? h(text) : Spree.t('cart')
+        text = text ? h(text) : ::Spree.t('cart')
         css_class = nil
 
         if simple_current_order.nil? || simple_current_order.item_count.zero?
