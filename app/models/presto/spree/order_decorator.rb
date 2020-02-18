@@ -23,6 +23,12 @@ module Presto
         else
           base.belongs_to :rejector, optional: true
         end
+
+        # select all orders where users department same with current user department
+        def base.department(current_user)
+          department_ids = ::Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
+          self.joins(:user).where('spree_users.department_id': department_ids)
+        end
       end
 
       SHIPMENT_STATES = %w(backorder canceled partial pending ready shipped delivered)
@@ -54,12 +60,6 @@ module Presto
 
       def rejected!
         update_column(:state, 'rejected')
-      end
-
-      # select all orders where users department same with current user department
-      def self.department(current_user)
-        department_ids = Spree::Role.where(name: 'manager', company_id: current_user.company_id).includes(:users).where(spree_users: {id: current_user.id}).pluck('department_id')
-        self.joins(:user).where('spree_users.department_id': department_ids)
       end
 
       def awaiting_approval?
