@@ -10,5 +10,3 @@ module Presto
     end
   end
 end
-
-::Spree::BaseHelper.prepend Presto::Spree::BaseHelperDecorator
