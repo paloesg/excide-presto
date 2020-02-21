@@ -1,5 +1,5 @@
 module Spree
   class ServiceIcon < Asset
-    include Rails.application.config.use_paperclip ? Image::Configuration::Paperclip : Image::Configuration::ActiveStorage
+    include Image::Configuration::ActiveStorage
   end
 end
