@@ -8,9 +8,12 @@ module Presto
 
       def price_in(currency, store_id = nil)
         current_store_id = store_id ? store_id : ::Spree::Store.current.id
-        product_sale = self.product_sales.find_by(store_id: current_store_id) if self.product_sales.find_by(store_id: current_store_id)
-        return orig_price_in(currency) unless product_sale.present?
-        ::Spree::Price.new(variant_id: self.id, amount: product_sale.sale_price, currency: currency)
+        if self.product_sales.find_by(store_id: current_store_id).present?
+          product_sale = self.product_sales.find_by(store_id: current_store_id)
+          ::Spree::Price.new(variant_id: self.id, amount: product_sale.sale_price, currency: currency)
+        else
+          prices.detect { |price| price.currency == currency } || prices.build(currency: currency)
+        end
       end
     end
   end
