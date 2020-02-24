@@ -15,7 +15,7 @@ html lang="#{I18n.locale}"
     = render partial: 'spree/admin/shared/header'
     #wrapper class=("container-fluid #{wrapper_classes}")
       .row
-        aside#main-sidebar class=("#{main_sidebar_classes} sidebar position-fixed d-flex flex-column px-0") data-hook="admin_tabs"
+        aside#main-sidebar class=("#{main_sidebar_classes} position-fixed d-flex flex-column px-0") data-hook="admin_tabs"
           = render partial: 'spree/admin/shared/main_menu'
           = render partial: 'spree/admin/shared/version'
         main#main-part class=("#{main_part_classes} main") role="main"

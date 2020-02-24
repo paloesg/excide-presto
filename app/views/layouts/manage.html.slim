@@ -15,7 +15,7 @@ html lang="#{I18n.locale}"
     = render partial: 'manage/shared/header'
     #wrapper class=("container-fluid #{wrapper_classes}")
       .row
-        #main-sidebar class=main_sidebar_classes data-hook="admin_tabs"
+        aside#main-sidebar class=("#{main_sidebar_classes} position-fixed d-flex flex-column px-0 mt-0") data-hook="admin_tabs"
           = render partial: 'manage/shared/main_menu'
         #main-part class=("#{main_part_classes} main")
           = render partial: 'manage/shared/content_header'

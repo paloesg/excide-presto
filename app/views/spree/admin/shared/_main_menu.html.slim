@@ -3,7 +3,7 @@
     = tab *Spree::BackendConfiguration::ORDER_TABS, icon: 'shopping-cart'
 - if can? :admin, Spree::ServiceRequest
   ul.nav.nav-sidebar
-    li.sidebar-menu-item
+    li.sidebar-menu-item.d-block.w-100.position-relative
       = link_to admin_service_requests_path, class: 'w-100 p-3 d-flex align-items-center icon-link' do
         span.icon.icon-comment.mr-2
         span.text Service Requests
@@ -24,7 +24,7 @@
     = tab *Spree::BackendConfiguration::USER_TABS, url: spree.admin_users_path, icon: 'user'
 - if can? :admin, Spree::Company
   ul.nav.nav-sidebar
-    li.sidebar-menu-item
+    li.sidebar-menu-item.d-block.w-100.position-relative
       = link_to admin_companies_path, class: 'w-100 p-3 d-flex align-items-center icon-link' do
         span.icon.icon-home.mr-2
         span.text Company
