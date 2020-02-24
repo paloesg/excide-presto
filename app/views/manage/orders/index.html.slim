@@ -3,7 +3,7 @@
     - content_for :page_title
       | Order List
   .row
-    .col-xs-8.col-md-9
+    .col-8.col-md-9
       .panel.panel-default
         .panel-heading Order Listing
         .panel-body
@@ -32,5 +32,5 @@
           - else
             .alert.alert-info
               ' No Orders found
-    .col-xs-4.col-md-3
+    .col-4.col-md-3
       = render partial: 'manage/orders/sidebar'

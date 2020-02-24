@@ -21,10 +21,10 @@ html lang="#{I18n.locale}"
           = render partial: 'manage/shared/content_header'
           .row
             = flash_alert(flash)
-            #content class=("#{content_for?(:sidebar) ? 'with-sidebar col-xs-8 col-md-9' : 'col-xs-12'}") data-hook=""
+            #content class=("#{content_for?(:sidebar) ? 'with-sidebar col-8 col-md-9' : 'col-12'}") data-hook=""
               = render partial: 'manage/shared/table_filter' if content_for?(:table_filter)
               = yield
             - if content_for?(:sidebar)
-              .col-xs-4.col-md-3
+              .col-4.col-md-3
                 = render partial: 'manage/shared/sidebar'
     div data-hook="admin_footer_scripts"
