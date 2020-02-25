@@ -4,13 +4,14 @@ $(document).on('turbolinks:load', function(){
     html: true,
     container: 'body',
     animation: false,
-    template: '<div class="popover sub-categories row"><h3 class="col-md-12 title p-l-0 p-b-10"></h3><div class="popover-content row col-md-12"></div></div>'
+    template: "<div class='popover sub-categories row'><h3 class='col-md-12 title p-l-0 p-b-10'></h3><div class='popover-content row col-md-12'><div class='content'></div></div></div>"
   }).on('shown.bs.popover', function() {
     var this_popover = $($($(this).data("bs.popover").$tip).first());
     var currentTop = parseInt(this_popover.css('top'));
     var currentLeft = parseInt(this_popover.css('left'));
     var currentHeight = this_popover.height();
-    this_popover.find('h3').text($(this).text());
+    $('.sub-categories > h3').text($(this).text());
+    $('.sub-categories > .popover-content > .content').replaceWith($(this).data("content"));
     $('.sub-categories').css({
       top: (currentTop + (currentHeight / 2)) + 'px',
       left: (currentLeft - 10) + 'px',
