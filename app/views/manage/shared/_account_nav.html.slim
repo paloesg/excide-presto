@@ -1,21 +1,22 @@
 - if try_spree_current_user
-  ul.nav.navbar-nav
-    li.dropdown.user.user-menu
-      a.dropdown-toggle data-toggle="dropdown" href="#"
-        i.glyphicon.glyphicon-user
-        span
-          = try_spree_current_user.email
-          i.caret
-      ul.dropdown-menu
-        - if spree.respond_to? :root_path
-          li
-            = link_to spree.root_path, target: :blank do
-              i.glyphicon.glyphicon-new-window
-              '
-              = Spree.t(:back_to_store)
-        - if spree.respond_to? :logout_path
-          li
-            = link_to spree.logout_path do
-              i.glyphicon.glyphicon-log-out
-              '
-              = Spree.t(:logout)
+  ul.nav.navbar-nav.align-items-end.h-100.justify-content-center
+    li.dropdown.user.user-menu.h-100
+      .dropdown.d-flex.align-items-center.h-100
+        button.dropdown-toggle.btn.btn-link.text-white.h-100 data-toggle="dropdown" aria-expanded="false"
+          i.glyphicon.glyphicon-user
+          span
+            = try_spree_current_user.email
+            i.caret
+        ul.dropdown-menu.position-absolute.mt-0.rounded-0-border-top-0
+          - if spree.respond_to? :root_path
+            li.dropdown-item.p-0
+              = link_to spree.root_path, target: :blank, class: "d-block text-dark py-2 px-4" do
+                i.glyphicon.glyphicon-new-window
+                '
+                = Spree.t(:back_to_store)
+          - if spree.respond_to? :logout_path
+            li.dropdown-item.p-0
+              = link_to spree.logout_path, class: "d-block text-dark py-2 px-4" do
+                i.glyphicon.glyphicon-log-out
+                '
+                = Spree.t(:logout)

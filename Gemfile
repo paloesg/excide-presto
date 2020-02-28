@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.2'
+gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -60,11 +60,11 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 # Install spree for e-commerce
-gem 'spree', '~> 3.7.0'
-gem 'spree_auth_devise', '~> 3.5'
-gem 'spree_gateway', '~> 3.4'
-gem 'spree_analytics_trackers', github: 'spree-contrib/spree_analytics_trackers'
-gem 'spree_multi_domain', github: 'spree-contrib/spree-multi-domain', branch: 'fix/store_paperclip_attachment'
+gem 'spree', '~> 4.0'
+gem 'spree_auth_devise', '~> 4.0'
+gem 'spree_gateway', '~> 3.6'
+gem 'spree_analytics_trackers'
+gem 'spree_multi_domain', git: 'git@github.com:narch/spree-multi-domain.git'
 
 # Static pages
 gem 'high_voltage', '~> 3.1'
