@@ -67,7 +67,7 @@ table#line-items.table data-hook="order_details"
         span#order_total.lead.text-primary= order.display_total.to_html
   tfoot#subtotal data-hook="order_details_subtotal"
     tr#subtotal-row.total
-      td colspan="4"
+      td.text-muted align="right" colspan="4"
         b
           = Spree.t(:subtotal)
           | :
