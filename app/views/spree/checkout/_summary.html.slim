@@ -1,5 +1,5 @@
-h3= Spree.t(:order_summary)
-table.table data-hook="order_summary"
+h4= Spree.t(:quotation_summary)
+table.table data-hook="quotation_summary"
   tbody
     tr data-hook="item_total"
       td
@@ -43,10 +43,10 @@ table.table data-hook="order_summary"
             = adjustment.label
             | :
           td= adjustment.display_amount.to_html
-  tr data-hook="order_total"
+  tr data-hook="quotation_total"
     td
       strong
-        = Spree.t(:order_total)
+        = Spree.t(:quotation_total)
         | :
     td
       strong

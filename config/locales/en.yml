@@ -35,7 +35,7 @@ en:
     order_state:
       awaiting_approval: 'Awaiting for Approval'
       rejected: 'Rejected'
-      preview: "Preview Order"
+      preview: "Preview Quotation"
       awaiting_approval: 'Awaiting Approval'
     order_mailer:
       cancel_email:
@@ -94,6 +94,12 @@ en:
       product_sale_not_deleted: "Unable to delete product sale."
     order:
       budget_exceeded: "Department budget is exceeded."
+    order_mailer:
+      quotation_total: ! 'Quotation Total:'
+      confirm_email:
+        instructions: Please review and retain the following quotation information for your records.
+        quotation_summary: Quotation %{number} Summary
+        subject: Quotation Confirmation
     service_request_sure_want_to: "Are you sure you want to %{event} this service request?"
     service_request_processing: "Service request processing"
     service_request_completed: "Service request completed"
@@ -104,6 +110,9 @@ en:
       processing: "Processing"
       rejected: "Rejected"
     processing: "Processing"
+    quotation_number: "Quotation %{number}"
+    quotation_summary: "Quotation Summary"
+    quotation_total: "Quotation Total"
   devise:
     mailer:
       new_password_instructions:

@@ -1,9 +1,9 @@
 p
   = Spree.t('order_mailer.confirm_email.dear_manager')
-p There is a new order ##{@order.number} placed by #{@order.user.full_name} (#{@order.user.email}) awaiting your approval.
+p There is a new quotation ##{@order.number} placed by #{@order.user.full_name} (#{@order.user.email}) awaiting your approval.
 = render partial: "table_order_txt_version", handlers: [:slim], formats: [:html], locals: { order: @order }
 p
-  ' Use this link to manage the order:
-  = link_to "Order #{@order.number}", main_app.edit_manage_order_url(@order.number)
+  ' Use this link to manage the quotation:
+  = link_to "Quotation #{@order.number}", main_app.edit_manage_order_url(@order.number)
 br
-= render 'footer'
+= render 'footer', order: @order

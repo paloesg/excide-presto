@@ -1,0 +1,5 @@
+tr
+  td.six.sub-columns
+    strong= order.completed? ? Spree.t('order_mailer.total') : Spree.t('order_mailer.quotation_total')
+  td.six.sub-columns.last.right
+    strong= order.display_total

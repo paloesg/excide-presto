@@ -6,8 +6,8 @@ br
 = render 'table_order', order: @order
 br
 p
-  ' Your order has been sent to your managers for approval:
+  ' Your quotation has been sent to your managers for approval:
   - @managers.each do |manager|
     ' #{manager.email} (#{manager.full_name})
 br
-= render 'footer'
+= render 'footer', order: @order
